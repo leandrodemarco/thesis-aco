@@ -38,7 +38,8 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
                using an all-ants, elitist-ants or single-ant approach
     """
     for edge in graph.edges(data=True):
-        n1, n2, pherLvl = edge
+        n1, n2, pherDict = edge
+        pherLvl = pherDict['weight']
         #n1 = (c1, val1) and n2 = (c2, val2) ~ (filterComp, val)
             
         incPher = .0
@@ -52,7 +53,7 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
         elif (newPher > maxPher):
             newPher = maxPher
         
-        graph[source][dest]['weight'] = newPher
+        graph[n1][n2]['weight'] = newPher
 
 def buildGraph(isScenario1, minPher):
     res_bases = e24_values
