@@ -21,11 +21,98 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
               7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, \
               8.87, 9.09, 9.31, 9.53, 9.76]
 
-def cost(assignment):
-    if (len(assignment) == 0):
-        return float("inf")
+def cost(assignment, errMax):
+    constraintsViolated = 0
     
-    return 0.
+    compsAssigned = assignment.keys()
+    r1Ready = "r1" in compsAssigned
+    r2Ready = "r2" in compsAssigned
+    r3Ready = "r3" in compsAssigned
+    c1Ready = "c1" in compsAssigned
+    c2Ready = "c2" in compsAssigned
+    
+    if (r1Ready and r2Ready):
+        errG = errorG(assignment["r1"], assignment["r2"], 3.)
+        if (errG > errMax):
+            constraintsViolated += 1
+    if (r2Ready and r3Ready and c1Ready and c2Ready):
+        r2 = assignment["r2"]
+        r3 = assignment["r3"]
+        c1 = assignment["c1"]
+        c2 = assignment["c2"]
+
+        errOmega = errorOmega(r2,r3,c1,c2,6283.9478)
+        if (errOmega > errMax):
+            constraintsViolated += 1
+    if(len(compsAssigned) == 5):
+        r1 = assignment["r1"]
+        r2 = assignment["r2"]
+        r3 = assignment["r3"]
+        c1 = assignment["c1"]
+        c2 = assignment["c2"]
+        errQ = errorQ(r1,r2,r3,c1,c2,0.707)
+        if (errQ > errMax):
+            constraintsViolated += 1
+            
+        if (sensTotal(r1,r2,r3,c1,c2) > 1):
+            constraintsViolated += 1
+    
+    return constraintsViolated
+    
+def errorG(r1, r2, Gf):
+    Gy = r2/r1
+    return abs((Gy-Gf)/Gf)
+    
+def errorOmega(r2, r3, c1, c2, omegaF):
+    omegaY = (1./(r2*r3*c1*c2))**(0.5)
+    return abs((omegaY-omegaF)/omegaF)
+    
+def errorQ(r1,r2,r3,c1,c2, Qf):
+    Qy = qualityFactor(r1,r2,r3,c1,c2)
+    return abs((Qy-Qf)/Qf)
+    
+def qualityFactor(r1,r2,r3,c1,c2):
+    fact_1 = (c2/c1)**(0.5)
+
+    term_1 = ((r2*r3)**(0.5))/r1
+    term_2 = (r3/r2)**(0.5)
+    term_3 = (r2/r3)**(0.5)
+
+    fact_2 = term_1 + term_2 + term_3
+    return 1./(fact_1 * fact_2)
+    
+def sensitivities(qFactor, r1, r2, r3, c1, c2):
+    """
+        @params: quality factor (Qp) and component values
+        @returns: sensitivity of r1, r2 and r3 relative to Qp
+        @observation: we compute all sensitivities together to avoid
+        computing square roots unnecessarily
+    """
+    fact_1 = -qFactor/2.0
+    
+    term_1 = (1.0/r1)*(((r2*r3*c2)/c1)**(0.5))
+    term_2 = ((r3*c2)/(r2*c1))**(0.5)
+    term_3 = ((r2*c2)/(r3*c1))**(0.5)
+    
+    fact_2 = term_1 - term_2 + term_3
+    sens_r2 = fact_1*fact_2
+    
+    fact_2 = term_1 + term_2 - term_3
+    sens_r3 = fact_1 * fact_2
+    
+    sens_r1 = qFactor*term_1
+    
+    return sens_r1, sens_r2, sens_r3
+    
+def sensTotal(r1, r2, r3, c1, c2):
+    """
+        @params: Values for passive components of the circuit
+        @returns: Sens_Total(components)
+    """
+    qFactor = qualityFactor(r1, r2, r3, c1, c2)
+    s_r1, s_r2, s_r3 = sensitivities(qFactor, r1, r2, r3, c1, c2)
+    
+    return (1./3.)*(abs(s_r1) + abs(s_r2) + abs(s_r3))
 
 def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
     """
@@ -44,7 +131,7 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
             
         incPher = .0
         for assign in bestAssigns:
-            if (n1 in assign and n2 in assign):
+            if (nodeInAssign(n1, assign) and nodeInAssign(n2, assign)):
                 incPher += 1./cost(assign)
         
         newPher = (1.-evaporationRate)*pherLvl + incPher
@@ -54,6 +141,11 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
             newPher = maxPher
         
         graph[n1][n2]['weight'] = newPher
+        
+def nodeInAssign(node, assignment):
+    compName = node[0]
+    compVal = node[1]
+    return compName in assignment.keys() and assignment[compName] == compVal
 
 def buildGraph(isScenario1, minPher):
     res_bases = e24_values

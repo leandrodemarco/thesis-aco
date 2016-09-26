@@ -8,7 +8,7 @@ from random import sample
 class Ant:
     def __init__(self, graph, isScenario1):
         # Public attributes
-        self.path = [] # List of tuples (component, compValue)
+        self.path = {} # path[compName] = compVal
         self.position = None # Node (comp, compVal) where ant is standing
         self.varNames = ["r1", "r2", "r3", "c1", "c2"]
         self.graph = graph
@@ -67,7 +67,7 @@ class Ant:
             newNode = self.chooseValForVar(nextVar)
             self.position = newNode
             
-        self.path.append(self.position)
+        self.path[self.position[0]] = self.position[1]
         
     def chooseValForVar(self, var):
         """ 
@@ -91,7 +91,11 @@ class Ant:
                 pherOnEdge = self.graph[self.position][theNode]['weight']
                 pherParam = pherOnEdge**self.pherFactor
                 
-                heurForEdge = 1./(1. + cost(self.path+[theNode]) - cost(self.path))
+                errMax = 0.005 if self.isScenario1 else 0.025
+                
+                tmpPath = self.path.copy()
+                tmpPath[theNode[0]] = theNode[1]
+                heurForEdge = 1./(1. + cost(tmpPath, errMax) - cost(self.path, errMax))
                 heurParam = heurForEdge**self.heurFactor
                 
                 probBaseDict[theNode] = pherParam * heurParam
