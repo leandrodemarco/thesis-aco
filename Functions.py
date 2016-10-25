@@ -3,6 +3,9 @@
 
 import networkx as nx
 
+isScenario1 = False
+errMax = 0.005 if isScenario1 else 0.025
+
 e12_values = [1., 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2]
     
 e24_values = [1., 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2, 2.2, 2.4, 2.7, 3, \
@@ -24,6 +27,9 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
 def cost(assignment, errMax):
     constraintsViolated = 0
     
+    if (len(assignment) == 0):
+        return float('Inf')
+    
     compsAssigned = assignment.keys()
     r1Ready = "r1" in compsAssigned
     r2Ready = "r2" in compsAssigned
@@ -44,18 +50,19 @@ def cost(assignment, errMax):
         errOmega = errorOmega(r2,r3,c1,c2,6283.9478)
         if (errOmega > errMax):
             constraintsViolated += 1
+    
     if(len(compsAssigned) == 5):
         r1 = assignment["r1"]
         r2 = assignment["r2"]
         r3 = assignment["r3"]
         c1 = assignment["c1"]
         c2 = assignment["c2"]
+        if (sensTotal(r1,r2,r3,c1,c2) > 1):
+            constraintsViolated += 1
         errQ = errorQ(r1,r2,r3,c1,c2,0.707)
         if (errQ > errMax):
             constraintsViolated += 1
             
-        if (sensTotal(r1,r2,r3,c1,c2) > 1):
-            constraintsViolated += 1
     
     return constraintsViolated
     
@@ -132,7 +139,7 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
         incPher = .0
         for assign in bestAssigns:
             if (nodeInAssign(n1, assign) and nodeInAssign(n2, assign)):
-                incPher += 1./cost(assign)
+                incPher += 1./(cost(assign, errMax)+0.1)
         
         newPher = (1.-evaporationRate)*pherLvl + incPher
         if (newPher < minPher):
