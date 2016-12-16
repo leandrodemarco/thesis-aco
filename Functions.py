@@ -2,6 +2,8 @@
 #-*- encoding: utf-8 -*-
 
 import networkx as nx
+import sys
+from math import exp
 
 isScenario1 = False
 errMax = 0.005 if isScenario1 else 0.025
@@ -25,46 +27,29 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
               8.87, 9.09, 9.31, 9.53, 9.76]
 
 def cost(assignment, errMax):
-    constraintsViolated = 0
-    
     if (len(assignment) == 0):
-        return float('Inf')
+        return float('inf')
+    #print assignment
+    r1 = assignment["r1"]
+    r2 = assignment["r2"]
+    r3 = assignment["r3"]
+    c1 = assignment["c1"]
+    c2 = assignment["c2"]
     
-    compsAssigned = assignment.keys()
-    r1Ready = "r1" in compsAssigned
-    r2Ready = "r2" in compsAssigned
-    r3Ready = "r3" in compsAssigned
-    c1Ready = "c1" in compsAssigned
-    c2Ready = "c2" in compsAssigned
+    omega = (1./(r2*r3*c1*c2))**(0.5)
+    Q = qualityFactor(r1,r2,r3,c1,c2)
     
-    if (r1Ready and r2Ready):
-        errG = errorG(assignment["r1"], assignment["r2"], 3.)
-        if (errG > errMax):
-            constraintsViolated += 1
-    if (r2Ready and r3Ready and c1Ready and c2Ready):
-        r2 = assignment["r2"]
-        r3 = assignment["r3"]
-        c1 = assignment["c1"]
-        c2 = assignment["c2"]
+    targetOmega = 6283.9478 
+    targetQ = 0.707
+    
+    sigma = errMax
+    term1 = ((omega - targetOmega)**2)/(2*sigma)
+    term2 = ((Q - targetQ)**2)/(2*sigma)
 
-        errOmega = errorOmega(r2,r3,c1,c2,6283.9478)
-        if (errOmega > errMax):
-            constraintsViolated += 1
+    print assignment, omega, Q
+    raw_input()
     
-    if(len(compsAssigned) == 5):
-        r1 = assignment["r1"]
-        r2 = assignment["r2"]
-        r3 = assignment["r3"]
-        c1 = assignment["c1"]
-        c2 = assignment["c2"]
-        if (sensTotal(r1,r2,r3,c1,c2) > 1):
-            constraintsViolated += 1
-        errQ = errorQ(r1,r2,r3,c1,c2,0.707)
-        if (errQ > errMax):
-            constraintsViolated += 1
-            
-    
-    return constraintsViolated
+    return 1. - exp(-(term1+term2))
     
 def errorG(r1, r2, Gf):
     Gy = r2/r1
@@ -139,7 +124,7 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
         incPher = .0
         for assign in bestAssigns:
             if (nodeInAssign(n1, assign) and nodeInAssign(n2, assign)):
-                incPher += 1./(cost(assign, errMax)+0.1)
+                incPher += 1./(cost(assign, errMax)+0.001)
         
         newPher = (1.-evaporationRate)*pherLvl + incPher
         if (newPher < minPher):
@@ -194,29 +179,29 @@ def buildGraph(isScenario1, minPher):
         c1Nodes.append(("c1", capVal))
         c2Nodes.append(("c2", capVal))
         
-    r1r2Edges = [(nR1,nR2,minPher) for nR1 in r1Nodes for nR2 in r2Nodes]
-    #r1r3Edges = [(nR1,nR3,minPher) for nR1 in r1Nodes for nR3 in r3Nodes]
-    #r1c1Edges = [(nR1,nC1,minPher) for nR1 in r1Nodes for nC1 in c1Nodes]
-    #r1c2Edges = [(nR1,nC2,minPher) for nR1 in r1Nodes for nC2 in c2Nodes]
+    r1r2Edges = []
+    validR2Nodes = []
+    for nR1 in r1Nodes:
+        for nR2 in r2Nodes:
+            if (errorG(nR1[1], nR2[1], 3) < errMax):
+                r1r2Edges.append((nR1, nR2, minPher))
+                validR2Nodes.append(nR2)      
     
-    r2r3Edges = [(nR2,nR3,minPher) for nR2 in r2Nodes for nR3 in r3Nodes]
-    r2c1Edges = [(nR2,nC1,minPher) for nR2 in r2Nodes for nC1 in c1Nodes]
-    r2c2Edges = [(nR2,nC2,minPher) for nR2 in r2Nodes for nC2 in c2Nodes]
+    r2r3Edges = [(nR2,nR3,minPher) for nR2 in validR2Nodes for nR3 in r3Nodes]
+    #r2c1Edges = [(nR2,nC1,minPher) for nR2 in validR2Nodes for nC1 in c1Nodes]
+    #r2c2Edges = [(nR2,nC2,minPher) for nR2 in validR2Nodes for nC2 in c2Nodes]
     
     r3c1Edges = [(nR3,nC1,minPher) for nR3 in r3Nodes for nC1 in c1Nodes]
-    r3c2Edges = [(nR3,nC2,minPher) for nR3 in r3Nodes for nC2 in c2Nodes]
+    #r3c2Edges = [(nR3,nC2,minPher) for nR3 in r3Nodes for nC2 in c2Nodes]
     
     c1c2Edges = [(nC1,nC2,minPher) for nC1 in c1Nodes for nC2 in c2Nodes]
     
     g.add_weighted_edges_from(r1r2Edges)
-    #g.add_weighted_edges_from(r1r3Edges)
-    #g.add_weighted_edges_from(r1c1Edges)
-    #g.add_weighted_edges_from(r1c2Edges)
     g.add_weighted_edges_from(r2r3Edges)
-    g.add_weighted_edges_from(r2c1Edges)
-    g.add_weighted_edges_from(r2c2Edges)
+    #g.add_weighted_edges_from(r2c1Edges)
+    #g.add_weighted_edges_from(r2c2Edges)
     g.add_weighted_edges_from(r3c1Edges)
-    g.add_weighted_edges_from(r3c2Edges)    
+    #g.add_weighted_edges_from(r3c2Edges)    
     g.add_weighted_edges_from(c1c2Edges)    
         
     return g
