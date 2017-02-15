@@ -4,6 +4,7 @@
 from Tkinter import *
 from ttk import Style
 import tkMessageBox
+from CspAco import runAlgorithm
 #from ttk import Frame, Button, Label, Style
 
 
@@ -17,6 +18,7 @@ class Example(Frame):
         self.initUI()
         self.centerWindow()
         
+        self.running = False
     
     def initUI(self):
       
@@ -50,54 +52,138 @@ class Example(Frame):
         scen1Bt.place(x=85,y=50)
         scen2Bt.place(x=120, y=50)
         
+        # Seleccionar número de hormigas
+        nAntsLabel = Label(self, text="Nº de hormigas por ciclo: ")
+        nAntsLabel.place(x=25, y=80)
+        
+        self.vNants = StringVar()
+        nAntsEntry = Entry(self, textvariable=self.vNants, width=4)
+        self.vNants.set("10")
+        nAntsEntry.place(x=185, y=80)
+        
         # Seleccionar modo elitista o no
         self.vElitist = IntVar()
         self.vElitist.set(1)
-        elitistButton = Checkbutton(self, text="Modo elitista", variable=self.vElitist, onvalue=1, offvalue=0)
-        elitistButton.place(x=20, y=75)
+        elitistButton = Checkbutton(self, text="Modo elitista", \
+            variable=self.vElitist, onvalue=1, offvalue=0, command=self.onElitist)
+        elitistButton.place(x=20, y=110)
         
-        # Seleccionar tasa de evaporación
+        self.vNumElitists = StringVar()
+        self.numElitistsEntry = Entry(self, textvariable=self.vNumElitists, \
+                                      width=4)
+        self.vNumElitists.set("10")
+        self.numElitistsEntry.place(x=185, y=110)
+        
+        # Seleccionar tasa de evaporación, tau_min y tau_max
         evapRateLabel = Label(self, text="Tasa de evaporación: ")
-        evapRateLabel.place(x=25, y=100)
+        evapRateLabel.place(x=25, y=145)
                 
         self.vEvaporationRate = StringVar()
-        evapRateEntry = Entry(self, textvariable=self.vEvaporationRate)
+        evapRateEntry = Entry(self, textvariable=self.vEvaporationRate, \
+                              width=5)
         self.vEvaporationRate.set("0.15")
-        evapRateEntry.place(x=175, y=100)
+        evapRateEntry.place(x=185, y=145)
+        
+        tauMinLabel = Label(self, text="tau_min: ")
+        tauMinLabel.place(x=240, y=145)
+        self.vTauMin = StringVar()
+        tauMinEntry = Entry(self, textvariable=self.vTauMin, width=5)
+        self.vTauMin.set("0.05")
+        tauMinEntry.place(x=300, y=145)
+        
+        tauMaxLabel = Label(self, text="tau_max: ")
+        tauMaxLabel.place(x=355, y=145)
+        self.vTauMax = StringVar()
+        tauMaxEntry = Entry(self, textvariable=self.vTauMax, width=5)
+        self.vTauMax.set("15")
+        tauMaxEntry.place(x=415, y=145)
         
         # Seleccionar sigma para funcion costo
         costSigmaLabel = Label(self, text="Sigma: ")
-        costSigmaLabel.place(x=25, y=125)
+        costSigmaLabel.place(x=25, y=180)
         
         self.vCostSigma = StringVar()
-        costSigmaEntry = Entry(self, textvariable=self.vCostSigma)
+        costSigmaEntry = Entry(self, textvariable=self.vCostSigma, width=5)
         self.vCostSigma.set("0.05")
-        costSigmaEntry.place(x=100, y=125)
+        costSigmaEntry.place(x=185, y=180)
+        
+        # Seleccionar a, factor de modificación ¿de qué?
+        aFactorLabel = Label(self, text="a: ")
+        aFactorLabel.place(x=25, y=215)
+        
+        self.vaFactor = StringVar()
+        aFactorEntry = Entry(self, textvariable=self.vaFactor, width=3)
+        self.vaFactor.set("4")
+        aFactorEntry.place(x=185, y=215)
         
         # Correr algoritmo
-        runButton = Button(self, text="Ejecutar", command=self.runAlgorithm)
+        runButton = Button(self, text="Ejecutar", command=self.runProgram)
         runButton.place(x=250, y=350)
+        
+    def onElitist(self):
+        isElitist = self.vElitist.get() == 1
+        if not isElitist:
+            self.numElitistsEntry.place_forget()
+        else:
+            self.numElitistsEntry.place(x=140, y=75)
 
-    def runAlgorithm(self):
-        # Obtener data de la UI
-        useCompleteModel = self.vModel.get() == 1
-        useScenario1 = self.vScenary.get() == 1
-        beElitist = self.vElitist.get() == 1
-        evapRateStr = self.vEvaporationRate.get()
-        sigmaCostStr = self.vCostSigma.get()
-        evapRate = 0.
-        sigmaCost = 0.
+    def validateInt(self, stringVar):
+        strValue = stringVar.get()
+        valToRet = None
         try:
-            evapRate = float(evapRateStr)
-            sigmaCost = float(sigmaCostStr)
+            valToRet = int(strValue)
         except:
-            alert = tkMessageBox.showerror("Error!", \
-            "La evaporación y sigma deben ser decimales separados con .")
-            return
+            alert = tkMessageBox.showerror("Error!", "El nro de \
+            hormigas y las consideradas en modo elitista deben ser enteros")
             
+        return valToRet
+        
+    def validateFloat(self, stringVar):
+        strValue = stringVar.get()
+        valToRet = None
+        try:
+            valToRet = float(strValue)
+        except:
+            alert = tkMessageBox.showerror("Error!", "La evaporación"\
+            "tau_min, tau_max y sigma deben ser decimales separados con .")
+
+        return valToRet
+
+    def validateInput(self):
+        nAnts = self.validateInt(self.vNants)
+        numElitists = self.validateInt(self.vNumElitists)
+        evapRate = self.validateFloat(self.vEvaporationRate)
+        tauMin = self.validateFloat(self.vTauMin)
+        tauMax = self.validateFloat(self.vTauMax)
+        costSigma = self.validateFloat(self.vCostSigma)
+
+        allVars = (nAnts, numElitists, evapRate, tauMin, tauMax, costSigma)
+        allOk = all(var != None for var in allVars)
+    
+        if allOk:
+            return allVars
+        else:
+            return None
+
+    def runProgram(self):
+        if not self.running:
+            self.running = True
+            validInput = self.validateInput()
+            if validInput != None:
+                # Obtener data de la UI
+                useCompleteModel = self.vModel.get() == 1
+                useScenario1 = self.vScenary.get() == 1
+                beElitist = self.vElitist.get() == 1
+                
+                nAnts, numElitists, evapRate, tauMin, tauMax, \
+                costSigma = validInput
+                
+                runAlgorithm(useCompleteModel, useScenario1, beElitist,\
+                numElitists, nAnts, evapRate, tauMin, tauMax, costSigma)
+            else:
+                self.running = False
         
     def centerWindow(self):
-
         w = 600
         h = 400
 
