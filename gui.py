@@ -61,60 +61,69 @@ class Example(Frame):
         self.vNants.set("10")
         nAntsEntry.place(x=185, y=80)
         
+        # Seleccionar numero maximo de ciclos
+        nCyclesLabel = Label(self, text="Nº máximo de ciclos: ")
+        nCyclesLabel.place(x=25, y=110)
+        
+        self.vNcycles = StringVar()
+        nCyclesEntry = Entry(self, textvariable=self.vNcycles, width=4)
+        self.vNcycles.set("10")
+        nCyclesEntry.place(x=185, y=110)
+        
         # Seleccionar modo elitista o no
         self.vElitist = IntVar()
         self.vElitist.set(1)
         elitistButton = Checkbutton(self, text="Modo elitista", \
             variable=self.vElitist, onvalue=1, offvalue=0, command=self.onElitist)
-        elitistButton.place(x=20, y=110)
+        elitistButton.place(x=20, y=140)
         
         self.vNumElitists = StringVar()
         self.numElitistsEntry = Entry(self, textvariable=self.vNumElitists, \
                                       width=4)
         self.vNumElitists.set("10")
-        self.numElitistsEntry.place(x=185, y=110)
+        self.numElitistsEntry.place(x=185, y=140)
         
         # Seleccionar tasa de evaporación, tau_min y tau_max
         evapRateLabel = Label(self, text="Tasa de evaporación: ")
-        evapRateLabel.place(x=25, y=145)
+        evapRateLabel.place(x=25, y=175)
                 
         self.vEvaporationRate = StringVar()
         evapRateEntry = Entry(self, textvariable=self.vEvaporationRate, \
                               width=5)
         self.vEvaporationRate.set("0.15")
-        evapRateEntry.place(x=185, y=145)
+        evapRateEntry.place(x=185, y=175)
         
         tauMinLabel = Label(self, text="tau_min: ")
-        tauMinLabel.place(x=240, y=145)
+        tauMinLabel.place(x=240, y=175)
         self.vTauMin = StringVar()
         tauMinEntry = Entry(self, textvariable=self.vTauMin, width=5)
         self.vTauMin.set("0.05")
-        tauMinEntry.place(x=300, y=145)
+        tauMinEntry.place(x=300, y=175)
         
         tauMaxLabel = Label(self, text="tau_max: ")
-        tauMaxLabel.place(x=355, y=145)
+        tauMaxLabel.place(x=355, y=175)
         self.vTauMax = StringVar()
         tauMaxEntry = Entry(self, textvariable=self.vTauMax, width=5)
         self.vTauMax.set("15")
-        tauMaxEntry.place(x=415, y=145)
+        tauMaxEntry.place(x=415, y=175)
         
         # Seleccionar sigma para funcion costo
         costSigmaLabel = Label(self, text="Sigma: ")
-        costSigmaLabel.place(x=25, y=180)
+        costSigmaLabel.place(x=25, y=210)
         
         self.vCostSigma = StringVar()
         costSigmaEntry = Entry(self, textvariable=self.vCostSigma, width=5)
         self.vCostSigma.set("0.05")
-        costSigmaEntry.place(x=185, y=180)
+        costSigmaEntry.place(x=185, y=210)
         
         # Seleccionar a, factor de modificación ¿de qué?
         aFactorLabel = Label(self, text="a: ")
-        aFactorLabel.place(x=25, y=215)
+        aFactorLabel.place(x=25, y=245)
         
         self.vaFactor = StringVar()
         aFactorEntry = Entry(self, textvariable=self.vaFactor, width=3)
         self.vaFactor.set("4")
-        aFactorEntry.place(x=185, y=215)
+        aFactorEntry.place(x=185, y=245)
         
         # Correr algoritmo
         runButton = Button(self, text="Ejecutar", command=self.runProgram)
@@ -152,12 +161,14 @@ class Example(Frame):
     def validateInput(self):
         nAnts = self.validateInt(self.vNants)
         numElitists = self.validateInt(self.vNumElitists)
+        numCycles = self.validateInt(self.vNcycles)
         evapRate = self.validateFloat(self.vEvaporationRate)
         tauMin = self.validateFloat(self.vTauMin)
         tauMax = self.validateFloat(self.vTauMax)
         costSigma = self.validateFloat(self.vCostSigma)
 
-        allVars = (nAnts, numElitists, evapRate, tauMin, tauMax, costSigma)
+        allVars = (nAnts, numElitists, evapRate, tauMin, tauMax, \
+                  costSigma, numCycles)
         allOk = all(var != None for var in allVars)
     
         if allOk:
@@ -176,10 +187,11 @@ class Example(Frame):
                 beElitist = self.vElitist.get() == 1
                 
                 nAnts, numElitists, evapRate, tauMin, tauMax, \
-                costSigma = validInput
+                costSigma, numCycles = validInput
                 
                 runAlgorithm(useCompleteModel, useScenario1, beElitist,\
-                numElitists, nAnts, evapRate, tauMin, tauMax, costSigma)
+                numElitists, nAnts, evapRate, tauMin, tauMax, \
+                costSigma, numCycles)
             else:
                 self.running = False
         

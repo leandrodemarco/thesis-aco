@@ -8,18 +8,12 @@ import Ant
 import sys
 
 def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
-nAnts, evapRate, tau_min, tau_max, costSigma):
-    print "Running babe"
+nAnts, evapRate, tau_min, tau_max, costSigma, maxCycles):
 
-start_time = time.time()
+    start_time = time.time()
 
-minPher = 1.0
-maxPher = 6.0
-evaporationRate = 0.05
-
-graph = buildGraph(isScenario1, minPher)
-#print graph.edges(data=True)[0]
-#sys.exit()
+    graph = buildGraph(useCompleteModel, scenario1, tau_min)
+        
 bestAssignment = {}
 maxCycles = 1000
 nAnts = 15

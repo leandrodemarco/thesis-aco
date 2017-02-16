@@ -139,7 +139,39 @@ def nodeInAssign(node, assignment):
     compVal = node[1]
     return compName in assignment.keys() and assignment[compName] == compVal
 
-def buildGraph(isScenario1, minPher):
+def buildGraph(useCompleteModel, isScenario1, minPher):
+    if (useCompleteModel):
+        return buildFullGraph(isScenario1, minPher)
+    else:
+        return buildReducedGraph(minPher)
+
+def buildReducedGraph(minPher):
+    r1_values = [1600., 2700., 3000., 3300., 3600., 5100.]
+    r2_values = [4700., 8200., 9100., 10000., 11000., 15000.]
+    r3_values = [1300., 1500., 1600., 1800., 2000., 2200., 2400., 2700., 3000.]
+    c1_values = [6.8e-8, 8.2e-8, 1.0e-7, 1.2e-7, 1.5e-7, 1.8e-7]
+    c2_values = [8.2e-9, 1.0e-8, 1.2e-8, 1.5e-8, 1.8e-8, 2.2e-8]
+
+    g = nx.Graph()
+    r1Nodes = [("r1", val) for val in r1_values]
+    r2Nodes = [("r2", val) for val in r2_values]
+    r3Nodes = [("r3", val) for val in r3_values]
+    c1Nodes = [("c1", val) for val in c1_values]
+    c2Nodes = [("c2", val) for val in c2_values]
+    
+    r1r2Edges = [(nR1,nR2,minPher) for nR1 in r1Nodes for nR2 in r2Nodes]
+    r2r3Edges = [(nR2,nR3,minPher) for nR2 in r2Nodes for nR3 in r3Nodes]
+    r3c1Edges = [(nR3,nC1,minPher) for nR3 in r3Nodes for nC1 in c1Nodes]
+    c1c2Edges = [(nC1,nC2,minPher) for nC1 in c1Nodes for nC2 in c2Nodes]
+    
+    g.add_weighted_edges_from(r1r2Edges)
+    g.add_weighted_edges_from(r2r3Edges)
+    g.add_weighted_edges_from(r3c1Edges)
+    g.add_weighted_edges_from(c1c2Edges)
+    
+    return g    
+        
+def buildFullGraph(isScenario1, minPher):
     res_bases = e24_values
     if (isScenario1): res_bases = e96_values
 
@@ -187,21 +219,13 @@ def buildGraph(isScenario1, minPher):
                 r1r2Edges.append((nR1, nR2, minPher))
                 validR2Nodes.append(nR2)      
     
-    r2r3Edges = [(nR2,nR3,minPher) for nR2 in validR2Nodes for nR3 in r3Nodes]
-    #r2c1Edges = [(nR2,nC1,minPher) for nR2 in validR2Nodes for nC1 in c1Nodes]
-    #r2c2Edges = [(nR2,nC2,minPher) for nR2 in validR2Nodes for nC2 in c2Nodes]
-    
+    r2r3Edges = [(nR2,nR3,minPher) for nR2 in validR2Nodes for nR3 in r3Nodes]    
     r3c1Edges = [(nR3,nC1,minPher) for nR3 in r3Nodes for nC1 in c1Nodes]
-    #r3c2Edges = [(nR3,nC2,minPher) for nR3 in r3Nodes for nC2 in c2Nodes]
-    
     c1c2Edges = [(nC1,nC2,minPher) for nC1 in c1Nodes for nC2 in c2Nodes]
     
     g.add_weighted_edges_from(r1r2Edges)
     g.add_weighted_edges_from(r2r3Edges)
-    #g.add_weighted_edges_from(r2c1Edges)
-    #g.add_weighted_edges_from(r2c2Edges)
     g.add_weighted_edges_from(r3c1Edges)
-    #g.add_weighted_edges_from(r3c2Edges)    
     g.add_weighted_edges_from(c1c2Edges)    
         
     return g
