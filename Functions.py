@@ -169,6 +169,11 @@ def buildReducedGraph(minPher):
     g.add_weighted_edges_from(r3c1Edges)
     g.add_weighted_edges_from(c1c2Edges)
     
+    lNodes = r1Nodes+r2Nodes+r3Nodes+c1Nodes+c2Nodes
+    adj_matrix = nx.adjacency_matrix(g)
+    #print nx.to_dict_of_dicts(g)[('r3', 1300.0)]
+    #print adj_matrix(lNodes)
+    
     return g    
         
 def buildFullGraph(isScenario1, minPher):
