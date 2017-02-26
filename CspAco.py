@@ -3,7 +3,7 @@
 
 import time
 import networkx as nx
-from Functions import buildGraph, cost, updatePheromone, isScenario1, errMax
+from Functions import buildGraph, cost, updatePheromone
 import Ant
 import sys
 
@@ -13,11 +13,14 @@ nAnts, evapRate, tau_min, tau_max, costSigma, maxCycles):
     start_time = time.time()
 
     graph = buildGraph(useCompleteModel, scenario1, tau_min)
+    nCycles = 0
+    while (nCycles < maxCycles):
+        nCycles += 1
+        for i in range(0, nAnts):
+            ant = Ant.Ant(graph, scenario1)
+            path = ant.walkGraph()
         
 bestAssignment = {}
-maxCycles = 1000
-nAnts = 15
-nCycles = 0
 
 #~ while (cost(bestAssignment, errMax) > 0 and nCycles < maxCycles):
     #~ nCycles += 1 

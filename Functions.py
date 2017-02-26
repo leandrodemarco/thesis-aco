@@ -5,8 +5,8 @@ import networkx as nx
 import sys
 from math import exp
 
-isScenario1 = False
-errMax = 0.005 if isScenario1 else 0.025
+#isScenario1 = True
+#errMax = 0.005 #if isScenario1 else 0.025
 
 e12_values = [1., 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2]
     
@@ -143,9 +143,9 @@ def buildGraph(useCompleteModel, isScenario1, minPher):
     if (useCompleteModel):
         return buildFullGraph(isScenario1, minPher)
     else:
-        return buildReducedGraph(minPher)
+        return buildReducedGraph(isScenario1, minPher)
 
-def buildReducedGraph(minPher):
+def buildReducedGraph(isScenario1, minPher):
     r1_values = [1600., 2700., 3000., 3300., 3600., 5100.]
     r2_values = [4700., 8200., 9100., 10000., 11000., 15000.]
     r3_values = [1300., 1500., 1600., 1800., 2000., 2200., 2400., 2700., 3000.]
@@ -159,7 +159,15 @@ def buildReducedGraph(minPher):
     c1Nodes = [("c1", val) for val in c1_values]
     c2Nodes = [("c2", val) for val in c2_values]
     
-    r1r2Edges = [(nR1,nR2,minPher) for nR1 in r1Nodes for nR2 in r2Nodes]
+    errMax = 0.005 if isScenario1 else 0.025
+    
+    r1r2Edges = []
+    for nR1 in r1Nodes:
+        for nR2 in r2Nodes:
+            if (errorG(nR1[1], nR2[1], 3) < errMax):
+                r1r2Edges.append((nR1, nR2, minPher))
+    
+    #r1r2Edges = [(nR1,nR2,minPher) for nR1 in r1Nodes for nR2 in r2Nodes]
     r2r3Edges = [(nR2,nR3,minPher) for nR2 in r2Nodes for nR3 in r3Nodes]
     r3c1Edges = [(nR3,nC1,minPher) for nR3 in r3Nodes for nC1 in c1Nodes]
     c1c2Edges = [(nC1,nC2,minPher) for nC1 in c1Nodes for nC2 in c2Nodes]
@@ -168,11 +176,12 @@ def buildReducedGraph(minPher):
     g.add_weighted_edges_from(r2r3Edges)
     g.add_weighted_edges_from(r3c1Edges)
     g.add_weighted_edges_from(c1c2Edges)
-    
-    lNodes = r1Nodes+r2Nodes+r3Nodes+c1Nodes+c2Nodes
-    adj_matrix = nx.adjacency_matrix(g)
-    #print nx.to_dict_of_dicts(g)[('r3', 1300.0)]
-    #print adj_matrix(lNodes)
+
+    print len(g.nodes()), len(g.edges())
+    #~ lNodes = r1Nodes+r2Nodes+r3Nodes+c1Nodes+c2Nodes
+    #~ adj_matrix = nx.adjacency_matrix(g)
+    #~ print nx.to_dict_of_dicts(g)[('r3', 1300.0)]
+    #~ print adj_matrix(lNodes)
     
     return g    
         
@@ -216,6 +225,8 @@ def buildFullGraph(isScenario1, minPher):
         c1Nodes.append(("c1", capVal))
         c2Nodes.append(("c2", capVal))
         
+    errMax = 0.005 if isScenario1 else 0.025
+        
     r1r2Edges = []
     validR2Nodes = []
     for nR1 in r1Nodes:
@@ -231,7 +242,9 @@ def buildFullGraph(isScenario1, minPher):
     g.add_weighted_edges_from(r1r2Edges)
     g.add_weighted_edges_from(r2r3Edges)
     g.add_weighted_edges_from(r3c1Edges)
-    g.add_weighted_edges_from(c1c2Edges)    
+    g.add_weighted_edges_from(c1c2Edges)
+    
+    print len(g.nodes()), len(g.edges())    
         
     return g
     
