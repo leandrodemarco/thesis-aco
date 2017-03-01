@@ -25,7 +25,7 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
               5.76, 5.90, 6.04, 6.19, 6.34, 6.49, 6.65, 6.81, 6.98, \
               7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, \
               8.87, 9.09, 9.31, 9.53, 9.76]
-
+                     
 def cost(assignment, errMax, sigma, scale):
     #~ if (len(assignment) == 0):
         #~ return float('inf')
@@ -130,7 +130,7 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
                cycle. The amount of assignments here differs whether
                using an all-ants, elitist-ants or single-ant approach
     """
-    print "Updating pheromone"
+    #print "Updating pheromone"
     for edge in graph.edges(data=True):
         n1, n2, pherDict = edge
         pherLvl = pherDict['weight']
