@@ -166,9 +166,10 @@ class Example(Frame):
         tauMin = self.validateFloat(self.vTauMin)
         tauMax = self.validateFloat(self.vTauMax)
         costSigma = self.validateFloat(self.vCostSigma)
+        errFactor = self.validateFloat(self.vaFactor)
 
         allVars = (nAnts, numElitists, evapRate, tauMin, tauMax, \
-                  costSigma, numCycles)
+                  costSigma, numCycles, errFactor)
         allOk = all(var != None for var in allVars)
     
         if allOk:
@@ -187,11 +188,11 @@ class Example(Frame):
                 beElitist = self.vElitist.get() == 1
                 
                 nAnts, numElitists, evapRate, tauMin, tauMax, \
-                costSigma, numCycles = validInput
+                costSigma, numCycles, errorScale = validInput
                 
                 runAlgorithm(useCompleteModel, useScenario1, beElitist,\
                 numElitists, nAnts, evapRate, tauMin, tauMax, \
-                costSigma, numCycles)
+                costSigma, numCycles, errorScale)
             else:
                 self.running = False
         

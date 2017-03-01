@@ -26,10 +26,10 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
               7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, \
               8.87, 9.09, 9.31, 9.53, 9.76]
 
-def cost(assignment, errMax):
-    if (len(assignment) == 0):
-        return float('inf')
-    #print assignment
+def cost(assignment, errMax, sigma, scale):
+    #~ if (len(assignment) == 0):
+        #~ return float('inf')
+
     r1 = assignment["r1"]
     r2 = assignment["r2"]
     r3 = assignment["r3"]
@@ -42,14 +42,27 @@ def cost(assignment, errMax):
     targetOmega = 6283.9478 
     targetQ = 0.707
     
-    sigma = errMax
     term1 = ((omega - targetOmega)**2)/(2*sigma)
     term2 = ((Q - targetQ)**2)/(2*sigma)
 
-    print assignment, omega, Q
-    raw_input()
+    res = (1. - exp(-(term1+term2)))/scale
+    res += 0.001
+    #print res, assignment
     
-    return 1. - exp(-(term1+term2))
+    return res
+    
+def isSolution(assignment, errMax):
+    r1 = assignment["r1"]
+    r2 = assignment["r2"]
+    r3 = assignment["r3"]
+    c1 = assignment["c1"]
+    c2 = assignment["c2"]
+    
+    errOmega = errorOmega(r2, r3, c1, c2, 6283.9478)
+    errQ = errorQ(r1, r2, r3, c1, c2, 0.707)
+    
+    return errOmega < errMax and errQ < errMax
+    
     
 def errorG(r1, r2, Gf):
     Gy = r2/r1
@@ -106,7 +119,8 @@ def sensTotal(r1, r2, r3, c1, c2):
     
     return (1./3.)*(abs(s_r1) + abs(s_r2) + abs(s_r3))
 
-def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
+def updatePheromone(graph, minPher, maxPher, evaporationRate, \
+                    errMax, bestAssigns, costSigma, errScale):
     """
         @params:
             *graph : the full graph
@@ -116,15 +130,15 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, bestAssigns):
                cycle. The amount of assignments here differs whether
                using an all-ants, elitist-ants or single-ant approach
     """
+    print "Updating pheromone"
     for edge in graph.edges(data=True):
         n1, n2, pherDict = edge
         pherLvl = pherDict['weight']
-        #n1 = (c1, val1) and n2 = (c2, val2) ~ (filterComp, val)
-            
+                    
         incPher = .0
         for assign in bestAssigns:
             if (nodeInAssign(n1, assign) and nodeInAssign(n2, assign)):
-                incPher += 1./(cost(assign, errMax)+0.001)
+                incPher += 1./(cost(assign, errMax, costSigma, errScale))
         
         newPher = (1.-evaporationRate)*pherLvl + incPher
         if (newPher < minPher):
