@@ -193,6 +193,7 @@ class Example(Frame):
                 runAlgorithm(useCompleteModel, useScenario1, beElitist,\
                 numElitists, nAnts, evapRate, tauMin, tauMax, \
                 costSigma, numCycles, errorScale)
+                self.running = False
             else:
                 self.running = False
         
