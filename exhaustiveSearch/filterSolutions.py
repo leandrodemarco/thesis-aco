@@ -6,6 +6,26 @@ from operator import itemgetter
 import sys
 import time
 
+def dominatedBy(targetVector, candidateVector):
+    """
+        @Params:
+            targetVector: vector to see if it's dominated by
+                          candidateVector
+            Each vector contains SR1, SR2 and SR3
+        @Returns:
+            True if candidateVector dominates targetVector False otherwise
+        @Note:
+            candidateVector dominates vector "b" if all elements from 
+            it are lower than targetVector elementwise 
+    """
+    SR1target, SR2target, SR3target = targetVector
+    SR1cand, SR2cand, SR3cand = candidateVector
+    dominated = SR1cand < SR1target and SR2cand < SR2target and \
+                SR3cand < SR3target
+                
+    return dominated
+    
+
 start_time = time.time()
 
 e12_values = [1., 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2]
@@ -174,33 +194,61 @@ for r1, r2 in constraint2:
                             (numSols,r1,r2,r3,c4,c5,gg,errgg,omegap,erromega,qq,errqq,\
                             SR1,SR2,SR3,ST))"""
 
+"""
+Find pareto optimals with vector dominance
+"""
 sorted_sols = sorted(solutions, key = lambda t : (t[14], t[0], t[1], t[2], t[3], t[4], t[5], \
-                    t[6], t[7], t[8], t[9], t[10], t[11], t[12], t[13]), reverse = False)
-f = open('SortedSols.txt', 'w+')
-title = 'Escenario 1'
-if (not isScenario1): title = 'Escenario 2'
-
-f.write('Numero de soluciones: %i\n\n' % numSols)
-f.write('Los valores de cada columna corresponden a R1, R2, R3, C4, C5, G, err(G), wp, err(wp), Qp, Err(Qp),SR1, SR2, SR3 y ST\n\n')
-
-f.write('   R1     R2    R3     C4     C5     G   err(G)    wp   err(wp)  Qp   Err(Qp)\
-  SR1     SR2    SR3    ST\n')
-
-for sol in sorted_sols:
-    (r1,r2,r3,c4,c5,gg,errgg,omegap,erromega,qq,errqq, SR1,SR2,SR3,ST) = sol
-    sol_str = "%5d %6d %5d %7.1e %7.1e %5.3f %3.4f %7.2f %3.4f %5.4f %3.4f %6.4f %6.4f %6.4f %6.4f\n" % \
-        (r1,r2,r3,c4,c5,gg,errgg,omegap,erromega,qq,errqq,\
-        SR1,SR2,SR3,ST)
-    f.write(sol_str)
-    
-f.write("\n--- %s seconds ---" % (time.time() - start_time))
-    
-f.close()
-    
-    
-#print states
-        
+                t[6], t[7], t[8], t[9], t[10], t[11], t[12], t[13]), reverse = False)
                 
+optimals = [sorted_sols[0]]
+for sol in sorted_sols[1:]:
+    hasToAdd = True 
 
+    for partial_opt in optimals:
+        target = (partial_opt[11], partial_opt[12], partial_opt[13])
+        candidate = (sol[11], sol[12], sol[13])
 
+        if dominatedBy(target, candidate):
+            # Remove partial_opt from optimals
+            optimals.remove(partial_opt)
+        elif dominatedBy(candidate, target):
+            # If we find just one value in current optimals that dominates
+            # candidate then we don't have to add candidate.
+            hasToAdd = False
+            break
 
+    if hasToAdd:
+        optimals.append(sol)
+
+print len(optimals)
+
+""" END Pareto optimals search """
+
+writeSols = True
+if (writeSols):
+    filename = 'SortedSolsEsc1.txt' if isScenario1 else 'SortedSolsEsc2.txt'                    
+    f = open(filename, 'w+')
+    title = 'Escenario 1' if isScenario1 else 'Escenario 2'
+
+    f.write('Numero de soluciones: %i\n\n' % numSols)
+    f.write('Los valores de cada columna corresponden a R1, R2, R3, C4, C5, G, err(G), wp, err(wp), Qp, Err(Qp),SR1, SR2, SR3 y ST\n\n')
+
+    f.write('   R1     R2    R3     C4     C5     G   err(G)    wp   err(wp)  Qp   Err(Qp)\
+      SR1     SR2    SR3    ST\n')
+
+    for sol in sorted_sols:
+        (r1,r2,r3,c4,c5,gg,errgg,omegap,erromega,qq,errqq, SR1,SR2,SR3,ST) = sol
+        sol_str = "%5d %6d %5d %7.1e %7.1e %5.3f %3.4f %7.2f %3.4f %5.4f %3.4f %6.4f %6.4f %6.4f %6.4f" % \
+            (r1,r2,r3,c4,c5,gg,errgg,omegap,erromega,qq,errqq,\
+            SR1,SR2,SR3,ST)
+        
+        if sol in optimals:
+            sol_str += " X\n"
+        else:
+            sol_str += "\n"
+        
+        f.write(sol_str)
+        
+    f.write("\n--- %s seconds ---" % (time.time() - start_time))
+        
+    f.close()        
