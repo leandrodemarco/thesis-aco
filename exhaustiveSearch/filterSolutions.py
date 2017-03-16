@@ -15,8 +15,8 @@ def dominatedBy(targetVector, candidateVector):
         @Returns:
             True if candidateVector dominates targetVector False otherwise
         @Note:
-            candidateVector dominates vector "b" if all elements from 
-            it are lower than targetVector elementwise 
+            candidateVector dominates vector targetVector if all elements 
+            from it are lower than targetVector elementwise 
     """
     SR1target, SR2target, SR3target = targetVector
     SR1cand, SR2cand, SR3cand = candidateVector

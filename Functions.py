@@ -26,10 +26,29 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
               7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, \
               8.87, 9.09, 9.31, 9.53, 9.76]
                      
-def cost(assignment, errMax, sigma, scale):
-    #~ if (len(assignment) == 0):
-        #~ return float('inf')
-
+def costLinear(omega, Q, targetOmega, targetQ, errMax):
+    errOmega = abs((omega-targetOmega)/targetOmega)
+    errQ = abs((Q-targetQ)/targetQ)
+    
+    resCost = 0
+    if (errOmega > errMax):
+        resCost += 1
+    if (errQ > errMax):
+        resCost += 1
+        
+    return resCost
+    
+    
+def costExponential(term1, term2, scale):
+    return (1. - exp(-(term1+term2)))/scale
+    
+def costPozo():
+    return 1000.
+                     
+def cost(assignment, errMax, sigma, scale, costFunction=2):
+    """
+        @Params: costFunction: 1 => linear, 2 => exponential, 3 => pozo
+    """
     r1 = assignment["r1"]
     r2 = assignment["r2"]
     r3 = assignment["r3"]
@@ -45,11 +64,20 @@ def cost(assignment, errMax, sigma, scale):
     term1 = ((omega - targetOmega)**2)/(2*sigma)
     term2 = ((Q - targetQ)**2)/(2*sigma)
 
-    res = (1. - exp(-(term1+term2)))/scale
-    res += 0.001
-    #print res, assignment
+    if (costFunction == 1):
+        resCost = costLinear(omega, Q, targetOmega, targetQ, errMax)
+    elif (costFunction == 2):
+        resCost = costExponential(term1, term2, scale)
+    elif (costFunction == 3):
+        resCost = costPozo()
+    else:
+        print "Error: Undefined cost Function"
+        sys.exit()
+        
+    resCost += 0.001
+    #print resCost, assignment
     
-    return res
+    return resCost
     
 def isSolution(assignment, errMax):
     r1 = assignment["r1"]
@@ -120,7 +148,8 @@ def sensTotal(r1, r2, r3, c1, c2):
     return (1./3.)*(abs(s_r1) + abs(s_r2) + abs(s_r3))
 
 def updatePheromone(graph, minPher, maxPher, evaporationRate, \
-                    errMax, bestAssigns, costSigma, errScale):
+                    errMax, bestAssigns, costSigma, errScale, \
+                    costFunction):
     """
         @params:
             *graph : the full graph
@@ -137,8 +166,11 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
                     
         incPher = .0
         for assign in bestAssigns:
+            assignCost = cost(assign, errMax, costSigma, errScale, \
+                              costFunction)
+            print assignCost
             if (nodeInAssign(n1, assign) and nodeInAssign(n2, assign)):
-                incPher += 1./(cost(assign, errMax, costSigma, errScale))
+                incPher += 1./assignCost
         
         newPher = (1.-evaporationRate)*pherLvl + incPher
         if (newPher < minPher):
@@ -191,7 +223,7 @@ def buildReducedGraph(isScenario1, minPher):
     g.add_weighted_edges_from(r3c1Edges)
     g.add_weighted_edges_from(c1c2Edges)
 
-    print len(g.nodes()), len(g.edges())
+    #print len(g.nodes()), len(g.edges())
     #~ lNodes = r1Nodes+r2Nodes+r3Nodes+c1Nodes+c2Nodes
     #~ adj_matrix = nx.adjacency_matrix(g)
     #~ print nx.to_dict_of_dicts(g)[('r3', 1300.0)]
@@ -258,7 +290,7 @@ def buildFullGraph(isScenario1, minPher):
     g.add_weighted_edges_from(r3c1Edges)
     g.add_weighted_edges_from(c1c2Edges)
     
-    print len(g.nodes()), len(g.edges())    
+    #print len(g.nodes()), len(g.edges())    
         
     return g
     

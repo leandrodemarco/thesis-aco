@@ -107,23 +107,41 @@ class Example(Frame):
         self.vTauMax.set("15")
         tauMaxEntry.place(x=415, y=175)
         
+        # Seleccionar función costo a utilizar
+        costFunctionLabel = Label(self, text="Función costo: ")
+        costFunctionLabel.place(x=25, y=210)
+        
+        self.vCostFunction = IntVar()
+        linearCostBt = Radiobutton(self, text="Lineal", \
+                                   variable=self.vCostFunction, value=1)
+        expCostBt = Radiobutton(self, text="Exponencial", \
+                                   variable=self.vCostFunction, value=2)
+        pozoCostBt = Radiobutton(self, text="Pozo", \
+                                   variable=self.vCostFunction, value=3)
+                                   
+        linearCostBt.place(x=115, y=210)
+        expCostBt.place(x=185, y=210)
+        pozoCostBt.place(x=285, y=210)
+        
+        self.vCostFunction.set(2)
+        
         # Seleccionar sigma para funcion costo
         costSigmaLabel = Label(self, text="Sigma: ")
-        costSigmaLabel.place(x=25, y=210)
+        costSigmaLabel.place(x=25, y=245)
         
         self.vCostSigma = StringVar()
         costSigmaEntry = Entry(self, textvariable=self.vCostSigma, width=5)
         self.vCostSigma.set("0.05")
-        costSigmaEntry.place(x=185, y=210)
+        costSigmaEntry.place(x=185, y=245)
         
         # Seleccionar a, factor de modificación ¿de qué?
         aFactorLabel = Label(self, text="a: ")
-        aFactorLabel.place(x=25, y=245)
+        aFactorLabel.place(x=25, y=280)
         
         self.vaFactor = StringVar()
         aFactorEntry = Entry(self, textvariable=self.vaFactor, width=3)
         self.vaFactor.set("4")
-        aFactorEntry.place(x=185, y=245)
+        aFactorEntry.place(x=185, y=280)
         
         # Correr algoritmo
         runButton = Button(self, text="Ejecutar", command=self.runProgram)
@@ -186,13 +204,14 @@ class Example(Frame):
                 useCompleteModel = self.vModel.get() == 1
                 useScenario1 = self.vScenary.get() == 1
                 beElitist = self.vElitist.get() == 1
+                costFunction = self.vCostFunction.get()                
                 
                 nAnts, numElitists, evapRate, tauMin, tauMax, \
                 costSigma, numCycles, errorScale = validInput
                 
                 runAlgorithm(useCompleteModel, useScenario1, beElitist,\
                 numElitists, nAnts, evapRate, tauMin, tauMax, \
-                costSigma, numCycles, errorScale)
+                costSigma, numCycles, errorScale, costFunction)
                 self.running = False
             else:
                 self.running = False

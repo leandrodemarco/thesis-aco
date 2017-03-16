@@ -8,7 +8,8 @@ import Ant
 import sys
 
 def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
-nAnts, evapRate, tau_min, tau_max, costSigma, maxCycles, errScale):
+                 nAnts, evapRate, tau_min, tau_max, costSigma, \
+                 maxCycles, errScale, costFunction):
 
     start_time = time.time()
 
@@ -28,12 +29,12 @@ nAnts, evapRate, tau_min, tau_max, costSigma, maxCycles, errScale):
             if (useAllForUpdate):
                 pathsForCycle.append(path)
         
-        updatePheromone(graph, tau_min, tau_max, evapRate, \
-                        errMax, pathsForCycle, costSigma, errScale)
+        updatePheromone(graph, tau_min, tau_max, evapRate, errMax, \
+                        pathsForCycle, costSigma, errScale, costFunction)
         
         for path in pathsForCycle:
             if (isSolution(path, errMax)):
                 allSols.append(path)
                 #print path
                 
-    print "\n\nAll sols: ", allSols
+    print "\n\nAll sols: ", allSols, len(allSols)
