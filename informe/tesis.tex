@@ -1,0 +1,152 @@
+\documentclass{llncs}
+\bibliographystyle{splncs}
+\renewcommand{\contentsname}{\'Indice general}
+\renewcommand\refname{Bibliograf\'ia}
+\renewcommand\abstractname{Resumen}
+\usepackage{listings}
+\usepackage{indentfirst, enumitem,amsmath}
+
+% Titulo
+\title{Selecci\'on de Componentes Discretos para un Filtro Activo Mediante \textit{Constraint Programming}}
+\author{Leandro Demarco Vedelago}
+\institute{
+            \email{leandrodemarco@gmail.com}\\
+            Universidad Nacional de C\'ordoba, Fa.M.A.F
+          }
+\setcounter{tocdepth}{3}
+\begin{document}
+{\def\addcontentsline#1#2#3{}\maketitle
+  \noindent
+  \makebox[\linewidth]{\small 25 de Marzo de 2017}}
+  
+\begin{abstract}
+  Esto es el resumen 
+\end{abstract}
+% Fin titulo
+
+%Tabla de contenidos
+\tableofcontents
+\newpage
+%Fin tabla de contenidos
+  \section{\textbf{Motivaci\'on}}
+    \label{sec:motivacion}
+    El dise\~no electr\'onico actual incluye a los filtros activos en muchas aplicaciones,
+    tales como acondicionamiento y manipulaci\'on de se\~nales en frecuencias de audio e
+    intermedias (IF) as\'i como tareas de procesamiento digital de se\~nales. En
+    contraposici\'on a los filtros digitales, los activos pueden obtener buena performance
+    con demandas de potencia significativamente menores.
+    
+    Las alternativas de implementaci\'on de filtros activos presentan muchas opciones.
+    Entre \'estas, las implementaciones RC (resistencia/capacitor), construidas a partir de
+    amplificadores operacionales, resistencias y capacitores son una de las m\'as utilizadas
+    por los ingenieros.\cite{corr}
+    
+  \section{\textbf{Fundamentos electr\'onicos}}
+    \label{sec:fundelect}
+    
+  \section{\textbf{Fundamentos de \textit{Constraint Programming}}}
+    \label{sec:fundprog}
+    Intuitivamente, los problemas de satisfacci\'on de restricciones pueden definirse como \textit{encontrar
+    una soluci\'on que satisface determinadas restricciones -o propiedades-}.
+    Por ejemplo, el planeamiento y control del tr\'afico a\'ereo en un aeropuerto, el empacar cajas dentro de un
+    espacio dado o el confeccionamiento de una agenda de clases. 
+    Todos estos problemas suelen ser \textit{NP}-Complejos.
+    
+    \subsection{Noci\'on de una restricci\'on}
+      Una restricci\'on puede pensarse como una relaci\'on l\'ogica entre un conjunto de valores, en principio,
+      desconocidos, tambi\'en llamados \textit{variables}. De esta forma, una restricci\'on restringe el conjunto
+      de valores que pueden asignarse simult\'aneamente a sus variables.
+      
+      Una posibilidad para definirla consiste en enumerar todo el conjunto de tuplas que pertenece a la relaci\'on o,
+      dualmente, especificar aquellos que \textbf{no} pertenecen a ella.
+      
+      Existen diferentes tipos de restricciones, de acuerdo a los valores que pueden asignarse a las variables. As\'i,
+      tenemos restricciones num\'ericas, booleanas, sobre conjuntos, etc. Una restricci\'on num\'erica puede ser entonces
+      una igualdad ($=$) o bien una desigualdad ($\neq, \geq, \leq, <, >$) entre dos expresiones aritm\'eticas.
+      
+      Similarmente, las restricciones sobre conjuntos expresan relaciones entre variables cuyo rango son conjuntos y pueden
+      incluir relaciones de igualdad ($=$), desigualdad ($\neq$), inclusi\'on ($\subset, \subseteq$) o pertenencia ($\in$).
+      
+    \subsection{Definici\'on de un problema de satisfacci\'on de restricciones}
+      Podemos dar una definici\'on formal de un \textbf{CSP} (por las siglas en ingl\'es de \textit{Constraint
+      Satisfaction Problem}) como sigue:
+      
+      Un CSP es una 3-upla (\textit{X}, \textit{D}, \textit{C}) tal que:
+      \begin{itemize}
+        \item \textit{X} es un conjunto finito de variables que corresponde a las inc\'ognitas del problema.
+        \item \textit{D} es una funci\'on que asocia un dominio \textit{D}($x_i$) con cada variable $x_i \in \textit{X}$, es
+        decir \textit{D}($x_i$) es el conjunto de valores que la variable $x_i$ puede tomar.
+        \item \textit{C} es un conjunto finito de restricciones y cada restricci\'on $c_j \in C$ es una relaci\'on entre
+        algunas variables de \textit{X}; este conjunto se denota como $var(c_j).$
+      \end{itemize}
+      
+    
+  \section{\textbf{Trabajo previo}}
+    \label{sec:previouswork}
+    El presente trabajo se basa en el desarrollado en \cite{lov:rom:per}. En el citado trabajo, los autores
+    utilizan algoritmos gen\'eticos para seleccionar los componentes discretos en un filtro activo RC. Como se
+    estableci\'o en la secci\'on \ref{sec:fundelect}, el problema consiste en seleccionar los valores que pueden
+    tomar 3 resistencias \textit{(R1, R2, R3)} y 2 capacitores \textit{(C1, C2)} de una lista de posibles valores
+    previamente definidos.
+    
+    El objetivo de este trabajo es comparar la t\'ecnica utilizada por los mencionados autores, evaluando la calidad
+    de las soluciones encontradas en ambos casos y analizar ventajas y desventajas del enfoque de los algoritmos gen\'eticos
+    con las propuestas aqu\'i exhibidas.
+  
+  \section{\textbf{Algoritmo exhaustivo}}
+    Realizando algunas observaciones y transformaciones matem\'aticas, es posible obtener un algoritmo exhaustivo que descubre
+    todas las soluciones posibles para el problema. Recordemos las definiciones de \textit{ganancia}, \textit{frecuencia de polo} y
+    \textit{factor de calidad}
+    
+    \begin{enumerate}
+      \item $G=R2/R1$
+      \item $\omega_p = 1/\sqrt{R2*R3*C1*C2}$
+      \item $1/Q_p = \sqrt{C2/C1} * (\sqrt{R2*R3}/R1 + \sqrt{R3/R2} + \sqrt{R2/R3})$
+    \end{enumerate}
+    ~\\\newline
+    Es claro que a partir de (1) se tiene que para cada valor posible de R1 hay un conjunto que denotaremos 
+    $\{R2\}_{R1}$ tales que $G^{max} > G > G^{min}$
+    \newline \newline
+    Notemos que, a partir de (2) y definiendo:
+    \begin{itemize}[leftmargin=+.5in]
+      \item $\omega_1 = 1/(R2*C1) $
+      \item $\omega_2=1/(R3*C2)$
+    \end{itemize}
+    Obtenemos $\omega_p = \sqrt{\omega_1 * \omega_2} \implies \ln{\omega_p} = (\ln{\omega_1} + \ln{\omega_2})/2 \newline \implies
+    \ln{\omega_2} = 2*\ln{\omega_p} - \ln{\omega_1} $\newline \newline
+    Es decir que, dada la restricci\'on $\ln{\omega_p} \in [\ln{\omega_p^{min}},\ln{\omega_p^{max}}]$ y dado $\ln{\omega_1}$ para
+    que $\omega_p$ satisfaga dicha restricci\'on, debe ser tal que 
+    \newline \newline
+    $2*\ln{\omega_p^{max}} - \ln{\omega_1} > \ln{\omega_2} > 2*\ln{\omega_p^{min}} - \ln{\omega_1} $ \newline \newline
+    Y esto equivale a 
+    $\omega_2 = \omega_p^2 / \omega1 \implies (\omega_p^{max})^2 / \omega_1 > \omega_2 > (\omega_p^{min})^2 / \omega_1 $
+    \newline
+    Con lo cual, para cada $\omega_1$ posible existe un conjunto finito $\{{\omega_2}\}_{\omega_1}$ de valores de $\omega_2$
+    tales que $ \omega_p^{max} > \omega_p > \omega_p^{min} $
+    \newline \newline
+    Finalmente, a partir de (3) podemos derivar lo siguiente:\newline
+    $Q^{-1} = \sqrt{C2} + BLA BLA BLA $
+    
+    Es decir que, para cada para (R1, R2), ($\omega_1, \omega_2$) buscamos los R3 admisibles que satisfagan la
+    condici\'on \newline \newline $(Q^{-1})^{max} > Q^{-1} > (Q^{-1})^{min} $ \newline \newline
+    y de esta manera obtenemos todas las soluciones de la forma (R1, R2, $\omega_1$, $\omega_2$, R3) 
+    que \textit{mapea} trivialmente a las soluciones de la forma (R1, R2, R3, C4, C5)
+
+  \begin{thebibliography}{1}
+      \bibitem{corr}
+      Corral, C.: 
+      Designing RC active filters with standard-component values. Electronic Design
+      Network Magazine, 141-154 (2000)
+      
+      \bibitem{lov:rom:per}
+      Lovay, M., Romero, E., Peretti, M.:
+      Dise\~no de Filtros Activos Robustos usando Algoritmos Gen\'eticos.
+      SII 2015 4$^\circ$ Simposio Argentino de Inform\'atica Industrial.
+      
+      \bibitem{sol}
+      Solnon, C.:
+      Ant Colony Optimization and Constraint Programming. (Wiley-ISTE 2010) 
+  
+  \end{thebibliography}
+
+\end{document}
