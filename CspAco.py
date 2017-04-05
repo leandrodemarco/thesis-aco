@@ -33,26 +33,30 @@ def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
     graph = buildGraph(useCompleteModel, scenario1, tau_min)
     nCycles = 0
     allSols = []
+    
+    useThreads = False
+    
     while (nCycles < maxCycles):
         nCycles += 1
         pathsForCycle = []
         
         allThreads = []
         for i in range(0, nAnts):
-            newThread = AntThread(graph, scenario1, pathsForCycle)
-            allThreads.append(newThread)
-            newThread.start()
-            #~ ant = Ant.Ant(graph, scenario1)
-            #~ path = ant.walkGraph()
-            #~ if (useAllForUpdate):
-                #~ pathsForCycle.append(path)
-                
-        for t in allThreads:
-            t.join()
-            #~ if (useAllForUpdate):
-                #~ pathsForCycle.append(t.AntPath)
+                if (useThreads):
+                    newThread = AntThread(graph, scenario1, pathsForCycle)
+                    allThreads.append(newThread)
+                    newThread.start()
+                else:
+                    ant = Ant.Ant(graph, scenario1)
+                    path = ant.walkGraph()
+                    if (useAllForUpdate):
+                        pathsForCycle.append(path)
         
-        print "Terminaron todos los threads"
+        if (useThreads):        
+            for t in allThreads:
+                t.join()
+            print "Terminaron todos los threads"
+        
         print len(pathsForCycle)
         updatePheromone(graph, tau_min, tau_max, evapRate, errMax, \
                         pathsForCycle, costSigma, errScale, costFunction)
