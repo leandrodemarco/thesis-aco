@@ -42,8 +42,23 @@ def costLinear(omega, Q, targetOmega, targetQ, errMax):
 def costExponential(term1, term2, scale):
     return (1. - exp(-(term1+term2)))/scale
     
-def costPozo():
-    return 1000.
+def costPozo(omega, targetOmega, Q, targetQ, errMax, scale):
+    x = (omega - targetOmega) / (2.*errMax*targetOmega)
+    y = (Q - targetQ) / (2.*errMax*targetQ)
+    
+    resCost = 10**-6
+    if (y >= -x and y <= x and x > 0.5):
+        resCost = scale * x
+    elif (x > -y and x < y and y > 0.5):
+        resCost = scale * y
+    elif (y >= x and y <= -x and x < -0.5):
+        resCost = -scale * x
+    elif (x > y and x < -y and y < -0.5):
+        resCost = -scale * y
+        
+    return resCost
+    
+    
                      
 def cost(assignment, errMax, sigma, scale, costFunction=2):
     """
@@ -69,13 +84,12 @@ def cost(assignment, errMax, sigma, scale, costFunction=2):
     elif (costFunction == 2):
         resCost = costExponential(term1, term2, scale)
     elif (costFunction == 3):
-        resCost = costPozo()
+        resCost = costPozo(omega, targetOmega, Q, targetQ, errMax, scale)
     else:
         print "Error: Undefined cost Function"
         sys.exit()
         
     resCost += 0.001
-    #print resCost, assignment
     
     return resCost
     
@@ -168,7 +182,9 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
         for assign in bestAssigns:
             assignCost = cost(assign, errMax, costSigma, errScale, \
                               costFunction)
-            print assignCost
+            #print assignCost
+            if (assignCost == 0):
+                raw_input()
             if (nodeInAssign(n1, assign) and nodeInAssign(n2, assign)):
                 incPher += 1./assignCost
         
