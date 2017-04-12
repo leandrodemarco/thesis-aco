@@ -17,8 +17,6 @@ class Example(Frame):
         
         self.initUI()
         self.centerWindow()
-        
-        self.running = False
     
     def initUI(self):
       
@@ -196,25 +194,20 @@ class Example(Frame):
             return None
 
     def runProgram(self):
-        if not self.running:
-            self.running = True
-            validInput = self.validateInput()
-            if validInput != None:
-                # Obtener data de la UI
-                useCompleteModel = self.vModel.get() == 1
-                useScenario1 = self.vScenary.get() == 1
-                beElitist = self.vElitist.get() == 1
-                costFunction = self.vCostFunction.get()                
-                
-                nAnts, numElitists, evapRate, tauMin, tauMax, \
-                costSigma, numCycles, errorScale = validInput
-                
-                runAlgorithm(useCompleteModel, useScenario1, beElitist,\
-                numElitists, nAnts, evapRate, tauMin, tauMax, \
-                costSigma, numCycles, errorScale, costFunction)
-                self.running = False
-            else:
-                self.running = False
+        validInput = self.validateInput()
+        if validInput != None:
+            # Obtener data de la UI
+            useCompleteModel = self.vModel.get() == 1
+            useScenario1 = self.vScenary.get() == 1
+            beElitist = self.vElitist.get() == 1
+            costFunction = self.vCostFunction.get()                
+            
+            nAnts, numElitists, evapRate, tauMin, tauMax, \
+            costSigma, numCycles, errorScale = validInput
+            
+            runAlgorithm(useCompleteModel, useScenario1, beElitist,\
+            numElitists, nAnts, evapRate, tauMin, tauMax, \
+            costSigma, numCycles, errorScale, costFunction)
         
     def centerWindow(self):
         w = 600

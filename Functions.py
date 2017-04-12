@@ -4,6 +4,7 @@
 import networkx as nx
 import sys
 from math import exp
+import threading
 
 #isScenario1 = True
 #errMax = 0.005 #if isScenario1 else 0.025
@@ -173,34 +174,43 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
                cycle. The amount of assignments here differs whether
                using an all-ants, elitist-ants or single-ant approach
     """
-    #print "Updating pheromone"
-    for edge in graph.edges(data=True):
-        n1, n2, pherDict = edge
-        pherLvl = pherDict['weight']
-                    
-        incPher = .0
-        for assign in bestAssigns:
-            assignCost = cost(assign, errMax, costSigma, errScale, \
+    print "Updating pheromone"
+    
+    for assign in bestAssigns:
+        r1Node = ('r1', assign['r1'])
+        r2Node = ('r2', assign['r2'])
+        r3Node = ('r3', assign['r3'])
+        c1Node = ('c1', assign['c1'])
+        c2Node = ('c2', assign['c2'])
+        
+        edge1Pher = graph[r1Node][r2Node]['weight']
+        edge2Pher = graph[r2Node][r3Node]['weight']
+        edge3Pher = graph[r3Node][c1Node]['weight']
+        edge4Pher = graph[c1Node][c2Node]['weight']
+    
+        assignCost = cost(assign, errMax, costSigma, errScale, \
                               costFunction)
-            #print assignCost
-            if (assignCost == 0):
-                raw_input()
-            if (nodeInAssign(n1, assign) and nodeInAssign(n2, assign)):
-                incPher += 1./assignCost
+        incPher = 1./assignCost
         
-        newPher = (1.-evaporationRate)*pherLvl + incPher
-        if (newPher < minPher):
-            newPher = minPher
-        elif (newPher > maxPher):
-            newPher = maxPher
-        
-        graph[n1][n2]['weight'] = newPher
-        
-def nodeInAssign(node, assignment):
-    compName = node[0]
-    compVal = node[1]
-    return compName in assignment.keys() and assignment[compName] == compVal
+        pherInEdges = [edge1Pher, edge2Pher, edge3Pher, edge4Pher]
+        index = 0
+        for edgePherLvl in pherInEdges:
+            edgePherLvl += incPher
+            
+            if (edgePherLvl < minPher):
+                edgePherLvl = minPher
+            elif (edgePherLvl > maxPher):
+                edgePherLvl = maxPher
+                
+            pherInEdges[index] = edgePherLvl
+            index += 1
 
+        graph[r1Node][r2Node]['weight'] = pherInEdges[0]
+        graph[r2Node][r3Node]['weight'] = pherInEdges[1]
+        graph[r3Node][c1Node]['weight'] = pherInEdges[2]
+        graph[c1Node][c2Node]['weight'] = pherInEdges[3]
+
+        
 def buildGraph(useCompleteModel, isScenario1, minPher):
     if (useCompleteModel):
         return buildFullGraph(isScenario1, minPher)
@@ -238,12 +248,6 @@ def buildReducedGraph(isScenario1, minPher):
     g.add_weighted_edges_from(r2r3Edges)
     g.add_weighted_edges_from(r3c1Edges)
     g.add_weighted_edges_from(c1c2Edges)
-
-    #print len(g.nodes()), len(g.edges())
-    #~ lNodes = r1Nodes+r2Nodes+r3Nodes+c1Nodes+c2Nodes
-    #~ adj_matrix = nx.adjacency_matrix(g)
-    #~ print nx.to_dict_of_dicts(g)[('r3', 1300.0)]
-    #~ print adj_matrix(lNodes)
     
     return g    
         

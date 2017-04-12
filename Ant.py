@@ -63,19 +63,6 @@ class Ant:
         elif self.position[0] == "c1":
             newNode = self.chooseValForVar("c2")
             self.position = newNode
-        #~ else:
-            #~ """
-                #~ All nodes of var xj are connected to every other node of xi!=xj
-                #~ We are using cascaded decision where we first choose an
-                #~ unassigned variable and then a value for that var.
-                #~ We are using dynamic-random variable ordering so just choose
-                #~ randomly from unassigned vars
-            #~ """
-            #~ unassignedVars = set(self.varNames).difference(set(self.assignedVars))
-            #~ nextVar = np.random.choice(list(unassignedVars), 1)[0]
-            #~ # We need to pick a value for this chosen var
-            #~ newNode = self.chooseValForVar(nextVar)
-            #~ self.position = newNode
             
         self.path[self.position[0]] = self.position[1]
         
@@ -94,9 +81,7 @@ class Ant:
         probBaseDict = {}
         sumOfProbs = 0.
         for possibleVal in possibleValues:
-            #for exp in exponents:
             theNode = (var, possibleVal) #* (10**exp))
-            #print self.position, theNode, self.graph[self.position][theNode]
             pherOnEdge = self.graph[self.position][theNode]['weight']
             pherParam = pherOnEdge**self.pherFactor
             
