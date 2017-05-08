@@ -4,7 +4,9 @@
 import networkx as nx
 import sys
 from math import exp
-import threading
+
+from multiprocessing import Pool, cpu_count
+from functools import partial
 
 #isScenario1 = True
 #errMax = 0.005 #if isScenario1 else 0.025
@@ -161,6 +163,43 @@ def sensTotal(r1, r2, r3, c1, c2):
     s_r1, s_r2, s_r3 = sensitivities(qFactor, r1, r2, r3, c1, c2)
     
     return (1./3.)*(abs(s_r1) + abs(s_r2) + abs(s_r3))
+    
+def _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
+                    errMax, costSigma, errScale, costFunction):
+    
+    print "Updating pheromone"
+    r1Node = ('r1', assign['r1'])
+    r2Node = ('r2', assign['r2'])
+    r3Node = ('r3', assign['r3'])
+    c1Node = ('c1', assign['c1'])
+    c2Node = ('c2', assign['c2'])
+    
+    edge1Pher = graph[r1Node][r2Node]['weight']
+    edge2Pher = graph[r2Node][r3Node]['weight']
+    edge3Pher = graph[r3Node][c1Node]['weight']
+    edge4Pher = graph[c1Node][c2Node]['weight']
+
+    assignCost = cost(assign, errMax, costSigma, errScale, \
+                          costFunction)
+    incPher = 1./assignCost
+    
+    pherInEdges = [edge1Pher, edge2Pher, edge3Pher, edge4Pher]
+    index = 0
+    for edgePherLvl in pherInEdges:
+        edgePherLvl += incPher
+        
+        if (edgePherLvl < minPher):
+            edgePherLvl = minPher
+        elif (edgePherLvl > maxPher):
+            edgePherLvl = maxPher
+            
+        pherInEdges[index] = edgePherLvl
+        index += 1
+
+    graph[r1Node][r2Node]['weight'] = pherInEdges[0]
+    graph[r2Node][r3Node]['weight'] = pherInEdges[1]
+    graph[r3Node][c1Node]['weight'] = pherInEdges[2]
+    graph[c1Node][c2Node]['weight'] = pherInEdges[3]
 
 def updatePheromone(graph, minPher, maxPher, evaporationRate, \
                     errMax, bestAssigns, costSigma, errScale, \
@@ -174,41 +213,21 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
                cycle. The amount of assignments here differs whether
                using an all-ants, elitist-ants or single-ant approach
     """
-    print "Updating pheromone"
+    useThreads = False
     
-    for assign in bestAssigns:
-        r1Node = ('r1', assign['r1'])
-        r2Node = ('r2', assign['r2'])
-        r3Node = ('r3', assign['r3'])
-        c1Node = ('c1', assign['c1'])
-        c2Node = ('c2', assign['c2'])
+    if useThreads:
+        pool = Pool()
         
-        edge1Pher = graph[r1Node][r2Node]['weight']
-        edge2Pher = graph[r2Node][r3Node]['weight']
-        edge3Pher = graph[r3Node][c1Node]['weight']
-        edge4Pher = graph[c1Node][c2Node]['weight']
-    
-        assignCost = cost(assign, errMax, costSigma, errScale, \
-                              costFunction)
-        incPher = 1./assignCost
+        partial_updatePher = partial(_updatePher, graph=graph, minPher=minPher, \
+        maxPher=maxPher, evaporationRate=evaporationRate, errMax=errMax, \
+        costSigma=costSigma, errScale=errScale, costFunction=costFunction)
         
-        pherInEdges = [edge1Pher, edge2Pher, edge3Pher, edge4Pher]
-        index = 0
-        for edgePherLvl in pherInEdges:
-            edgePherLvl += incPher
-            
-            if (edgePherLvl < minPher):
-                edgePherLvl = minPher
-            elif (edgePherLvl > maxPher):
-                edgePherLvl = maxPher
-                
-            pherInEdges[index] = edgePherLvl
-            index += 1
-
-        graph[r1Node][r2Node]['weight'] = pherInEdges[0]
-        graph[r2Node][r3Node]['weight'] = pherInEdges[1]
-        graph[r3Node][c1Node]['weight'] = pherInEdges[2]
-        graph[c1Node][c2Node]['weight'] = pherInEdges[3]
+        pool.map_async(partial_updatePher, bestAssigns, len(bestAssigns)/cpu_count())
+        pool.close()
+    else:
+        for assign in bestAssigns:
+            _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
+                         errMax, costSigma, errScale, costFunction)
 
         
 def buildGraph(useCompleteModel, isScenario1, minPher):
