@@ -1,0 +1,236 @@
+nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.15 tauMax: 40 sigma:0.05 scale: 4 costFun: Lineal
+
+Run 1. Found 1 sols in 8.523 secs
+Run 2. Found 0 sols in 8.611 secs
+Run 3. Found 0 sols in 8.510 secs
+Run 4. Found 1 sols in 8.555 secs
+Run 5. Found 0 sols in 8.536 secs
+Run 6. Found 1 sols in 8.541 secs
+Run 7. Found 0 sols in 8.528 secs
+Run 8. Found 0 sols in 8.539 secs
+Run 9. Found 1 sols in 8.558 secs
+Run 10. Found 0 sols in 8.571 secs
+Run 11. Found 0 sols in 8.591 secs
+Run 12. Found 1 sols in 8.539 secs
+Run 13. Found 0 sols in 8.531 secs
+Run 14. Found 0 sols in 8.524 secs
+Run 15. Found 2 sols in 8.512 secs
+Run 16. Found 0 sols in 8.510 secs
+Run 17. Found 0 sols in 8.539 secs
+Run 18. Found 0 sols in 8.548 secs
+Run 19. Found 0 sols in 8.555 secs
+Run 20. Found 1 sols in 8.534 secs
+Run 21. Found 0 sols in 8.553 secs
+Run 22. Found 1 sols in 8.541 secs
+Run 23. Found 1 sols in 8.548 secs
+Run 24. Found 1 sols in 8.492 secs
+Run 25. Found 0 sols in 8.512 secs
+Run 26. Found 1 sols in 8.496 secs
+Run 27. Found 2 sols in 8.523 secs
+Run 28. Found 0 sols in 8.518 secs
+Run 29. Found 0 sols in 8.528 secs
+Run 30. Found 0 sols in 8.477 secs
+Run 31. Found 2 sols in 8.350 secs
+Run 32. Found 0 sols in 8.357 secs
+Run 33. Found 0 sols in 8.341 secs
+Run 34. Found 0 sols in 8.355 secs
+Run 35. Found 2 sols in 8.350 secs
+Run 36. Found 2 sols in 8.312 secs
+Run 37. Found 0 sols in 8.324 secs
+Run 38. Found 0 sols in 8.413 secs
+Run 39. Found 0 sols in 8.421 secs
+Run 40. Found 0 sols in 8.418 secs
+Run 41. Found 3 sols in 8.377 secs
+Run 42. Found 1 sols in 8.334 secs
+Run 43. Found 0 sols in 8.349 secs
+Run 44. Found 1 sols in 8.347 secs
+Run 45. Found 2 sols in 8.334 secs
+Run 46. Found 1 sols in 8.340 secs
+Run 47. Found 0 sols in 8.354 secs
+Run 48. Found 1 sols in 8.339 secs
+Run 49. Found 0 sols in 8.395 secs
+Run 50. Found 1 sols in 8.327 secs
+Average runtime : 8.464, avg sols found:0.600
+Found 27 unique sols: 
+	{'c2': 2.2000000000000003e-09, 'c1': 4.7000000000000004e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 2700.0}
+	{'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 1300.0}
+	{'c2': 1.8000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 27000.0}
+	{'c2': 3.3000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 16000.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 3.8999999999999998e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 3000.0}
+	{'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 10000.0}
+	{'c2': 2.2000000000000003e-09, 'c1': 9.9999999999999995e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 1200.0}
+	{'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 4700.0}
+	{'c2': 8.199999999999999e-09, 'c1': 6.8e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 4300.0}
+	{'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 2400.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 47000.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 2.2000000000000002e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 51000.0}
+	{'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 8200.0}
+	{'c2': 1.2e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 47000.0}
+	{'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 5100.0}
+	{'c2': 2.2000000000000003e-09, 'c1': 2.7000000000000004e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 5100.0}
+	{'c2': 1.5000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 36000.0}
+	{'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 6200.0}
+	{'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 3300.0}
+	{'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 39000.0}
+	{'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 2700.0}
+	{'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 9100.0}
+	{'c2': 1.2e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 47000.0}
+	{'c2': 2.7000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 20000.0}
+	{'c2': 6.8000000000000005e-09, 'c1': 1.4999999999999999e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 7500.0}
+	{'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 11000.0}
+	{'c2': 1.8000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 12000.0}
+--------------------------------------------
+nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.15 tauMax: 40 sigma:0.05 scale: 4 costFun: Exponencial
+
+Run 1. Found 0 sols in 8.349 secs
+Run 2. Found 1 sols in 8.334 secs
+Run 3. Found 1 sols in 8.334 secs
+Run 4. Found 0 sols in 8.341 secs
+Run 5. Found 0 sols in 8.331 secs
+Run 6. Found 0 sols in 8.426 secs
+Run 7. Found 0 sols in 8.339 secs
+Run 8. Found 1 sols in 8.341 secs
+Run 9. Found 1 sols in 8.345 secs
+Run 10. Found 1 sols in 8.336 secs
+Run 11. Found 1 sols in 8.350 secs
+Run 12. Found 0 sols in 8.364 secs
+Run 13. Found 0 sols in 8.432 secs
+Run 14. Found 1 sols in 8.448 secs
+Run 15. Found 1 sols in 8.409 secs
+Run 16. Found 0 sols in 8.377 secs
+Run 17. Found 1 sols in 8.383 secs
+Run 18. Found 0 sols in 8.397 secs
+Run 19. Found 2 sols in 8.382 secs
+Run 20. Found 1 sols in 8.365 secs
+Run 21. Found 0 sols in 8.331 secs
+Run 22. Found 0 sols in 8.333 secs
+Run 23. Found 0 sols in 8.360 secs
+Run 24. Found 2 sols in 8.374 secs
+Run 25. Found 0 sols in 8.358 secs
+Run 26. Found 0 sols in 8.344 secs
+Run 27. Found 0 sols in 8.348 secs
+Run 28. Found 0 sols in 8.366 secs
+Run 29. Found 1 sols in 8.376 secs
+Run 30. Found 0 sols in 8.408 secs
+Run 31. Found 0 sols in 8.420 secs
+Run 32. Found 2 sols in 8.427 secs
+Run 33. Found 0 sols in 8.388 secs
+Run 34. Found 0 sols in 8.418 secs
+Run 35. Found 1 sols in 8.395 secs
+Run 36. Found 1 sols in 8.373 secs
+Run 37. Found 1 sols in 8.379 secs
+Run 38. Found 1 sols in 8.389 secs
+Run 39. Found 0 sols in 8.401 secs
+Run 40. Found 0 sols in 8.406 secs
+Run 41. Found 1 sols in 8.370 secs
+Run 42. Found 0 sols in 8.320 secs
+Run 43. Found 1 sols in 8.354 secs
+Run 44. Found 1 sols in 8.357 secs
+Run 45. Found 1 sols in 8.484 secs
+Run 46. Found 0 sols in 8.360 secs
+Run 47. Found 0 sols in 8.363 secs
+Run 48. Found 0 sols in 8.334 secs
+Run 49. Found 0 sols in 8.334 secs
+Run 50. Found 1 sols in 8.338 secs
+Average runtime : 8.372, avg sols found:0.520
+Found 23 unique sols: 
+	{'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 33000.0, 'r2': 100000.0, 'r3': 30000.0}
+	{'c2': 1.8000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 27000.0}
+	{'c2': 2.2000000000000003e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 22000.0}
+	{'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 8200.0}
+	{'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 10000.0}
+	{'c2': 8.199999999999999e-09, 'c1': 6.8e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 3000.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 2.2000000000000002e-08, 'r1': 68000.0, 'r2': 200000, 'r3': 5600.0}
+	{'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 7500.0}
+	{'c2': 1.2e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 47000.0}
+	{'c2': 2.2000000000000003e-09, 'c1': 4.7000000000000004e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 2700.0}
+	{'c2': 5.5999999999999997e-09, 'c1': 1.1999999999999999e-07, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1100.0}
+	{'c2': 1.8000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 30000.0}
+	{'c2': 3.9000000000000002e-09, 'c1': 4.7000000000000004e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 3000.0}
+	{'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 22000.0}
+	{'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 3300.0}
+	{'c2': 4.7000000000000007e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 11000.0}
+	{'c2': 4.7000000000000007e-09, 'c1': 5.5999999999999999e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 9100.0}
+	{'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 39000.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 56000.0}
+	{'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2400.0}
+	{'c2': 5.5999999999999997e-09, 'c1': 1.1999999999999999e-07, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1000.0}
+	{'c2': 4.7000000000000007e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 11000.0}
+	{'c2': 1.8000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 20000.0}
+--------------------------------------------
+nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.15 tauMax: 40 sigma:0.05 scale: 4 costFun: Pozo
+
+Run 1. Found 0 sols in 8.762 secs
+Run 2. Found 0 sols in 8.795 secs
+Run 3. Found 0 sols in 8.806 secs
+Run 4. Found 0 sols in 8.806 secs
+Run 5. Found 0 sols in 8.861 secs
+Run 6. Found 1 sols in 8.739 secs
+Run 7. Found 1 sols in 8.764 secs
+Run 8. Found 0 sols in 8.812 secs
+Run 9. Found 0 sols in 8.833 secs
+Run 10. Found 0 sols in 8.876 secs
+Run 11. Found 2 sols in 8.843 secs
+Run 12. Found 0 sols in 8.884 secs
+Run 13. Found 1 sols in 8.861 secs
+Run 14. Found 0 sols in 8.832 secs
+Run 15. Found 1 sols in 8.854 secs
+Run 16. Found 0 sols in 8.794 secs
+Run 17. Found 0 sols in 8.806 secs
+Run 18. Found 0 sols in 8.786 secs
+Run 19. Found 1 sols in 8.769 secs
+Run 20. Found 1 sols in 8.838 secs
+Run 21. Found 1 sols in 8.807 secs
+Run 22. Found 0 sols in 8.775 secs
+Run 23. Found 1 sols in 8.787 secs
+Run 24. Found 0 sols in 8.792 secs
+Run 25. Found 0 sols in 8.792 secs
+Run 26. Found 1 sols in 8.831 secs
+Run 27. Found 0 sols in 8.801 secs
+Run 28. Found 0 sols in 8.788 secs
+Run 29. Found 1 sols in 8.839 secs
+Run 30. Found 2 sols in 9.205 secs
+Run 31. Found 0 sols in 9.036 secs
+Run 32. Found 0 sols in 8.887 secs
+Run 33. Found 0 sols in 8.891 secs
+Run 34. Found 0 sols in 8.895 secs
+Run 35. Found 0 sols in 8.854 secs
+Run 36. Found 0 sols in 8.811 secs
+Run 37. Found 0 sols in 8.779 secs
+Run 38. Found 1 sols in 8.802 secs
+Run 39. Found 0 sols in 8.826 secs
+Run 40. Found 0 sols in 8.783 secs
+Run 41. Found 2 sols in 8.796 secs
+Run 42. Found 1 sols in 8.838 secs
+Run 43. Found 0 sols in 8.787 secs
+Run 44. Found 0 sols in 8.775 secs
+Run 45. Found 1 sols in 8.800 secs
+Run 46. Found 0 sols in 8.811 secs
+Run 47. Found 0 sols in 8.812 secs
+Run 48. Found 3 sols in 8.830 secs
+Run 49. Found 1 sols in 8.818 secs
+Run 50. Found 1 sols in 8.856 secs
+Average runtime : 8.828, avg sols found:0.480
+Found 21 unique sols: 
+	{'c2': 1e-08, 'c1': 1.1999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 4300.0}
+	{'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 9100.0}
+	{'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 2000.0}
+	{'c2': 1.8000000000000002e-08, 'c1': 1.8e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 2200.0}
+	{'c2': 1.5000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 10000.0}
+	{'c2': 1.8000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 6200.0}
+	{'c2': 8.199999999999999e-09, 'c1': 6.8e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 4300.0}
+	{'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 3600.0}
+	{'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 2700.0, 'r2': 8200.0, 'r3': 1200.0}
+	{'c2': 3.9000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 11000.0}
+	{'c2': 1.2e-09, 'c1': 1.2e-08, 'r1': 43000.0, 'r2': 130000.0, 'r3': 13000.0}
+	{'c2': 2.7000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 18000.0}
+	{'c2': 3.3000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 15000.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 27000.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 1200.0}
+	{'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 4700.0}
+	{'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 11000.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 47000.0}
+	{'c2': 5.5999999999999997e-09, 'c1': 9.9999999999999995e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1300.0}
+	{'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 47000.0}
+	{'c2': 5.5999999999999997e-09, 'c1': 8.1999999999999993e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 1600.0}
+--------------------------------------------

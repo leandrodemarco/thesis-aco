@@ -1,0 +1,2982 @@
+Case 1: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.869 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.879 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.857 seconds
+
+Case 2: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.871 seconds
+Found 0 sols in  0.885 seconds
+Found 0 sols in  0.886 seconds
+Found 0 sols in  0.870 seconds
+Found 0 sols in  0.869 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.860 seconds
+
+Case 3: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.897 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.901 seconds
+Found 0 sols in  0.902 seconds
+Found 0 sols in  0.909 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.898 seconds
+
+Case 4: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.871 seconds
+Found 0 sols in  0.865 seconds
+Found 0 sols in  0.869 seconds
+Found 0 sols in  0.865 seconds
+
+Case 5: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.871 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.865 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.862 seconds
+
+Case 6: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.910 seconds
+Found 1 sols in  0.908 seconds
+ {'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1600.0}
+Found 0 sols in  0.906 seconds
+Found 0 sols in  0.924 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.902 seconds
+
+Case 7: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.869 seconds
+Found 0 sols in  0.856 seconds
+
+Case 8: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.860 seconds
+
+Case 9: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.903 seconds
+Found 0 sols in  0.908 seconds
+Found 0 sols in  0.912 seconds
+Found 0 sols in  0.910 seconds
+Found 0 sols in  0.908 seconds
+Found 0 sols in  0.912 seconds
+Found 0 sols in  0.910 seconds
+Found 0 sols in  0.915 seconds
+Found 0 sols in  0.899 seconds
+
+Case 10: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.868 seconds
+Found 2 sols in  0.858 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 20000.0}
+ {'c2': 1.2e-08, 'c1': 1.1999999999999999e-07, 'r1': 4300.0, 'r2': 13000.0, 'r3': 1300.0}
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.865 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.870 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.868 seconds
+
+Case 11: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 2
+
+Found 1 sols in  0.866 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 27000.0}
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.867 seconds
+
+Case 12: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  0.905 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.897 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.906 seconds
+Found 0 sols in  0.899 seconds
+
+Case 13: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.878 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.883 seconds
+Found 0 sols in  0.857 seconds
+
+Case 14: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.860 seconds
+
+Case 15: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  0.905 seconds
+Found 0 sols in  0.904 seconds
+Found 0 sols in  0.920 seconds
+Found 0 sols in  0.908 seconds
+Found 0 sols in  0.896 seconds
+Found 0 sols in  0.901 seconds
+Found 0 sols in  0.896 seconds
+Found 0 sols in  0.897 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.907 seconds
+
+Case 16: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.877 seconds
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.857 seconds
+
+Case 17: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.870 seconds
+Found 0 sols in  0.871 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.878 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.868 seconds
+
+Case 18: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  0.906 seconds
+Found 0 sols in  0.915 seconds
+Found 0 sols in  0.907 seconds
+Found 0 sols in  0.915 seconds
+Found 1 sols in  0.928 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 16000.0}
+Found 0 sols in  0.909 seconds
+Found 0 sols in  0.907 seconds
+Found 0 sols in  0.919 seconds
+Found 0 sols in  0.901 seconds
+Found 0 sols in  0.910 seconds
+
+Case 19: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.872 seconds
+
+Case 20: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 2
+
+Found 1 sols in  0.873 seconds
+ {'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 9100.0}
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.879 seconds
+Found 0 sols in  0.954 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.866 seconds
+Found 1 sols in  0.865 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 8200.0}
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.865 seconds
+
+Case 21: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.905 seconds
+Found 0 sols in  0.902 seconds
+Found 0 sols in  0.907 seconds
+Found 0 sols in  0.909 seconds
+Found 0 sols in  0.914 seconds
+Found 0 sols in  0.905 seconds
+
+Case 22: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  0.863 seconds
+Found 1 sols in  0.869 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 1.1999999999999999e-07, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1100.0}
+Found 0 sols in  0.865 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.858 seconds
+
+Case 23: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.877 seconds
+Found 0 sols in  0.869 seconds
+
+Case 24: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  0.929 seconds
+Found 0 sols in  0.921 seconds
+Found 0 sols in  0.904 seconds
+Found 0 sols in  0.907 seconds
+Found 0 sols in  0.917 seconds
+Found 0 sols in  0.911 seconds
+Found 1 sols in  0.942 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 18000.0}
+Found 0 sols in  0.912 seconds
+Found 0 sols in  0.907 seconds
+Found 0 sols in  0.904 seconds
+
+Case 25: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.863 seconds
+Found 1 sols in  0.861 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 2700.0}
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.861 seconds
+
+Case 26: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  0.857 seconds
+Found 1 sols in  0.859 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 24000.0}
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.878 seconds
+Found 0 sols in  0.857 seconds
+Found 1 sols in  0.858 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 3900.0}
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.859 seconds
+
+Case 27: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  0.902 seconds
+Found 0 sols in  0.896 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.896 seconds
+Found 0 sols in  0.901 seconds
+Found 0 sols in  0.903 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.897 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.900 seconds
+
+Case 28: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.854 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.855 seconds
+
+Case 29: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.971 seconds
+Found 0 sols in  1.101 seconds
+Found 0 sols in  1.104 seconds
+Found 0 sols in  1.110 seconds
+Found 0 sols in  0.875 seconds
+Found 1 sols in  1.031 seconds
+ {'c2': 1.5000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 3600.0, 'r2': 11000.0, 'r3': 1000.0}
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.861 seconds
+Found 0 sols in  0.867 seconds
+
+Case 30: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  0.906 seconds
+Found 0 sols in  0.912 seconds
+Found 0 sols in  0.902 seconds
+Found 0 sols in  0.903 seconds
+Found 0 sols in  0.902 seconds
+Found 0 sols in  0.903 seconds
+Found 0 sols in  0.903 seconds
+Found 0 sols in  0.908 seconds
+Found 0 sols in  0.923 seconds
+Found 0 sols in  1.015 seconds
+
+Case 31: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  0.973 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.854 seconds
+Found 0 sols in  0.854 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.856 seconds
+
+Case 32: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.850 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.832 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.832 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.833 seconds
+
+Case 33: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  0.877 seconds
+Found 1 sols in  0.872 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 12000.0}
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.884 seconds
+Found 0 sols in  0.871 seconds
+Found 0 sols in  0.876 seconds
+Found 0 sols in  0.874 seconds
+Found 0 sols in  0.875 seconds
+Found 1 sols in  0.876 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 8.1999999999999993e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 1600.0}
+Found 0 sols in  0.893 seconds
+
+Case 34: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  0.851 seconds
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.831 seconds
+Found 0 sols in  0.830 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.837 seconds
+Found 0 sols in  0.835 seconds
+
+Case 35: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.837 seconds
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.869 seconds
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.835 seconds
+
+Case 36: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  0.874 seconds
+Found 1 sols in  0.871 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 11000.0}
+Found 0 sols in  0.877 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.872 seconds
+Found 0 sols in  0.889 seconds
+Found 1 sols in  0.880 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 4700.0}
+Found 0 sols in  0.877 seconds
+Found 0 sols in  0.880 seconds
+
+Case 37: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  0.830 seconds
+Found 0 sols in  0.832 seconds
+Found 0 sols in  0.830 seconds
+Found 0 sols in  0.830 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.842 seconds
+Found 0 sols in  0.829 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.849 seconds
+
+Case 38: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.845 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.849 seconds
+Found 1 sols in  0.844 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2200.0}
+Found 0 sols in  0.850 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.845 seconds
+Found 0 sols in  0.855 seconds
+
+Case 39: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  0.888 seconds
+Found 0 sols in  0.886 seconds
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.888 seconds
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.888 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.874 seconds
+Found 0 sols in  0.876 seconds
+
+Case 40: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  0.830 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.832 seconds
+Found 0 sols in  0.832 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.833 seconds
+
+Case 41: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  0.837 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.837 seconds
+Found 1 sols in  0.836 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 11000.0}
+Found 0 sols in  0.840 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.834 seconds
+
+Case 42: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  0.870 seconds
+Found 0 sols in  0.878 seconds
+Found 0 sols in  0.889 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.871 seconds
+Found 0 sols in  0.894 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.953 seconds
+Found 0 sols in  0.887 seconds
+Found 0 sols in  0.881 seconds
+
+Case 43: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.848 seconds
+Found 1 sols in  0.851 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 13000.0}
+Found 0 sols in  0.852 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.842 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.841 seconds
+
+Case 44: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  0.844 seconds
+Found 0 sols in  0.845 seconds
+Found 0 sols in  0.842 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.844 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.844 seconds
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.844 seconds
+
+Case 45: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  0.885 seconds
+Found 0 sols in  0.886 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.889 seconds
+Found 0 sols in  0.885 seconds
+Found 0 sols in  0.884 seconds
+Found 0 sols in  0.887 seconds
+Found 0 sols in  0.884 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.879 seconds
+
+Case 46: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.837 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.835 seconds
+Found 1 sols in  0.836 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 3300.0}
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.837 seconds
+Found 0 sols in  0.835 seconds
+
+Case 47: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.845 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.947 seconds
+Found 1 sols in  0.882 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 6200.0}
+Found 0 sols in  0.854 seconds
+Found 0 sols in  0.859 seconds
+
+Case 48: nAnts: 100 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  0.889 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.884 seconds
+Found 0 sols in  0.930 seconds
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.934 seconds
+Found 0 sols in  0.912 seconds
+Found 0 sols in  0.892 seconds
+Found 0 sols in  0.944 seconds
+Found 0 sols in  0.949 seconds
+
+Case 49: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  0.927 seconds
+Found 0 sols in  0.944 seconds
+Found 0 sols in  1.002 seconds
+Found 0 sols in  0.912 seconds
+Found 0 sols in  0.942 seconds
+Found 0 sols in  0.916 seconds
+Found 0 sols in  0.924 seconds
+Found 0 sols in  0.890 seconds
+Found 0 sols in  0.865 seconds
+Found 1 sols in  0.847 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 8.1999999999999993e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 1800.0}
+
+Case 50: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.848 seconds
+Found 1 sols in  0.841 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 3.8999999999999998e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 3000.0}
+Found 0 sols in  0.844 seconds
+Found 0 sols in  0.842 seconds
+Found 1 sols in  0.843 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 4.7000000000000004e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 3300.0}
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.840 seconds
+
+Case 51: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  0.877 seconds
+Found 0 sols in  0.881 seconds
+Found 0 sols in  0.885 seconds
+Found 0 sols in  0.894 seconds
+Found 0 sols in  0.938 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.908 seconds
+Found 0 sols in  0.917 seconds
+Found 0 sols in  0.892 seconds
+Found 0 sols in  0.882 seconds
+
+Case 52: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.937 seconds
+Found 0 sols in  0.879 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.871 seconds
+Found 0 sols in  0.918 seconds
+
+Case 53: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  0.948 seconds
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.837 seconds
+
+Case 54: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  0.887 seconds
+Found 0 sols in  0.890 seconds
+Found 0 sols in  0.888 seconds
+Found 1 sols in  0.904 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 2.2000000000000002e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 51000.0}
+Found 0 sols in  0.932 seconds
+Found 1 sols in  0.894 seconds
+ {'c2': 1.5000000000000002e-08, 'c1': 1.1999999999999999e-07, 'r1': 2700.0, 'r2': 8200.0, 'r3': 1800.0}
+Found 0 sols in  0.902 seconds
+Found 0 sols in  0.980 seconds
+Found 0 sols in  0.936 seconds
+Found 0 sols in  0.878 seconds
+
+Case 55: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.909 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.883 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.878 seconds
+
+Case 56: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.893 seconds
+Found 0 sols in  0.926 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.870 seconds
+Found 0 sols in  0.855 seconds
+
+Case 57: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  0.893 seconds
+Found 0 sols in  0.975 seconds
+Found 0 sols in  0.916 seconds
+Found 1 sols in  0.888 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 8200.0}
+Found 0 sols in  0.893 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.890 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.892 seconds
+Found 0 sols in  0.887 seconds
+
+Case 58: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  0.886 seconds
+Found 0 sols in  0.885 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.840 seconds
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.851 seconds
+Found 0 sols in  0.840 seconds
+Found 0 sols in  0.842 seconds
+Found 0 sols in  0.852 seconds
+
+Case 59: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  0.852 seconds
+Found 0 sols in  0.851 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.851 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.852 seconds
+Found 0 sols in  0.858 seconds
+
+Case 60: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 3
+
+Found 1 sols in  0.884 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2400.0}
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.889 seconds
+Found 0 sols in  0.886 seconds
+Found 0 sols in  0.892 seconds
+Found 0 sols in  0.886 seconds
+Found 0 sols in  0.883 seconds
+Found 0 sols in  0.876 seconds
+Found 0 sols in  0.877 seconds
+Found 0 sols in  0.887 seconds
+
+Case 61: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.867 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.839 seconds
+
+Case 62: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.902 seconds
+Found 0 sols in  1.013 seconds
+Found 0 sols in  0.920 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.953 seconds
+Found 0 sols in  0.972 seconds
+Found 0 sols in  0.934 seconds
+Found 0 sols in  0.932 seconds
+
+Case 63: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  0.929 seconds
+Found 0 sols in  0.892 seconds
+Found 0 sols in  0.890 seconds
+Found 0 sols in  0.883 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.930 seconds
+Found 0 sols in  0.956 seconds
+Found 0 sols in  0.921 seconds
+Found 0 sols in  0.927 seconds
+Found 0 sols in  0.934 seconds
+
+Case 64: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.938 seconds
+Found 1 sols in  0.966 seconds
+ {'c2': 1e-08, 'c1': 1.1999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 4700.0}
+Found 1 sols in  0.992 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 1100.0}
+Found 0 sols in  0.945 seconds
+Found 0 sols in  0.955 seconds
+Found 0 sols in  0.897 seconds
+Found 0 sols in  0.892 seconds
+
+Case 65: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  0.913 seconds
+Found 0 sols in  0.921 seconds
+Found 0 sols in  0.965 seconds
+Found 0 sols in  0.935 seconds
+Found 0 sols in  0.930 seconds
+Found 0 sols in  0.925 seconds
+Found 0 sols in  0.972 seconds
+Found 1 sols in  0.931 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 3.8999999999999998e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 3000.0}
+Found 0 sols in  0.920 seconds
+Found 0 sols in  0.921 seconds
+
+Case 66: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 3
+
+Found 1 sols in  0.983 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 9100.0}
+Found 1 sols in  0.991 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 1100.0}
+Found 0 sols in  0.989 seconds
+Found 0 sols in  0.954 seconds
+Found 0 sols in  0.943 seconds
+Found 0 sols in  0.932 seconds
+Found 0 sols in  0.930 seconds
+Found 0 sols in  0.928 seconds
+Found 0 sols in  0.933 seconds
+Found 0 sols in  0.927 seconds
+
+Case 67: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  0.902 seconds
+Found 0 sols in  0.904 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.939 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.940 seconds
+Found 0 sols in  0.897 seconds
+Found 0 sols in  1.008 seconds
+Found 0 sols in  0.905 seconds
+Found 0 sols in  0.883 seconds
+
+Case 68: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  0.913 seconds
+Found 0 sols in  0.901 seconds
+Found 0 sols in  0.865 seconds
+Found 0 sols in  0.951 seconds
+Found 0 sols in  0.927 seconds
+Found 0 sols in  1.010 seconds
+Found 0 sols in  0.983 seconds
+Found 0 sols in  0.953 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.879 seconds
+
+Case 69: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  0.938 seconds
+Found 0 sols in  0.903 seconds
+Found 0 sols in  0.911 seconds
+Found 0 sols in  0.910 seconds
+Found 0 sols in  0.896 seconds
+Found 0 sols in  0.955 seconds
+Found 0 sols in  0.908 seconds
+Found 0 sols in  0.966 seconds
+Found 0 sols in  0.927 seconds
+Found 0 sols in  0.910 seconds
+
+Case 70: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  0.872 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.851 seconds
+Found 0 sols in  0.872 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.958 seconds
+Found 0 sols in  0.970 seconds
+Found 0 sols in  0.903 seconds
+
+Case 71: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  0.887 seconds
+Found 0 sols in  0.987 seconds
+Found 0 sols in  0.883 seconds
+Found 0 sols in  0.893 seconds
+Found 0 sols in  0.872 seconds
+Found 0 sols in  0.880 seconds
+Found 0 sols in  0.914 seconds
+Found 0 sols in  0.850 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.878 seconds
+
+Case 72: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  0.908 seconds
+Found 0 sols in  0.892 seconds
+Found 0 sols in  0.893 seconds
+Found 0 sols in  0.899 seconds
+Found 0 sols in  0.927 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.887 seconds
+Found 0 sols in  0.877 seconds
+Found 0 sols in  0.877 seconds
+
+Case 73: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.850 seconds
+Found 0 sols in  0.864 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.880 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.859 seconds
+
+Case 74: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  0.852 seconds
+Found 0 sols in  0.961 seconds
+Found 0 sols in  0.942 seconds
+Found 0 sols in  0.966 seconds
+Found 0 sols in  0.917 seconds
+Found 0 sols in  0.929 seconds
+Found 0 sols in  0.940 seconds
+Found 0 sols in  0.927 seconds
+Found 0 sols in  0.918 seconds
+Found 0 sols in  0.920 seconds
+
+Case 75: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  0.972 seconds
+Found 0 sols in  0.968 seconds
+Found 0 sols in  0.953 seconds
+Found 0 sols in  0.951 seconds
+Found 0 sols in  0.925 seconds
+Found 0 sols in  0.889 seconds
+Found 1 sols in  0.896 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 2400.0}
+Found 0 sols in  0.896 seconds
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.893 seconds
+
+Case 76: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.843 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.858 seconds
+Found 0 sols in  0.852 seconds
+
+Case 77: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.850 seconds
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.855 seconds
+Found 0 sols in  0.850 seconds
+Found 0 sols in  0.863 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.854 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.844 seconds
+
+Case 78: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  0.879 seconds
+Found 0 sols in  0.881 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.877 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.881 seconds
+Found 0 sols in  0.885 seconds
+Found 0 sols in  0.884 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.879 seconds
+
+Case 79: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.845 seconds
+Found 0 sols in  0.870 seconds
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.844 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.888 seconds
+
+Case 80: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  0.901 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.897 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.862 seconds
+Found 0 sols in  0.876 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.841 seconds
+Found 0 sols in  0.948 seconds
+
+Case 81: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  0.921 seconds
+Found 0 sols in  0.915 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.881 seconds
+Found 0 sols in  0.894 seconds
+Found 0 sols in  0.983 seconds
+Found 0 sols in  1.011 seconds
+Found 0 sols in  0.896 seconds
+Found 0 sols in  0.914 seconds
+Found 0 sols in  0.905 seconds
+
+Case 82: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.842 seconds
+Found 0 sols in  0.868 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.869 seconds
+Found 1 sols in  0.886 seconds
+ {'c2': 1.5000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 3600.0, 'r2': 11000.0, 'r3': 1000.0}
+
+Case 83: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  0.921 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.854 seconds
+Found 0 sols in  0.859 seconds
+Found 0 sols in  0.853 seconds
+Found 0 sols in  0.867 seconds
+
+Case 84: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  0.887 seconds
+Found 0 sols in  0.888 seconds
+Found 0 sols in  0.906 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.901 seconds
+Found 0 sols in  0.898 seconds
+Found 0 sols in  0.888 seconds
+Found 1 sols in  0.887 seconds
+ {'c2': 1e-08, 'c1': 1.1999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 4300.0}
+Found 0 sols in  0.903 seconds
+Found 0 sols in  0.891 seconds
+
+Case 85: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  0.851 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.900 seconds
+Found 0 sols in  0.879 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.852 seconds
+
+Case 86: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.852 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.845 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.852 seconds
+Found 0 sols in  0.861 seconds
+
+Case 87: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.889 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.895 seconds
+Found 0 sols in  0.893 seconds
+Found 0 sols in  0.980 seconds
+Found 0 sols in  0.912 seconds
+Found 0 sols in  0.888 seconds
+Found 0 sols in  0.885 seconds
+Found 0 sols in  0.881 seconds
+
+Case 88: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.851 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.866 seconds
+Found 0 sols in  0.860 seconds
+Found 0 sols in  0.850 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.858 seconds
+
+Case 89: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.845 seconds
+Found 0 sols in  0.842 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.857 seconds
+Found 0 sols in  0.844 seconds
+Found 0 sols in  0.835 seconds
+
+Case 90: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  0.888 seconds
+Found 0 sols in  0.883 seconds
+Found 0 sols in  0.885 seconds
+Found 0 sols in  0.882 seconds
+Found 0 sols in  0.887 seconds
+Found 0 sols in  0.886 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.884 seconds
+Found 0 sols in  0.889 seconds
+
+Case 91: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 1
+
+Found 1 sols in  0.853 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 1200.0}
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.856 seconds
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.835 seconds
+Found 1 sols in  0.843 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 1200.0}
+Found 0 sols in  0.850 seconds
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.842 seconds
+Found 0 sols in  0.852 seconds
+
+Case 92: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.848 seconds
+Found 1 sols in  0.849 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 11000.0}
+Found 0 sols in  0.854 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.849 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.849 seconds
+
+Case 93: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  0.884 seconds
+Found 0 sols in  0.896 seconds
+Found 0 sols in  0.889 seconds
+Found 0 sols in  0.890 seconds
+Found 0 sols in  0.892 seconds
+Found 0 sols in  0.891 seconds
+Found 0 sols in  0.888 seconds
+Found 0 sols in  0.888 seconds
+Found 0 sols in  0.886 seconds
+Found 1 sols in  0.889 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 8200.0}
+
+Case 94: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  0.846 seconds
+Found 0 sols in  0.847 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.838 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.848 seconds
+Found 0 sols in  0.833 seconds
+Found 0 sols in  0.832 seconds
+Found 0 sols in  0.834 seconds
+
+Case 95: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  0.836 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.837 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.845 seconds
+Found 0 sols in  0.839 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.834 seconds
+Found 0 sols in  0.835 seconds
+Found 0 sols in  0.836 seconds
+
+Case 96: nAnts: 100 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  0.874 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.875 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.876 seconds
+Found 0 sols in  0.875 seconds
+Found 1 sols in  0.874 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 30000.0}
+Found 0 sols in  0.871 seconds
+Found 0 sols in  0.873 seconds
+Found 0 sols in  0.873 seconds
+
+Case 97: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  8.219 seconds
+Found 0 sols in  8.219 seconds
+Found 1 sols in  8.204 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 2700.0}
+Found 0 sols in  8.220 seconds
+Found 0 sols in  8.229 seconds
+Found 0 sols in  8.244 seconds
+Found 0 sols in  8.265 seconds
+Found 0 sols in  8.258 seconds
+Found 0 sols in  8.281 seconds
+Found 1 sols in  8.241 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.8e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 2400.0}
+
+Case 98: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  8.339 seconds
+Found 0 sols in  8.304 seconds
+Found 2 sols in  8.337 seconds
+ {'c2': 1.2e-09, 'c1': 1.8000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 7500.0}
+ {'c2': 1.2e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 43000.0}
+Found 1 sols in  8.465 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 11000.0}
+Found 1 sols in  8.372 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 20000.0}
+Found 1 sols in  8.263 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2200.0}
+Found 2 sols in  8.226 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 1.4999999999999999e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 11000.0}
+ {'c2': 5.5999999999999997e-09, 'c1': 8.1999999999999993e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 1600.0}
+Found 0 sols in  8.229 seconds
+Found 1 sols in  8.232 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 33000.0}
+Found 2 sols in  8.242 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 1.4999999999999999e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 9100.0}
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 13000.0}
+
+Case 99: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 3
+
+Found 1 sols in  8.625 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 15000.0}
+Found 1 sols in  8.623 seconds
+ {'c2': 1.5000000000000002e-08, 'c1': 1.1999999999999999e-07, 'r1': 3000.0, 'r2': 9100.0, 'r3': 1600.0}
+Found 0 sols in  8.647 seconds
+Found 1 sols in  8.626 seconds
+ {'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 9100.0}
+Found 1 sols in  8.622 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 16000.0}
+Found 0 sols in  8.662 seconds
+Found 1 sols in  8.621 seconds
+ {'c2': 1.2e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 43000.0}
+Found 0 sols in  8.628 seconds
+Found 0 sols in  8.640 seconds
+Found 0 sols in  8.640 seconds
+
+Case 100: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  8.207 seconds
+Found 1 sols in  8.225 seconds
+ {'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 39000.0}
+Found 0 sols in  8.236 seconds
+Found 0 sols in  8.236 seconds
+Found 1 sols in  8.233 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 20000.0}
+Found 0 sols in  8.243 seconds
+Found 0 sols in  8.237 seconds
+Found 1 sols in  8.223 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.1999999999999999e-07, 'r1': 33000.0, 'r2': 100000.0, 'r3': 1000.0}
+Found 2 sols in  8.221 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 5100.0}
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 11000.0}
+Found 2 sols in  8.236 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 5600.0}
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 22000.0}
+
+Case 101: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  8.247 seconds
+Found 0 sols in  8.252 seconds
+Found 0 sols in  8.248 seconds
+Found 1 sols in  8.256 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 2400.0}
+Found 1 sols in  8.238 seconds
+ {'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1600.0}
+Found 0 sols in  8.251 seconds
+Found 1 sols in  8.234 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 13000.0}
+Found 2 sols in  8.289 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 11000.0}
+ {'c2': 2.7000000000000004e-08, 'c1': 2.2000000000000001e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 1200.0}
+Found 1 sols in  8.291 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 2.2000000000000002e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 51000.0}
+Found 0 sols in  8.246 seconds
+
+Case 102: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  8.621 seconds
+Found 0 sols in  8.630 seconds
+Found 0 sols in  8.639 seconds
+Found 0 sols in  8.626 seconds
+Found 0 sols in  8.665 seconds
+Found 1 sols in  8.711 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 24000.0}
+Found 0 sols in  8.779 seconds
+Found 0 sols in  8.817 seconds
+Found 0 sols in  8.658 seconds
+Found 0 sols in  8.627 seconds
+
+Case 103: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  8.223 seconds
+Found 1 sols in  8.220 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 4.7000000000000004e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 3300.0}
+Found 0 sols in  8.224 seconds
+Found 0 sols in  8.265 seconds
+Found 2 sols in  8.236 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 24000.0}
+ {'c2': 1.2e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 47000.0}
+Found 1 sols in  8.241 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 2.7000000000000004e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 5100.0}
+Found 0 sols in  8.214 seconds
+Found 0 sols in  8.227 seconds
+Found 0 sols in  8.262 seconds
+Found 2 sols in  8.283 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 5600.0}
+ {'c2': 8.199999999999999e-09, 'c1': 8.1999999999999993e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 1800.0}
+
+Case 104: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  8.230 seconds
+Found 0 sols in  8.255 seconds
+Found 0 sols in  8.270 seconds
+Found 0 sols in  8.260 seconds
+Found 1 sols in  8.239 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 12000.0}
+Found 1 sols in  8.268 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 8200.0}
+Found 1 sols in  8.233 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.1999999999999999e-07, 'r1': 33000.0, 'r2': 100000.0, 'r3': 1000.0}
+Found 0 sols in  8.234 seconds
+Found 1 sols in  8.241 seconds
+ {'c2': 1.2e-09, 'c1': 4.7000000000000004e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 43000.0}
+Found 1 sols in  8.243 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 4.7000000000000004e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 3000.0}
+
+Case 105: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  8.622 seconds
+Found 0 sols in  8.660 seconds
+Found 1 sols in  8.671 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 47000.0}
+Found 0 sols in  8.672 seconds
+Found 0 sols in  8.652 seconds
+Found 0 sols in  8.664 seconds
+Found 0 sols in  8.661 seconds
+Found 0 sols in  8.612 seconds
+Found 0 sols in  8.620 seconds
+Found 1 sols in  8.611 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 2700.0}
+
+Case 106: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  8.190 seconds
+Found 1 sols in  8.213 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 8.1999999999999993e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 1600.0}
+Found 0 sols in  8.216 seconds
+Found 0 sols in  8.307 seconds
+Found 0 sols in  8.219 seconds
+Found 0 sols in  8.230 seconds
+Found 0 sols in  8.224 seconds
+Found 0 sols in  8.242 seconds
+Found 0 sols in  8.219 seconds
+Found 0 sols in  8.215 seconds
+
+Case 107: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  8.230 seconds
+Found 1 sols in  8.232 seconds
+ {'c2': 2.7000000000000004e-08, 'c1': 2.2000000000000001e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1100.0}
+Found 0 sols in  8.241 seconds
+Found 1 sols in  8.238 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 43000.0}
+Found 1 sols in  8.267 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 8.1999999999999993e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 1800.0}
+Found 1 sols in  8.249 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 5100.0}
+Found 0 sols in  8.289 seconds
+Found 0 sols in  8.258 seconds
+Found 1 sols in  8.246 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 8200.0}
+Found 1 sols in  8.244 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 10000.0}
+
+Case 108: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  8.634 seconds
+Found 1 sols in  8.636 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 47000.0}
+Found 0 sols in  8.629 seconds
+Found 1 sols in  8.649 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 56000.0}
+Found 0 sols in  8.658 seconds
+Found 0 sols in  8.641 seconds
+Found 1 sols in  8.665 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 30000.0}
+Found 1 sols in  8.610 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 43000.0}
+Found 1 sols in  8.582 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 33000.0}
+Found 1 sols in  8.640 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 7500.0}
+
+Case 109: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  8.217 seconds
+Found 0 sols in  8.220 seconds
+Found 0 sols in  8.222 seconds
+Found 0 sols in  8.214 seconds
+Found 2 sols in  8.317 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 56000.0}
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2400.0}
+Found 1 sols in  8.250 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 2200.0}
+Found 0 sols in  8.418 seconds
+Found 0 sols in  8.362 seconds
+Found 1 sols in  8.221 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 30000.0}
+Found 0 sols in  8.204 seconds
+
+Case 110: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 2
+
+Found 2 sols in  8.201 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 16000.0}
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 20000.0}
+Found 0 sols in  8.194 seconds
+Found 1 sols in  8.190 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 6200.0}
+Found 0 sols in  8.220 seconds
+Found 2 sols in  8.235 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 13000.0}
+ {'c2': 1e-08, 'c1': 1.1999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 4300.0}
+Found 0 sols in  8.273 seconds
+Found 0 sols in  8.291 seconds
+Found 1 sols in  8.227 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 4700.0}
+Found 3 sols in  8.266 seconds
+ {'c2': 1.2e-09, 'c1': 1.2e-08, 'r1': 43000.0, 'r2': 130000.0, 'r3': 13000.0}
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 18000.0}
+ {'c2': 2.2000000000000002e-08, 'c1': 2.2000000000000001e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 1800.0}
+Found 0 sols in  8.236 seconds
+
+Case 111: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  8.611 seconds
+Found 0 sols in  8.627 seconds
+Found 0 sols in  8.627 seconds
+Found 0 sols in  9.077 seconds
+Found 1 sols in  9.253 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 9100.0}
+Found 0 sols in  8.683 seconds
+Found 0 sols in  8.707 seconds
+Found 0 sols in  8.734 seconds
+Found 0 sols in  8.691 seconds
+Found 0 sols in  8.630 seconds
+
+Case 112: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  8.280 seconds
+Found 0 sols in  8.340 seconds
+Found 2 sols in  8.292 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 30000.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 20000.0}
+Found 0 sols in  8.450 seconds
+Found 2 sols in  8.787 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 9.9999999999999995e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1300.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 13000.0}
+Found 0 sols in  8.512 seconds
+Found 1 sols in  8.385 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 6.8e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 3000.0}
+Found 0 sols in  8.498 seconds
+Found 0 sols in  8.354 seconds
+Found 0 sols in  8.400 seconds
+
+Case 113: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  8.360 seconds
+Found 0 sols in  8.668 seconds
+Found 1 sols in  8.400 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.8000000000000002e-08, 'r1': 68000.0, 'r2': 200000, 'r3': 6800.0}
+Found 0 sols in  8.582 seconds
+Found 0 sols in  8.530 seconds
+Found 1 sols in  8.433 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 7500.0}
+Found 0 sols in  8.250 seconds
+Found 2 sols in  8.228 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 2000.0}
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 18000.0}
+Found 0 sols in  8.275 seconds
+Found 1 sols in  8.268 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 8.1999999999999993e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 1600.0}
+
+Case 114: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 3
+
+Found 1 sols in  8.660 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 16000.0}
+Found 0 sols in  8.689 seconds
+Found 0 sols in  8.642 seconds
+Found 0 sols in  8.656 seconds
+Found 1 sols in  8.711 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.8e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 2200.0}
+Found 1 sols in  8.615 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 11000.0}
+Found 2 sols in  8.627 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 4.7000000000000004e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 2700.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 4.7000000000000004e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 18000.0}
+Found 0 sols in  8.645 seconds
+Found 1 sols in  8.705 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 2.2000000000000002e-08, 'r1': 68000.0, 'r2': 200000, 'r3': 5600.0}
+Found 1 sols in  8.618 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 22000.0}
+
+Case 115: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 1
+
+Found 1 sols in  8.188 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 10000.0}
+Found 0 sols in  8.205 seconds
+Found 0 sols in  8.210 seconds
+Found 1 sols in  8.211 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 2700.0}
+Found 0 sols in  8.203 seconds
+Found 0 sols in  8.186 seconds
+Found 3 sols in  8.221 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2400.0}
+ {'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 10000.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 11000.0}
+Found 0 sols in  8.210 seconds
+Found 0 sols in  8.214 seconds
+Found 0 sols in  8.191 seconds
+
+Case 116: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  8.199 seconds
+Found 1 sols in  8.187 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 18000.0}
+Found 0 sols in  8.434 seconds
+Found 0 sols in  8.638 seconds
+Found 1 sols in  8.498 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 20000.0}
+Found 0 sols in  8.470 seconds
+Found 2 sols in  8.627 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 12000.0}
+ {'c2': 1.5000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 36000.0}
+Found 0 sols in  8.335 seconds
+Found 0 sols in  8.437 seconds
+Found 1 sols in  8.758 seconds
+ {'c2': 1.2e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 47000.0}
+
+Case 117: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 3
+
+Found 2 sols in  8.871 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 24000.0}
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 43000.0}
+Found 1 sols in  8.746 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 13000.0}
+Found 0 sols in  8.839 seconds
+Found 0 sols in  9.006 seconds
+Found 2 sols in  8.997 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 1200.0}
+ {'c2': 1.2e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 47000.0}
+Found 0 sols in  8.772 seconds
+Found 1 sols in  8.685 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 16000.0}
+Found 2 sols in  8.741 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 8200.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 9100.0}
+Found 0 sols in  8.681 seconds
+Found 2 sols in  8.667 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 15000.0}
+ {'c2': 2.2000000000000003e-09, 'c1': 4.7000000000000004e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 22000.0}
+
+Case 118: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  8.259 seconds
+Found 0 sols in  8.282 seconds
+Found 1 sols in  8.314 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 11000.0}
+Found 1 sols in  8.265 seconds
+ {'c2': 1.2e-08, 'c1': 1.8e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 3900.0}
+Found 1 sols in  8.251 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 4300.0}
+Found 2 sols in  8.276 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 8200.0}
+ {'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1600.0}
+Found 0 sols in  8.516 seconds
+Found 0 sols in  8.480 seconds
+Found 0 sols in  8.394 seconds
+Found 0 sols in  8.460 seconds
+
+Case 119: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 2
+
+Found 1 sols in  8.483 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 33000.0}
+Found 1 sols in  8.454 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 18000.0}
+Found 1 sols in  8.289 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 9.9999999999999995e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 1200.0}
+Found 0 sols in  8.383 seconds
+Found 1 sols in  8.444 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.8e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 2200.0}
+Found 0 sols in  8.320 seconds
+Found 0 sols in  8.320 seconds
+Found 0 sols in  8.342 seconds
+Found 0 sols in  8.318 seconds
+Found 0 sols in  8.217 seconds
+
+Case 120: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  8.599 seconds
+Found 0 sols in  8.577 seconds
+Found 1 sols in  8.638 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 2.2000000000000002e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 18000.0}
+Found 1 sols in  8.620 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 16000.0}
+Found 0 sols in  8.587 seconds
+Found 1 sols in  8.677 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 3.8999999999999998e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 3300.0}
+Found 0 sols in  8.622 seconds
+Found 1 sols in  8.611 seconds
+ {'c2': 2.2000000000000002e-08, 'c1': 2.2000000000000001e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 1800.0}
+Found 0 sols in  8.615 seconds
+Found 1 sols in  8.671 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 3900.0}
+
+Case 121: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  8.248 seconds
+Found 0 sols in  8.225 seconds
+Found 1 sols in  8.236 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 1.1999999999999999e-07, 'r1': 8200.0, 'r2': 24000.0, 'r3': 1100.0}
+Found 0 sols in  8.211 seconds
+Found 0 sols in  8.232 seconds
+Found 1 sols in  8.221 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 5600.0}
+Found 0 sols in  8.228 seconds
+Found 0 sols in  8.247 seconds
+Found 1 sols in  8.228 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 2200.0}
+Found 0 sols in  8.350 seconds
+
+Case 122: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  8.502 seconds
+Found 2 sols in  8.324 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 6200.0}
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 10000.0}
+Found 0 sols in  8.623 seconds
+Found 0 sols in  8.479 seconds
+Found 0 sols in  8.508 seconds
+Found 1 sols in  8.656 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 16000.0}
+Found 2 sols in  8.360 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 3.8999999999999998e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 3300.0}
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 3300.0}
+Found 0 sols in  8.368 seconds
+Found 0 sols in  8.706 seconds
+Found 0 sols in  8.609 seconds
+
+Case 123: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  8.906 seconds
+Found 0 sols in  8.895 seconds
+Found 0 sols in  8.824 seconds
+Found 1 sols in  8.957 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 3900.0}
+Found 0 sols in  8.858 seconds
+Found 1 sols in  8.933 seconds
+ {'c2': 1.2e-08, 'c1': 1.4999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 3600.0}
+Found 0 sols in  9.228 seconds
+Found 0 sols in  8.812 seconds
+Found 0 sols in  8.692 seconds
+Found 0 sols in  8.646 seconds
+
+Case 124: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  8.233 seconds
+Found 1 sols in  8.245 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 2.2000000000000002e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 18000.0}
+Found 0 sols in  8.239 seconds
+Found 1 sols in  8.356 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 20000.0}
+Found 1 sols in  8.377 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 10000.0}
+Found 0 sols in  8.337 seconds
+Found 0 sols in  8.244 seconds
+Found 1 sols in  8.220 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 24000.0}
+Found 0 sols in  8.222 seconds
+Found 1 sols in  8.227 seconds
+ {'c2': 1.2e-09, 'c1': 1.8000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 7500.0}
+
+Case 125: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 2
+
+Found 1 sols in  8.247 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 8.1999999999999993e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 1600.0}
+Found 0 sols in  8.259 seconds
+Found 0 sols in  8.271 seconds
+Found 1 sols in  8.269 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 8200.0}
+Found 1 sols in  8.236 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 10000.0}
+Found 1 sols in  8.268 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 30000.0}
+Found 0 sols in  8.266 seconds
+Found 0 sols in  8.245 seconds
+Found 0 sols in  8.237 seconds
+Found 1 sols in  8.340 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 2700.0, 'r2': 8200.0, 'r3': 1200.0}
+
+Case 126: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  8.713 seconds
+Found 1 sols in  8.735 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 43000.0, 'r2': 130000.0, 'r3': 4700.0}
+Found 0 sols in  8.698 seconds
+Found 0 sols in  8.750 seconds
+Found 0 sols in  8.687 seconds
+Found 0 sols in  8.679 seconds
+Found 0 sols in  9.067 seconds
+Found 0 sols in  8.973 seconds
+Found 1 sols in  9.036 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 6200.0}
+Found 0 sols in  8.938 seconds
+
+Case 127: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 1
+
+Found 1 sols in  8.378 seconds
+ {'c2': 1.2e-09, 'c1': 3.2999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 43000.0}
+Found 0 sols in  8.450 seconds
+Found 1 sols in  8.374 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 3900.0}
+Found 0 sols in  8.386 seconds
+Found 0 sols in  8.323 seconds
+Found 0 sols in  8.294 seconds
+Found 0 sols in  8.390 seconds
+Found 2 sols in  8.386 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 33000.0}
+ {'c2': 1.5000000000000002e-08, 'c1': 1.1999999999999999e-07, 'r1': 3000.0, 'r2': 9100.0, 'r3': 1600.0}
+Found 0 sols in  8.358 seconds
+Found 1 sols in  8.701 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 27000.0, 'r2': 82000.0, 'r3': 1000.0}
+
+Case 128: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  8.526 seconds
+Found 0 sols in  8.752 seconds
+Found 0 sols in  8.861 seconds
+Found 1 sols in  8.653 seconds
+ {'c2': 1.2e-09, 'c1': 3.2999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 43000.0}
+Found 1 sols in  8.496 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 6200.0}
+Found 0 sols in  8.432 seconds
+Found 1 sols in  8.580 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 5100.0}
+Found 0 sols in  8.685 seconds
+Found 0 sols in  8.678 seconds
+Found 0 sols in  8.693 seconds
+
+Case 129: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 3
+
+Found 1 sols in  8.967 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 7500.0}
+Found 0 sols in  9.016 seconds
+Found 0 sols in  8.872 seconds
+Found 1 sols in  8.730 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 4.7000000000000004e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 9100.0}
+Found 0 sols in  8.682 seconds
+Found 1 sols in  8.685 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 2400.0}
+Found 0 sols in  8.689 seconds
+Found 1 sols in  8.653 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 20000.0}
+Found 0 sols in  8.633 seconds
+Found 2 sols in  8.656 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 36000.0}
+ {'c2': 1.5000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 36000.0}
+
+Case 130: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  8.223 seconds
+Found 0 sols in  8.253 seconds
+Found 1 sols in  8.294 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 13000.0}
+Found 0 sols in  8.269 seconds
+Found 0 sols in  8.346 seconds
+Found 0 sols in  8.340 seconds
+Found 0 sols in  8.225 seconds
+Found 0 sols in  8.238 seconds
+Found 0 sols in  8.247 seconds
+Found 0 sols in  8.234 seconds
+
+Case 131: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 2
+
+Found 1 sols in  8.229 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 13000.0}
+Found 0 sols in  8.227 seconds
+Found 0 sols in  8.235 seconds
+Found 1 sols in  8.247 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 2000.0}
+Found 1 sols in  8.460 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 10000.0}
+Found 0 sols in  8.282 seconds
+Found 0 sols in  8.281 seconds
+Found 1 sols in  8.294 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 2700.0, 'r2': 8200.0, 'r3': 1200.0}
+Found 0 sols in  8.260 seconds
+Found 2 sols in  8.239 seconds
+ {'c2': 1e-08, 'c1': 1.4999999999999999e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 4700.0}
+ {'c2': 1.0000000000000001e-09, 'c1': 3.8999999999999998e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 3000.0}
+
+Case 132: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  8.643 seconds
+Found 1 sols in  8.651 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 33000.0, 'r2': 100000.0, 'r3': 30000.0}
+Found 2 sols in  8.621 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 1.4999999999999999e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 11000.0}
+ {'c2': 3.9000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 11000.0}
+Found 1 sols in  8.609 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 13000.0}
+Found 4 sols in  8.663 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 10000.0}
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 5100.0}
+ {'c2': 5.5999999999999997e-09, 'c1': 8.1999999999999993e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 1600.0}
+ {'c2': 3.9000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 11000.0}
+Found 0 sols in  8.674 seconds
+Found 3 sols in  8.832 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 6200.0}
+ {'c2': 1.8000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 30000.0}
+ {'c2': 1e-08, 'c1': 1.1999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 4700.0}
+Found 0 sols in  8.679 seconds
+Found 1 sols in  8.674 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 7500.0}
+Found 0 sols in  8.636 seconds
+
+Case 133: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 1
+
+Found 1 sols in  8.203 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 1200.0}
+Found 0 sols in  8.256 seconds
+Found 1 sols in  8.241 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 3300.0}
+Found 0 sols in  8.238 seconds
+Found 0 sols in  8.208 seconds
+Found 0 sols in  8.214 seconds
+Found 0 sols in  8.221 seconds
+Found 0 sols in  8.225 seconds
+Found 0 sols in  8.206 seconds
+Found 2 sols in  8.203 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 24000.0}
+ {'c2': 1.2e-08, 'c1': 1.8e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 3900.0}
+
+Case 134: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  8.224 seconds
+Found 0 sols in  8.237 seconds
+Found 2 sols in  8.270 seconds
+ {'c2': 2.7000000000000004e-08, 'c1': 2.2000000000000001e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 1200.0}
+ {'c2': 1.2e-09, 'c1': 1.2e-08, 'r1': 43000.0, 'r2': 130000.0, 'r3': 13000.0}
+Found 0 sols in  8.253 seconds
+Found 1 sols in  8.232 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 5100.0}
+Found 1 sols in  8.236 seconds
+ {'c2': 1.2e-09, 'c1': 4.7000000000000004e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 43000.0}
+Found 0 sols in  8.223 seconds
+Found 1 sols in  8.281 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 4300.0}
+Found 1 sols in  8.235 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 47000.0}
+Found 1 sols in  8.260 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 11000.0}
+
+Case 135: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  8.705 seconds
+Found 0 sols in  8.622 seconds
+Found 0 sols in  8.633 seconds
+Found 0 sols in  8.636 seconds
+Found 1 sols in  8.610 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 1200.0}
+Found 0 sols in  8.627 seconds
+Found 2 sols in  8.631 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 3300.0}
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 22000.0}
+Found 0 sols in  8.649 seconds
+Found 1 sols in  8.635 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 8200.0}
+Found 1 sols in  8.638 seconds
+ {'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 1300.0}
+
+Case 136: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  8.210 seconds
+Found 1 sols in  8.225 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 16000.0}
+Found 0 sols in  8.232 seconds
+Found 0 sols in  8.238 seconds
+Found 0 sols in  8.232 seconds
+Found 0 sols in  8.236 seconds
+Found 0 sols in  8.226 seconds
+Found 1 sols in  8.233 seconds
+ {'c2': 1.2e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 47000.0}
+Found 1 sols in  8.230 seconds
+ {'c2': 1.2e-08, 'c1': 1.8e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 3900.0}
+Found 0 sols in  8.235 seconds
+
+Case 137: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  8.237 seconds
+Found 0 sols in  8.236 seconds
+Found 0 sols in  8.243 seconds
+Found 0 sols in  8.242 seconds
+Found 0 sols in  8.250 seconds
+Found 1 sols in  8.215 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 27000.0}
+Found 0 sols in  8.235 seconds
+Found 0 sols in  8.220 seconds
+Found 0 sols in  8.228 seconds
+Found 1 sols in  8.261 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 20000.0}
+
+Case 138: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  8.657 seconds
+Found 0 sols in  8.667 seconds
+Found 1 sols in  8.619 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 3600.0}
+Found 0 sols in  8.615 seconds
+Found 0 sols in  8.626 seconds
+Found 1 sols in  8.623 seconds
+ {'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 36000.0}
+Found 1 sols in  8.632 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 3900.0}
+Found 1 sols in  8.637 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 4.7000000000000004e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 22000.0}
+Found 0 sols in  8.677 seconds
+Found 0 sols in  8.623 seconds
+
+Case 139: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  8.205 seconds
+Found 0 sols in  8.182 seconds
+Found 0 sols in  8.179 seconds
+Found 1 sols in  8.199 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 6800.0}
+Found 1 sols in  8.244 seconds
+ {'c2': 1.2e-08, 'c1': 1.8e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 3900.0}
+Found 2 sols in  8.234 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 16000.0}
+ {'c2': 2.2000000000000003e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 22000.0}
+Found 1 sols in  8.242 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.8000000000000002e-08, 'r1': 68000.0, 'r2': 200000, 'r3': 6800.0}
+Found 0 sols in  8.243 seconds
+Found 0 sols in  8.224 seconds
+Found 1 sols in  8.229 seconds
+ {'c2': 1.2e-09, 'c1': 1.8000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 7500.0}
+
+Case 140: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 2
+
+Found 1 sols in  8.237 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 30000.0}
+Found 0 sols in  8.223 seconds
+Found 0 sols in  8.247 seconds
+Found 0 sols in  8.241 seconds
+Found 2 sols in  8.241 seconds
+ {'c2': 1e-08, 'c1': 1.1999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 4300.0}
+ {'c2': 1.8000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 3300.0}
+Found 1 sols in  8.230 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 4700.0}
+Found 0 sols in  8.254 seconds
+Found 1 sols in  8.262 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 3900.0}
+Found 1 sols in  8.240 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 13000.0}
+Found 0 sols in  8.281 seconds
+
+Case 141: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  8.671 seconds
+Found 0 sols in  8.653 seconds
+Found 0 sols in  8.605 seconds
+Found 0 sols in  8.607 seconds
+Found 0 sols in  8.608 seconds
+Found 1 sols in  8.613 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 8200.0}
+Found 0 sols in  8.627 seconds
+Found 0 sols in  8.627 seconds
+Found 0 sols in  8.673 seconds
+Found 1 sols in  8.630 seconds
+ {'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 9100.0}
+
+Case 142: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 1
+
+Found 0 sols in  8.193 seconds
+Found 1 sols in  8.205 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 47000.0}
+Found 0 sols in  8.251 seconds
+Found 0 sols in  8.211 seconds
+Found 0 sols in  8.244 seconds
+Found 1 sols in  8.244 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 7500.0}
+Found 0 sols in  8.211 seconds
+Found 0 sols in  8.205 seconds
+Found 0 sols in  8.219 seconds
+Found 0 sols in  8.215 seconds
+
+Case 143: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  8.215 seconds
+Found 0 sols in  8.224 seconds
+Found 2 sols in  8.220 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 9.9999999999999995e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1300.0}
+ {'c2': 1.8000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 20000.0}
+Found 2 sols in  8.215 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 24000.0}
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 7500.0}
+Found 0 sols in  8.210 seconds
+Found 0 sols in  8.227 seconds
+Found 0 sols in  8.225 seconds
+Found 0 sols in  8.225 seconds
+Found 2 sols in  8.335 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 6200.0}
+ {'c2': 2.2000000000000003e-09, 'c1': 3.8999999999999998e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 3300.0}
+Found 0 sols in  8.598 seconds
+
+Case 144: nAnts: 1000 nCycles: 10 evapRate: 0.00 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  8.894 seconds
+Found 0 sols in  8.895 seconds
+Found 0 sols in  9.243 seconds
+Found 0 sols in  8.727 seconds
+Found 0 sols in  8.739 seconds
+Found 0 sols in  8.819 seconds
+Found 2 sols in  9.232 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 20000.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 20000.0}
+Found 1 sols in  9.501 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 43000.0}
+Found 0 sols in  9.299 seconds
+Found 0 sols in  9.336 seconds
+
+Case 145: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  8.415 seconds
+Found 0 sols in  8.430 seconds
+Found 2 sols in  8.407 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 30000.0}
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 6200.0}
+Found 0 sols in  8.371 seconds
+Found 0 sols in  8.261 seconds
+Found 0 sols in  8.260 seconds
+Found 0 sols in  8.238 seconds
+Found 0 sols in  8.260 seconds
+Found 0 sols in  8.227 seconds
+Found 0 sols in  8.259 seconds
+
+Case 146: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 2
+
+Found 1 sols in  8.263 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 15000.0}
+Found 0 sols in  8.286 seconds
+Found 0 sols in  8.260 seconds
+Found 0 sols in  8.266 seconds
+Found 0 sols in  8.294 seconds
+Found 0 sols in  8.302 seconds
+Found 0 sols in  8.278 seconds
+Found 0 sols in  8.267 seconds
+Found 1 sols in  8.255 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 24000.0}
+Found 1 sols in  8.271 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 2700.0, 'r2': 8200.0, 'r3': 1200.0}
+
+Case 147: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  8.656 seconds
+Found 1 sols in  8.641 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 12000.0}
+Found 0 sols in  8.643 seconds
+Found 0 sols in  8.645 seconds
+Found 0 sols in  8.708 seconds
+Found 0 sols in  8.707 seconds
+Found 0 sols in  8.685 seconds
+Found 0 sols in  8.724 seconds
+Found 1 sols in  8.709 seconds
+ {'c2': 2.7000000000000004e-08, 'c1': 2.2000000000000001e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1100.0}
+Found 0 sols in  8.636 seconds
+
+Case 148: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  8.248 seconds
+Found 1 sols in  8.269 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 9.9999999999999995e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1300.0}
+Found 2 sols in  8.239 seconds
+ {'c2': 1e-08, 'c1': 1.1999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 4300.0}
+ {'c2': 2.2000000000000003e-09, 'c1': 2.2000000000000002e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 20000.0}
+Found 0 sols in  8.314 seconds
+Found 0 sols in  8.308 seconds
+Found 0 sols in  8.278 seconds
+Found 2 sols in  8.359 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 2200.0}
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 4700.0}
+Found 0 sols in  8.225 seconds
+Found 1 sols in  8.278 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 3.8999999999999998e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 3300.0}
+Found 1 sols in  8.323 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 7500.0}
+
+Case 149: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 2
+
+Found 1 sols in  8.232 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 1100.0}
+Found 0 sols in  8.234 seconds
+Found 0 sols in  8.231 seconds
+Found 1 sols in  8.286 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 27000.0}
+Found 0 sols in  8.325 seconds
+Found 2 sols in  8.332 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 1.1999999999999999e-07, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1000.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 13000.0}
+Found 0 sols in  8.325 seconds
+Found 2 sols in  8.321 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 4300.0}
+ {'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 1300.0}
+Found 1 sols in  8.286 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 8200.0}
+Found 0 sols in  8.245 seconds
+
+Case 150: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.05 scale: 5 costFun: 3
+
+Found 2 sols in  8.617 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 3300.0}
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 43000.0}
+Found 1 sols in  8.640 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 27000.0}
+Found 0 sols in  8.627 seconds
+Found 1 sols in  8.632 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 3300.0}
+Found 0 sols in  8.660 seconds
+Found 0 sols in  8.645 seconds
+Found 0 sols in  8.742 seconds
+Found 1 sols in  8.793 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 9.9999999999999995e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 1200.0}
+Found 0 sols in  8.719 seconds
+Found 0 sols in  8.782 seconds
+
+Case 151: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  8.302 seconds
+Found 0 sols in  8.291 seconds
+Found 0 sols in  8.279 seconds
+Found 1 sols in  8.229 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 11000.0}
+Found 1 sols in  8.228 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 15000.0}
+Found 0 sols in  8.216 seconds
+Found 0 sols in  8.179 seconds
+Found 0 sols in  8.186 seconds
+Found 1 sols in  8.200 seconds
+ {'c2': 1.2e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 47000.0}
+Found 1 sols in  8.185 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 4.7000000000000004e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 3300.0}
+
+Case 152: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  8.243 seconds
+Found 0 sols in  8.249 seconds
+Found 1 sols in  8.337 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 4.7000000000000004e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 3300.0}
+Found 0 sols in  8.323 seconds
+Found 0 sols in  8.332 seconds
+Found 0 sols in  8.241 seconds
+Found 0 sols in  8.207 seconds
+Found 0 sols in  8.321 seconds
+Found 0 sols in  8.323 seconds
+Found 0 sols in  8.308 seconds
+
+Case 153: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  8.630 seconds
+Found 0 sols in  8.630 seconds
+Found 1 sols in  8.624 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 24000.0}
+Found 0 sols in  8.605 seconds
+Found 0 sols in  8.616 seconds
+Found 0 sols in  8.617 seconds
+Found 0 sols in  8.604 seconds
+Found 0 sols in  8.627 seconds
+Found 0 sols in  8.623 seconds
+Found 0 sols in  8.641 seconds
+
+Case 154: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 1
+
+Found 1 sols in  8.347 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 22000.0}
+Found 1 sols in  8.315 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 1.8000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 16000.0}
+Found 0 sols in  8.329 seconds
+Found 1 sols in  8.248 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 47000.0}
+Found 0 sols in  8.223 seconds
+Found 1 sols in  8.217 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 43000.0, 'r2': 130000.0, 'r3': 24000.0}
+Found 2 sols in  8.221 seconds
+ {'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 36000.0}
+ {'c2': 2.2000000000000003e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 22000.0}
+Found 0 sols in  8.182 seconds
+Found 1 sols in  8.287 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 47000.0}
+Found 0 sols in  8.250 seconds
+
+Case 155: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 2
+
+Found 2 sols in  8.279 seconds
+ {'c2': 1.2e-08, 'c1': 1.1999999999999999e-07, 'r1': 4300.0, 'r2': 13000.0, 'r3': 1300.0}
+ {'c2': 2.7000000000000004e-08, 'c1': 2.2000000000000001e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1100.0}
+Found 0 sols in  8.371 seconds
+Found 2 sols in  8.728 seconds
+ {'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1600.0}
+ {'c2': 1.8000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 30000.0}
+Found 0 sols in  8.638 seconds
+Found 0 sols in  8.581 seconds
+Found 0 sols in  8.509 seconds
+Found 2 sols in  8.413 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 30000.0, 'r2': 91000.0, 'r3': 33000.0}
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 3000.0}
+Found 1 sols in  8.387 seconds
+ {'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 36000.0}
+Found 0 sols in  8.441 seconds
+Found 1 sols in  8.783 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 20000.0}
+
+Case 156: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 20 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  9.037 seconds
+Found 0 sols in  8.827 seconds
+Found 0 sols in  8.932 seconds
+Found 0 sols in  9.047 seconds
+Found 1 sols in  8.759 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 18000.0}
+Found 1 sols in  8.760 seconds
+ {'c2': 1.2e-08, 'c1': 1.4999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 3600.0}
+Found 0 sols in  8.781 seconds
+Found 0 sols in  8.704 seconds
+Found 0 sols in  8.633 seconds
+Found 0 sols in  8.757 seconds
+
+Case 157: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  8.373 seconds
+Found 0 sols in  8.320 seconds
+Found 0 sols in  8.406 seconds
+Found 0 sols in  8.367 seconds
+Found 0 sols in  8.383 seconds
+Found 0 sols in  8.402 seconds
+Found 0 sols in  8.301 seconds
+Found 0 sols in  8.345 seconds
+Found 0 sols in  8.391 seconds
+Found 1 sols in  8.391 seconds
+ {'c2': 1.5000000000000002e-08, 'c1': 1.1999999999999999e-07, 'r1': 3000.0, 'r2': 9100.0, 'r3': 1500.0}
+
+Case 158: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 2
+
+Found 1 sols in  8.415 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 1.4999999999999999e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 11000.0}
+Found 0 sols in  8.339 seconds
+Found 1 sols in  8.369 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 22000.0}
+Found 0 sols in  8.269 seconds
+Found 0 sols in  8.266 seconds
+Found 0 sols in  8.335 seconds
+Found 2 sols in  8.333 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 2700.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 12000.0}
+Found 2 sols in  8.396 seconds
+ {'c2': 1.2e-08, 'c1': 1.4999999999999999e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 3900.0}
+ {'c2': 8.199999999999999e-09, 'c1': 8.1999999999999993e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 4700.0}
+Found 0 sols in  8.314 seconds
+Found 1 sols in  8.326 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 20000.0}
+
+Case 159: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 4 costFun: 3
+
+Found 1 sols in  8.813 seconds
+ {'c2': 1.2e-08, 'c1': 1.1999999999999999e-07, 'r1': 4300.0, 'r2': 13000.0, 'r3': 1300.0}
+Found 0 sols in  8.676 seconds
+Found 0 sols in  8.640 seconds
+Found 1 sols in  8.649 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 22000.0}
+Found 0 sols in  8.648 seconds
+Found 0 sols in  8.612 seconds
+Found 0 sols in  8.607 seconds
+Found 0 sols in  8.616 seconds
+Found 1 sols in  8.621 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 3300.0}
+Found 0 sols in  8.608 seconds
+
+Case 160: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  8.197 seconds
+Found 1 sols in  8.223 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 12000.0}
+Found 0 sols in  8.246 seconds
+Found 1 sols in  8.228 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 10000.0}
+Found 0 sols in  8.223 seconds
+Found 0 sols in  8.212 seconds
+Found 0 sols in  8.231 seconds
+Found 0 sols in  8.274 seconds
+Found 0 sols in  8.222 seconds
+Found 0 sols in  8.226 seconds
+
+Case 161: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 2
+
+Found 1 sols in  8.200 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 30000.0}
+Found 1 sols in  8.210 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 4.7000000000000004e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 9100.0}
+Found 0 sols in  8.219 seconds
+Found 1 sols in  8.249 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 5100.0}
+Found 0 sols in  8.227 seconds
+Found 1 sols in  8.217 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 6200.0}
+Found 2 sols in  8.226 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.8000000000000002e-08, 'r1': 68000.0, 'r2': 200000, 'r3': 6800.0}
+ {'c2': 1.2e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 47000.0}
+Found 0 sols in  8.207 seconds
+Found 1 sols in  8.205 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 2400.0}
+Found 1 sols in  8.221 seconds
+ {'c2': 1.2e-09, 'c1': 1.5000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 9100.0}
+
+Case 162: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.05 scale: 5 costFun: 3
+
+Found 1 sols in  8.597 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 15000.0}
+Found 1 sols in  8.604 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 10000.0}
+Found 0 sols in  8.615 seconds
+Found 1 sols in  8.629 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 8200.0}
+Found 0 sols in  8.635 seconds
+Found 2 sols in  8.605 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 5600.0}
+ {'c2': 1.5000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 36000.0}
+Found 1 sols in  8.639 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 6200.0}
+Found 0 sols in  8.629 seconds
+Found 1 sols in  8.639 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 9100.0}
+Found 2 sols in  8.621 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 3900.0}
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 3300.0}
+
+Case 163: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  8.251 seconds
+Found 0 sols in  8.256 seconds
+Found 0 sols in  8.219 seconds
+Found 0 sols in  8.201 seconds
+Found 0 sols in  8.228 seconds
+Found 0 sols in  8.242 seconds
+Found 0 sols in  8.208 seconds
+Found 1 sols in  8.215 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 27000.0}
+Found 1 sols in  8.171 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 43000.0, 'r2': 130000.0, 'r3': 24000.0}
+Found 0 sols in  8.181 seconds
+
+Case 164: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  8.203 seconds
+Found 0 sols in  8.211 seconds
+Found 0 sols in  8.198 seconds
+Found 0 sols in  8.204 seconds
+Found 1 sols in  8.182 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 1.4999999999999999e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 9100.0}
+Found 1 sols in  8.193 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 27000.0}
+Found 1 sols in  8.217 seconds
+ {'c2': 1.2e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 47000.0}
+Found 0 sols in  8.225 seconds
+Found 0 sols in  8.210 seconds
+Found 0 sols in  8.251 seconds
+
+Case 165: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 4 costFun: 3
+
+Found 2 sols in  8.663 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 1.1999999999999999e-07, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1000.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 11000.0}
+Found 1 sols in  8.663 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 36000.0}
+Found 1 sols in  8.678 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2200.0}
+Found 1 sols in  8.634 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 30000.0}
+Found 1 sols in  8.624 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 2000.0}
+Found 2 sols in  8.618 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.8e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 2400.0}
+ {'c2': 8.199999999999999e-09, 'c1': 6.8e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 3000.0}
+Found 0 sols in  8.626 seconds
+Found 1 sols in  8.634 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 16000.0}
+Found 1 sols in  8.629 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 2.2000000000000002e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 51000.0}
+Found 0 sols in  8.612 seconds
+
+Case 166: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 1
+
+Found 1 sols in  8.239 seconds
+ {'c2': 1.5000000000000002e-08, 'c1': 1.1999999999999999e-07, 'r1': 2700.0, 'r2': 8200.0, 'r3': 1800.0}
+Found 1 sols in  8.226 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 3300.0}
+Found 0 sols in  8.213 seconds
+Found 0 sols in  8.215 seconds
+Found 0 sols in  8.259 seconds
+Found 0 sols in  8.224 seconds
+Found 0 sols in  8.237 seconds
+Found 1 sols in  8.235 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 2000.0}
+Found 0 sols in  8.267 seconds
+Found 0 sols in  8.206 seconds
+
+Case 167: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 2
+
+Found 1 sols in  8.230 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 16000.0}
+Found 1 sols in  8.218 seconds
+ {'c2': 1.2e-08, 'c1': 1.1999999999999999e-07, 'r1': 4300.0, 'r2': 13000.0, 'r3': 1300.0}
+Found 0 sols in  8.203 seconds
+Found 0 sols in  8.235 seconds
+Found 1 sols in  8.224 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 18000.0}
+Found 0 sols in  8.207 seconds
+Found 0 sols in  8.228 seconds
+Found 0 sols in  8.223 seconds
+Found 0 sols in  8.211 seconds
+Found 1 sols in  8.232 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 24000.0}
+
+Case 168: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.05 tauMax: 40 sigma:0.10 scale: 5 costFun: 3
+
+Found 1 sols in  8.659 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 3300.0}
+Found 1 sols in  8.608 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.8000000000000002e-08, 'r1': 68000.0, 'r2': 200000, 'r3': 6800.0}
+Found 0 sols in  8.593 seconds
+Found 0 sols in  8.604 seconds
+Found 0 sols in  8.585 seconds
+Found 0 sols in  8.593 seconds
+Found 1 sols in  8.608 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 9100.0}
+Found 1 sols in  8.599 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 1.1999999999999999e-07, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1000.0}
+Found 0 sols in  8.626 seconds
+Found 0 sols in  8.622 seconds
+
+Case 169: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  8.159 seconds
+Found 0 sols in  8.236 seconds
+Found 1 sols in  8.209 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 10000.0}
+Found 0 sols in  8.234 seconds
+Found 1 sols in  8.235 seconds
+ {'c2': 1e-08, 'c1': 1.4999999999999999e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 4700.0}
+Found 0 sols in  8.207 seconds
+Found 0 sols in  8.202 seconds
+Found 0 sols in  8.227 seconds
+Found 1 sols in  8.224 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 33000.0, 'r2': 100000.0, 'r3': 30000.0}
+Found 0 sols in  8.222 seconds
+
+Case 170: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  8.228 seconds
+Found 1 sols in  8.239 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.2e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 43000.0}
+Found 0 sols in  8.222 seconds
+Found 1 sols in  8.301 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 1600.0, 'r2': 4700.0, 'r3': 2000.0}
+Found 1 sols in  8.345 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 1200.0}
+Found 0 sols in  8.262 seconds
+Found 0 sols in  8.238 seconds
+Found 0 sols in  8.278 seconds
+Found 0 sols in  8.339 seconds
+Found 0 sols in  8.381 seconds
+
+Case 171: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  8.734 seconds
+Found 0 sols in  8.870 seconds
+Found 1 sols in  9.026 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 2200.0}
+Found 0 sols in  8.830 seconds
+Found 0 sols in  8.859 seconds
+Found 1 sols in  8.827 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 27000.0}
+Found 0 sols in  8.753 seconds
+Found 1 sols in  8.933 seconds
+ {'c2': 1.5000000000000002e-08, 'c1': 1.1999999999999999e-07, 'r1': 2700.0, 'r2': 8200.0, 'r3': 1800.0}
+Found 0 sols in  8.809 seconds
+Found 0 sols in  8.679 seconds
+
+Case 172: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 1
+
+Found 1 sols in  8.317 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 27000.0, 'r2': 82000.0, 'r3': 1000.0}
+Found 0 sols in  8.216 seconds
+Found 2 sols in  8.221 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 30000.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 18000.0}
+Found 1 sols in  8.211 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 6800.0}
+Found 0 sols in  8.233 seconds
+Found 3 sols in  8.201 seconds
+ {'c2': 1.2e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 47000.0}
+ {'c2': 1.2e-08, 'c1': 1.8e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 3900.0}
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 2400.0}
+Found 1 sols in  8.241 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 6.8e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 3600.0}
+Found 1 sols in  8.247 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 6800.0}
+Found 0 sols in  8.225 seconds
+Found 0 sols in  8.228 seconds
+
+Case 173: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  8.263 seconds
+Found 0 sols in  8.240 seconds
+Found 0 sols in  8.252 seconds
+Found 1 sols in  8.229 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 30000.0}
+Found 1 sols in  8.275 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 2.7000000000000004e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 5100.0}
+Found 0 sols in  8.268 seconds
+Found 0 sols in  8.242 seconds
+Found 0 sols in  8.246 seconds
+Found 0 sols in  8.247 seconds
+Found 0 sols in  8.245 seconds
+
+Case 174: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  8.677 seconds
+Found 0 sols in  8.670 seconds
+Found 1 sols in  8.664 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.4999999999999999e-07, 'r1': 2700.0, 'r2': 8200.0, 'r3': 1200.0}
+Found 0 sols in  8.661 seconds
+Found 0 sols in  8.659 seconds
+Found 0 sols in  8.671 seconds
+Found 0 sols in  8.682 seconds
+Found 0 sols in  8.670 seconds
+Found 1 sols in  8.660 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 9100.0}
+Found 0 sols in  8.652 seconds
+
+Case 175: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 1
+
+Found 0 sols in  8.221 seconds
+Found 1 sols in  8.248 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 11000.0}
+Found 0 sols in  8.276 seconds
+Found 0 sols in  8.258 seconds
+Found 1 sols in  8.606 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2200.0}
+Found 0 sols in  8.289 seconds
+Found 0 sols in  8.239 seconds
+Found 0 sols in  8.203 seconds
+Found 2 sols in  8.207 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 18000.0}
+ {'c2': 4.7000000000000007e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 11000.0}
+Found 0 sols in  8.233 seconds
+
+Case 176: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 2
+
+Found 1 sols in  8.224 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 4.7000000000000004e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 2700.0}
+Found 1 sols in  8.209 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 2700.0}
+Found 0 sols in  8.222 seconds
+Found 0 sols in  8.224 seconds
+Found 0 sols in  8.214 seconds
+Found 0 sols in  8.225 seconds
+Found 0 sols in  8.274 seconds
+Found 1 sols in  8.275 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 8.1999999999999993e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 1800.0}
+Found 2 sols in  8.364 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 6.8e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 3000.0}
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 2000.0}
+Found 0 sols in  8.273 seconds
+
+Case 177: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  8.623 seconds
+Found 0 sols in  8.620 seconds
+Found 0 sols in  8.612 seconds
+Found 1 sols in  8.615 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 30000.0}
+Found 1 sols in  8.616 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 5.5999999999999999e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 2700.0}
+Found 0 sols in  8.642 seconds
+Found 1 sols in  8.609 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 30000.0}
+Found 0 sols in  8.608 seconds
+Found 0 sols in  8.709 seconds
+Found 0 sols in  8.665 seconds
+
+Case 178: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 1
+
+Found 1 sols in  8.224 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.8e-07, 'r1': 1200.0, 'r2': 3600.0, 'r3': 2200.0}
+Found 0 sols in  8.244 seconds
+Found 2 sols in  8.223 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 3000.0}
+ {'c2': 1.5000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 33000.0}
+Found 1 sols in  8.197 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 47000.0}
+Found 1 sols in  8.226 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 11000.0}
+Found 1 sols in  8.217 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 2000.0}
+Found 1 sols in  8.221 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 6200.0}
+Found 1 sols in  8.222 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 6200.0}
+Found 0 sols in  8.258 seconds
+Found 1 sols in  8.269 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 5100.0}
+
+Case 179: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 2
+
+Found 0 sols in  8.278 seconds
+Found 0 sols in  8.272 seconds
+Found 0 sols in  8.238 seconds
+Found 2 sols in  8.264 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 18000.0}
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 22000.0}
+Found 1 sols in  8.307 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 8.1999999999999993e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 1800.0}
+Found 0 sols in  8.312 seconds
+Found 0 sols in  8.299 seconds
+Found 0 sols in  8.301 seconds
+Found 0 sols in  8.333 seconds
+Found 0 sols in  8.344 seconds
+
+Case 180: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 20 sigma:0.10 scale: 5 costFun: 3
+
+Found 1 sols in  8.662 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 20000.0}
+Found 1 sols in  8.705 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 20000.0}
+Found 0 sols in  8.638 seconds
+Found 0 sols in  8.661 seconds
+Found 1 sols in  8.634 seconds
+ {'c2': 2.7000000000000004e-08, 'c1': 2.2000000000000001e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 1300.0}
+Found 0 sols in  8.625 seconds
+Found 1 sols in  8.624 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 5.5999999999999999e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 9100.0}
+Found 0 sols in  8.632 seconds
+Found 0 sols in  8.605 seconds
+Found 1 sols in  8.595 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 24000.0}
+
+Case 181: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 1
+
+Found 0 sols in  8.204 seconds
+Found 1 sols in  8.203 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.5000000000000002e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 47000.0}
+Found 0 sols in  8.189 seconds
+Found 0 sols in  8.189 seconds
+Found 2 sols in  8.194 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 1.4999999999999999e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 11000.0}
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 6800.0}
+Found 0 sols in  8.204 seconds
+Found 0 sols in  8.206 seconds
+Found 0 sols in  8.179 seconds
+Found 1 sols in  8.192 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 30000.0}
+Found 0 sols in  8.186 seconds
+
+Case 182: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 2
+
+Found 0 sols in  8.201 seconds
+Found 2 sols in  8.183 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 2200.0}
+ {'c2': 1.5000000000000002e-08, 'c1': 1.1999999999999999e-07, 'r1': 3000.0, 'r2': 9100.0, 'r3': 1500.0}
+Found 1 sols in  8.177 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 16000.0}
+Found 1 sols in  8.184 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 24000.0}
+Found 1 sols in  8.183 seconds
+ {'c2': 1.8000000000000002e-08, 'c1': 1.8e-07, 'r1': 1100.0, 'r2': 3300.0, 'r3': 2400.0}
+Found 1 sols in  8.199 seconds
+ {'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1600.0}
+Found 0 sols in  8.273 seconds
+Found 0 sols in  8.321 seconds
+Found 1 sols in  8.387 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 6.8e-08, 'r1': 2700.0, 'r2': 8200.0, 'r3': 8200.0}
+Found 1 sols in  8.384 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.8000000000000002e-08, 'r1': 68000.0, 'r2': 200000, 'r3': 6800.0}
+
+Case 183: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 4 costFun: 3
+
+Found 0 sols in  8.708 seconds
+Found 0 sols in  8.702 seconds
+Found 0 sols in  8.677 seconds
+Found 2 sols in  8.698 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 8.199999999999999e-09, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 27000.0}
+ {'c2': 1.2e-09, 'c1': 3.2999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 43000.0}
+Found 0 sols in  8.626 seconds
+Found 1 sols in  8.655 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 56000.0}
+Found 0 sols in  8.639 seconds
+Found 1 sols in  8.637 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 4.7000000000000004e-08, 'r1': 16000.0, 'r2': 47000.0, 'r3': 3000.0}
+Found 1 sols in  8.668 seconds
+ {'c2': 1.2e-09, 'c1': 1.4999999999999999e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 47000.0}
+Found 0 sols in  8.629 seconds
+
+Case 184: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 1
+
+Found 0 sols in  8.219 seconds
+Found 1 sols in  8.217 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 3.8999999999999998e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 3300.0}
+Found 1 sols in  8.224 seconds
+ {'c2': 1e-08, 'c1': 8.1999999999999993e-08, 'r1': 3000.0, 'r2': 9100.0, 'r3': 3300.0}
+Found 1 sols in  8.204 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 16000.0}
+Found 0 sols in  8.205 seconds
+Found 0 sols in  8.209 seconds
+Found 0 sols in  8.267 seconds
+Found 1 sols in  8.187 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 3.2999999999999998e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 33000.0}
+Found 0 sols in  8.234 seconds
+Found 0 sols in  8.203 seconds
+
+Case 185: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 2
+
+Found 0 sols in  8.262 seconds
+Found 2 sols in  8.272 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 6800.0}
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2400.0}
+Found 0 sols in  8.247 seconds
+Found 0 sols in  8.244 seconds
+Found 0 sols in  8.217 seconds
+Found 1 sols in  8.227 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 1600.0, 'r2': 4700.0, 'r3': 56000.0}
+Found 0 sols in  8.208 seconds
+Found 1 sols in  8.208 seconds
+ {'c2': 8.199999999999999e-09, 'c1': 8.1999999999999993e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 1800.0}
+Found 0 sols in  8.203 seconds
+Found 0 sols in  8.202 seconds
+
+Case 186: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.05 scale: 5 costFun: 3
+
+Found 0 sols in  8.606 seconds
+Found 2 sols in  8.636 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 3000.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 27000.0, 'r2': 82000.0, 'r3': 1000.0}
+Found 0 sols in  8.619 seconds
+Found 0 sols in  8.615 seconds
+Found 1 sols in  8.630 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 6.8e-08, 'r1': 8200.0, 'r2': 24000.0, 'r3': 2400.0}
+Found 0 sols in  8.613 seconds
+Found 2 sols in  8.620 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 2.2000000000000002e-08, 'r1': 9100.0, 'r2': 27000.0, 'r3': 20000.0}
+ {'c2': 1.0000000000000001e-09, 'c1': 9.9999999999999995e-08, 'r1': 75000.0, 'r2': 220000.00000000003, 'r3': 1200.0}
+Found 0 sols in  8.610 seconds
+Found 0 sols in  8.640 seconds
+Found 0 sols in  8.657 seconds
+
+Case 187: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 1
+
+Found 1 sols in  8.223 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 10000.0, 'r2': 30000, 'r3': 9100.0}
+Found 0 sols in  8.278 seconds
+Found 0 sols in  8.237 seconds
+Found 2 sols in  8.223 seconds
+ {'c2': 2.7000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 13000.0, 'r2': 39000.0, 'r3': 11000.0}
+ {'c2': 2.2000000000000003e-09, 'c1': 1.1999999999999999e-07, 'r1': 33000.0, 'r2': 100000.0, 'r3': 1000.0}
+Found 0 sols in  8.195 seconds
+Found 0 sols in  8.205 seconds
+Found 0 sols in  8.225 seconds
+Found 0 sols in  8.210 seconds
+Found 2 sols in  8.247 seconds
+ {'c2': 2.2000000000000003e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 22000.0}
+ {'c2': 4.7000000000000007e-09, 'c1': 3.8999999999999998e-08, 'r1': 6800.0, 'r2': 20000, 'r3': 6800.0}
+Found 1 sols in  8.215 seconds
+ {'c2': 5.5999999999999997e-09, 'c1': 9.9999999999999995e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 1300.0}
+
+Case 188: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 2
+
+Found 0 sols in  8.247 seconds
+Found 0 sols in  8.220 seconds
+Found 0 sols in  8.237 seconds
+Found 0 sols in  8.229 seconds
+Found 1 sols in  8.250 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 2200.0}
+Found 0 sols in  8.254 seconds
+Found 0 sols in  8.236 seconds
+Found 2 sols in  8.256 seconds
+ {'c2': 1.2e-09, 'c1': 1.8000000000000002e-08, 'r1': 51000.0, 'r2': 150000.0, 'r3': 7500.0}
+ {'c2': 2.7000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 20000.0}
+Found 0 sols in  8.231 seconds
+Found 0 sols in  8.261 seconds
+
+Case 189: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 4 costFun: 3
+
+Found 0 sols in  8.643 seconds
+Found 1 sols in  8.632 seconds
+ {'c2': 1.2e-08, 'c1': 9.9999999999999995e-08, 'r1': 3600.0, 'r2': 11000.0, 'r3': 2000.0}
+Found 0 sols in  8.669 seconds
+Found 0 sols in  8.642 seconds
+Found 0 sols in  8.671 seconds
+Found 0 sols in  8.639 seconds
+Found 0 sols in  8.641 seconds
+Found 0 sols in  8.653 seconds
+Found 0 sols in  8.619 seconds
+Found 0 sols in  8.626 seconds
+
+Case 190: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 1
+
+Found 2 sols in  8.183 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 2.7000000000000004e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 8200.0}
+ {'c2': 1.2e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 47000.0}
+Found 0 sols in  8.194 seconds
+Found 1 sols in  8.220 seconds
+ {'c2': 3.9000000000000002e-09, 'c1': 5.5999999999999999e-08, 'r1': 3300.0, 'r2': 10000.0, 'r3': 12000.0}
+Found 0 sols in  8.223 seconds
+Found 1 sols in  8.208 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 56000.0}
+Found 0 sols in  8.206 seconds
+Found 1 sols in  8.230 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 1.8000000000000002e-08, 'r1': 11000.0, 'r2': 33000.0, 'r3': 24000.0}
+Found 0 sols in  8.250 seconds
+Found 0 sols in  8.192 seconds
+Found 1 sols in  8.210 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 5100.0, 'r2': 15000.0, 'r3': 4300.0}
+
+Case 191: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 2
+
+Found 2 sols in  8.231 seconds
+ {'c2': 4.7000000000000007e-09, 'c1': 4.7000000000000004e-08, 'r1': 12000.0, 'r2': 36000.0, 'r3': 3300.0}
+ {'c2': 1.8000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 6200.0}
+Found 1 sols in  8.204 seconds
+ {'c2': 1.8000000000000002e-09, 'c1': 2.2000000000000002e-08, 'r1': 33000.0, 'r2': 100000.0, 'r3': 6200.0}
+Found 0 sols in  8.267 seconds
+Found 0 sols in  8.285 seconds
+Found 0 sols in  8.238 seconds
+Found 4 sols in  8.192 seconds
+ {'c2': 1.5000000000000002e-09, 'c1': 1.2e-08, 'r1': 30000.0, 'r2': 91000.0, 'r3': 15000.0}
+ {'c2': 1.2e-09, 'c1': 3.8999999999999998e-08, 'r1': 4300.0, 'r2': 13000.0, 'r3': 43000.0}
+ {'c2': 2.2000000000000002e-08, 'c1': 2.2000000000000001e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 1800.0}
+ {'c2': 1.5000000000000002e-09, 'c1': 1.5000000000000002e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 10000.0}
+Found 0 sols in  8.217 seconds
+Found 1 sols in  8.267 seconds
+ {'c2': 1.2e-09, 'c1': 1e-08, 'r1': 36000.0, 'r2': 110000.00000000001, 'r3': 20000.0}
+Found 1 sols in  8.278 seconds
+ {'c2': 1.0000000000000001e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 56000.0}
+Found 1 sols in  8.243 seconds
+ {'c2': 2.2000000000000002e-08, 'c1': 1.8e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 1600.0}
+
+Case 192: nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.20 tauMax: 40 sigma:0.10 scale: 5 costFun: 3
+
+Found 0 sols in  8.632 seconds
+Found 0 sols in  8.601 seconds
+Found 0 sols in  8.597 seconds
+Found 3 sols in  8.613 seconds
+ {'c2': 1.2e-08, 'c1': 1.8e-07, 'r1': 1000.0, 'r2': 3000, 'r3': 3900.0}
+ {'c2': 2.2000000000000003e-09, 'c1': 2.7000000000000004e-08, 'r1': 27000.0, 'r2': 82000.0, 'r3': 5100.0}
+ {'c2': 5.5999999999999997e-09, 'c1': 4.7000000000000004e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 4300.0}
+Found 0 sols in  8.602 seconds
+Found 1 sols in  8.635 seconds
+ {'c2': 3.3000000000000002e-09, 'c1': 1.1999999999999999e-07, 'r1': 1300.0, 'r2': 3900.0, 'r3': 16000.0}
+Found 0 sols in  8.656 seconds
+Found 0 sols in  8.643 seconds
+Found 1 sols in  8.626 seconds
+ {'c2': 6.8000000000000005e-09, 'c1': 5.5999999999999999e-08, 'r1': 7500.0, 'r2': 22000.0, 'r3': 3000.0}
+Found 0 sols in  8.588 seconds
+

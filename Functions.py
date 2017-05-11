@@ -5,7 +5,8 @@ import networkx as nx
 import sys
 from math import exp
 
-from multiprocessing import Pool, cpu_count
+import multiprocessing
+from multiprocessing import Pool, Manager
 from functools import partial
 
 #isScenario1 = True
@@ -28,6 +29,7 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
               5.76, 5.90, 6.04, 6.19, 6.34, 6.49, 6.65, 6.81, 6.98, \
               7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, \
               8.87, 9.09, 9.31, 9.53, 9.76]
+
                      
 def costLinear(omega, Q, targetOmega, targetQ, errMax):
     errOmega = abs((omega-targetOmega)/targetOmega)
@@ -167,7 +169,7 @@ def sensTotal(r1, r2, r3, c1, c2):
 def _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
                     errMax, costSigma, errScale, costFunction):
     
-    print "Updating pheromone"
+    #print "Updating pheromone"
     r1Node = ('r1', assign['r1'])
     r2Node = ('r2', assign['r2'])
     r3Node = ('r3', assign['r3'])
@@ -200,7 +202,7 @@ def _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
     graph[r2Node][r3Node]['weight'] = pherInEdges[1]
     graph[r3Node][c1Node]['weight'] = pherInEdges[2]
     graph[c1Node][c2Node]['weight'] = pherInEdges[3]
-
+    
 def updatePheromone(graph, minPher, maxPher, evaporationRate, \
                     errMax, bestAssigns, costSigma, errScale, \
                     costFunction):
@@ -216,14 +218,32 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
     useThreads = False
     
     if useThreads:
-        pool = Pool()
+        manager = Manager()
+        sharedGraph = manager.dict(graph) #WRONG! Can't "cast" like that
+        jobs = []
         
-        partial_updatePher = partial(_updatePher, graph=graph, minPher=minPher, \
-        maxPher=maxPher, evaporationRate=evaporationRate, errMax=errMax, \
-        costSigma=costSigma, errScale=errScale, costFunction=costFunction)
+        for assign in bestAssigns:
+            j = multiprocessing.Process(target=_updatePher, \
+                args=(assign, sharedGraph, minPher, maxPher, evaporationRate, \
+                      errMax, costSigma, errScale, costFunction))
+            jobs.append(j)
+            
+        for j in jobs:
+            j.start()
+            
+        for j in jobs:
+            j.join()
+            
+        graph = sharedGraph
         
-        pool.map_async(partial_updatePher, bestAssigns, len(bestAssigns)/cpu_count())
-        pool.close()
+        #~ pool = Pool()
+        #~ 
+        #~ partial_updatePher = partial(_updatePher, graph=graph, minPher=minPher, \
+        #~ maxPher=maxPher, evaporationRate=evaporationRate, errMax=errMax, \
+        #~ costSigma=costSigma, errScale=errScale, costFunction=costFunction)
+        #~ 
+        #~ pool.map_async(partial_updatePher, bestAssigns, len(bestAssigns)/cpu_count())
+        #~ pool.close()
     else:
         for assign in bestAssigns:
             _updatePher(assign, graph, minPher, maxPher, evaporationRate, \

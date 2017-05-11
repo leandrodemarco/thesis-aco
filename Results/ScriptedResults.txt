@@ -1,0 +1,91 @@
+nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.15 tauMax: 40 sigma:0.05 scale: 4 costFun: Lineal
+
+Run 1. Found 0 sols in 23.395 secs
+Run 2. Found 0 sols in 23.670 secs
+Run 3. Found 0 sols in 23.688 secs
+Run 4. Found 0 sols in 23.214 secs
+Run 5. Found 0 sols in 22.645 secs
+Run 6. Found 0 sols in 22.616 secs
+Run 7. Found 0 sols in 22.562 secs
+Run 8. Found 0 sols in 23.096 secs
+Run 9. Found 0 sols in 22.666 secs
+Run 10. Found 0 sols in 22.647 secs
+Run 11. Found 0 sols in 22.630 secs
+Run 12. Found 0 sols in 22.617 secs
+Run 13. Found 0 sols in 22.585 secs
+Run 14. Found 0 sols in 22.784 secs
+Run 15. Found 0 sols in 22.815 secs
+Run 16. Found 0 sols in 22.759 secs
+Run 17. Found 0 sols in 22.635 secs
+Run 18. Found 0 sols in 22.860 secs
+Run 19. Found 0 sols in 22.807 secs
+Run 20. Found 0 sols in 22.648 secs
+Run 21. Found 0 sols in 22.806 secs
+Run 22. Found 0 sols in 22.466 secs
+Run 23. Found 0 sols in 22.486 secs
+Run 24. Found 0 sols in 22.532 secs
+Run 25. Found 0 sols in 22.481 secs
+Average runtime : 22.804, avg sols found:0.000
+Found 0 unique sols: 
+--------------------------------------------
+nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.15 tauMax: 40 sigma:0.05 scale: 4 costFun: Exponencial
+
+Run 1. Found 0 sols in 22.553 secs
+Run 2. Found 0 sols in 22.531 secs
+Run 3. Found 0 sols in 22.531 secs
+Run 4. Found 0 sols in 22.615 secs
+Run 5. Found 1 sols in 22.557 secs
+Run 6. Found 0 sols in 22.796 secs
+Run 7. Found 0 sols in 22.694 secs
+Run 8. Found 0 sols in 22.661 secs
+Run 9. Found 0 sols in 22.600 secs
+Run 10. Found 0 sols in 22.594 secs
+Run 11. Found 0 sols in 22.773 secs
+Run 12. Found 0 sols in 22.626 secs
+Run 13. Found 0 sols in 22.604 secs
+Run 14. Found 0 sols in 22.736 secs
+Run 15. Found 0 sols in 22.680 secs
+Run 16. Found 0 sols in 22.632 secs
+Run 17. Found 0 sols in 22.637 secs
+Run 18. Found 0 sols in 22.610 secs
+Run 19. Found 0 sols in 22.706 secs
+Run 20. Found 0 sols in 22.623 secs
+Run 21. Found 0 sols in 22.861 secs
+Run 22. Found 0 sols in 22.557 secs
+Run 23. Found 0 sols in 22.622 secs
+Run 24. Found 0 sols in 22.602 secs
+Run 25. Found 0 sols in 22.620 secs
+Average runtime : 22.641, avg sols found:0.040
+Found 1 unique sols: 
+	{'c2': 1.6000000000000001e-08, 'c1': 1.3e-07, 'r1': 2550.0, 'r2': 7680.0, 'r3': 1580.0}
+--------------------------------------------
+nAnts: 1000 nCycles: 10 evapRate: 0.05 tauMin: 0.15 tauMax: 40 sigma:0.05 scale: 4 costFun: Pozo
+
+Run 1. Found 0 sols in 23.740 secs
+Run 2. Found 0 sols in 23.743 secs
+Run 3. Found 0 sols in 23.941 secs
+Run 4. Found 0 sols in 23.776 secs
+Run 5. Found 0 sols in 23.700 secs
+Run 6. Found 0 sols in 23.875 secs
+Run 7. Found 0 sols in 23.804 secs
+Run 8. Found 0 sols in 23.965 secs
+Run 9. Found 0 sols in 23.830 secs
+Run 10. Found 0 sols in 23.880 secs
+Run 11. Found 0 sols in 23.812 secs
+Run 12. Found 0 sols in 23.831 secs
+Run 13. Found 0 sols in 23.950 secs
+Run 14. Found 0 sols in 23.962 secs
+Run 15. Found 0 sols in 23.750 secs
+Run 16. Found 0 sols in 23.801 secs
+Run 17. Found 0 sols in 23.903 secs
+Run 18. Found 0 sols in 23.846 secs
+Run 19. Found 0 sols in 23.757 secs
+Run 20. Found 0 sols in 23.924 secs
+Run 21. Found 0 sols in 24.029 secs
+Run 22. Found 0 sols in 23.883 secs
+Run 23. Found 0 sols in 23.846 secs
+Run 24. Found 0 sols in 23.757 secs
+Run 25. Found 0 sols in 23.835 secs
+Average runtime : 23.846, avg sols found:0.000
+Found 0 unique sols: 
+--------------------------------------------
