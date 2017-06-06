@@ -63,11 +63,38 @@ def costPozo(omega, targetOmega, Q, targetQ, errMax, scale):
         
     return resCost
     
+def costPozo45(omega, targetOmega, Q, targetQ):
+    x = (omega - targetOmega) / targetOmega
+    y = (Q - targetQ) / targetQ
+    return abs(x) + abs(y) + 1.
+    
+def costExp2(omega, targetOmega, Q, targetQ):
+    x = (omega - targetOmega) / targetOmega
+    y = (Q - targetQ) / targetQ
+    
+    cost = 1. / exp(-abs(x)) + 1. / exp(-abs(y)) - 1.
+    return cost
+    
+def costL(omega, targetOmega, Q, targetQ, scenario1):
+    x = (omega - targetOmega) / targetOmega
+    y = (Q - targetQ) / targetQ
+    
+    if (scenario1):
+        a = algo1
+    else:
+        a = algo2
+    
+    f = 2. * a - abs(x) - abs(y)
+    g = (2. * a) / f
+    
+    return g
+    
     
                      
 def cost(assignment, errMax, sigma, scale, costFunction=2):
     """
         @Params: costFunction: 1 => linear, 2 => exponential, 3 => pozo
+                               4 => pozo 45º, 5 => exp2 , 6 => L-cost
     """
     r1 = assignment["r1"]
     r2 = assignment["r2"]
@@ -90,6 +117,12 @@ def cost(assignment, errMax, sigma, scale, costFunction=2):
         resCost = costExponential(term1, term2, scale)
     elif (costFunction == 3):
         resCost = costPozo(omega, targetOmega, Q, targetQ, errMax, scale)
+    elif (costFunction == 4):
+        resCost = costPozo45(omega, targetOmega, Q, targetQ)
+    elif (costFunction == 5):
+        resCost = costExp2(omega, targetOmega, Q, targetQ)
+    elif (costFunction == 6):
+        resCost = costL(omega, targetOmega, Q, targetQ, errMax == 0.005)
     else:
         print "Error: Undefined cost Function"
         sys.exit()
@@ -249,6 +282,8 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
             _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
                          errMax, costSigma, errScale, costFunction)
 
+def buildSaturatedGraph(isScenario1, minPher, maxPher):
+    return None
         
 def buildGraph(useCompleteModel, isScenario1, minPher):
     if (useCompleteModel):

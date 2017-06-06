@@ -4,7 +4,7 @@
 from Tkinter import *
 from ttk import Style
 import tkMessageBox
-from CspAco import runAlgorithm
+from CspAco import runAlgorithm, runExperiment
 #from ttk import Frame, Button, Label, Style
 
 
@@ -116,10 +116,20 @@ class Example(Frame):
                                    variable=self.vCostFunction, value=2)
         pozoCostBt = Radiobutton(self, text="Pozo", \
                                    variable=self.vCostFunction, value=3)
+        pozo45CostBt = Radiobutton(self, text="Pozo 45", \
+                                   variable=self.vCostFunction, value=4)
+        exp2CostBt = Radiobutton(self, text="Exp 2", \
+                                 variable=self.vCostFunction, value=5)
+        LCostBt = Radiobutton(self, text="L-costo", \
+                              variable=self.vCostFunction, value=6)
                                    
         linearCostBt.place(x=115, y=210)
         expCostBt.place(x=185, y=210)
         pozoCostBt.place(x=285, y=210)
+        pozo45CostBt.place(x=340, y=210)
+        exp2CostBt.place(x=415, y=210)
+        LCostBt.place(x=480, y=210)
+        
         
         self.vCostFunction.set(2)
         
@@ -144,6 +154,19 @@ class Example(Frame):
         # Correr algoritmo
         runButton = Button(self, text="Ejecutar", command=self.runProgram)
         runButton.place(x=250, y=350)
+        
+        # -------------- FIT EXPERIMENT ------------------------------
+        sampleLabel = Label(self, text="N: ")
+        sampleLabel.place(x=225, y=460)
+        
+        self.vSample = StringVar()
+        sampleEntry = Entry(self, textvariable=self.vSample, width=5)
+        self.vSample.set("1000")
+        sampleEntry.place(x=240, y=460)
+        
+        experimentButton = Button(self, text="Experimento", \
+                                  command=self._runExperiment)
+        experimentButton.place(x=235, y=425)
         
     def onElitist(self):
         isElitist = self.vElitist.get() == 1
@@ -208,10 +231,22 @@ class Example(Frame):
             runAlgorithm(useCompleteModel, useScenario1, beElitist,\
             numElitists, nAnts, evapRate, tauMin, tauMax, \
             costSigma, numCycles, errorScale, costFunction)
+            
+    def _runExperiment(self):
+        nSamples = self.validateInt(self.vSample)
+        tauMin = self.validateFloat(self.vTauMin)
+        tauMax = self.validateFloat(self.vTauMax)
+        scenario1 = self.vScenary.get() == 1
+                
+        if nSamples != None:
+            runExperiment(nSamples, scenario1, tauMin, tauMax)
+        else:
+            alert = tkMessageBox.showerror("Error!", "El número de"\
+                "muestras debe ser entero")
         
     def centerWindow(self):
         w = 600
-        h = 400
+        h = 500
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()

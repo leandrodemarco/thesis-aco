@@ -3,9 +3,25 @@
 
 import time
 import networkx as nx
-from Functions import buildGraph, cost, updatePheromone, isSolution
+from Functions import buildGraph, cost, updatePheromone, isSolution, \
+                      buildSaturatedGraph
 import Ant
 import sys
+
+def runExperiment(samples, scenario1, tau_min, tau_max):
+    g = buildSaturatedGraph(scenario1, tau_min, tau_max)
+    errMax = 0.005 if scenario1 else 0.025
+    results = []
+    for i in range(0, samples):
+        print "Running experiment %i of %i" % (i+1, samples)
+        antsUsed = 0
+        success = False
+        while (!success):
+            ant = Ant.Ant(graph, scenario1)
+            path = ant.walkGraph()
+            success = isSolution(path, errMax)
+            antsUsed += 1
+        results.append(antsUsed)
 
 def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
                  nAnts, evapRate, tau_min, tau_max, costSigma, \
