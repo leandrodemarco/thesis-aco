@@ -81,7 +81,7 @@ class Ant:
         probBaseDict = {}
         sumOfProbs = 0.
         for possibleVal in possibleValues:
-            theNode = (var, possibleVal) #* (10**exp))
+            theNode = (var, possibleVal)
             pherOnEdge = self.graph[self.position][theNode]['weight']
             pherParam = pherOnEdge**self.pherFactor
             

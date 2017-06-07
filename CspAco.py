@@ -9,19 +9,28 @@ import Ant
 import sys
 
 def runExperiment(samples, scenario1, tau_min, tau_max):
-    g = buildSaturatedGraph(scenario1, tau_min, tau_max)
+    g, numPaths, numSols = buildSaturatedGraph(scenario1, tau_min, tau_max)
     errMax = 0.005 if scenario1 else 0.025
     results = []
+    
+    E = numPaths / numSols
+    print E
+    
     for i in range(0, samples):
         print "Running experiment %i of %i" % (i+1, samples)
         antsUsed = 0
         success = False
-        while (!success):
-            ant = Ant.Ant(graph, scenario1)
+        while (not success):
+            ant = Ant.Ant(g, scenario1)
             path = ant.walkGraph()
             success = isSolution(path, errMax)
             antsUsed += 1
+            
         results.append(antsUsed)
+        print results
+        # Results deberia tener una distribucion negativa binomial
+        # NB(p,r) con p=nroSols/totalCaminos y r=1 =>
+        # E = r/p = totalCaminos / nroSols
 
 def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
                  nAnts, evapRate, tau_min, tau_max, costSigma, \
@@ -32,7 +41,7 @@ def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
     errMax = 0.005 if scenario1 else 0.025
     useAllForUpdate = isElitist and numElitists == nAnts
     
-    graph = buildGraph(useCompleteModel, scenario1, tau_min)
+    graph, numPaths = buildGraph(useCompleteModel, scenario1, tau_min)
     nCycles = 0
     allSols = []
     

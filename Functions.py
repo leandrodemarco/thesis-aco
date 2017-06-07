@@ -8,6 +8,7 @@ from math import exp
 import multiprocessing
 from multiprocessing import Pool, Manager
 from functools import partial
+from filterSolutions import findSols
 
 #isScenario1 = True
 #errMax = 0.005 #if isScenario1 else 0.025
@@ -283,7 +284,21 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
                          errMax, costSigma, errScale, costFunction)
 
 def buildSaturatedGraph(isScenario1, minPher, maxPher):
-    return None
+    pathSols = findSols(isScenario1)
+    g, numPaths = buildGraph(True, isScenario1, minPher)
+    for sol in pathSols:
+        r1Node = ('r1', sol['r1'])
+        r2Node = ('r2', sol['r2'])
+        r3Node = ('r3', sol['r3'])
+        c1Node = ('c1', sol['c1'])
+        c2Node = ('c2', sol['c2'])
+        
+        g[r1Node][r2Node]['weight'] = maxPher
+        g[r2Node][r3Node]['weight'] = maxPher
+        g[r3Node][c1Node]['weight'] = maxPher
+        g[c1Node][c2Node]['weight'] = maxPher
+        
+    return g, numPaths, len(pathSols)
         
 def buildGraph(useCompleteModel, isScenario1, minPher):
     if (useCompleteModel):
@@ -318,12 +333,14 @@ def buildReducedGraph(isScenario1, minPher):
     r3c1Edges = [(nR3,nC1,minPher) for nR3 in r3Nodes for nC1 in c1Nodes]
     c1c2Edges = [(nC1,nC2,minPher) for nC1 in c1Nodes for nC2 in c2Nodes]
     
+    numPaths = len(r1r2Edges) * len(r3Nodes) * len(c1Nodes) * len(c2Nodes)
+    
     g.add_weighted_edges_from(r1r2Edges)
     g.add_weighted_edges_from(r2r3Edges)
     g.add_weighted_edges_from(r3c1Edges)
     g.add_weighted_edges_from(c1c2Edges)
     
-    return g    
+    return g, numPaths    
         
 def buildFullGraph(isScenario1, minPher):
     res_bases = e24_values
@@ -338,15 +355,14 @@ def buildFullGraph(isScenario1, minPher):
     res_values = []
     for res_base in res_bases:
         for res_exp in res_exps:
-            res_values.append(res_base * (10**res_exp))
+            res_val = res_base * (10**res_exp)
+            res_values.append(round(res_val, 10))
             
     cap_values = []
     for cap_base in cap_bases:
         for cap_exp in cap_exps:
             cap_val = cap_base * (10**cap_exp)
-            cap_values.append(cap_base * (10**cap_exp))
-    
-    varNames = ["r1", "r2", "r3", "c1", "c2"]       
+            cap_values.append(round(cap_val, 10))     
     
     g = nx.Graph()
     r1Nodes = []
@@ -379,6 +395,8 @@ def buildFullGraph(isScenario1, minPher):
     r3c1Edges = [(nR3,nC1,minPher) for nR3 in r3Nodes for nC1 in c1Nodes]
     c1c2Edges = [(nC1,nC2,minPher) for nC1 in c1Nodes for nC2 in c2Nodes]
     
+    numPaths = len(r1r2Edges) * len(r3Nodes) * len(c1Nodes) * len(c2Nodes)
+    
     g.add_weighted_edges_from(r1r2Edges)
     g.add_weighted_edges_from(r2r3Edges)
     g.add_weighted_edges_from(r3c1Edges)
@@ -386,5 +404,12 @@ def buildFullGraph(isScenario1, minPher):
     
     #print len(g.nodes()), len(g.edges())    
         
-    return g
+    return g, numPaths
+    
+def chiSqTest(sample):
+    top = max(sample)
+    n = len(sample)
+    d = {}
+    for i in range(1, top+1):
+        d[i]
     
