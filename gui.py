@@ -239,7 +239,8 @@ class Example(Frame):
         scenario1 = self.vScenary.get() == 1
                 
         if nSamples != None:
-            runExperiment(nSamples, scenario1, tauMin, tauMax)
+            res = runExperiment(nSamples, scenario1, tauMin, tauMax)
+            print res
         else:
             alert = tkMessageBox.showerror("Error!", "El número de"\
                 "muestras debe ser entero")

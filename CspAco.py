@@ -13,7 +13,7 @@ def runExperiment(samples, scenario1, tau_min, tau_max):
     errMax = 0.005 if scenario1 else 0.025
     results = []
     
-    E = numPaths / numSols
+    E = numPaths / numSols # Valor esperado para la binomial negativa
     print E
     
     for i in range(0, samples):
@@ -27,10 +27,12 @@ def runExperiment(samples, scenario1, tau_min, tau_max):
             antsUsed += 1
             
         results.append(antsUsed)
-        print results
+        #print results
         # Results deberia tener una distribucion negativa binomial
         # NB(p,r) con p=nroSols/totalCaminos y r=1 =>
         # E = r/p = totalCaminos / nroSols
+
+    return results
 
 def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
                  nAnts, evapRate, tau_min, tau_max, costSigma, \
