@@ -34,14 +34,12 @@ def runExperiment(samples, scenario1, tau_min, tau_max):
 
     return results
 
-def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
-                 nAnts, evapRate, tau_min, tau_max, costSigma, \
-                 maxCycles, errScale, costFunction):
+def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
+                tau_max, costSigma, maxCycles, errScale, costFunction):
 
     start_time = time.time()
 
     errMax = 0.005 if scenario1 else 0.025
-    useAllForUpdate = isElitist and numElitists == nAnts
     
     graph, numPaths = buildGraph(useCompleteModel, scenario1, tau_min)
     nCycles = 0
@@ -54,8 +52,7 @@ def runAlgorithm(useCompleteModel, scenario1, isElitist, numElitists, \
         for i in range(0, nAnts):
             ant = Ant.Ant(graph, scenario1)
             path = ant.walkGraph()
-            if (useAllForUpdate):
-                pathsForCycle.append(path)
+            pathsForCycle.append(path)
 
         updatePheromone(graph, tau_min, tau_max, evapRate, errMax, \
                         pathsForCycle, costSigma, errScale, costFunction)

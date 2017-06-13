@@ -68,19 +68,6 @@ class Example(Frame):
         self.vNcycles.set("10")
         nCyclesEntry.place(x=185, y=110)
         
-        # Seleccionar modo elitista o no
-        self.vElitist = IntVar()
-        self.vElitist.set(1)
-        elitistButton = Checkbutton(self, text="Modo elitista", \
-            variable=self.vElitist, onvalue=1, offvalue=0, command=self.onElitist)
-        elitistButton.place(x=20, y=140)
-        
-        self.vNumElitists = StringVar()
-        self.numElitistsEntry = Entry(self, textvariable=self.vNumElitists, \
-                                      width=4)
-        self.vNumElitists.set("10")
-        self.numElitistsEntry.place(x=185, y=140)
-        
         # Seleccionar tasa de evaporación, tau_min y tau_max
         evapRateLabel = Label(self, text="Tasa de evaporación: ")
         evapRateLabel.place(x=25, y=175)
@@ -156,24 +143,17 @@ class Example(Frame):
         runButton.place(x=250, y=350)
         
         # -------------- FIT EXPERIMENT ------------------------------
-        sampleLabel = Label(self, text="N: ")
+        sampleLabel = Label(self, text="M: ")
         sampleLabel.place(x=225, y=460)
         
-        self.vSample = StringVar()
-        sampleEntry = Entry(self, textvariable=self.vSample, width=5)
-        self.vSample.set("1000")
-        sampleEntry.place(x=240, y=460)
+        self.vRuns = StringVar()
+        expRunsEntry = Entry(self, textvariable=self.vRuns, width=5)
+        self.vRuns.set("50")
+        expRunsEntry.place(x=240, y=460)
         
         experimentButton = Button(self, text="Experimento", \
                                   command=self._runExperiment)
         experimentButton.place(x=235, y=425)
-        
-    def onElitist(self):
-        isElitist = self.vElitist.get() == 1
-        if not isElitist:
-            self.numElitistsEntry.place_forget()
-        else:
-            self.numElitistsEntry.place(x=140, y=75)
 
     def validateInt(self, stringVar):
         strValue = stringVar.get()
@@ -182,7 +162,7 @@ class Example(Frame):
             valToRet = int(strValue)
         except:
             alert = tkMessageBox.showerror("Error!", "El nro de \
-            hormigas y las consideradas en modo elitista deben ser enteros")
+            hormigas debe ser enteros")
             
         return valToRet
         
@@ -199,7 +179,6 @@ class Example(Frame):
 
     def validateInput(self):
         nAnts = self.validateInt(self.vNants)
-        numElitists = self.validateInt(self.vNumElitists)
         numCycles = self.validateInt(self.vNcycles)
         evapRate = self.validateFloat(self.vEvaporationRate)
         tauMin = self.validateFloat(self.vTauMin)
@@ -207,7 +186,7 @@ class Example(Frame):
         costSigma = self.validateFloat(self.vCostSigma)
         errFactor = self.validateFloat(self.vaFactor)
 
-        allVars = (nAnts, numElitists, evapRate, tauMin, tauMax, \
+        allVars = (nAnts, evapRate, tauMin, tauMax, \
                   costSigma, numCycles, errFactor)
         allOk = all(var != None for var in allVars)
     
@@ -222,25 +201,28 @@ class Example(Frame):
             # Obtener data de la UI
             useCompleteModel = self.vModel.get() == 1
             useScenario1 = self.vScenary.get() == 1
-            beElitist = self.vElitist.get() == 1
             costFunction = self.vCostFunction.get()                
             
-            nAnts, numElitists, evapRate, tauMin, tauMax, \
+            nAnts, evapRate, tauMin, tauMax, \
             costSigma, numCycles, errorScale = validInput
             
-            runAlgorithm(useCompleteModel, useScenario1, beElitist,\
-            numElitists, nAnts, evapRate, tauMin, tauMax, \
-            costSigma, numCycles, errorScale, costFunction)
+            res = runAlgorithm(useCompleteModel, useScenario1, nAnts, \
+                        evapRate, tauMin, tauMax, costSigma, numCycles,\
+                        errorScale, costFunction)
+            
+            return res
             
     def _runExperiment(self):
-        nSamples = self.validateInt(self.vSample)
-        tauMin = self.validateFloat(self.vTauMin)
-        tauMax = self.validateFloat(self.vTauMax)
-        scenario1 = self.vScenary.get() == 1
+        nRuns = self.validateInt(self.vRuns)
                 
-        if nSamples != None:
-            res = runExperiment(nSamples, scenario1, tauMin, tauMax)
-            print res
+        if nRuns != None:
+            sampleTest = []
+            for i in range(0, nRuns):
+                res = self.runProgram()
+                # Guardar nro de soluciones encontradas para ver si fitea con
+                # una Bin(n,p)
+                sampleTest.append(len(res[0])) 
+            print sampleTest
         else:
             alert = tkMessageBox.showerror("Error!", "El número de"\
                 "muestras debe ser entero")

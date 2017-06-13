@@ -251,8 +251,7 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
             *minPher & maxPher: minimum and maximum levels of pheromone
             *evaporationRate : self explaining
             *bestAssigns : a list containing best assignments of a given
-               cycle. The amount of assignments here differs whether
-               using an all-ants, elitist-ants or single-ant approach
+               cycle.
     """
     useThreads = False
     
