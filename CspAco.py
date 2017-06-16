@@ -65,4 +65,4 @@ def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
     elapsed_time = end_time - start_time
     print "\n\nAll sols: ", allSols, len(allSols)
     print "\nDuracion: ", elapsed_time 
-    return (allSols, elapsed_time) 
+    return (allSols, elapsed_time, numPaths) 

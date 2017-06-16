@@ -4,10 +4,12 @@
 from Tkinter import *
 from ttk import Style
 import tkMessageBox
+import scipy.stats
 from CspAco import runAlgorithm, runExperiment
+from statFuns import pValuePoisson
 #from ttk import Frame, Button, Label, Style
 
-
+    
 class Example(Frame):
   
     def __init__(self, parent):
@@ -216,13 +218,33 @@ class Example(Frame):
         nRuns = self.validateInt(self.vRuns)
                 
         if nRuns != None:
-            sampleTest = []
+            sampleTest = {}
             for i in range(0, nRuns):
                 res = self.runProgram()
                 # Guardar nro de soluciones encontradas para ver si fitea con
                 # una Bin(n,p)
-                sampleTest.append(len(res[0])) 
+                try:
+                    sampleTest[len(res[0])] += 1
+                except:
+                    sampleTest[len(res[0])] = 1
+                
+            nAnts = self.validateInt(self.vNants)
+            numCycles = self.validateInt(self.vNcycles)
+            totalAnts = nAnts * numCycles
+            
+            numSols = 171.
+            numPaths = res[2]
+            prob = numSols / numPaths            
+            
+            print prob
             print sampleTest
+            # Los valores de cada corrida van entre 0 y totalAnts
+            # Hacemos el test de chisq
+            p_val, T = pValuePoisson(sampleTest, 10, totalAnts*prob)
+            #pVal, T = pValueBin(sampleTest, 30, totalAnts, prob)
+                
+            print T
+            print p_val
         else:
             alert = tkMessageBox.showerror("Error!", "El número de"\
                 "muestras debe ser entero")
