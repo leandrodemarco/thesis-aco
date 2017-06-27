@@ -6,7 +6,7 @@ from ttk import Style
 import tkMessageBox
 import scipy.stats
 from CspAco import runAlgorithm, runExperiment
-from statFuns import pValuePoisson
+from statFuns import pValuePoisson, generatePoissonSample, twoSamplePValue
 #from ttk import Frame, Button, Label, Style
 
     
@@ -146,16 +146,20 @@ class Example(Frame):
         
         # -------------- FIT EXPERIMENT ------------------------------
         sampleLabel = Label(self, text="M: ")
-        sampleLabel.place(x=225, y=460)
+        sampleLabel.place(x=170, y=460)
         
         self.vRuns = StringVar()
         expRunsEntry = Entry(self, textvariable=self.vRuns, width=5)
         self.vRuns.set("50")
-        expRunsEntry.place(x=240, y=460)
+        expRunsEntry.place(x=192, y=460)
         
         experimentButton = Button(self, text="Experimento", \
                                   command=self._runExperiment)
-        experimentButton.place(x=235, y=425)
+        experimentButton.place(x=170, y=425)
+        
+        twoSampleButton = Button(self, text="Dos muestras", 
+                                 command=self.runTwoSample)
+        twoSampleButton.place(x=290, y=425)
 
     def validateInt(self, stringVar):
         strValue = stringVar.get()
@@ -214,7 +218,7 @@ class Example(Frame):
             
             return res
             
-    def _runExperiment(self):
+    def generateSampleTest(self):
         nRuns = self.validateInt(self.vRuns)
                 
         if nRuns != None:
@@ -227,27 +231,61 @@ class Example(Frame):
                     sampleTest[len(res[0])] += 1
                 except:
                     sampleTest[len(res[0])] = 1
-                
-            nAnts = self.validateInt(self.vNants)
-            numCycles = self.validateInt(self.vNcycles)
-            totalAnts = nAnts * numCycles
             
-            numSols = 171.
-            numPaths = res[2]
-            prob = numSols / numPaths            
-            
-            print prob
-            print sampleTest
-            # Los valores de cada corrida van entre 0 y totalAnts
-            # Hacemos el test de chisq
-            p_val, T = pValuePoisson(sampleTest, 10, totalAnts*prob)
-            #pVal, T = pValueBin(sampleTest, 30, totalAnts, prob)
-                
-            print T
-            print p_val
+            return sampleTest, res[2]
         else:
             alert = tkMessageBox.showerror("Error!", "El número de"\
-                "muestras debe ser entero")
+                "muestras debe ser entero")            
+            
+    def _runExperiment(self):
+        nRuns = self.validateInt(self.vRuns)
+                
+        sampleTest, numPaths = self.generateSampleTest()
+                
+        nAnts = self.validateInt(self.vNants)
+        numCycles = self.validateInt(self.vNcycles)
+        totalAnts = nAnts * numCycles
+        
+        numSols = 171. if self.vScenary.get() != 1 else 333.
+        prob = numSols / numPaths            
+        
+        print prob
+        print sampleTest
+        # Los valores de cada corrida van entre 0 y totalAnts
+        # Hacemos el test de chisq
+        lam = totalAnts*prob
+        print "Running poisson chi-test for lambda = ", lam
+        p_val, T = pValuePoisson(sampleTest, int(lam)+3, lam)
+        #pVal, T = pValueBin(sampleTest, 30, totalAnts, prob)
+            
+        print "T-statistic: ", T
+        print "p-val: ", p_val
+                
+    def runTwoSample(self):
+        sampleTest, numPaths = self.generateSampleTest()
+        
+        numSols = 171. if self.vScenary.get() != 1 else 333.
+        
+        nAnts = self.validateInt(self.vNants)
+        numCycles = self.validateInt(self.vNcycles)
+        totalAnts = nAnts * numCycles
+        
+        lam = totalAnts * (numSols/numPaths)
+        
+        nRuns = self.validateInt(self.vRuns)
+        poissonSample = generatePoissonSample(lam, nRuns)
+        
+        sampleTestList = []
+        
+        for observedVal in sampleTest.keys():
+            for i in range(0, sampleTest[observedVal]):
+                sampleTestList.append(observedVal)
+        
+        print sampleTestList, poissonSample
+        raw_input()        
+        
+        pVal = twoSamplePValue(sampleTestList, poissonSample)
+        print pVal
         
     def centerWindow(self):
         w = 600

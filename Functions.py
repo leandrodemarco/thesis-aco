@@ -69,7 +69,12 @@ def costPozo45(omega, targetOmega, Q, targetQ):
     y = (Q - targetQ) / targetQ
     # Para dar mas (menos) pendiente a los lados multiplicar cada abs
     # por una k. Si k e {0,1} se le da menos pendiente
-    return abs(x) + abs(y) + 1.
+
+    k = 1.
+    res = (k*abs(x) + k*abs(y) + 1) 
+
+    print res
+    return res
     
 def costExp2(omega, targetOmega, Q, targetQ):
     x = (omega - targetOmega) / targetOmega
@@ -78,22 +83,21 @@ def costExp2(omega, targetOmega, Q, targetQ):
     cost = 1. / exp(-abs(x)) + 1. / exp(-abs(y)) - 1.
     return cost
     
-def costL(omega, targetOmega, Q, targetQ, scenario1):
-    x = (omega - targetOmega) / targetOmega
-    y = (Q - targetQ) / targetQ
+def costL(omega, targetOmega, Q, targetQ, slope):
+    # TODO: no hardcodear estos valores. calcularlos    
+    xMax = 159.155
+    xMin = 0.000179196
+    yMax = 21.3198
+    yMin = 0.0000479353
     
-    # a es el max (max(abs(x), max(abs(y)) y se puede calcular para
-    # cada escenario
+    x = omega / targetOmega
+    y = Q / targetQ
     
-    if (scenario1):
-        a = algo1
-    else:
-        a = algo2
+    absmax = abs(xMax - 1) + abs(yMax - 1)
+    cost = slope * (absmax - (abs(x-1.) + abs(y-1.)))
     
-    f = 2. * a - abs(x) - abs(y)
-    #g = (2. * a) / f
-    
-    return 1./f
+    print cost
+    return cost
     
     
                      
@@ -128,7 +132,7 @@ def cost(assignment, errMax, sigma, scale, costFunction=2):
     elif (costFunction == 5):
         resCost = costExp2(omega, targetOmega, Q, targetQ)
     elif (costFunction == 6):
-        resCost = costL(omega, targetOmega, Q, targetQ, errMax == 0.005)
+        resCost = costL(omega, targetOmega, Q, targetQ, 1.)
     else:
         print "Error: Undefined cost Function"
         sys.exit()
