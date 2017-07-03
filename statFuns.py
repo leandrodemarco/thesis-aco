@@ -117,7 +117,7 @@ def pValuePoisson(sample, threshold, lam):
         expected = nRuns * probI
         term = (nObs - expected) ** 2 / expected
         
-        print i, nObs, expected, nObs-expected, term
+        print "%i %i %.3f %.3f %.3f" % (i, nObs, expected, nObs-expected, term)
         
         T += term
 
@@ -132,12 +132,13 @@ def pValuePoisson(sample, threshold, lam):
 
     if (expectedAbove > .0):        
         delta = (observationsAbove - expectedAbove) ** 2 / expectedAbove
-        print "deltaTAbove: ", delta            
-        T += delta
+        T += delta        
+        print "%i %i %.3f %.3f" % (threshold, observationsAbove, expectedAbove, delta)           
     elif (observationsAbove > 0):
         # Distorsionar T lo suficiente como para rechazar la hipotesis
         # nula evitando la division por 0
         T += 99999.
 
-    p_val = scipy.stats.chi2.sf(T, threshold-1)
+    #print T
+    p_val = scipy.stats.chi2.sf(T, threshold)
     return p_val, T

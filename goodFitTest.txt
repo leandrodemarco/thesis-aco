@@ -1,0 +1,19 @@
+Test chi-cuadrado
+Cada "bin" debe tener una expected frequency > 5
+H0 = "La muestra tiene una distribucion Poisson(lambda)"
+
+Escenario 2
+Corridas    Hormigas    Muestra       lambda    Bins       p-valor    Rechaza H0
+   100        1000     {0:93, 1:7}    0.0495  [0, >= 1]     0.311         NO
+                
+                        {0: 67,  
+   100        10000     1: 27, 2: 4,  0.495   [0, 1, >= 2] 0.394         NO
+                        3: 2}
+
+   100      100000      {1: 1, 2: 7,   4.95   [<=2, 3..8, >= 9]
+                        3: 6, 4: 12, 
+                        5: 7, 6: 9, 
+                        7: 3, 8: 2, 
+                        9: 3} 
+   
+
