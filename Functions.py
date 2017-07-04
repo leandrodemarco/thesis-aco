@@ -73,7 +73,6 @@ def costPozo45(omega, targetOmega, Q, targetQ):
     k = 1.
     res = (k*abs(x) + k*abs(y) + 1) 
 
-    print res
     return res
     
 def costExp2(omega, targetOmega, Q, targetQ):
@@ -97,6 +96,7 @@ def costL(omega, targetOmega, Q, targetQ, slope):
     cost = slope * (absmax - (abs(x-1.) + abs(y-1.)))
     
     print cost
+    #raw_input()
     return cost
     
     

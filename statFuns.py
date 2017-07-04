@@ -62,33 +62,51 @@ def twoSamplePValue(sample1, sample2):
         
     print r_star, cdf, pValue        
     return pValue
-    
-    
-def pValueBin(sample, top, totalAnts, prob):
-    """
-        * Computes T-statistic and p-value for a sample to test the null
-        hypothesis 'sample has a bin(totalAnts, prob) distribution'
-        @Parameters: sample: a dictionary {observedValues, frequency}
-                     top: max value to check observedValues to avoid computing
-                          irrelevant values
-                    totalAnts and prob: binomial distribution parameters n,p
-    """
+
+def pValueBinnedPoisson(sample, bins, lam):
     T = .0
-    top = min(top, totalAnts)
+    
+    highestVal = bins[-1][1]+1
     
     nRuns = 0
-    for observedFreq in sample.values():
-        nRuns += observedFreq
-    
-    for i in range(0, top):
-        nObs = sample[i] if i in sample.keys() else 0                
+    observations_above = 0
+    for obs_val, obs_freq in sample.items():
+        nRuns += obs_freq
+        if obs_val > highestVal:
+                observations_above += obs_freq
             
-        expected = nRuns * binProb(i, totalAnts, prob)
-        term = (nObs-expected)**2 / expected         
+    prob_accum = .0
+    for aBin in bins:
+        lowLimit = aBin[0]
+        upLimit = aBin[1]
+        
+        prob_bin = .0
+        expected_bin = .0
+        nObs_bin = 0
+        for i in range(lowLimit, upLimit+1):
+            nObs_i = sample[i] if i in sample.keys() else 0
+            prob_i = poissonProb(i, lam)
+            prob_bin += prob_i
+            expected_i = nRuns * prob_i
+            expected_bin += expected_i
+            nObs_bin += nObs_i
+            
+        term = (nObs_bin - expected_bin) ** 2 / expected_bin
+        prob_accum += prob_bin
+        
         T += term
-            
-    p_val = scipy.stats.chi2.sf(T,top-1)
+        
     
+    prob_above = 1. - prob_accum
+    expected_above = prob_above * nRuns
+    
+    if (expected_above > .0):
+        T += (observations_above - expected_above) ** 2 / expected_above
+    elif (observations_above > 0):
+        # Distort T
+        T += 99999.
+        
+    p_val = scipy.stats.chi2.sf(T, len(bins))
     return p_val, T
     
 def pValuePoisson(sample, threshold, lam):

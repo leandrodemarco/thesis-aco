@@ -43,6 +43,7 @@ def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
     
     graph, numPaths = buildGraph(useCompleteModel, scenario1, tau_min)
     nCycles = 0
+    diffSols = []
     allSols = []
     
     while (nCycles < maxCycles):
@@ -58,11 +59,13 @@ def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
                         pathsForCycle, costSigma, errScale, costFunction)
         
         for path in pathsForCycle:
-            if (isSolution(path, errMax) and not path in allSols):
+            if (isSolution(path, errMax)):
                 allSols.append(path)
+                if (not path in diffSols):
+                    diffSols.append(path)
     
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print "\n\nAll sols: ", allSols, len(allSols)
+    print "\n\nAll sols: ", diffSols, len(diffSols)
     print "\nDuracion: ", elapsed_time 
-    return (allSols, elapsed_time, numPaths) 
+    return (diffSols, elapsed_time, numPaths, len(allSols)) 

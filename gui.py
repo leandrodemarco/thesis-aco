@@ -6,7 +6,8 @@ from ttk import Style
 import tkMessageBox
 import scipy.stats
 from CspAco import runAlgorithm, runExperiment
-from statFuns import pValuePoisson, generatePoissonSample, twoSamplePValue
+from statFuns import pValuePoisson, generatePoissonSample, twoSamplePValue, \
+                     pValueBinnedPoisson
 #from ttk import Frame, Button, Label, Style
 
     
@@ -228,9 +229,9 @@ class Example(Frame):
                 # Guardar nro de soluciones encontradas para ver si fitea con
                 # una Bin(n,p)
                 try:
-                    sampleTest[len(res[0])] += 1
+                    sampleTest[res[3]] += 1
                 except:
-                    sampleTest[len(res[0])] = 1
+                    sampleTest[res[3]] = 1
             
             return sampleTest, res[2]
         else:
@@ -238,8 +239,6 @@ class Example(Frame):
                 "muestras debe ser entero")            
             
     def _runExperiment(self):
-        nRuns = self.validateInt(self.vRuns)
-                
         sampleTest, numPaths = self.generateSampleTest()
                 
         nAnts = self.validateInt(self.vNants)
@@ -255,8 +254,8 @@ class Example(Frame):
         # Hacemos el test de chisq
         lam = totalAnts*prob
         print "Running poisson chi-test for lambda = ", lam
-        p_val, T = pValuePoisson(sampleTest, int(lam)+3, lam)
-        #pVal, T = pValueBin(sampleTest, 30, totalAnts, prob)
+        #p_val, T = pValuePoisson(sampleTest, int(lam)+3, lam)
+        p_val, T = pValueBinnedPoisson(sampleTest, [(0,0)] ,lam)
             
         print "T-statistic: ", T
         print "p-val: ", p_val
