@@ -97,7 +97,7 @@ def costL(omega, targetOmega, Q, targetQ, slope):
     
     print cost
     #raw_input()
-    return cost
+    return 1./cost
     
     
                      
