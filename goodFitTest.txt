@@ -17,7 +17,13 @@ Corridas    Hormigas    Muestra       lambda    Bins       p-valor    Rechaza H0
                         9: 3} 
    
 
-Escenario 2 - Carpa
+Escenario 2 - Carpa - Slope = 1
+Corridas    Hormigas    Muestra     lambda     Bins        p-valor    Rechaza H0
+  100        1000      {0:96, 1:4}  0.0495     [0, >=1]    0.6988        NO
+  50         10000     {0:36, 1:10, 0.495      [0, >=1]    0.1094
+                        2: 4}
+  100        10000    {0:50, 1:37,  0.495      [0,1,>=2]   0.0659
+                       2:13}
 
 Escenario 2 - Pozo 45
 

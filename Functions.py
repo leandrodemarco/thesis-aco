@@ -94,9 +94,7 @@ def costL(omega, targetOmega, Q, targetQ, slope):
     
     absmax = abs(xMax - 1) + abs(yMax - 1)
     cost = slope * (absmax - (abs(x-1.) + abs(y-1.)))
-    
-    print cost
-    #raw_input()
+
     return 1./cost
     
     

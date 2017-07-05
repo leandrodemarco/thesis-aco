@@ -72,8 +72,10 @@ def pValueBinnedPoisson(sample, bins, lam):
     observations_above = 0
     for obs_val, obs_freq in sample.items():
         nRuns += obs_freq
-        if obs_val > highestVal:
+        if obs_val >= highestVal:
                 observations_above += obs_freq
+                
+    print highestVal, observations_above
             
     prob_accum = .0
     for aBin in bins:
