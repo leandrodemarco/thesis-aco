@@ -255,7 +255,7 @@ class Example(Frame):
         lam = totalAnts*prob
         print "Running poisson chi-test for lambda = ", lam
         #p_val, T = pValuePoisson(sampleTest, int(lam)+3, lam)
-        p_val, T = pValueBinnedPoisson(sampleTest, [(0,0)] ,lam)
+        p_val, T = pValueBinnedPoisson(sampleTest, [(0,0), (1,1)] ,lam)
             
         print "T-statistic: ", T
         print "p-val: ", p_val
