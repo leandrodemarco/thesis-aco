@@ -4,7 +4,7 @@
 import time
 import networkx as nx
 from Functions import buildGraph, cost, updatePheromone, isSolution, \
-                      buildSaturatedGraph
+                      buildSaturatedGraph, sensTotal
 import Ant
 import sys
 
@@ -46,6 +46,9 @@ def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
     diffSols = []
     allSols = []
     
+    minSens = 100.
+    bestPath = None
+    
     while (nCycles < maxCycles):
         nCycles += 1
         pathsForCycle = []
@@ -58,8 +61,13 @@ def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
         updatePheromone(graph, tau_min, tau_max, evapRate, errMax, \
                         pathsForCycle, costSigma, errScale, costFunction)
         
-        for path in pathsForCycle:
+        for path in pathsForCycle:            
             if (isSolution(path, errMax)):
+                pathSens = sensTotal(path)            
+                if sensTotal(path) < minSens:
+                    minSens = pathSens
+                    bestPath = path                
+                
                 allSols.append(path)
                 if (not path in diffSols):
                     diffSols.append(path)
@@ -68,4 +76,4 @@ def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
     elapsed_time = end_time - start_time
     print "\n\nAll sols: ", diffSols, len(diffSols)
     print "\nDuracion: ", elapsed_time 
-    return (diffSols, elapsed_time, numPaths, len(allSols)) 
+    return (diffSols, elapsed_time, numPaths, len(allSols), minSens, bestPath) 

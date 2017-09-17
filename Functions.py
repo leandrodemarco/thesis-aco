@@ -197,15 +197,23 @@ def sensitivities(qFactor, r1, r2, r3, c1, c2):
     
     return sens_r1, sens_r2, sens_r3
     
-def sensTotal(r1, r2, r3, c1, c2):
+def sensTotal(path):
     """
         @params: Values for passive components of the circuit
         @returns: Sens_Total(components)
     """
+    r1 = path["r1"]
+    r2 = path["r2"]
+    r3 = path["r3"]
+    c1 = path["c1"]
+    c2 = path["c2"]
+    
     qFactor = qualityFactor(r1, r2, r3, c1, c2)
     s_r1, s_r2, s_r3 = sensitivities(qFactor, r1, r2, r3, c1, c2)
     
-    return (1./3.)*(abs(s_r1) + abs(s_r2) + abs(s_r3))
+    print s_r1, s_r2, s_r3
+    
+    return abs(s_r1) + abs(s_r2) + abs(s_r3)
     
 def _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
                     errMax, costSigma, errScale, costFunction):

@@ -26,6 +26,19 @@ def qFactor(r1,r2,r3,c1,c2):
     fact_2 = term_1 + term_2 + term_3
     return 1./(fact_1 * fact_2)
     
+def checkSolList(l):
+    r1 = l[0]
+    r2 = l[1]
+    r3 = l[2]
+    c1 = l[3]
+    c2 = l[4]
+    
+    G = r2/r1
+    omega = 1./((r2*r3*c1*c2)**0.5)
+    Q = qFactor(r1,r2,r3,c1,c2)
+    
+    print "G= ", G, " omega= ", omega, " Q= ", Q, "\n"
+    
 
 def checkSol(assignment):
     r1 = assignment['r1']

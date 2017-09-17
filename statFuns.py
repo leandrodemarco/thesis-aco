@@ -39,7 +39,7 @@ def poissonProb(i, lam):
     
 def generatePoissonSample(lam, size):
     return list(np.random.poisson(lam, size))
-    
+           
 def twoSamplePValue(sample1, sample2):
     n = len(sample1)
     m = len(sample2)
@@ -62,12 +62,33 @@ def twoSamplePValue(sample1, sample2):
         
     print r_star, cdf, pValue        
     return pValue
+    
+def simulatedEstimation(sample_nr, sample_size, lam, t, bins):
+    high_Ts = .0
+    for i in range(0, sample_nr):
+        l = generatePoissonSample(lam, sample_size)
+
+        sample = {}        
+        for n in l:
+            if n in sample.keys():
+                sample[n] += 1
+            else:
+                sample[n] = 1                
+        
+        T_sample = pValueBinnedPoisson(sample, bins, lam)[1]
+        if (T_sample >= t):
+           high_Ts += 1
+    
+    print high_Ts, sample_nr
+    simulated_pvalue = high_Ts / sample_nr
+    
+    return simulated_pvalue
 
 def pValueBinnedPoisson(sample, bins, lam):
     T = .0
     
     highestVal = bins[-1][1]+1
-    
+
     nRuns = 0
     observations_above = 0
     for obs_val, obs_freq in sample.items():
@@ -75,7 +96,7 @@ def pValueBinnedPoisson(sample, bins, lam):
         if obs_val >= highestVal:
                 observations_above += obs_freq
                 
-    print highestVal, observations_above
+    print highestVal
             
     prob_accum = .0
     for aBin in bins:
@@ -95,12 +116,18 @@ def pValueBinnedPoisson(sample, bins, lam):
             
         term = (nObs_bin - expected_bin) ** 2 / expected_bin
         prob_accum += prob_bin
+
+        print aBin, nObs_bin, expected_bin, term
         
         T += term
         
     
     prob_above = 1. - prob_accum
     expected_above = prob_above * nRuns
+    
+    print observations_above, expected_above
+    
+    lastBinStr = "(%i, inf)" % (highestVal)
     
     if (expected_above > .0):
         T += (observations_above - expected_above) ** 2 / expected_above

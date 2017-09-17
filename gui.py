@@ -224,22 +224,30 @@ class Example(Frame):
                 
         if nRuns != None:
             sampleTest = {}
+            minSens = 100.
+            bestPath = None
             for i in range(0, nRuns):
                 res = self.runProgram()
                 # Guardar nro de soluciones encontradas para ver si fitea con
                 # una Bin(n,p)
+                
+                minSensForRun = res[4]
+                if minSensForRun < minSens:
+                    minSens = minSensForRun
+                    bestPath = res[5]
+                    
                 try:
                     sampleTest[res[3]] += 1
                 except:
                     sampleTest[res[3]] = 1
             
-            return sampleTest, res[2]
+            return sampleTest, res[2], minSens, bestPath
         else:
             alert = tkMessageBox.showerror("Error!", "El número de"\
                 "muestras debe ser entero")            
             
     def _runExperiment(self):
-        sampleTest, numPaths = self.generateSampleTest()
+        sampleTest, numPaths, minSens, bestPath = self.generateSampleTest()
                 
         nAnts = self.validateInt(self.vNants)
         numCycles = self.validateInt(self.vNcycles)
@@ -250,6 +258,7 @@ class Example(Frame):
         
         print prob
         print sampleTest
+        print minSens, bestPath
         # Los valores de cada corrida van entre 0 y totalAnts
         # Hacemos el test de chisq
         lam = totalAnts*prob
