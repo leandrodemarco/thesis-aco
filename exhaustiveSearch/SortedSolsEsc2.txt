@@ -2,7 +2,7 @@ Numero de soluciones: 171
 
 Los valores de cada columna corresponden a R1, R2, R3, C4, C5, G, err(G), wp, err(wp), Qp, Err(Qp),SR1, SR2, SR3 y ST
 
-   R1     R2    R3     C4     C5     G   err(G)    wp   err(wp)  Qp   Err(Qp)      SR1     SR2    SR3    ST
+   R1     R2    R3     C4     C5     G   err(G)    wp   err(wp)  Qp   Err(Qp)  SR1     SR2    SR3    ST
 11000  33000  8200 2.7e-08 3.3e-09 3.000 0.0000 6440.17 2.4985 0.7151 1.1448 0.3739 0.3754 0.0015 0.7508 X
  3600  11000  2700 8.2e-08 1.0e-08 3.056 1.8519 6407.89 1.9847 0.7110 0.5614 0.3759 0.3770 0.0011 0.7540 X
 36000 110000 27000 8.2e-09 1.0e-09 3.056 1.8519 6407.89 1.9847 0.7110 0.5614 0.3759 0.3770 0.0011 0.7540 X
