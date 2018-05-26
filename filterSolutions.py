@@ -226,7 +226,8 @@ def findSols(isScenario1):
             optimals.append(sol)
 
     #print len(optimals)
-
+    r1_sols = [sol[0] for sol in sorted_sols]
+    print (sorted(set(r1_sols)))
     """ END Pareto optimals search """
 
     writeSols = False
@@ -259,3 +260,5 @@ def findSols(isScenario1):
         f.close()
         
     return pathSols
+
+findSols(False)

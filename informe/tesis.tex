@@ -8,6 +8,37 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage[usenames, dvipsnames]{color}
+\usepackage{comment}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\makeatletter
+\newenvironment{breakablealgorithm}
+{% \begin{breakablealgorithm}
+	\begin{center}
+		\refstepcounter{algorithm}% New algorithm
+		\hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+		\renewcommand{\caption}[2][\relax]{% Make a new \caption
+			{\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+			\ifx\relax##1\relax % #1 is \relax
+			\addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+			\else % #1 is not \relax
+			\addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+			\fi
+			\kern2pt\hrule\kern2pt
+		}
+	}{% \end{breakablealgorithm}
+		\kern2pt\hrule\relax% \@fs@post for \@fs@ruled
+	\end{center}
+}
+\makeatother
+
 
 % Titulo
 \title{Selecci\'on de Componentes Discretos para un Filtro Activo Mediante
@@ -85,23 +116,22 @@
       \end{itemize}
       
     
-  \section{\textbf{Trabajo previo}}
-    \label{sec:previouswork}
-    El presente trabajo se basa en el desarrollado en \cite{lov:rom:per}. En el citado trabajo, los autores
+  \section{\textbf{Definici\'on del problema}}
+    \label{sec:problemdefinition}
+    El presente trabajo se basa en el desarrollado en \cite{lov:rom:per}. En el mismo, los autores
     utilizan algoritmos gen\'eticos para seleccionar los componentes discretos en un filtro activo $RC$. Como se
     estableci\'o en la secci\'on \ref{sec:fundelect}, el problema consiste en seleccionar los valores que pueden
-    tomar tres resistencias ($R_1$, $R_2$, $R_3$) y dos capacitores ($C_4$,
-    $C_5$) de una lista de posibles valores
+    tomar las tres resistencias ($R_1$, $R_2$, $R_3$) y los dos capacitores ($C_4$, $C_5$) de una lista de posibles valores
     previamente definidos.
     
-    \textcolor{red}{El objetivo de este trabajo es comparar la t\'ecnica
-      utilizada por los mencionados autores, evaluando la calidad 
-    de las soluciones encontradas en ambos casos y analizar ventajas y
-    desventajas del enfoque de los algoritmos gen\'eticos 
-    con las propuestas aqu\'i exhibidas. YO NI MENCIONARIA LO QUE ELLOS HICIERON
-    A MENOS QUE TE PIDAN QUE LO PONGAS PARA QUE NO SE INTERPRETE QUE ESTAS
-    EVALUANDO EL TRABAJO QUE ELLOS HICIERON}
-  
+	El problema puede definirse entonces como un CSP de la siguiente forma:
+	\begin{itemize}
+		\item El conjunto de variables $X = \{R_1, R_2, R_3, C_4, C_5\}$
+		\item La funci\'on $D$ donde $D(R_i) = E24  E96, i \in \{1,2,3\}$ y $D(C_i = E12 E24), i \in \{1,2\}$
+		\item El conjunto de restricciones $C = \{G^{max} > G > G^{min}, \omega_p^{max} > \omega_p > \omega_p^{min},
+		 Q^{max} > Q > Q^{min}\}$
+	\end{itemize}
+
   \section{\textbf{Algoritmo exhaustivo}}
     Realizando algunas observaciones y transformaciones matem\'aticas, es posible obtener un algoritmo exhaustivo que descubre
     todas las soluciones posibles para el problema. Recordemos las definiciones
@@ -165,9 +195,84 @@
     y de esta manera obtenemos todas las soluciones de la forma ($R_1$, $R_2$,
     $\omega_1$, $\omega_2$, $R_3$)  
     que luego podemos \textit{mapear} a las soluciones de la forma ($R_1$,
-    $R_2$, $R_3$, $C_4$, $C_5$) 
+    $R_2$, $R_3$, $C_4$, $C_5$). 
 
-    probando probando á é í ó ú ñ ¿? ¡!
+	\begin{breakablealgorithm}
+		\caption{Búsqueda exhaustiva}
+		\label{alg:exhaustSearch}
+%	\captionof{algorithm}{test caption}
+		\begin{algorithmic}[1]
+			\State $R_{vals}$: conjunto de valores que pueden tomar las resistencias
+			\State $C_{vals}$: conjunto de valores que pueden tomar los capacitores
+			\State $G^{min}$: valor mínimo aceptable para la ganancia
+			\State $G^{max}$: valor máximo aceptable para la ganancia
+			\State $\omega_p^{min}$: valor mínimo aceptable para la frecuencia de polo
+			\State $\omega_p^{max}$: valor máximo aceptable para la frecuencia de polo
+			\State $Q^{min}$: valor mínimo aceptable para el factor de calidad
+			\State $Q^{max}$: valor máximo aceptable para el factor de calidad
+			\item[]
+			\Procedure{ExhaustiveSearch}{$R_{vals}$, $C_{vals}$}
+			\State $soluciones \gets []$
+			\State $G_{constraint} \gets  []$ \Comment{Obtener pares $(r1,r2)$ que satisfagan la restricción sobre G}
+			\For{cada $r1$ en $R_{vals}$, cada $r2$ en $C_{vals}$}
+			\State $G \gets r2/r1$
+			\If{$G^{max} > G > G^{min}$}
+			\State Agregar el par $(r1, r2)$ a $G_{constraint}$
+			\EndIf 
+			\EndFor
+			\item[]
+			\State $\omega_{constraint} \gets \{\}$ \Comment{Diccionario que para cada $\omega_1$ contiene el conjunto de los $\omega_2$ posibles para no violar la
+			restricción}
+			\State $wToRCMap \gets \{\}$  \Comment{Diccionario que para cada valor de $w$ contiene una lista con los pares $(r,c)$ que lo generan}
+			\item[]
+			\State $w_{vals} = [ ]$
+			\For{cada $r$ en $R_{vals}$, cada $c$ en $C_{vals}$}
+			\State $w \gets 1/(r*c)$
+			\State Agregar el par $(r,c)$ a $wToRCMap[w]$
+			\State Agregar $w$ a la lista $w_{vals}$
+			\EndFor
+			\For{cada $w_1$ en $w_{vals}$}
+			\State $Posibles\_\omega_2 \gets [ ]$
+			\For{cada $w_2$ en $w_{vals}$}
+			\State $minVal \gets {(\omega_p^{min})}^{2}$
+			\State $maxVal \gets {(\omega_p^{max})}^{2}$
+			\If{$maxVal > w2 > minVal$}
+			\State Agregar $w2$ a la lista $Posibles\_\omega_2$
+			\EndIf
+			\EndFor
+			\If{$Posibles\_\omega_2$ no es vacía}
+			\State Agregar $Posibles\_\omega_2$ a $\omega_{constraint}[\omega_1]$
+			\EndIf
+			\EndFor
+			\item[]
+			\For{cada par $(r1,r2)$ en $G_{constraint}$}
+			\For{cada $\omega_1$ en las keys de $\omega_{constraint}$}
+			\State $Posibles\_\omega_2 \gets \omega_{constraint}[\omega_1]$
+			\State $genera \gets \exists (r,c) \in wToRCMap[\omega_1] \mid r = r_2$ \Comment{Chequear si $r_2$ \textit{genera} $\omega_1$}
+			\If{$genera$}
+			\For{cada $\omega_2$ en $Posibles\_\omega_2$, cada $r_3$ en $R_{vals}$}
+			\State $genera \gets \exists (r,c) \in wToRCMap[\omega_2] \mid r = r_3$ \Comment{Chequear si $r_3$ \textit{genera} $\omega_2$}
+			\If{$genera$}
+			\State $(Q^{-1})_{r_3} \gets \sqrt{\omega_1 / \omega_2} * (1  + r_2/r_1 + r_2/r_3)$
+			\If{$(Q^{min})^{-1} > (Q^{-1})_{r_3} > (Q^{max})^{-1}$}
+			\State $c_4 \gets 1/(r_2 * \omega_1)$
+			\State $c_5 \gets 1/(r_3 * \omega_2)$ 
+			\State Agregar la tupla $(r_1, r_2, r3, c4, c5)$ a la lista $soluciones$
+			\EndIf
+			\EndIf
+			\EndFor
+			\EndIf
+			\EndFor
+			\EndFor
+			\State \textbf{return} $soluciones$
+			\EndProcedure
+		\end{algorithmic}
+	\end{breakablealgorithm}
+
+  \section{\textbf{La Metaheurística ACO}}
+  
+  \section{\textbf{El Enfoque Continuo con ACO-$\mathbb{R} $}}
+
   \begin{thebibliography}{1}
       \bibitem{corr}
       Corral, C.: 
@@ -182,7 +287,12 @@
       \bibitem{sol}
       Solnon, C.:
       Ant Colony Optimization and Constraint Programming. (Wiley-ISTE 2010) 
-  
+      
+      \bibitem{soc:dor}
+      Socha, K., Dorigo, M.:
+      Ant colony optimization for continuous domains.
+      European Journal of Operational Research 185 (2008)
+      
   \end{thebibliography}
 
 \end{document}
