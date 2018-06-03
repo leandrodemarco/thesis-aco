@@ -13,6 +13,9 @@
 \usepackage[noend]{algpseudocode}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
+
+\setcounter{secnumdepth}{3}
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -76,16 +79,114 @@
     amplificadores operacionales, resistencias y capacitores son una de las m\'as utilizadas
     por los ingenieros.\cite{corr}
     
+    Un aspecto que cobra relevante importancia es la selección de los componentes discretos
+    ya que el cumplimiento de las especificaciones depende en gran medida de ellos. Con el
+    objetivo de realizar un diseño confiable los valores de los componentes pasivos se
+    seleccionan de entre las series industriales E12, E24, E48, E96 o E192. Cada una de estas
+    series limita el valor que puede tomar cada componente.
+    
+    A fin de obtener un diseño que satisfaga las especificaciones,  una posibilidad consiste 
+    en enumerar todas las posibles combinaciones de valores para las resistencias y 
+    capacitores que conforman el filtro y encontrar aquella que mejor las cumple. Sin embargo,
+    dada la amplitud del rango de valores que cada componente puede adoptar el tamaño del
+    espacio de soluciones suele ser inmanejable para adoptar este enfoque, con
+    lo cual es necesario utilizar métodos o heurísticas de búsqueda que reduzcan el tiempo
+    necesario.
+    
+    En este trabajo en la sección \ref{sec:fundelect} se define el filtro analizado
+    junto a los fundamentos electrónicos que definen la bondad del mismo. Luego, en la
+    sección \ref{sec:fundprog} se introduce la noción de \textit{Constraint Programming}
+    y cómo se define en términos de este paradigma el problema en cuestión. En la sección
+    \ref{sec:exhaustSearch} presento una serie de observaciones y manipulaciones matemáticas del problema que permiten definir un algoritmo exhaustivo que se ejecuta
+    en tiempos razonables. Finalmente, en la sección blabla se presenta la metaheurística ACO
+    -del inglés \textit{Ant Colony Optimization}- aplicada a este problema junto a una variante 
+    del mismo llamada ACO-$\mathbb{R} $
+    
+    
   \section{\textbf{Fundamentos electr\'onicos}}
     \label{sec:fundelect}
+    Tomaré como caso de estudio el mismo filtro que se utiliza en \cite{lov:rom:per}. Dicho filtro
+    es de tipo IGMFB (Infinite-Gain Multiple Feedback) pasabajo de segundo orden. Son filtros
+    bicuadráticos que emplean múltiples lazos de realimentación y un amplificador operacional.
+    Una descripción más detallada de este tipo de filtros puede encontrarse en \cite{dim} y \cite{rau:swa}. En la figura \ref{fig:filter} se muestra el esquemático del filtro a analizar.
+   
+   \begin{figure}
+   	\includegraphics[width=\linewidth]{filter.png}
+   	\caption{Filtro IGMFB pasabajo de segundo orden.}
+   	\label{fig:filter}
+   \end{figure}
+
+	Las especificaciones del filtro están dadas por la ganancia en la banda de paso ($G$), la
+	frecuencia de polo ($\omega_p$) y el factor de calida ($Q_p$). En función de estos valores
+	puede definirse la función de transferencia del filtro.
+ 	\begin{equation}
+		F(s) = \frac{G\omega_p^2}{s^2+(\frac{\omega_p}{Q_p})s+\omega_p^2}
+		\label{funcTransfer}
+	\end{equation}
+	
+	Para los filtros IGMFB los valores de $G$, $\omega_p$ y $Q_p$ pueden calcularse a partir
+	de los valores de las resistencias y capacitores, de acuerdo a las siguientes fórmulas
+	
+	\begin{eqnarray}
+		G &=& R_2/R_1 \label{g}\\
+		\omega_p &=& 1/\sqrt{R_2 R_3 C_4 C_5} \label{omega}\\
+		Q^{-1}_p &=& \sqrt{C_5/C_4}  \left(\sqrt{R_2 R_3}/R_1 + \sqrt{R_3/R_2} +
+		\sqrt{R_2/R_3}\right) \label{q}
+	\end{eqnarray}
+	
+	\subsection{Sensibilidad de un filtro IGMFB}
+	El término sensibilidad es utilizado para expresar una medida de
+	la variación de la performance como resultado de cambios en los valores de los
+	componentes. Dichas variaciones pueden ocurrir debido al envejecimiento de los
+	mismos, tolerancias de fabricación, condiciones ambientales (temperatura), entre
+	otros factores \cite{dim,rau:swa}. Mientras menos sensible es un filtro a los cambios en sus
+	componentes, más estables permanecen sus características y, por lo tanto, existen más
+	probabilidades de que pueda permanecer dentro de sus especificaciones,
+	independientemente de la presencia de dichos cambios. Una ventaja de los filtros IGMFB es
+	que presentan sensibilidades más bajas respecto a otros filtros bicuadráticos.
+	
+	De manera general, si $F$ es una función de varias variables, $F(x_1, x_2,...,x_n)$, entonces
+	la sensibilidad de F con respecto a $x_i$ está definida por:
+	\begin{equation}
+		S_{x_i}^F = \frac{\%\ cambio\ en\ F}{\%\ cambio\ en\ x_i} = \frac{\partial F/F}{\partial x_i/x_i}
+		\label{sensibilidad}
+	\end{equation}
+	
+	Se considera que un filtro tiene baja sensibilidad cuando la sensibilidad respecto a cada uno
+	de sus componentes es inferior a la unidad \cite{rau:swa}.
+	
+	Para los filtros pasabajo IGMFB las sensibilidades de $Q_p$ y $\omega_p$ con respecto a cada uno de los componentes pasivos vienen dadas por las siguientes ecuaciones:
+	
+	\begin{eqnarray}
+		S_{R_1}^{\omega_p} &=& 0 \label{sensR1Omega}\\
+		S_{R_2}^{\omega_p} = S_{R_3}^{\omega_p} &=& S_{C_4}^{\omega_p} = S_{C_5}^{\omega_p} = -\left(\frac{1}{2}\right) \label{sensOtrosOmega}\\
+		S_{C_4}^{Q_p} &=& - S_{C_5}^{Q_p} = \left(\frac{1}{2}\right) \label{sensCapQ}\\
+		S_{R_1}^{Q_p} &=& Q_p \left(\frac{1}{R_1} \sqrt{\frac{R_2 R_3 C_5}{C4}}\right) \label{sensR1Q}\\
+		S_{R_2}^{Q_p} &=& - \frac{Q_p}{2} \left(\frac{1}{R1} \sqrt{\frac{R_2 R_3 C_5}{C_4}} - \sqrt{\frac{R_3 C_5}{R_2 C_4}} + \sqrt{\frac{R_2 C_5}{R_3 C_4}}\right) \label{sensR2Q}\\
+		S_{R_3}^{Q_p} &=& - \frac{Q_p}{2} \left(\frac{1}{R1} \sqrt{\frac{R_2 R_3 C_5}{C_4}} + \sqrt{\frac{R_3 C_5}{R_2 C_4}} - \sqrt{\frac{R_2 C_5}{R_3 C_4}}\right) \label{sensR3Q}
+	\end{eqnarray}
+	
+	Como se puede ver, en (\ref{sensR1Omega}), (\ref{sensOtrosOmega}) y (\ref{sensCapQ}), las
+	sensibilidades adoptan valores fijos, mientras que las otras dependen de los valores que adopten los componentes. En consecuencia, debemos considerar las sensibilidades (\ref{sensR1Q}), (\ref{sensR2Q}) y (\ref{sensR3Q}) a la hora de seleccionar los valores para cada componente.
+	En el caso de estudio seleccionado, la especificación elegida para el filtro es $G_F = 3$,
+	$\omega_{p_F}=1000*2*\pi = 6283,9478\ rad/s$ y $Q_{p_F} = 0,707$. 
+	
+	Consideraré asi mismo un escenario donde las resitencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se asume que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se
+	define además una tolerancia o error máximo $E_{max} = 2,5\%$ para los valores de $G_F$,
+	$\omega_{p_F}$ y $Q_{p_F}$.
+	
     
-  \section{\textbf{Fundamentos de \textit{Constraint Programming}}}
+  \section{\textbf{\textit{Constraint Programming}}}
     \label{sec:fundprog}
-    Intuitivamente, los problemas de satisfacci\'on de restricciones pueden definirse como \textit{encontrar
-    una soluci\'on que satisface determinadas restricciones o pro\-pie\-da\-des}.
-    Por ejemplo, el planeamiento y control del tr\'afico a\'ereo en un aeropuerto, el empacar cajas dentro de un
-    espacio dado o el confeccionamiento de una agenda de clases. 
+    Intuitivamente, los problemas de satisfacci\'on de restricciones (\textit{CSP}, por sus siglas en inglés) pueden definirse como \textit{encontrar una soluci\'on que satisface determinadas restricciones o pro\-pie\-da\-des}. Muchos problemas de la vida real pueden ser reducidos a 
+    este tipo de problemas, por ejemplo: el planeamiento y control del tr\'afico a\'ereo en un aeropuerto, el confeccionamiento de una agenda de clases o el diseño de una dieta saludable. 
     Todos estos problemas suelen ser \textit{NP}-Complejos.
+    
+   Existen dos técnicas para intentar solucionar este tipo de problemas \cite{sol}: una posibilidad es utilizar \textit{métodos exactos}, que exploran el espacio de combinaciones de forma exhaustiva estructurándolo como un árbol de búsqueda. Para acotar el problema de la
+    explosión combinatoria, la búsqueda se combina con técnicas de filtrado, para
+    \textit{podar} subconjuntos de combinaciones, y con heuristícas de ordenación, para orientar la búsqueda hacia las ramas más promisorias primero.
+    
+    Cuando las técnicas de filtrado y las heurísticas de ordenamiento no son suficientes para prevenir la explosión combinatoria, se debe dejar de lado la exhaustividad y utilizar \textit{métodos heurísticos} que exploran el espacio de búsqueda de forma incompleta, utilizando (meta)heurísticas para guiar la búsqueda hacia las áreas más promisorias ignorando deliberadamente otras áreas. Dentro de este enfoque hay dos variantes: las \textit{heurísticas perturbadoras} -ej: Algoritmos Genéticos- que van modificando iterativamente combinaciones existentes a fin de crear nuevas combinaciones, y las \textit{heurísticas constructivas} que construyen nuevas combinaciones iterativamente desde cero.
     
     \subsection{Noci\'on de una restricci\'on}
       Una restricci\'on puede pensarse como una relaci\'on l\'ogica entre un conjunto de valores, en principio,
@@ -102,9 +203,11 @@
       Similarmente, las restricciones sobre conjuntos expresan relaciones entre variables cuyo rango son conjuntos y pueden
       incluir relaciones de igualdad ($=$), desigualdad ($\neq$), inclusi\'on ($\subset, \subseteq$) o pertenencia ($\in$).
       
-    \subsection{Definici\'on de un problema de satisfacci\'on de restricciones}
-      Podemos dar una definici\'on formal de un \textbf{CSP} (por las siglas en ingl\'es de \textit{Constraint
-      Satisfaction Problem}) como sigue:
+      Las restricciones sobre booleanos, pueden expresarse en términos de los operadores
+      lógicos como por ejemplo $\wedge$, $\lor$, $\neg$, $\rightarrow$, etc.
+      
+    \subsection{Definici\'on formal de un CSP}
+      Se puede dar una definici\'on formal de un CSP como sigue:
       
       Un CSP es una 3-upla (\textit{X}, \textit{D}, \textit{C}) tal que:
       \begin{itemize}
@@ -114,35 +217,114 @@
         \item \textit{C} es un conjunto finito de restricciones y cada restricci\'on $c_j \in C$ es una relaci\'on entre
         algunas variables de \textit{X}; este conjunto se denota como $var(c_j).$
       \end{itemize}
-      
+  
+  	Resolver un CSP $(X, D, C)$ consiste en asignar valores a todas las variables de forma tal
+  	que todas las restricciones sean satisfechas. Más formalmente, se definen:
+  	
+  	- Una \textit{asignación} es un conjunto de pares (variables, valor) denotado
+  	\begin{center}
+  		{$A = \{(x_1, v_1), ..., (x_n, v_n)\}$} 
+  	\end{center}
+  	donde la misma variable no puede asignarse a dos valores distintos, es decir:
+  	\begin{center}
+  		{$\forall((x_i, v_i), (x_j,v_j)) \in A \times A,\ x_i = x_j \implies v_i = v_j$}
+  	\end{center}
+  	y el valor asignado a una variable pertenece a su dominio:
+  	\begin{center}
+  		{$\forall(x_i, v_i) \in A,\ v_i \in D(x_i)$}
+  	\end{center}
+     Se denota al conjunto de variables que tienen un valor asignado en la asignación $A$ como
+     $var(A)$:
+     \begin{center}
+     	$var(A) = \{x_i \mid (x_i, v_i) \in A\}$
+     \end{center}
+ 
+   - Una asignación $A$ se dice \textit{completa} si asigna un valor a todas las variables del
+   problema, es decir, si $var(A) = X$; en caso contrario se dice que es \textit{parcial}.
+   
+   - Una asignación $A$ \textit{satisface} una restricción $c_k$ tal que $var(c_k) \subseteq var(A)$ si la relación definida por $c_k$ es verdadera para los valores de las variables de $c_k$ definidos en $A$. Caso contrario, la asignación \textit{viola} la restricción.
+   
+   - Una asignación $A$ (completa o parcial) es \textit{consistente} si satisface todas las restricciones y es \textit{inconsistente} si viola al menos una.
+   
+   - Una \textit{solución} es una asignación completa y consistente.
+   
+   \subsection{Complejidad de un CSP}
+   \label{subsec:cspComplexity}
+   	Dado que los dominios pueden ser intervalos numéricos continuos, no todos los CSP son
+   	problemas combinatorios. La complejidad teórica de un CSP depende del dominio de las variables y del tipo de restricciones utilizadas.
+   	
+   	En algunos casos, el problema puede ser polinomial. Este es caso, por ejemplo, cuando todas
+   	las restricciones son (in)ecuaciones lineales y todos los dominios son intervalos numéricos
+   	continuos.
+   	
+   	En otros casos, el problema puede ser indecidible. Por ejemplo, cuando las restricciones puede ser cualquier fórmula matemática arbitraria y los dominos de las variables son intervalos numéricos continuos.
+   	
+   	Sin embargo, en muchos casos, el problema es $\mathcal{NP}$-completo. En particular, los CSP con dominios finitos suelen pertenecer a este grupo en general.
+   	
+   	\subsection{Problemas de optimización relacionados a CSP}
+   	\label{subsec:cspOptimization}
+   	Los problemas de satisfacción de restricciones implican encontrar una solución que las
+   	satisfaga a todas o bien probar la inconsistencia si no existe ninguna solución. Sin embargo,
+   	en muchos casos también suele haber involucrados problemas de optimización. En particular,
+   	el resolver problemas \textit{excesivamente restringidos} suele convertirse en maximizar la
+   	satisfacción de restricciones. Otras veces el resolver un CSP tambien involucra optimizar
+   	alguna función objetivo al tiempo que se satisfacen todas las restricciones.
+   	
+   	\subsubsection{Maximización de satisfacción de restricciones}
+   	Cuando las restricciones de un CSP son tales que no pueden ser todas satisfechas simultáneamente, se dice que el CSP está \text{excesivamente restringido}. En este caso,
+   	usualmente se intenta hallar una asignación completa que satisfaga tantas restricciones como sea posible o, a la inversa, viole la menor cantidad posible. Este problema se llama \textit{CSP parcial} o \textit{MaxCSP} \cite{fre:wal}.
+
+	También suele ocurrir en muchos problemas que no todas las restricciones sean igualmente
+	importantes. Algunas pueden ser \textit{duras}, con lo cual no deben ser violadas, mientras
+	que otras pueden ser \textit{blandas}, permitiendo que se las viole a algún costo dado. En este caso se le asocia un peso a cada restricción blanda que define el costo de violarla, y el objetivo es encontrar la asignación completa que satisface todas las restricciones duras y minimiza la suma ponderada de las restricciones blandas violadas. Este problema se llama CSP ponderado, (WCSP, por sus siglas en inglés) \cite{shi:far:ver}.
+	
+	Para estos CSP excesivamente restringidos, el espacio de búsqueda está definido por el
+	conjunto de todas las asignaciones completas posibles y el objetivo es encontrar aquella que maximiza el nivel de satisfacción: el número de restricciones satisfechas en el caso de MaxCSP y
+	la suma ponderada de las restricciones satisfechas en el caso los WCSP. En la mayoría de los
+	casos, estos problemas son $\mathcal{NP}$-complejos ya que los problemas de decisión asociados son $\mathcal{NP}$-completos. Debe notarse además que son generalizaciones de
+	CSP, con lo cual un algoritmo diseñado para resolver cualquiera de estos problemas puede
+	utilizarse para resolver un CSP.
+	
+	\subsubsection{Optimización restringida}
+	Cuando las restricciones de un CSP son tales que existen múltiples soluciones que las satisfacen a todas, el CSP se dice estar \textit{sub-restringido}. En este caso, algunas soluciones
+	pueden ser preferibles a otras. Estas preferencias pueden ser expresadas añadiendo una función
+	objetivo a ser maximizada (o minimizada), definiendo así un un problema de optimización
+	restringida. Formalmente, un problema de optimización restringida está definido por un CSP
+	$(X, D, C)$ y una función objetivo $f: X \rightarrow \mathbb{R}$. El objetivo es hallar una solución del CSP que maximiza (o minimiza) $f$. En estos casos la dificultad no radica en hallar
+	una solución, si no en hallar una óptima con respecto a $f$.
+	
+	\subsection{Definición del problema como CSP}
+		\label{subsec:problemDefinition}
+		Como se estableció en la sección \ref{sec:fundelect}, el problema consiste en seleccionar
+		los valores para las resistencias $R_1$, $R_2$ y $R_3$ y los capacitores $C_4$ y $C_5$ de
+		una lista de posibles valores (las series industriales E). Si defino
+		
+		\begin{align*}
+		G^{max} = G_F * (1 + E_{max})\\
+		G^{min} = G_F * (1 - E_{max})\\
+		\omega_p^{max} = \omega_{p_F} * (1 + E_{max})\\
+		\omega_p^{min} = \omega_{p_F} * (1 - E_{max})\\
+		Q_p^{max} = Q_{p_F} * (1 + E_{max})\\
+		Q_p^{min} = Q_{p_F} * (1 - E_{max})
+		\end{align*}
+		
+		Entonces el problema puede modelarse como un CSP $(X, D, C)$ donde:
+		
+		\begin{itemize}
+			\item $X = \{R_1, R_2, R_3, C_4, C_5\}$
+			\item $D(R_i) = E24, i \in \{1,2,3\}$ y $D(C_i) = E12, i \in \{4,5\}$
+			\item $C = \{G^{max} > G_F > G^{min}, \omega_p^{max} > \omega_{p_F} > \omega_p^{min},
+			Q^{max} > Q_F > Q^{min}\}$
+		\end{itemize}
     
-  \section{\textbf{Definici\'on del problema}}
-    \label{sec:problemdefinition}
-    El presente trabajo se basa en el desarrollado en \cite{lov:rom:per}. En el mismo, los autores
-    utilizan algoritmos gen\'eticos para seleccionar los componentes discretos en un filtro activo $RC$. Como se
-    estableci\'o en la secci\'on \ref{sec:fundelect}, el problema consiste en seleccionar los valores que pueden
-    tomar las tres resistencias ($R_1$, $R_2$, $R_3$) y los dos capacitores ($C_4$, $C_5$) de una lista de posibles valores
-    previamente definidos.
-    
-	El problema puede definirse entonces como un CSP de la siguiente forma:
-	\begin{itemize}
-		\item El conjunto de variables $X = \{R_1, R_2, R_3, C_4, C_5\}$
-		\item La funci\'on $D$ donde $D(R_i) = E24  E96, i \in \{1,2,3\}$ y $D(C_i = E12 E24), i \in \{1,2\}$
-		\item El conjunto de restricciones $C = \{G^{max} > G > G^{min}, \omega_p^{max} > \omega_p > \omega_p^{min},
-		 Q^{max} > Q > Q^{min}\}$
-	\end{itemize}
 
   \section{\textbf{Algoritmo exhaustivo}}
+  	\label{sec:exhaustSearch}
     Realizando algunas observaciones y transformaciones matem\'aticas, es posible obtener un algoritmo exhaustivo que descubre
     todas las soluciones posibles para el problema. Recordemos las definiciones
     de \textit{ganancia} ($G$), \textit{frecuencia de polo} ($\omega_p$) y
     \textit{factor de calidad} ($Q_p$)
-    \begin{eqnarray}
-      G &=& R_2/R_1 \label{g}\\
-      \omega_p &=& 1/\sqrt{R_2 R_3 C_4 C_5} \label{omega}\\
-      Q^{-1}_p &=& \sqrt{C_5/C_4}  \left(\sqrt{R_2 R_3}/R_1 + \sqrt{R_3/R_2} +
-      \sqrt{R_2/R_3}\right) \label{q}
-    \end{eqnarray}
+
 
     Es claro que a partir de (\ref{g}) se tiene que para cada valor de $R_1$ hay
     un conjunto de valores de $R_2$ que denotaremos 
@@ -292,6 +474,28 @@
       Socha, K., Dorigo, M.:
       Ant colony optimization for continuous domains.
       European Journal of Operational Research 185 (2008)
+      
+      \bibitem{dim}
+      Dimopoulos, H.: 
+      Analog Electronics Filters: Theory, Design and Synthesis. 
+      Springer (2012)
+      
+      \bibitem{rau:swa}
+      Raut, R., Swamy, M. N. S.: 
+      Modern Analog Filter Analysis and Design: A Practical Approach. 
+      Wiley-VCH (2010).
+      
+      \bibitem{fre:wal}
+      Freuder E., Wallace R.: 
+      Partial constraint satisfaction.
+	  Artificial Intelligence, vol. 58, p. 21–70, 1992.
+	  
+	  \bibitem{shi:far:ver}
+	  Shiex T., Fargier H., Verfaillie G.:
+	  Valued constraint satisfaction problems: hard and easy problems. 
+	  International Joint Conference on Artificial Intelligence (IJCAI),MIT Press, Cambridge, Etats-
+	  Unis, p. 631–637, 1995.
+      
       
   \end{thebibliography}
 

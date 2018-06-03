@@ -5,3 +5,5 @@
 *.gz
 *.tex~
 *.toc
+*.dvi
+*.ind
