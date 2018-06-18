@@ -1,7 +1,7 @@
 \documentclass{llncs}
 \bibliographystyle{splncs}
-\renewcommand{\contentsname}{\'Indice general}
-\renewcommand\refname{Bibliograf\'ia}
+\renewcommand{\contentsname}{índice general}
+\renewcommand\refname{Bibliografía}
 \renewcommand\abstractname{Resumen}
 \usepackage{listings}
 \usepackage{indentfirst, enumitem,amsmath}
@@ -44,12 +44,12 @@
 
 
 % Titulo
-\title{Selecci\'on de Componentes Discretos para un Filtro Activo Mediante
+\title{Selección de Componentes Discretos para un Filtro Activo Mediante
   \textit{Constraint Programming}} 
 \author{Leandro Demarco Vedelago}
 \institute{
             \email{leandrodemarco@gmail.com}\\
-            Universidad Nacional de C\'ordoba, Fa.M.A.F
+            Universidad Nacional de Córdoba, Fa.M.A.F
           }
 \setcounter{tocdepth}{3}
 \begin{document}
@@ -66,17 +66,17 @@
 \tableofcontents
 \newpage
 %Fin tabla de contenidos
-  \section{\textbf{Motivaci\'on}}
+  \section{\textbf{Motivación}}
     \label{sec:motivacion}
-    El dise\~no electr\'onico actual incluye a los filtros activos en muchas aplicaciones,
-    tales como acondicionamiento y manipulaci\'on de se\~nales en frecuencias de audio e
-    intermedias (IF) as\'i como tareas de procesamiento digital de se\~nales. En
-    contraposici\'on a los filtros digitales, los activos pueden obtener buena performance
+    El dise\~no electrónico actual incluye a los filtros activos en muchas aplicaciones,
+    tales como acondicionamiento y manipulación de se\~nales en frecuencias de audio e
+    intermedias (IF) así como tareas de procesamiento digital de se\~nales. En
+    contraposición a los filtros digitales, los activos pueden obtener buena performance
     con demandas de potencia significativamente menores.
     
-    Las alternativas de implementaci\'on de filtros activos presentan muchas opciones.
-    Entre \'estas, las implementaciones RC (resistencia/capacitor), construidas a partir de
-    amplificadores operacionales, resistencias y capacitores son una de las m\'as utilizadas
+    Las alternativas de implementación de filtros activos presentan muchas opciones.
+    Entre éstas, las implementaciones RC (resistencia/capacitor), construidas a partir de
+    amplificadores operacionales, resistencias y capacitores son una de las más utilizadas
     por los ingenieros.\cite{corr}
     
     Un aspecto que cobra relevante importancia es la selección de los componentes discretos
@@ -97,15 +97,15 @@
     junto a los fundamentos electrónicos que definen la bondad del mismo. Luego, en la
     sección \ref{sec:fundprog} se introduce la noción de \textit{Constraint Programming}
     y cómo se define en términos de este paradigma el problema en cuestión. En la sección
-    \ref{sec:exhaustSearch} presento una serie de observaciones y manipulaciones matemáticas del problema que permiten definir un algoritmo exhaustivo que se ejecuta
-    en tiempos razonables. Finalmente, en la sección blabla se presenta la metaheurística ACO
+    \ref{sec:exhaustSearch} se presenta una serie de observaciones y manipulaciones matemáticas del problema que permiten definir un algoritmo exhaustivo que se ejecuta
+    en tiempos razonables. Finalmente, en la sección \ref{sec:acor} se presenta la metaheurística ACO
     -del inglés \textit{Ant Colony Optimization}- aplicada a este problema junto a una variante 
     del mismo llamada ACO-$\mathbb{R} $
     
     
-  \section{\textbf{Fundamentos electr\'onicos}}
+  \section{\textbf{Fundamentos electrónicos}}
     \label{sec:fundelect}
-    Tomaré como caso de estudio el mismo filtro que se utiliza en \cite{lov:rom:per}. Dicho filtro
+    Se tomará como caso de estudio el mismo filtro que se utiliza en \cite{lov:rom:per}. Dicho filtro
     es de tipo IGMFB (Infinite-Gain Multiple Feedback) pasabajo de segundo orden. Son filtros
     bicuadráticos que emplean múltiples lazos de realimentación y un amplificador operacional.
     Una descripción más detallada de este tipo de filtros puede encontrarse en \cite{dim} y \cite{rau:swa}. En la figura \ref{fig:filter} se muestra el esquemático del filtro a analizar.
@@ -117,7 +117,7 @@
    \end{figure}
 
 	Las especificaciones del filtro están dadas por la ganancia en la banda de paso ($G$), la
-	frecuencia de polo ($\omega_p$) y el factor de calida ($Q_p$). En función de estos valores
+	frecuencia de polo ($\omega_p$) y el factor de calidad ($Q_p$). En función de estos valores
 	puede definirse la función de transferencia del filtro.
  	\begin{equation}
 		F(s) = \frac{G\omega_p^2}{s^2+(\frac{\omega_p}{Q_p})s+\omega_p^2}
@@ -171,15 +171,15 @@
 	En el caso de estudio seleccionado, la especificación elegida para el filtro es $G_F = 3$,
 	$\omega_{p_F}=1000*2*\pi = 6283,9478\ rad/s$ y $Q_{p_F} = 0,707$. 
 	
-	Consideraré asi mismo un escenario donde las resitencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se asume que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se
+	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se asume que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se
 	define además una tolerancia o error máximo $E_{max} = 2,5\%$ para los valores de $G_F$,
 	$\omega_{p_F}$ y $Q_{p_F}$.
 	
     
   \section{\textbf{\textit{Constraint Programming}}}
     \label{sec:fundprog}
-    Intuitivamente, los problemas de satisfacci\'on de restricciones (\textit{CSP}, por sus siglas en inglés) pueden definirse como \textit{encontrar una soluci\'on que satisface determinadas restricciones o pro\-pie\-da\-des}. Muchos problemas de la vida real pueden ser reducidos a 
-    este tipo de problemas, por ejemplo: el planeamiento y control del tr\'afico a\'ereo en un aeropuerto, el confeccionamiento de una agenda de clases o el diseño de una dieta saludable. 
+    Intuitivamente, los problemas de satisfacción de restricciones (\textit{CSP}, por sus siglas en inglés) pueden definirse como \textit{encontrar una solución que satisface determinadas restricciones o pro\-pie\-da\-des}. Muchos problemas de la vida real pueden ser reducidos a 
+    este tipo de problemas, por ejemplo: el planeamiento y control del tráfico aéreo en un aeropuerto, el confeccionamiento de una agenda de clases o el diseño de una dieta saludable. 
     Todos estos problemas suelen ser \textit{NP}-Complejos.
     
    Existen dos técnicas para intentar solucionar este tipo de problemas \cite{sol}: una posibilidad es utilizar \textit{métodos exactos}, que exploran el espacio de combinaciones de forma exhaustiva estructurándolo como un árbol de búsqueda. Para acotar el problema de la
@@ -188,33 +188,34 @@
     
     Cuando las técnicas de filtrado y las heurísticas de ordenamiento no son suficientes para prevenir la explosión combinatoria, se debe dejar de lado la exhaustividad y utilizar \textit{métodos heurísticos} que exploran el espacio de búsqueda de forma incompleta, utilizando (meta)heurísticas para guiar la búsqueda hacia las áreas más promisorias ignorando deliberadamente otras áreas. Dentro de este enfoque hay dos variantes: las \textit{heurísticas perturbadoras} -ej: Algoritmos Genéticos- que van modificando iterativamente combinaciones existentes a fin de crear nuevas combinaciones, y las \textit{heurísticas constructivas} que construyen nuevas combinaciones iterativamente desde cero.
     
-    \subsection{Noci\'on de una restricci\'on}
-      Una restricci\'on puede pensarse como una relaci\'on l\'ogica entre un conjunto de valores, en principio,
-      desconocidos, tambi\'en llamados \textit{variables}. De esta forma, una restricci\'on restringe el conjunto
+    \subsection{Noción de una restricción}
+      Una restricción puede pensarse como una relación lógica entre un conjunto de valores, en principio,
+      desconocidos, también llamados \textit{variables}. De esta forma, una restricción restringe el conjunto
       de valores que pueden asignarse simultaneamente a sus variables.
       
-      Una posibilidad para definirla consiste en enumerar todo el conjunto de tuplas que pertenece a la relaci\'on o,
+      Una posibilidad para definirla consiste en enumerar todo el conjunto de tuplas que pertenece a la relación o,
       dualmente, especificar aquellos que \textbf{no} pertenecen a ella.
       
-      Existen diferentes tipos de restricciones, de acuerdo a los valores que pueden asignarse a las variables. As\'i,
-      tenemos restricciones num\'ericas, booleanas, sobre conjuntos, etc. Una restricci\'on num\'erica puede ser entonces
-      una igualdad ($=$) o bien una desigualdad ($\neq, \geq, \leq, <, >$) entre dos expresiones aritm\'eticas.
+      Existen diferentes tipos de restricciones, de acuerdo a los valores que pueden asignarse a las variables. Así,
+      tenemos restricciones numéricas, booleanas, sobre conjuntos, etc. Una restricción numérica puede ser entonces
+      una igualdad ($=$) o bien una desigualdad ($\neq, \geq, \leq, <, >$) entre dos expresiones aritméticas.
       
       Similarmente, las restricciones sobre conjuntos expresan relaciones entre variables cuyo rango son conjuntos y pueden
-      incluir relaciones de igualdad ($=$), desigualdad ($\neq$), inclusi\'on ($\subset, \subseteq$) o pertenencia ($\in$).
+      incluir relaciones de igualdad ($=$), desigualdad ($\neq$), inclusión ($\subset, \subseteq$) o pertenencia ($\in$).
       
       Las restricciones sobre booleanos, pueden expresarse en términos de los operadores
       lógicos como por ejemplo $\wedge$, $\lor$, $\neg$, $\rightarrow$, etc.
       
-    \subsection{Definici\'on formal de un CSP}
-      Se puede dar una definici\'on formal de un CSP como sigue:
+    \subsection{Definición formal de un CSP}
+    \label{subsec:cspformal}
+      Se puede dar una definición formal de un CSP como sigue:
       
       Un CSP es una 3-upla (\textit{X}, \textit{D}, \textit{C}) tal que:
       \begin{itemize}
-        \item \textit{X} es un conjunto finito de variables que corresponde a las inc\'ognitas del problema.
-        \item \textit{D} es una funci\'on que asocia un dominio \textit{D}($x_i$) con cada variable $x_i \in \textit{X}$, es
+        \item \textit{X} es un conjunto finito de variables que corresponde a las incógnitas del problema.
+        \item \textit{D} es una función que asocia un dominio \textit{D}($x_i$) con cada variable $x_i \in \textit{X}$, es
         decir \textit{D}($x_i$) es el conjunto de valores que la variable $x_i$ puede tomar.
-        \item \textit{C} es un conjunto finito de restricciones y cada restricci\'on $c_j \in C$ es una relaci\'on entre
+        \item \textit{C} es un conjunto finito de restricciones y cada restricción $c_j \in C$ es una relación entre
         algunas variables de \textit{X}; este conjunto se denota como $var(c_j).$
       \end{itemize}
   
@@ -320,7 +321,7 @@
 
   \section{\textbf{Algoritmo exhaustivo}}
   	\label{sec:exhaustSearch}
-    Realizando algunas observaciones y transformaciones matem\'aticas, es posible obtener un algoritmo exhaustivo que descubre
+    Realizando algunas observaciones y transformaciones matemáticas, es posible obtener un algoritmo exhaustivo que descubre
     todas las soluciones posibles para el problema. Recordemos las definiciones
     de \textit{ganancia} ($G$), \textit{frecuencia de polo} ($\omega_p$) y
     \textit{factor de calidad} ($Q_p$)
@@ -342,16 +343,16 @@
     A partir de los valores que pueden tomar las resistencias y capacitores, es
     posible calcular la lista de valores que pueden tomar las frecuencias
     definidas en (\ref{omegas}). Para cada uno de los valores posibles para
-    $\omega_1$, habr\'a un conjunto de pares de valores ($R_2$, $C_4$) tales que
+    $\omega_1$, habrá un conjunto de pares de valores ($R_2$, $C_4$) tales que
     $\omega_1 = 1/(R_2 C_4)$. Denotamos a tal conjunto como $\{(R_2,
-      C_4)\}_{\omega_1}$. De manera an\'aloga se puede proceder con $\omega_2$,
-      $R_3$ y $C_5$ (obs\'ervese el conjunto de valores posibles para $\omega_2$
+      C_4)\}_{\omega_1}$. De manera análoga se puede proceder con $\omega_2$,
+      $R_3$ y $C_5$ (obsérvese el conjunto de valores posibles para $\omega_2$
       es el mismo que para $\omega_1$ y que $\{(R_2,C_4)\}_{\omega_1}=\{(R_3,
-      C_5)\}_{\omega_2}$ cuando $\omega_1=\omega_2$). Luego, dada la restricci\'on $\omega_p \in 
+      C_5)\}_{\omega_2}$ cuando $\omega_1=\omega_2$). Luego, dada la restricción $\omega_p \in 
     [\omega_p^{min},\omega_p^{max}]$ y elegido un valor de  $\omega_1$, los
     valores admisibles de $\omega_2$ son aquellos para los 
-    que $\omega_p= \sqrt{\omega_1 \omega_2}$ satisface dicha restricci\'on, y
-    por lo tanto cumplen las siguiente relaci\'on:
+    que $\omega_p= \sqrt{\omega_1 \omega_2}$ satisface dicha restricción, y
+    por lo tanto cumplen las siguiente relación:
     $(\omega_p^{max})^2 / \omega_1 > \omega_2 > (\omega_p^{min})^2 / \omega_1 $.
 
     De esta manera, para cada valor realizable de $\omega_1$ existe un conjunto
@@ -370,7 +371,7 @@
     las restricciones sobre $G$ y $\omega_p$, utilizando la expresión
     (\ref{otraq}) buscamos
     los valores $R_3$ admisibles que satisfagan la 
-    condici\'on
+    condición
     $$
     (Q_p^{-1})^{max} > Q_p^{-1} > (Q_p^{-1})^{min}
     $$
@@ -382,7 +383,6 @@
 	\begin{breakablealgorithm}
 		\caption{Búsqueda exhaustiva}
 		\label{alg:exhaustSearch}
-%	\captionof{algorithm}{test caption}
 		\begin{algorithmic}[1]
 			\State $R_{vals}$: conjunto de valores que pueden tomar las resistencias
 			\State $C_{vals}$: conjunto de valores que pueden tomar los capacitores
@@ -451,10 +451,115 @@
 		\end{algorithmic}
 	\end{breakablealgorithm}
 
-  \section{\textbf{La Metaheurística ACO}}
+  \section{\textbf{La Metaheurística ACO-$\mathbb{R} $}}
+  \label{sec:acor}
+  La Optimización por Colonia de Hormigas -en inglés \textit{Ant Colony Optimization}- es una metaheurística introducida en los años '90 inspirada en el comportamiento de las hormigas
+  para solucionar problemas de optimización combinatoria \cite{dor92,dor:man:col,dor:schu}.
   
-  \section{\textbf{El Enfoque Continuo con ACO-$\mathbb{R} $}}
+  Al buscar comida, las hormigas inicialmente exploran el área circundante a su nido de manera aleatoria. En cuanto una hormiga encuentra una fuente de comida, la evalúa y lleva un poco hacia el nido. Durante el viaje de vuelta, la hormiga va depositando feromona en el suelo. La cantidad de feromona depositada depende de la cantidad y calidad de comida sirve para guiar otras hormigas hacia la fuente de comida. Esta forma de comunicación indirecta a través de la feromona  les permite hallar los caminos más cortos entre el nido y la fuente de comida \cite{gos:aro:den:pas}. Este comportamiento ha inspirado la definición de colonias artificiales de hormigas que pueden encontrar soluciones aproximadas -en el sentido que son buenas soluciones pero no necesariamente óptimas- a problemas de optimización combinatorial complejos.
+  
+  \subsection{La metaheurística ACO}
+  En el algoritmo \ref{alg:acoMetaheuristic} se presenta la metaheurística ACO, que consiste de tres
+  actividades. A continuación se detallan cada una de estas actividades.
+  
+  	\begin{breakablealgorithm}
+  	\caption{Metaheurística ACO}
+  	\label{alg:acoMetaheuristic}
+  	\begin{algorithmic}[2]
+  		\While{condiciones de terminación no alcanzadas}
+  		\State ConstruirSolución()
+  		\State ActualizarFeromonas()
+  		\State AccionesDaemon() \Comment{Opcional}
+  		\EndWhile
+  	\end{algorithmic}
+	\end{breakablealgorithm}
 
+	Recordemos de la sección \ref{subsec:cspformal} que en un CSP $(X, D, C)$ cada variable
+	$x_i$ del problema en $X$, tiene un dominio $D(x_i)$ indicando los valores que puede tomar
+	dicha variable. Definimos una \textit{componente de solución} $c_{ij}$ a la asignación $x_i = v_j$ donde $v_j \in D(x_i)$. Y definimos también $C_s$ como el conjunto de todas las componentes de solución posibles.
+	
+	\bigbreak
+	\textit{ConstruirSolución()}: Las hormigas artificiales construyen soluciones creando una secuencia de componentes elegidas de un conjunto finito de valores posibles para cada componente. 
+	
+	La construcción de esta secuencia comienza con una solución parcial vacía 
+	$s^p = \emptyset$. Luego, en cada paso de la construcción, $s^p$ se extiende agregando una
+	componente perteneciente al conjunto $N(s^p) \in C_s \setminus s^p$, que está definido por por el mecanismo de construcción de la solución.
+	
+	El proceso de construir una solución puede ser considerado como un camino en un grafo
+	de construcción $G_C = (V, E)$ donde el conjunto de componentes de solución $C_s$ está
+	asociado o bien con el conjunto de vértices $V$ del grafo, o bien con el de sus aristas $E$. Los caminos permitidos en $G_C$ están definidos implícitamente por el mecanismo de construcción de la solución que define el conjunto $N(s^p)$ respecto a la solución parcial $s^p$.
+	
+	La elección de una componente de solución del conjunto $N(s^p)$ se realiza de forma probabilista en cada paso de la construcción. Las reglas exactas para esta elección varían entre
+	cada una de las diferentes variantes de ACO. Una de las más conocidas es la que utiliza \textit{Ant System} \cite{dor:man:col}:
+	
+	\begin{equation}
+	\label{eq:chooseComponent}
+	p(c_{ij} \mid s^p) = \frac{\tau_{ij}^\alpha \cdot \eta(c_{ij})^\beta}{\sum_{c_{il} \in N(s^p)} \tau_{il}^\alpha \cdot \eta(c_{il})^\beta}, \forall c_{ij} \in N(s^p)
+	\end{equation}
+
+	donde $\tau_{ij}$ es la cantidad de feromona asociada a la componente $c_{ij}$ y $\eta(\cdot)$
+	es una función de ponderación que en cada paso de la construcción le asigna un valor heurístico a cada componente $c_{ij} \in N(s^p)$. Los valores que devuelve la función de ponderación suelen llamarse \textit{información heurística}. $\alpha$ y $\beta$ son parámetros con valores positivos que determinan la relación entre la información obtenida de las feromonas y la heurística.
+	\bigbreak
+	
+	\textit{ActualizarFeromonas()}: El objetivo de la actualización de feromonas es incrementar el valor asociado con soluciones buenas o promisorias, y decrementar el valor para soluciones malas. Usualmente esto se consigue aumentando los niveles de feromona asociados a una buena solución escogida $s_{ch}$ en un determinado valor $\Delta\tau$ y reduciendo todos los valores de feromona a través del mecanismo de \textit{evaporación de feromonas}:
+	\begin{equation*}
+		\tau_{ij} \gets
+		\begin{cases}
+		(1 - \rho) \tau_{ij} + \rho\Delta\tau,& \text{si } \tau_{ij}\in s_{ch}\\
+		(1 - \rho) \tau_{ij},              & \text{caso contrario}
+		\end{cases}
+	\end{equation*} 
+	
+	donde $\rho \in \left(0,1\right]$ es la \textit{tasa de evaporación}. Este mecanismo de evaporación es necesario para evitar una convergencia demasiado rápida del algoritmo. Implementa una útil manera de \textit{olvidar}, para favorecer la exploración de nuevas áreas del espacio de búsqueda.
+	
+	En general, las buenas soluciones halladas tempranamente por las hormigas se utilizan para actualizar las feromonas de forma tal que se aumente la probabilidad de búsqueda por hormigas que las siguen en las áreas promisorias del espacio de búsqueda. Cada variante de ACO suele implementar distintas formas de actualización de feromonas. En principio, pueden escoger entre dos estrategias: basándose en la mejor solución encontrada en la última iteración, o bien en la mejor solución encontrada hasta el momento, desde que el algoritmo comenzó a ejecutarse. La primera favorece una mayor exploración del espacio de búsqueda, mientras que la segunda lleva a una convergencia más rápida \cite{stu:dor}.
+	\bigbreak
+	
+	\textit{AccionesDaemon()}: Son acciones que pueden ser usadas para implementar acciones centralizadas que las hormigas no puedan realizar individualmente. Por ejemplo, aplicar búsqueda local a las soluciones encontradas, o recolectar información global que puede ser utilizada para decidir si es útil o no depositar feromona adicional para influir el proceso de búsqueda desde una perspectiva no local.
+
+	\subsection{ACO en dominios continuos: ACO-$\mathbb{R} $}
+	\label{subsec:acor}
+	Dado un CSP $(X,D,C)$ diremos que el mismo tiene \textit{dominio continuo} si $D_i \subseteq \mathbb{R}, \forall x_i \in X$.
+	
+	La idea central a la forma en la que ACO trabaja es la construcción incremental de soluciones basadas en la selección probabilista -influenciada por la feromona- de componentes de la solución. Cuando se aplica ACO a problemas de optimización combinatorios, el conjunto de de las componentes de solución está definido por la formulación del problema. En cada paso de la construcción, la hormiga escoge de manera probabilista una componente $c_{ij} \in N(s^p)$ de acuerdo a la ecuación (\ref{eq:chooseComponent}). Las probabilidades asociadas con los elementos del conjunto $N(s^p)$ de componentes disponibles  forman una distribución de probabilidad \textit{discreta} que cada hormiga muestrea para escoger la componente a agregar a la solución parcial $s^p$.
+	
+	En ACO-$\mathbb{R}$, la idea fundamental es pasar de utilizar esta distribución discreta a utilizar una \textit{continua}, es decir, una función de densidad de probabilidad.
+	
+	\subsubsection{\textit{La función de densidad de probabilidad}}
+	Una \textit{función de densidad de probabilidad} (FDP) puede ser cualquier función $P(x) \geq 0, \forall x$ tal que
+	
+	\begin{equation*}
+	\int_{-\infty}^{\infty}P(x)dx = 1
+	\end{equation*}
+	
+	Para una FDP $P(x)$ dada, se puede definir una \textit{función de distribución acumulada} (FDA) $D(x)$ que es útil para muestrear la correspondiente FDP. La FDA $D(x)$ asociada a la FDP $P(x)$ se define como sigue:
+	
+	\begin{equation*}
+	D(x) = \int_{-\infty}^{x}P(t)dt
+	\end{equation*}
+	
+	Para muestrear la FDP $P(x)$ suele utilizarse la inversa de su FDA, $D^{-1}(x)$. Basta generar números reales \textit{pseudo aleatorios} uniformemente distribuidos. Sin embargo, es importante notar que para una FDP arbitraria $P(x)$ no siempre es trivial hallar la inversa de su FDA, $D^{-1}(x)$.
+	
+	Una de las funciones más populares para utilizar como FDP es la función Gaussiana. Tiene algunas ventajas como por ejemplo que es relativamente fácil de muestrear, sin embargo tiene también desventajas: una funcón Gaussiana sola no sirve para describir una situación donde dos áreas disjuntas del espacio de búsqueda son promisorias, ya que tiene un único máximo. Debido a esto, ACO-$\mathbb{R}$ utiliza una FDP basada en funciones Gaussianas pero ligeramente mejoradas:un \textit{núcleo} Gaussiano.
+	
+	Un núcleo Gaussiano $G^i(x)$ se define como la suma ponderada de varias funciones Gaussinas unidimensionales $g^i_l(x)$
+	
+	\begin{equation}
+	\label{eq:nucleoGauss}
+	G^i(x) = \sum_{l=1}^{k}w_l \cdot g_l^i(x) = \sum_{l=1}^{k}w_l \cdot \frac{1}{\sigma_l^i \cdot \sqrt{2\pi}}\textrm{e}^{-\frac{(x - \mu^i_l)^2}{2{\sigma^i_l}^2}}
+	\end{equation}
+
+	ACO-$\mathbb{R}$ utiliza tantos núcleos como variables tiene el CSP, es decir si $n = \vert X \vert$, se usan $n$ núcleos $G^i, i = 1, \dots, n$. Como se observa en la ecuación (\ref{eq:nucleoGauss}), el núcleo $G^i(x)$ está parametrizado con tres vectores de parámetros: $w$ es el vector de pesos asociados con cada función Gaussiana individual, $\mu^i$ es el vector de las medias y $\sigma^i$ el de las desviaciones estándar. La cardinalidad de cada uno de estos vectores es igual al número de funciones Gaussianas que componen el núcleo. Por conveniencia, lo denotaremos con $k$, es decir $\vert w \vert = \vert \mu^i \vert = \vert \sigma^i \vert = k$
+	
+	Al utilizar un núcleo como FDP seguimos manteniendo la facilidad de muestreo pero obtenemos una flexibilidad en cuanto a la forma que puede tomar si lo comparamos con una función Gaussiana individual. La figura (\ref{fig:gaussianKernel}) muestra un ejemplo de la forma que puede tomar la FDP de un núcleo Gaussiano. 
+	
+	\begin{figure}
+		\includegraphics[width=\linewidth]{gaussianKernel.png}
+		\caption{Ejemplo de cinco funciones Gaussianas y su superposición que es el núcleo resultante.}
+		\label{fig:gaussianKernel}
+	\end{figure}
+
+	
   \begin{thebibliography}{1}
       \bibitem{corr}
       Corral, C.: 
@@ -463,17 +568,8 @@
       
       \bibitem{lov:rom:per}
       Lovay, M., Romero, E., Peretti, M.:
-      Dise\~no de Filtros Activos Robustos usando Algoritmos Gen\'eticos.
-      SII 2015 4$^\circ$ Simposio Argentino de Inform\'atica Industrial.
-      
-      \bibitem{sol}
-      Solnon, C.:
-      Ant Colony Optimization and Constraint Programming. (Wiley-ISTE 2010) 
-      
-      \bibitem{soc:dor}
-      Socha, K., Dorigo, M.:
-      Ant colony optimization for continuous domains.
-      European Journal of Operational Research 185 (2008)
+      Dise\~no de Filtros Activos Robustos usando Algoritmos Genéticos.
+      SII 2015 4$^\circ$ Simposio Argentino de Informática Industrial.
       
       \bibitem{dim}
       Dimopoulos, H.: 
@@ -485,16 +581,52 @@
       Modern Analog Filter Analysis and Design: A Practical Approach. 
       Wiley-VCH (2010).
       
-      \bibitem{fre:wal}
-      Freuder E., Wallace R.: 
-      Partial constraint satisfaction.
-	  Artificial Intelligence, vol. 58, p. 21–70, 1992.
+      \bibitem{sol}
+      Solnon, C.:
+      Ant Colony Optimization and Constraint Programming. (Wiley-ISTE 2010) 
+      
+      \bibitem{soc:dor}
+      Socha, K., Dorigo, M.:
+      Ant colony optimization for continuous domains.
+      European Journal of Operational Research 185 (2008)
+      
+      \bibitem{dor92}
+      Dorigo, M.:
+      Optimization, Learning and Natural Algorithms (en italiano). 
+      Ph.D. thesis, Dipartimento di Elettronica, Politecnico di Milano, Italy (1992).
+      
+      \bibitem{dor:man:col}
+      Dorigo, M., Maniezzo, V., Colorni, A.: 
+      Ant System: Optimization by a colony of cooperating agents. 
+      IEEE Transactions on Systems, Man, and Cybernetics – Part B 26 (1), 29–41. (1996)
+      
+      \bibitem{stu:dor}
+      Stützle, T., Dorigo, M.:
+      ACO algorithms for the traveling salesman problem. 
+      En: Miettinen, K., Mäkelä, M.M., Neittaanmäki, P., Périaux, J. (Eds.), Evolutionary Algorithms in
+	  Engineering and Computer Science. John Wiley and Sons,
+	  Chichester, UK, pp. 163–183 (1999)
+
+   	\bibitem{dor:schu}
+	Dorigo, M., Stützle, T.: 
+	Ant Colony Optimization. 
+	MIT Press, Cambridge, MA (2004)
+      
+	  \bibitem{fre:wal}
+	  Freuder E., Wallace R.: 
+	  Partial constraint satisfaction.
+	  Artificial Intelligence, vol. 58, p. 21–70 (1992)
 	  
-	  \bibitem{shi:far:ver}
-	  Shiex T., Fargier H., Verfaillie G.:
-	  Valued constraint satisfaction problems: hard and easy problems. 
-	  International Joint Conference on Artificial Intelligence (IJCAI),MIT Press, Cambridge, Etats-
-	  Unis, p. 631–637, 1995.
+	\bibitem{shi:far:ver}
+	Shiex T., Fargier H., Verfaillie G.:
+	Valued constraint satisfaction problems: hard and easy problems. 
+	International Joint Conference on Artificial Intelligence (IJCAI),MIT Press, Cambridge, Etats-
+	Unis, p. 631–637, (1995)
+	
+	\bibitem{gos:aro:den:pas}
+	Goss, S., Aron, S., Deneubourg, J.-L., Pasteels, J.: 
+	Self-organized shortcuts in the Argentine ant. 
+	Naturwissenschaften 76, 579–581 (1989)
       
       
   \end{thebibliography}
