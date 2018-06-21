@@ -14,6 +14,8 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage{mathtools}
 
 \setcounter{secnumdepth}{3}
 
@@ -42,10 +44,12 @@
 }
 \makeatother
 
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
 
 % Titulo
 \title{Selección de Componentes Discretos para un Filtro Activo Mediante
-  \textit{Constraint Programming}} 
+  \textit{Constraint Programming} y \textit{Ant Colony Optimization}} 
 \author{Leandro Demarco Vedelago}
 \institute{
             \email{leandrodemarco@gmail.com}\\
@@ -451,7 +455,7 @@
 		\end{algorithmic}
 	\end{breakablealgorithm}
 
-  \section{\textbf{La Metaheurística ACO-$\mathbb{R} $}}
+  \section{\textbf{Optimización por Colonia de Hormigas}}
   \label{sec:acor}
   La Optimización por Colonia de Hormigas -en inglés \textit{Ant Colony Optimization}- es una metaheurística introducida en los años '90 inspirada en el comportamiento de las hormigas
   para solucionar problemas de optimización combinatoria \cite{dor92,dor:man:col,dor:schu}.
@@ -465,7 +469,7 @@
   	\begin{breakablealgorithm}
   	\caption{Metaheurística ACO}
   	\label{alg:acoMetaheuristic}
-  	\begin{algorithmic}[2]
+  	\begin{algorithmic}[1]
   		\While{condiciones de terminación no alcanzadas}
   		\State ConstruirSolución()
   		\State ActualizarFeromonas()
@@ -517,13 +521,13 @@
 	
 	\textit{AccionesDaemon()}: Son acciones que pueden ser usadas para implementar acciones centralizadas que las hormigas no puedan realizar individualmente. Por ejemplo, aplicar búsqueda local a las soluciones encontradas, o recolectar información global que puede ser utilizada para decidir si es útil o no depositar feromona adicional para influir el proceso de búsqueda desde una perspectiva no local.
 
-	\subsection{ACO en dominios continuos: ACO-$\mathbb{R} $}
+	\subsection{ACO en dominios continuos: ACO\textsubscript{$\mathbb{R}$}}
 	\label{subsec:acor}
 	Dado un CSP $(X,D,C)$ diremos que el mismo tiene \textit{dominio continuo} si $D_i \subseteq \mathbb{R}, \forall x_i \in X$.
 	
 	La idea central a la forma en la que ACO trabaja es la construcción incremental de soluciones basadas en la selección probabilista -influenciada por la feromona- de componentes de la solución. Cuando se aplica ACO a problemas de optimización combinatorios, el conjunto de de las componentes de solución está definido por la formulación del problema. En cada paso de la construcción, la hormiga escoge de manera probabilista una componente $c_{ij} \in N(s^p)$ de acuerdo a la ecuación (\ref{eq:chooseComponent}). Las probabilidades asociadas con los elementos del conjunto $N(s^p)$ de componentes disponibles  forman una distribución de probabilidad \textit{discreta} que cada hormiga muestrea para escoger la componente a agregar a la solución parcial $s^p$.
 	
-	En ACO-$\mathbb{R}$, la idea fundamental es pasar de utilizar esta distribución discreta a utilizar una \textit{continua}, es decir, una función de densidad de probabilidad.
+	En ACO\textsubscript{$\mathbb{R}$}, la idea fundamental es pasar de utilizar esta distribución discreta a utilizar una \textit{continua}, es decir, una función de densidad de probabilidad.
 	
 	\subsubsection{\textit{La función de densidad de probabilidad}}
 	Una \textit{función de densidad de probabilidad} (FDP) puede ser cualquier función $P(x) \geq 0, \forall x$ tal que
@@ -540,7 +544,7 @@
 	
 	Para muestrear la FDP $P(x)$ suele utilizarse la inversa de su FDA, $D^{-1}(x)$. Basta generar números reales \textit{pseudo aleatorios} uniformemente distribuidos. Sin embargo, es importante notar que para una FDP arbitraria $P(x)$ no siempre es trivial hallar la inversa de su FDA, $D^{-1}(x)$.
 	
-	Una de las funciones más populares para utilizar como FDP es la función Gaussiana. Tiene algunas ventajas como por ejemplo que es relativamente fácil de muestrear, sin embargo tiene también desventajas: una funcón Gaussiana sola no sirve para describir una situación donde dos áreas disjuntas del espacio de búsqueda son promisorias, ya que tiene un único máximo. Debido a esto, ACO-$\mathbb{R}$ utiliza una FDP basada en funciones Gaussianas pero ligeramente mejoradas:un \textit{núcleo} Gaussiano.
+	Una de las funciones más populares para utilizar como FDP es la función Gaussiana. Tiene algunas ventajas como por ejemplo que es relativamente fácil de muestrear, sin embargo tiene también desventajas: una funcón Gaussiana sola no sirve para describir una situación donde dos áreas disjuntas del espacio de búsqueda son promisorias, ya que tiene un único máximo. Debido a esto, ACO\textsubscript{$\mathbb{R}$} utiliza una FDP basada en funciones Gaussianas pero ligeramente mejoradas:un \textit{núcleo} Gaussiano.
 	
 	Un núcleo Gaussiano $G^i(x)$ se define como la suma ponderada de varias funciones Gaussinas unidimensionales $g^i_l(x)$
 	
@@ -549,16 +553,136 @@
 	G^i(x) = \sum_{l=1}^{k}w_l \cdot g_l^i(x) = \sum_{l=1}^{k}w_l \cdot \frac{1}{\sigma_l^i \cdot \sqrt{2\pi}}\textrm{e}^{-\frac{(x - \mu^i_l)^2}{2{\sigma^i_l}^2}}
 	\end{equation}
 
-	ACO-$\mathbb{R}$ utiliza tantos núcleos como variables tiene el CSP, es decir si $n = \vert X \vert$, se usan $n$ núcleos $G^i, i = 1, \dots, n$. Como se observa en la ecuación (\ref{eq:nucleoGauss}), el núcleo $G^i(x)$ está parametrizado con tres vectores de parámetros: $w$ es el vector de pesos asociados con cada función Gaussiana individual, $\mu^i$ es el vector de las medias y $\sigma^i$ el de las desviaciones estándar. La cardinalidad de cada uno de estos vectores es igual al número de funciones Gaussianas que componen el núcleo. Por conveniencia, lo denotaremos con $k$, es decir $\vert w \vert = \vert \mu^i \vert = \vert \sigma^i \vert = k$
+	ACO\textsubscript{$\mathbb{R}$} utiliza tantos núcleos como variables tiene el CSP, es decir si $n = \vert X \vert$, se usan $n$ núcleos $G^i, i = 1, \dots, n$. Como se observa en la ecuación (\ref{eq:nucleoGauss}), el núcleo $G^i(x)$ está parametrizado con tres vectores de parámetros: $w$ es el vector de pesos asociados con cada función Gaussiana individual, $\mu^i$ es el vector de las medias y $\sigma^i$ el de las desviaciones estándar. La cardinalidad de cada uno de estos vectores es igual al número de funciones Gaussianas que componen el núcleo. Por conveniencia, lo denotaremos con $k$, es decir $\vert w \vert = \vert \mu^i \vert = \vert \sigma^i \vert = k$
 	
 	Al utilizar un núcleo como FDP seguimos manteniendo la facilidad de muestreo pero obtenemos una flexibilidad en cuanto a la forma que puede tomar si lo comparamos con una función Gaussiana individual. La figura (\ref{fig:gaussianKernel}) muestra un ejemplo de la forma que puede tomar la FDP de un núcleo Gaussiano. 
 	
-	\begin{figure}
-		\includegraphics[width=\linewidth]{gaussianKernel.png}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{gaussianKernel.png}
 		\caption{Ejemplo de cinco funciones Gaussianas y su superposición que es el núcleo resultante.}
 		\label{fig:gaussianKernel}
 	\end{figure}
 
+	Al usar ACO en problemas de optimización combinatoria, en cada iteración, al elegir una componente para ser agregada
+	a la solución (de acuerdo a la ecuación (\ref{eq:chooseComponent})), una hormiga usa la información de las feromonas
+	-almacenada como tabla- como una distribución de probabilidad discreta. En el caso continuo, la elección de la hormiga
+	no está restringida a un conjunto finito. Por lo tanto, la información de las feromonas no puede almacenarse en una tabla
+	y debe adoptarse un enfoque diferente.
+	
+	En ACO\textsubscript{$\mathbb{R}$}, se mantiene un registro de un número de soluciones dentro de un \textit{archivo} $T$. Para cada solución
+	$s_l$ de un problema de $n$ dimensiones, ACO\textsubscript{$\mathbb{R}$} almacena en $T$ los valores de las $n$ variables y el valor de la
+	función objetivo $f(s_l)$. De esta forma, la $i$-ésima variable de la $l$-ésima solución está denotada por $s_l^i$.
+	
+	La información almacenada en $T$ se utiliza luego para ir generando funciones de densidad de probabilidad dinámicamente. Como se
+	indicó en la ecuación (\ref{eq:nucleoGauss}), el núcleo Gaussiano $G^i$ está parametrizado por tres vectores $w$, $\mu$ y $\sigma$,
+	cada uno con la misma cardinalidad. Las soluciones en el archivo $T$ se usan para calcular los valores de estos 
+	tres parámetros y por consiguiente darle forma a la FDP del núcleo Gaussiano usado para guiar a las hormigas en el proceso de búsqueda. El número de 	soluciones almacenadas en el archivo $T$ será $k$, la cardinalidad de cada uno de los vectores, y determina
+	la complejidad de la FDP: habrá $k$ Gaussianas individuales conformando el núcleo.
+	
+	Para cada variable del problema $i = 1, \dots, n$, hay una FDP definida por el núcleo $G^i$. Para cada uno de estos núcleos $G^i$,
+	el vector $\mu^i$ se compone de los valores de la $i$-ésima variable de cada una de las soluciones en el archivo:
+	\begin{equation}
+	\mu^i = \{s^i_1, \dots, s^i_k \}
+	\end{equation}
+	
+	El vector de pesos $w$, se crea de la siguiente forma: cada solución que se agrega al archivo $T$ se evalúa y puntúa (en caso de
+	empate se define aleatoriamente). Las soluciones luego son ordenadas de acuerdo a su puntuación, es decir, la solución $s_l$ está
+	$l$-ésima en el ranking. El peso de la solución $s_l$ se calcula con la siguiente fórmula:
+	\begin{equation}
+	\label{eq:vectorPesos}
+	\omega_l = \frac{1}{qk\sqrt{2\pi}}e^{-\frac{(l-1)^2}{2q^2k^2}}
+	\end{equation}
+	lo cual define que el peso es el valor de una Gaussiana con argumento $l$, media $1$ y desviación estándar $qk$, donde $q$ es
+	un parámetro del algoritmo. Cuando $q$ es pequeño, las soluciones mejor puntuadas son fuertemente preferidas, mientras que si es
+	grande el algoritmo se vuelve más uniforme. La influencia de este parámetro en ACO\textsubscript{$\mathbb{R}$} es similar a ajustar el balance entre
+	usar las estrategias de usar la mejor solución de la iteración o la mejor hallada hasta el momento para actualizar las feromonas en
+	ACO. La figura (\ref{fig:archivo}) muestra la estructura del archivo $T$, el vector $w$ y los núcleos Gaussianos.
+	
+	Para terminar de definir el núcleo $G^i$, resta determinar el vector de desviaciones estándar $\sigma^i$, lo cual haremos en la siguiente
+	sección.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{archive.png}
+		\caption{El archivo de soluciones utilizado por ACO\textsubscript{$\mathbb{R}$}. Las $k$ soluciones son ordenadas de acuerdo a su calidad.
+		Es decir, para un problema de minimización, $f(s_1) \leq f(s_2) \leq \dots \leq f(s_k)$. Cada solución tiene asociado un peso
+		proporcional a la calidad de la solución, es decir $w_1 \geq w_2 \geq \dots \geq w_k$. La FDP $G^i$ se construye utilizando solamente
+		los $i$-ésimos valores de cada una de las $k$ soluciones.}
+		\label{fig:archivo}
+	\end{figure}
+	
+	\subsubsection{\textit{Implementación algorítmica de ACO\textsubscript{$\mathbb{R}$}}}
+	En esta sección describiremos las actividades referidas en el algoritmo  \ref{alg:acoMetaheuristic} pero aplicadas a ACO\textsubscript{$\mathbb{R}$}.
+	\bigbreak
+	\textit{ConstruirSolución()}: Dadas las variables $x_i, i = 1, \dots, n$, una hormiga construye una solución realizando $n$ pasos de
+	construcción. En el paso $i$, la hormiga escoge un valor para la variable $x_i$. Como se mencionó en la sección anterior, la FDP dada
+	por el núcleo Gaussiano está compuesta de un número dado de funciones Gaussianas individuales. Dicho número es igual al tamaño
+	$k$ del archivo $T$. En el paso $i$, sólo la información de la variable $x_i$ es utilizada. De este modo, en cada paso el núcleo $G^i$
+	utilizado es diferente. De acuerdo a la ecuación (\ref{eq:nucleoGauss}), para poder definir $G^i$ los vectores $w$, $\mu^i$ y 
+	$\sigma^i$ deben estar definidos. Si bien se ha explicado en la sección anterior cómo crear $w$ y $\mu^i$, el cálculo de 
+	$\sigma^i$ es bastante más complejo. Antes de presentar cómo realizarlo, es conveniente explicar la implementación práctica de la
+	ecuación (\ref{eq:nucleoGauss}).
+	
+	En la práctica, el proceso de muestreo se realiza como sigue. Primero, los elementos del vector de pesos $w$ se computan de
+	acuerdo a la ecuación (\ref{eq:vectorPesos}). Luego el proceso sigue en dos fases: en la primera se escoge alguna de las funciones
+	Gaussianas que componen el núcleo. La probabilidad $p_l$ de escoger la $l$-ésima Gaussiana está dada por:
+	\begin{equation*}
+	p_l = \frac{w_l}{\sum_{r=1}^{k}w_r}
+	\end{equation*}
+	La segunda fase consiste en muestrear la Gaussiana escogida (\textit{i.e}, en el paso $i$ la función $g_l^i$). Esto puede hacerse
+	utilizando un generador de números aleatorios capaz de generar números aleatorios de acuerdo a una distribución normal
+	parametrizada, o utilizando un generador aleatorio uniforme junto con, por ejemplo, el método de Box-Müller. Este muestreo de dos
+	fases equivale a muestrear el núcleo $G^i$ definido en la ecuación (\ref{eq:nucleoGauss}).
+	
+	En el paso $i$, la desviación estándar necesita ser conocida únicamente para la la Gaussiana individual $g_l^i(x)$ escogida en la fase
+	uno. Por lo tanto, no es necesario computar el vector completo $\sigma^i$, sino solamente la $\sigma^i_l$ requerida.
+		
+	Para establecer el valor de la desviación estándar $\sigma^i_l$ en el paso $i$, calculamos la distancia promedio de la solución
+	escogida $s_l$ a las otras soluciones dentro del archivo $T$, y las multiplicamos por el parámetro $\xi$:
+	\begin{equation*}
+	\sigma^i_l = \xi \sum_{e=1}^{k}\frac{\abs{s^i_e - s^i_l}}{k-1}
+	\end{equation*}
+	El parámetro $\xi > 0$, el cual es el mismo para todas las variables, tiene un efecto similar al de la tasa de evaporación en ACO. Mientras
+	más alto sea su valor, más baja será la velocidad de convergencia del algoritmo.
+	 
+	Mientras que en ACO la tasa de evaporación afecta la memoria de largo plazo -\textit{i.e}, las peores soluciones son olvidadas más rápido-, $\xi$ en ACO\textsubscript{$\mathbb{R}$} afecta el modo en que la memoria de largo plazo es usada -\textit{i.e}, la búsqueda está menos influenciada hacia los puntos en el espacio de búsqueda que ya han sido explorados (y son mantenidos en el archivo $T$)-.
+	\bigbreak	
+	\textit{ActualizarFeromonas()}: Como se mencionó previamente, la información de feromonas en ACO\textsubscript{$\mathbb{R}$} se mantiene
+	en el archivo de soluciones. Esto implica que el proceso de actualización de feromonas debe realizar alguna forma de actualización
+	de dicho archivo.
+	
+	El tamaño $k$ del archivo $T$ es un parámetro del algoritmo. Sin embargo, $k$ no puede ser menor que el número de variables
+	del problema que se intenta solucionar \cite{soc:dor}.
+	
+	Al comenzar el algoritmo, el archivo de soluciones $T$ se inicializa generando $k$ soluciones mediante un muestreo aleatorio uniforme.
+	La actualización de feromonas se consigue agregando el conjunto de nuevas soluciones generadas al archivo $T$ y luego eliminando
+	el mismo número de peores soluciones de forma que el tamaño de $T$ no cambie. Este proceso garantiza que sólo las mejores
+	soluciones son mantenidas en el archivo, guiando efectivamente a las hormigas en el proceso de búsqueda.
+	\bigbreak
+	\textit{AccionesDaemon()}: Se va actualizando la mejor solución encontrada hasta el momento de forma que pueda ser devuelta
+	una vez que se alcanzan las condiciones de terminación. Se podrían aplicar heurísticas de búsqueda local para mejorar la \textit{performance} del algoritmo.
+	
+	\section{\textbf{ACO\textsubscript{$\mathbb{R}$} Aplicado al Problema del Filtro}}
+	En esta sección se detallará la implementación de la metaheurística ACO\textsubscript{$\mathbb{R}$} para resolver el problema del filtro especificado
+	en la sección (\ref{sec:fundelect}). Primero veremos por qué escogimos trabajar con dominios continuos para las variables en vez de
+	discretos y luego discutiremos detalles referentes a la aplicación sobre el problema específicamente.
+	
+	\subsection{¿Por qué usar dominios continuos?}	
+	Dado un problema combinatorio como el del filtro con un espacio de búsqueda $S$ y una \textit{función objetivo} $f$, 
+	se puede definir una relación de vecindad  $N \subseteq S \times S$ que depende de la forma en que el conjunto de combinaciones es explorado. 
+	
+	Dos combinaciones $s_i$ y $s_j$  se consideran vecinas si la estrategia de búsqueda utilizada es tal que $s_j$ puede ser construida a partir de $s_i$ en	un sólo paso del proceso de búsqueda. 
+	
+	Diremos que una combinación $s_i$ es un \textit{óptimo local} si $f(s_i) \geq f(s_j), \forall s_j \in N(s_i)$. Si un óptimo local resulta
+	ser mejor que todos los otros óptimos locales, entonces es una solución. Cuando los óptimos locales están distribuidos de tal forma
+	que existe una correlación relativamente alta entre el valor de la función objetivo de una combinación y su distancia a una solución,
+	el \textit{paisaje} de búsqueda se dice tener una forma \textit{Macizo Central}. En este caso, se puede utilizar la función objetivo
+	para guiar la búsqueda.
+	
+	\subsection{Aplicación sobre el problema}
+	Veremos bla bla bla ACO\textsubscript{$\mathbb{R}$}
+	
 	
   \begin{thebibliography}{1}
       \bibitem{corr}
@@ -607,26 +731,32 @@
 	  Engineering and Computer Science. John Wiley and Sons,
 	  Chichester, UK, pp. 163–183 (1999)
 
-   	\bibitem{dor:schu}
-	Dorigo, M., Stützle, T.: 
-	Ant Colony Optimization. 
-	MIT Press, Cambridge, MA (2004)
+ 	 \bibitem{dor:schu}
+	 Dorigo, M., Stützle, T.: 
+	 Ant Colony Optimization. 
+	 MIT Press, Cambridge, MA (2004)
+	 
+	 \bibitem{gun:mid}
+	 Guntsch, M., Middendorf, M.:
+	 A population based approach for ACO.
+	 Applications of Evolutionary Computing, Proceedings of EvoWorkshops 2002:
+	 EvoCOP, EvoIASP, EvoSTim, vol. 2279 of LNCS, pp. 71-80 (2002)
       
 	  \bibitem{fre:wal}
 	  Freuder E., Wallace R.: 
 	  Partial constraint satisfaction.
-	  Artificial Intelligence, vol. 58, p. 21–70 (1992)
+	  Artificial Intelligence, vol. 58, pp. 21–70 (1992)
 	  
-	\bibitem{shi:far:ver}
-	Shiex T., Fargier H., Verfaillie G.:
-	Valued constraint satisfaction problems: hard and easy problems. 
-	International Joint Conference on Artificial Intelligence (IJCAI),MIT Press, Cambridge, Etats-
-	Unis, p. 631–637, (1995)
+	 \bibitem{shi:far:ver}
+	 Shiex T., Fargier H., Verfaillie G.:
+	 Valued constraint satisfaction problems: hard and easy problems. 
+	 International Joint Conference on Artificial Intelligence (IJCAI),MIT Press, Cambridge, Etats-
+	 Unis, p. 631–637, (1995)
 	
-	\bibitem{gos:aro:den:pas}
-	Goss, S., Aron, S., Deneubourg, J.-L., Pasteels, J.: 
-	Self-organized shortcuts in the Argentine ant. 
-	Naturwissenschaften 76, 579–581 (1989)
+	 \bibitem{gos:aro:den:pas}
+	 Goss, S., Aron, S., Deneubourg, J.-L., Pasteels, J.: 
+	 Self-organized shortcuts in the Argentine ant. 
+	 Naturwissenschaften 76, 579–581 (1989)
       
       
   \end{thebibliography}
