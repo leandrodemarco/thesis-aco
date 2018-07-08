@@ -97,22 +97,24 @@
     lo cual es necesario utilizar métodos o heurísticas de búsqueda que reduzcan el tiempo
     necesario.
     
-    En este trabajo en la sección \ref{sec:fundelect} se define el filtro analizado
+    En la sección \ref{sec:fundelect} definimos el filtro analizado
     junto a los fundamentos electrónicos que definen la bondad del mismo. Luego, en la
-    sección \ref{sec:fundprog} se introduce la noción de \textit{Constraint Programming}
+    sección \ref{sec:fundprog} introducimos la noción de \textit{Constraint Programming}
     y cómo se define en términos de este paradigma el problema en cuestión. En la sección
-    \ref{sec:exhaustSearch} se presenta una serie de observaciones y manipulaciones matemáticas del problema que permiten definir un algoritmo exhaustivo que se ejecuta
-    en tiempos razonables. Finalmente, en la sección \ref{sec:acor} se presenta la metaheurística ACO
+    \ref{sec:exhaustSearch} presentamos una serie de observaciones y manipulaciones matemáticas 
+    del problema que permiten definir un algoritmo exhaustivo que se ejecuta
+    en tiempos razonables. Finalmente, en la sección \ref{sec:acor} presentamos la metaheurística ACO
     -del inglés \textit{Ant Colony Optimization}- aplicada a este problema junto a una variante 
     del mismo llamada ACO-$\mathbb{R} $
     
     
   \section{\textbf{Fundamentos electrónicos}}
     \label{sec:fundelect}
-    Se tomará como caso de estudio el mismo filtro que se utiliza en \cite{lov:rom:per}. Dicho filtro
+    Tomaremos como caso de estudio el mismo filtro que se utiliza en \cite{lov:rom:per}. Dicho filtro
     es de tipo IGMFB (Infinite-Gain Multiple Feedback) pasabajo de segundo orden. Son filtros
-    bicuadráticos que emplean múltiples lazos de realimentación y un amplificador operacional.
-    Una descripción más detallada de este tipo de filtros puede encontrarse en \cite{dim} y \cite{rau:swa}. En la figura \ref{fig:filter} se muestra el esquemático del filtro a analizar.
+    bicuadráticos que emplean múltiples lazos de retroalimentación y un amplificador operacional.
+    Una descripción más detallada de este tipo de filtros puede encontrarse en \cite{dim} y \cite{rau:swa}. 
+    En la figura \ref{fig:filter} se muestra el esquemático del filtro a analizar.
    
    \begin{figure}
    	\includegraphics[width=\linewidth]{filter.png}
@@ -122,7 +124,7 @@
 
 	Las especificaciones del filtro están dadas por la ganancia en la banda de paso ($G$), la
 	frecuencia de polo ($\omega_p$) y el factor de calidad ($Q_p$). En función de estos valores
-	puede definirse la función de transferencia del filtro.
+	la función de transferencia del filtro queda expresada de la siguiente manera:
  	\begin{equation}
 		F(s) = \frac{G\omega_p^2}{s^2+(\frac{\omega_p}{Q_p})s+\omega_p^2}
 		\label{funcTransfer}
@@ -171,11 +173,13 @@
 	\end{eqnarray}
 	
 	Como se puede ver, en (\ref{sensR1Omega}), (\ref{sensOtrosOmega}) y (\ref{sensCapQ}), las
-	sensibilidades adoptan valores fijos, mientras que las otras dependen de los valores que adopten los componentes. En consecuencia, debemos considerar las sensibilidades (\ref{sensR1Q}), (\ref{sensR2Q}) y (\ref{sensR3Q}) a la hora de seleccionar los valores para cada componente.
+	sensibilidades adoptan valores fijos, mientras que las otras dependen de los valores que adopten los componentes. 
+	En consecuencia, debemos considerar las sensibilidades (\ref{sensR1Q}), (\ref{sensR2Q}) y (\ref{sensR3Q}) 
+	a la hora de seleccionar los valores para cada componente.
 	En el caso de estudio seleccionado, la especificación elegida para el filtro es $G_F = 3$,
-	$\omega_{p_F}=1000*2*\pi = 6283,9478\ rad/s$ y $Q_{p_F} = 0,707$. 
+	$\omega_{p_F}=1000*2*\pi rad/s$ y $Q_{p_F} = 0,707$. 
 	
-	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se asume que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se
+	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se supone que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se
 	define además una tolerancia o error máximo $E_{max} = 2,5\%$ para los valores de $G_F$,
 	$\omega_{p_F}$ y $Q_{p_F}$.
 	
@@ -190,7 +194,7 @@
     explosión combinatoria, la búsqueda se combina con técnicas de filtrado, para
     \textit{podar} subconjuntos de combinaciones, y con heuristícas de ordenación, para orientar la búsqueda hacia las ramas más promisorias primero.
     
-    Cuando las técnicas de filtrado y las heurísticas de ordenamiento no son suficientes para prevenir la explosión combinatoria, se debe dejar de lado la exhaustividad y utilizar \textit{métodos heurísticos} que exploran el espacio de búsqueda de forma incompleta, utilizando (meta)heurísticas para guiar la búsqueda hacia las áreas más promisorias ignorando deliberadamente otras áreas. Dentro de este enfoque hay dos variantes: las \textit{heurísticas perturbadoras} -ej: Algoritmos Genéticos- que van modificando iterativamente combinaciones existentes a fin de crear nuevas combinaciones, y las \textit{heurísticas constructivas} que construyen nuevas combinaciones iterativamente desde cero.
+    Cuando las técnicas de filtrado y las heurísticas de ordenamiento no son suficientes para prevenir la explosión combinatoria, se debe dejar de lado la exhaustividad y utilizar \textit{métodos heurísticos} que exploran el espacio de búsqueda de forma incompleta, utilizando (meta)heurísticas para guiar la búsqueda hacia las áreas más promisorias ignorando deliberadamente otras áreas. Dentro de este enfoque hay dos variantes: las \textit{heurísticas perturbativas} -ej: Algoritmos Genéticos- que van modificando iterativamente combinaciones existentes a fin de crear nuevas combinaciones, y las \textit{heurísticas constructivas} que construyen nuevas combinaciones iterativamente desde cero.
     
     \subsection{Noción de una restricción}
       Una restricción puede pensarse como una relación lógica entre un conjunto de valores, en principio,
@@ -258,11 +262,11 @@
    	Dado que los dominios pueden ser intervalos numéricos continuos, no todos los CSP son
    	problemas combinatorios. La complejidad teórica de un CSP depende del dominio de las variables y del tipo de restricciones utilizadas.
    	
-   	En algunos casos, el problema puede ser polinomial. Este es caso, por ejemplo, cuando todas
+   	En algunos casos, el problema puede ser polinomial. Este es el caso, por ejemplo, cuando todas
    	las restricciones son (in)ecuaciones lineales y todos los dominios son intervalos numéricos
    	continuos.
    	
-   	En otros casos, el problema puede ser indecidible. Por ejemplo, cuando las restricciones puede ser cualquier fórmula matemática arbitraria y los dominos de las variables son intervalos numéricos continuos.
+   	En otros casos, el problema puede ser indecidible. Por ejemplo, cuando las restricciones pueden ser cualquier fórmula matemática arbitraria y los dominos de las variables son intervalos numéricos continuos.
    	
    	Sin embargo, en muchos casos, el problema es $\mathcal{NP}$-completo. En particular, los CSP con dominios finitos suelen pertenecer a este grupo en general.
    	
@@ -270,7 +274,7 @@
    	\label{subsec:cspOptimization}
    	Los problemas de satisfacción de restricciones implican encontrar una solución que las
    	satisfaga a todas o bien probar la inconsistencia si no existe ninguna solución. Sin embargo,
-   	en muchos casos también suele haber involucrados problemas de optimización. En particular,
+   	en muchos casos también suelen haber involucrados problemas de optimización. En particular,
    	el resolver problemas \textit{excesivamente restringidos} suele convertirse en maximizar la
    	satisfacción de restricciones. Otras veces el resolver un CSP tambien involucra optimizar
    	alguna función objetivo al tiempo que se satisfacen todas las restricciones.
@@ -302,7 +306,7 @@
 		\label{subsec:problemDefinition}
 		Como se estableció en la sección \ref{sec:fundelect}, el problema consiste en seleccionar
 		los valores para las resistencias $R_1$, $R_2$ y $R_3$ y los capacitores $C_4$ y $C_5$ de
-		una lista de posibles valores (las series industriales E). Si defino
+		una lista de posibles valores (las series industriales E). Si definimos
 		
 		\begin{align*}
 		G^{max} = G_F * (1 + E_{max})\\
@@ -326,12 +330,9 @@
   \section{\textbf{Algoritmo exhaustivo}}
   	\label{sec:exhaustSearch}
     Realizando algunas observaciones y transformaciones matemáticas, es posible obtener un algoritmo exhaustivo que descubre
-    todas las soluciones posibles para el problema. Recordemos las definiciones
-    de \textit{ganancia} ($G$), \textit{frecuencia de polo} ($\omega_p$) y
-    \textit{factor de calidad} ($Q_p$)
+    todas las soluciones posibles para el problema.
 
-
-    Es claro que a partir de (\ref{g}) se tiene que para cada valor de $R_1$ hay
+    Es claro que a partir de la ecuación (\ref{g}) se tiene que para cada valor de $R_1$ hay
     un conjunto de valores de $R_2$ que denotaremos 
     $\{R_2\}_{R_1}$ tales que $G^{max} > G > G^{min}$
 
@@ -348,22 +349,24 @@
     posible calcular la lista de valores que pueden tomar las frecuencias
     definidas en (\ref{omegas}). Para cada uno de los valores posibles para
     $\omega_1$, habrá un conjunto de pares de valores ($R_2$, $C_4$) tales que
-    $\omega_1 = 1/(R_2 C_4)$. Denotamos a tal conjunto como $\{(R_2,
+    $\omega_1 = 1/(R_2 C_4)$. Designamos a tal conjunto como $\{(R_2,
       C_4)\}_{\omega_1}$. De manera análoga se puede proceder con $\omega_2$,
-      $R_3$ y $C_5$ (obsérvese el conjunto de valores posibles para $\omega_2$
+      $R_3$ y $C_5$ (obsérvese que el conjunto de valores posibles para $\omega_2$
       es el mismo que para $\omega_1$ y que $\{(R_2,C_4)\}_{\omega_1}=\{(R_3,
       C_5)\}_{\omega_2}$ cuando $\omega_1=\omega_2$). Luego, dada la restricción $\omega_p \in 
     [\omega_p^{min},\omega_p^{max}]$ y elegido un valor de  $\omega_1$, los
     valores admisibles de $\omega_2$ son aquellos para los 
     que $\omega_p= \sqrt{\omega_1 \omega_2}$ satisface dicha restricción, y
     por lo tanto cumplen las siguiente relación:
-    $(\omega_p^{max})^2 / \omega_1 > \omega_2 > (\omega_p^{min})^2 / \omega_1 $.
+    \begin{equation*}
+    \frac{(\omega_p^{max})^2}{\omega_1} > \omega_2 > \frac{(\omega_p^{min})^2}{\omega_1}
+    \end{equation*}
 
     De esta manera, para cada valor realizable de $\omega_1$ existe un conjunto
     finito $\{{\omega_2}\}_{\omega_1}$ de valores de $\omega_2$ 
     tales que $ \omega_p^{max} > \omega_p > \omega_p^{min} $
 
-    Finalmente, a partir de (\ref{q}) y (\ref{omegas}) podemos reescribir
+    Por otro lado, a partir de (\ref{q}) y (\ref{omegas}) podemos reescribir
     $Q_p^{-1}$ de la siguiente forma,
     \begin{equation}
     Q_p^{-1} =
@@ -373,9 +376,7 @@
     
     Finalmente, para cada par ($R_1$, $R_2$), ($\omega_1, \omega_2$) que satisface
     las restricciones sobre $G$ y $\omega_p$, utilizando la expresión
-    (\ref{otraq}) buscamos
-    los valores $R_3$ admisibles que satisfagan la 
-    condición
+    (\ref{otraq}) buscamos los valores $R_3$ admisibles que satisfagan la  condición
     $$
     (Q_p^{-1})^{max} > Q_p^{-1} > (Q_p^{-1})^{min}
     $$
@@ -664,25 +665,102 @@
 	una vez que se alcanzan las condiciones de terminación. Se podrían aplicar heurísticas de búsqueda local para mejorar la \textit{performance} del algoritmo.
 	
 	\section{\textbf{ACO\textsubscript{$\mathbb{R}$} Aplicado al Problema del Filtro}}
-	En esta sección se detallará la implementación de la metaheurística ACO\textsubscript{$\mathbb{R}$} para resolver el problema del filtro especificado
-	en la sección (\ref{sec:fundelect}). Primero veremos por qué escogimos trabajar con dominios continuos para las variables en vez de
-	discretos y luego discutiremos detalles referentes a la aplicación sobre el problema específicamente.
+	En esta sección detallaremos la implementación de la metaheurística ACO\textsubscript{$\mathbb{R}$} 
+	para resolver el problema del filtro especificado en la sección (\ref{sec:fundelect}).
 	
-	\subsection{¿Por qué usar dominios continuos?}	
-	Dado un problema combinatorio como el del filtro con un espacio de búsqueda $S$ y una \textit{función objetivo} $f$, 
-	se puede definir una relación de vecindad  $N \subseteq S \times S$ que depende de la forma en que el conjunto de combinaciones es explorado. 
+	Presentaremos primero el caso en que todas las variables son libres para ver la convergencia del algoritmo. 
+	A continuación mostraremos una versión donde el valor de $R_1$ queda fijo a alguno de los valores admisibles
+	definidos por la serie $E$ y una vez obtenido el valor del algoritmo se realiza una búsqueda de los vecinos más cercanos
+	sobre las otras variables.
+	Luego introducimos una modificación para que en cada paso el algoritmo trabaje con valores discretos pero que requiere
+	varias ejecuciones para, fijado $R_1$ hallar una buena solución. Finalmente, veremos que si $R_1$ se deja libre, la versión discreta
+	no encuentra buenas soluciones en general.
 	
-	Dos combinaciones $s_i$ y $s_j$  se consideran vecinas si la estrategia de búsqueda utilizada es tal que $s_j$ puede ser construida a partir de $s_i$ en	un sólo paso del proceso de búsqueda. 
+	\subsection{Versión continua}
+	En esta primera versión del algoritmo el dominio de las variables es todo el intervalo continuo entre los valores
+	admisibles máximos y mínimos especificados por las series $E$. Es conveniente que definamos algunas funciones
+	elementales aquí para hacer el pseudo-código más legible.
 	
-	Diremos que una combinación $s_i$ es un \textit{óptimo local} si $f(s_i) \geq f(s_j), \forall s_j \in N(s_i)$. Si un óptimo local resulta
-	ser mejor que todos los otros óptimos locales, entonces es una solución. Cuando los óptimos locales están distribuidos de tal forma
-	que existe una correlación relativamente alta entre el valor de la función objetivo de una combinación y su distancia a una solución,
-	el \textit{paisaje} de búsqueda se dice tener una forma \textit{Macizo Central}. En este caso, se puede utilizar la función objetivo
-	para guiar la búsqueda.
+	\begin{itemize}
+		\item $zeros(n)$: devuelve un arreglo $A$ de n elementos, todos inicializados en 0
+		\item $zeros (m, n)$: devuelve una matriz M de tamaño $m \times n$ con todos sus elementos inicializados en 0
+		\item $repmat(M, f, c)$: dada una matriz $M$ devuelve una matriz que replica $f$ copias de $M$ en las filas y $c$ copias en las
+		columnas
+		\item $rand(m, n)$: dados $m < n$ devuelve un número aleatorio en el intervalo $[m,n]$
+		\item $sort(M, c)$: ordena las filas de la matriz $M$ de menor a mayor de acuerdo al valor de la columna $c$
+		\item $concat(M,N)$: dadas las matrices $M$ de tamaño $m \times n$ y $N$ de tamaño $l \times n$ devuelve una matriz $M'$
+		de tamaño $(m+l) \times n$ donde
+		\begin{equation*}
+		M'[i][j] =
+		\begin{cases}
+		M[i][j],& \text{si } i \leq m\\
+		N[l-i][j],              & \text{caso contrario}
+		\end{cases}
+		\end{equation*} 
+	\end{itemize}
 	
-	\subsection{Aplicación sobre el problema}
-	Veremos bla bla bla ACO\textsubscript{$\mathbb{R}$}
-	
+		\begin{breakablealgorithm}
+		\caption{ACO-$\mathbb{R}$ filtro}
+		\label{alg:exhaustSearch}
+		\begin{algorithmic}[1]
+			\State $R_{min}, R_{max}$: Valores mínimo y máximo que pueden tomar las resistencias
+			\State $C_{min}, C_{max}$: Valores mínimo y máximo que pueden tomar los capacitores 
+			\State $TamArchivo$: cantidad de soluciones que se mantienen en el archivo $T$
+			\State $TamMuestra$: cantidad de hormigas que se lanzan por iteración
+			\State $NumIt$: número de iteraciones
+			\State $FactorIntensidad$: $\xi$
+			\State $NumVars = 5$ \Comment{$R_1, R_2, R_3, C_4, C_5$}
+			\State $zeta$: Deviation Distance Ratio
+			
+			\item[]
+			
+			\Function{Costo}{$R_1$, $R_2$, $R_3$, $C_4$, $C_5$}
+			\State $a \gets a+1$
+			\State \Return $a$
+			\EndFunction
+			
+			\item[]
+			
+			\Procedure{InicializarArchivo}{$T$} \Comment{Inicializa aleatoriamente el archivo}
+			\For{cada fila $f$ en $T$}
+			\State $f[0\dots2] \gets rand(R_{min}, R_{max})$
+			\State $f[3\dots4] \gets rand(C_{min}, C_{max})$
+			\State $f[5] \gets \Call{Costo}{f[0\dots4]}$
+			\EndFor
+			\EndProcedure
+			
+			\item[]
+			
+			\Procedure{HallarSoluciones}{}
+			\State $hormiga \gets zeros(NumVars+1)$
+			\State $T \gets repmat(hormiga, TamArchivo, 1)$
+			\State \Call{InicializarArchivo}{$T$}
+			\item[]
+			\For{$it$ en $\lbrack 0 \dots NumIt\rparen$} \Comment{Loop principal}
+			\State $\mu \gets zeros(TamArchivo, NumVars)$ \Comment{Arreglo con las medias}
+			\For{$j$ en $\lbrack 0 \dots TamArchivo \rparen$}
+			\State $\mu[j] \gets T[j][0 \dots NumVars - 1]$
+			\EndFor
+			\State $\sigma \gets zeros(TamArchivo, NumVars)$ \Comment{Arreglo con las desv. est.}
+			\For{$j$ en $\lbrack 0 \dots TamArchivo \rparen$}
+			\State $D \gets \sum_{r=0}^{TamArchivo - 1}\abs{\mu[j]-\mu[r]}$
+			\State $\sigma[j] \gets \frac{zeta * D}{TamArchivo -1}$
+			\EndFor
+			\item[]
+			\State $NuevaPobl \gets repmat(hormiga, TamMuestra, 1)$
+			\For{$t$ en $\lbrack 0 \dots TamMuestra \rparen$}
+			\State $NuevaPobl[t]\lbrack 0 \dots NumVars \rparen \gets zeros(NumVars)$
+			\For{$i$ en $\lbrack 0 \dots NumVars \rparen$}
+			\State $g \gets$ \Call{WheelSelection}{p} \Comment{Escoger núcleo Gaussiano}
+			\State $NuevaPobl[t][i] \gets \mu[g][t] + \sigma[g][i]*rand()$
+			\EndFor
+			\State $NuevaPobl[t][NumVars] \gets$ \Call{Cost}{$NuevaPobl \lbrack 0 \dots NumVars \rparen$}
+			\EndFor
+			\State $PobTotal \gets concat(T, NuevaPobl)$
+			\EndFor
+			\EndProcedure
+		\end{algorithmic}
+	\end{breakablealgorithm}
 	
   \begin{thebibliography}{1}
       \bibitem{corr}
