@@ -16,6 +16,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{mathtools}
+\usepackage{minted}
 
 \setcounter{secnumdepth}{3}
 
@@ -682,12 +683,15 @@
 	elementales aquí para hacer el pseudo-código más legible.
 	
 	\begin{itemize}
-		\item $zeros(n)$: devuelve un arreglo $A$ de n elementos, todos inicializados en 0
-		\item $zeros (m, n)$: devuelve una matriz M de tamaño $m \times n$ con todos sus elementos inicializados en 0
+		\item $zeros(n)$: devuelve un arreglo $A$ de n elementos, todos inicializados en 0.
+		\item $zeros (m, n)$: devuelve una matriz M de tamaño $m \times n$ con todos sus elementos inicializados en 0.
 		\item $repmat(M, f, c)$: dada una matriz $M$ devuelve una matriz que replica $f$ copias de $M$ en las filas y $c$ copias en las
-		columnas
-		\item $rand(m, n)$: dados $m < n$ devuelve un número aleatorio en el intervalo $[m,n]$
-		\item $sort(M, c)$: ordena las filas de la matriz $M$ de menor a mayor de acuerdo al valor de la columna $c$
+		columnas.
+		\item $randUniform(m, n)$: dados $m < n$ devuelve un número aleatorio con distribución uniforme en el intervalo
+		 $[m,n]$. Si $m$ y $n$ se omiten, toman por defecto el valor 0 y 1 respectivamente. 
+		\item $randn()$: Devuelve un valor aleatorio correspondiente a una distribución de probabilidad normal estándar.
+		\item $cumsum(p)$:
+		\item $sort(M, c)$: ordena las filas de la matriz $M$ de menor a mayor de acuerdo al valor de la columna $c$.
 		\item $concat(M,N)$: dadas las matrices $M$ de tamaño $m \times n$ y $N$ de tamaño $l \times n$ devuelve una matriz $M'$
 		de tamaño $(m+l) \times n$ donde
 		\begin{equation*}
@@ -696,7 +700,8 @@
 		M[i][j],& \text{si } i \leq m\\
 		N[l-i][j],              & \text{caso contrario}
 		\end{cases}
-		\end{equation*} 
+		\end{equation*}
+		\item $sum(A)$: Dado un arreglo numérico $A$, devuelve la suma de sus elementos. 
 	\end{itemize}
 	
 		\begin{breakablealgorithm}
@@ -720,21 +725,40 @@
 			\EndFunction
 			
 			\item[]
+
+			\Function{ElegirNucleo}{p}
+			\State $r \gets randUniform()$
+			\State $C \gets cumsum(p)$
+			\State \Return $\bigl<Min\ j: 0 \leq j <size(C): C[j] > r \bigr>$
+			\EndFunction
+			
+			\item[]
 			
 			\Procedure{InicializarArchivo}{$T$} \Comment{Inicializa aleatoriamente el archivo}
 			\For{cada fila $f$ en $T$}
-			\State $f[0\dots2] \gets rand(R_{min}, R_{max})$
-			\State $f[3\dots4] \gets rand(C_{min}, C_{max})$
+			\State $f[0\dots2] \gets randUniform(R_{min}, R_{max})$
+			\State $f[3\dots4] \gets randUniform(C_{min}, C_{max})$
 			\State $f[5] \gets \Call{Costo}{f[0\dots4]}$
 			\EndFor
 			\EndProcedure
 			
 			\item[]
 			
-			\Procedure{HallarSoluciones}{}
-			\State $hormiga \gets zeros(NumVars+1)$
-			\State $T \gets repmat(hormiga, TamArchivo, 1)$
+			\Function{HallarSoluciones}{}
+			\State $fila \gets zeros(NumVars+1)$
+			\State $T \gets repmat(fila, TamArchivo, 1)$
 			\State \Call{InicializarArchivo}{$T$}
+			\State $sort(T, NumVars)$
+			\State $w \gets zeros(TamArchivo)$ \Comment{Arreglo con los pesos}
+			\For{$l$ en $\lbrack 0 \dots TamArchivo \rparen$}
+			\State $b \gets  \frac{1}{\sqrt{2\pi} \cdot FactorIntensidad \cdot TamArchivo}$
+			\State $c \gets e^{-\frac{l}{2 \cdot (FactorIntensidad \cdot TamArchivo)^2}}$
+			\State $w[l] \gets b \cdot c $ 
+			\EndFor
+			\State $p \gets zeros(TamArchivo)$ \Comment{Arreglo con las probabilidades}
+			\For{$l$ en $\lbrack 0 \dots TamArchivo \rparen$ }
+			\State $p[l] \gets \frac{w[l]}{sum(w)}$
+			\EndFor
 			\item[]
 			\For{$it$ en $\lbrack 0 \dots NumIt\rparen$} \Comment{Loop principal}
 			\State $\mu \gets zeros(TamArchivo, NumVars)$ \Comment{Arreglo con las medias}
@@ -747,20 +771,28 @@
 			\State $\sigma[j] \gets \frac{zeta * D}{TamArchivo -1}$
 			\EndFor
 			\item[]
-			\State $NuevaPobl \gets repmat(hormiga, TamMuestra, 1)$
+			\State $NuevaPobl \gets repmat(fila, TamMuestra, 1)$
 			\For{$t$ en $\lbrack 0 \dots TamMuestra \rparen$}
 			\State $NuevaPobl[t]\lbrack 0 \dots NumVars \rparen \gets zeros(NumVars)$
 			\For{$i$ en $\lbrack 0 \dots NumVars \rparen$}
-			\State $g \gets$ \Call{WheelSelection}{p} \Comment{Escoger núcleo Gaussiano}
-			\State $NuevaPobl[t][i] \gets \mu[g][t] + \sigma[g][i]*rand()$
+			\State $g \gets$ \Call{ElegirNucleo}{p} \Comment{Escoger núcleo Gaussiano}
+			\State $NuevaPobl[t][i] \gets \mu[g][t] + \sigma[g][i] \cdot rand()$
 			\EndFor
 			\State $NuevaPobl[t][NumVars] \gets$ \Call{Cost}{$NuevaPobl \lbrack 0 \dots NumVars \rparen$}
 			\EndFor
 			\State $PobTotal \gets concat(T, NuevaPobl)$
+			\State $sort(PobTotal, NumVars)$
+			\State $T \gets PobTotal \lbrack 0 \dots TamArchivo \rparen$ \Comment{Actualizar archivo con las mejores soluciones}
 			\EndFor
-			\EndProcedure
+			\State $Sol \gets Archivo[0]$
+			\State \Return $Sol$
+			\EndFunction
 		\end{algorithmic}
 	\end{breakablealgorithm}
+	
+	\appendix
+	\section{Código Python}
+	\inputminted{python}{filtro.py}
 	
   \begin{thebibliography}{1}
       \bibitem{corr}
