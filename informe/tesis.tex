@@ -678,9 +678,13 @@
 	no encuentra buenas soluciones en general.
 	
 	\subsection{Versión continua}
+	\label{subsec:VersionContinua}
 	En esta primera versión del algoritmo el dominio de las variables es todo el intervalo continuo entre los valores
 	admisibles máximos y mínimos especificados por las series $E$. Es conveniente que definamos algunas funciones
-	elementales aquí para hacer el pseudo-código más legible.
+	elementales aquí para hacer el pseudo-código más legible \footnote{Estas funciones pueden encontrarse ya implementadas en
+	varias librerías o lenguajes como por ejemplo \textit{Python} -en la librería \textit{Numpy}- y \textit{Matlab}}. 
+	El código hecho en \textit{Python} puede verse en la sección
+	\ref{subsec:pythoncontinuo}.
 	
 	\begin{itemize}
 		\item $zeros(n)$: devuelve un arreglo $A$ de n elementos, todos inicializados en 0.
@@ -698,15 +702,15 @@
 		M'[i][j] =
 		\begin{cases}
 		M[i][j],& \text{si } i \leq m\\
-		N[l-i][j],              & \text{caso contrario}
+		N[l+(i-m-1)][j],              & \text{caso contrario}
 		\end{cases}
 		\end{equation*}
 		\item $sum(A)$: Dado un arreglo numérico $A$, devuelve la suma de sus elementos. 
 	\end{itemize}
 	
 		\begin{breakablealgorithm}
-		\caption{ACO-$\mathbb{R}$ filtro}
-		\label{alg:exhaustSearch}
+		\caption{ACO-$\mathbb{R}$ Continuo Libre}
+		\label{alg:continuoLibre}
 		\begin{algorithmic}[1]
 			\State $R_{min}, R_{max}$: Valores mínimo y máximo que pueden tomar las resistencias
 			\State $C_{min}, C_{max}$: Valores mínimo y máximo que pueden tomar los capacitores 
@@ -744,7 +748,7 @@
 			
 			\item[]
 			
-			\Function{HallarSoluciones}{}
+			\Function{HallarSoluciones}{}()
 			\State $fila \gets zeros(NumVars+1)$
 			\State $T \gets repmat(fila, TamArchivo, 1)$
 			\State \Call{InicializarArchivo}{$T$}
@@ -789,10 +793,109 @@
 			\EndFunction
 		\end{algorithmic}
 	\end{breakablealgorithm}
+
+	En las figuras (\ref{fig:CostoContinuoLibre}), (\ref{fig:R1ContinuoLibre}), (\ref{fig:R2ContinuoLibre}), (\ref{fig:R3ContinuoLibre}),
+	(\ref{fig:C4ContinuoLibre}) y (\ref{fig:C5ContinuoLibre}) a continuación, 
+	podemos visualizar cómo el costo va bajando hasta que alcanza un punto de convergencia y además ver
+	para cada componente del filtro cómo, luego de un inicio con oscilaciones bruscas, los valores también comienzan a converger.
 	
+	\begin{figure}[H]
+		\includegraphics[width=\linewidth]{ContinuoLibre/Costo.png}
+		\caption{Evolución y convergencia del costo.}
+		\label{fig:CostoContinuoLibre}
+	\end{figure}
+
+	\begin{figure}[H]
+		\includegraphics[width=\linewidth]{ContinuoLibre/R1.png}
+		\caption{Evolución y convergencia de $R_1$.}
+		\label{fig:R1ContinuoLibre}
+	\end{figure}
+
+	\begin{figure}[H]
+		\includegraphics[width=\linewidth]{ContinuoLibre/R2.png}
+		\caption{Evolución y convergencia de $R_2$.}
+		\label{fig:R2ContinuoLibre}
+	\end{figure}
+
+	\begin{figure}[H]
+		\includegraphics[width=\linewidth]{ContinuoLibre/R3.png}
+		\caption{Evolución y convergencia de $R_3$.}
+		\label{fig:R3ContinuoLibre}
+	\end{figure}
+
+	\begin{figure}[H]
+		\includegraphics[width=\linewidth]{ContinuoLibre/C4.png}
+		\caption{Evolución y convergencia de $C_4$.}
+		\label{fig:C4ContinuoLibre}
+	\end{figure}
+
+	\begin{figure}[H]
+		\includegraphics[width=\linewidth]{ContinuoLibre/C5.png}
+		\caption{Evolución y convergencia de $C_5$.}
+		\label{fig:C5ContinuoLibre}
+	\end{figure}
+
+	\subsection{Versión Discreta}
+	\label{subsec:VersionDiscreta}
+	En la sección \ref{subsec:VersionContinua} vimos cómo ACO-$\mathbb{R}$ converge hacia valores dentro del rango continuo que
+	cada componente puede tomar a la vez
+	que minimiza la función costo. Sin embargo, en nuestro problema, el conjunto de valores que puede tomar cada componente
+	del filtro proviene de un conjunto finito de posibles valores. En esta sección modificamos ligeramente el algoritmo (\ref{alg:continuoLibre})
+	de forma que $R_1$ queda fijado a cada uno de los posibles valores que puede tomar, y luego \textit{discretizamos} la solución 
+	continua generada por el algoritmo haciendo una búsqueda de los vecinos más cercanos en la lista de posibles valores para cada
+	componente. Finalmente, se verifica si esta solución discreta es efectivamente una solución -\textit{i.e}, que no viole las restricciones
+	sobre la ganancia, el factor de calidad, la frecuencia de polo y la sensibilidad-.
+	En este caso, el número de variables $NumVars$ pasa a ser 4 en vez de 5, ya que R1 queda fijado. Con lo cual el archivo en vez de
+	tener 6 columnas en cada fila tiene ahora 5 -una para cada variable $R_2$, $R_3$, $C_4$ y $C_5$ y la última para el costo-.
+	Por lo tanto, la solución $Sol$ devuelta contiene los valores para las 4 componentes libres y el costo.
+	
+	\begin{breakablealgorithm}
+		\caption{ACO-$\mathbb{R}$ Discreto Fijo}
+		\label{alg:discretoFijo}
+		\begin{algorithmic}[1]
+			\State $G^{max}, G^{min}$: Valores máximo y mínimo aceptables para la ganancia
+			\State $\omega_p^{max}, \omega_p^{min}$: Valores máximo y mínimo aceptables para la frecuencia de polo
+			\State $Q_p^{max}, Q_p^{min}$: Valores máximo y mínimo aceptables para el factor de calidad
+			\State $Soluciones \gets []$
+			\For{$R_1$ en $ValoresResistencias$}
+				\State $Sol \gets [r_1] +  \Call{HallarSoluciones}{}()$ \Comment{Función definida en el algoritmo \ref{alg:continuoLibre}}
+				\State $Vecinos \gets []$
+				\For{$Componente$ en $Sol$} \Comment{Buscar vecinos de cada componente}
+					\State $(V_l, V_r) \gets VecinosCercanos(Componente, PosiblesValores)$
+					\State $Agregar (V_l, V_r)$ a la lista $Vecinos$
+				\EndFor
+				\For{$r_1$ en $Vecinos[0]$}
+				\For{$r_2$ en $Vecinos[1]$}
+				\For{$r_3$ en $Vecinos[2]$}
+				\For{$c_4$ en $Vecinos[3]$}
+				\For{$c_5$ en $Vecinos[4]$}
+				\State $SolTentativa \gets  [r_1, r_2, r_3, c_4, c_5]$
+				\State $Sens \gets $ \Call{Sensibilidad}{$SolTentativa$}
+				\State $G \gets $ \Call{Ganancia}{$SolTentativa$}
+				\State $Q_p \gets $ \Call{FactorCalidad}{$SolTentativa$}
+				\State $\omega_p \gets $ \Call{FrecuenciaPolo}{$SolTentativa$}
+				\State $G^{ok} \gets G^{min} < G < G^{max}$
+				\State $Q_p^{ok} \gets Q_p^{min} < Q_p < Q_p^{max}$
+				\State $\omega_p^{ok} \gets \omega_p^{min} < \omega_p < \omega_p^{max}$
+				\If{$Sens < 1 \wedge G^{ok} \wedge \omega_p^{ok}  \wedge Q_p^{ok} $}
+					\State Agregar $SolTentativa$ a la lista $Soluciones$
+				\EndIf
+				\EndFor
+				\EndFor
+				\EndFor
+				\EndFor
+				\EndFor
+			\EndFor
+		\end{algorithmic}
+	\end{breakablealgorithm}
+	
+
+
 	\appendix
-	\section{Código Python}
-	\inputminted{python}{filtro.py}
+	\section{\textbf{Código Python}}
+	\subsection{Versión Continua}
+	\label{subsec:pythoncontinuo}
+	\inputminted{python}{filtro_continuoLibre.py}
 	
   \begin{thebibliography}{1}
       \bibitem{corr}
