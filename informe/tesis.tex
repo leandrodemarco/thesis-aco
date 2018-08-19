@@ -17,6 +17,7 @@
 \usepackage{float}
 \usepackage{mathtools}
 \usepackage{minted}
+\usepackage{longtable}
 
 \setcounter{secnumdepth}{3}
 
@@ -457,6 +458,8 @@
 		\end{algorithmic}
 	\end{breakablealgorithm}
 
+	El código \textit{Python} para este algoritmo puede encontrarse en el apéndice \ref{subsec:pythonexhaustivo}.
+
   \section{\textbf{Optimización por Colonia de Hormigas}}
   \label{sec:acor}
   La Optimización por Colonia de Hormigas -en inglés \textit{Ant Colony Optimization}- es una metaheurística introducida en los años '90 inspirada en el comportamiento de las hormigas
@@ -835,7 +838,7 @@
 		\label{fig:C5ContinuoLibre}
 	\end{figure}
 
-	\subsection{Versión Discreta}
+	\subsection{Versión Discreta con Búsqueda de Vecinos Cercanos}
 	\label{subsec:VersionDiscreta}
 	En la sección \ref{subsec:VersionContinua} vimos cómo ACO-$\mathbb{R}$ converge hacia valores dentro del rango continuo que
 	cada componente puede tomar a la vez
@@ -850,7 +853,7 @@
 	Por lo tanto, la solución $Sol$ devuelta contiene los valores para las 4 componentes libres y el costo.
 	
 	\begin{breakablealgorithm}
-		\caption{ACO-$\mathbb{R}$ Discreto Fijo}
+		\caption{ACO-$\mathbb{R}$ Discreto con Búsqueda de Vecinos Cercanos}
 		\label{alg:discretoFijo}
 		\begin{algorithmic}[1]
 			\State $G^{max}, G^{min}$: Valores máximo y mínimo aceptables para la ganancia
@@ -862,7 +865,7 @@
 				\State $Vecinos \gets []$
 				\For{$Componente$ en $Sol$} \Comment{Buscar vecinos de cada componente}
 					\State $(V_l, V_r) \gets VecinosCercanos(Componente, PosiblesValores)$
-					\State $Agregar (V_l, V_r)$ a la lista $Vecinos$
+					\State Agregar $(V_l, V_r)$ a la lista $Vecinos$
 				\EndFor
 				\For{$r_1$ en $Vecinos[0]$}
 				\For{$r_2$ en $Vecinos[1]$}
@@ -889,13 +892,112 @@
 		\end{algorithmic}
 	\end{breakablealgorithm}
 	
+	Esta versión del algoritmo no encuentra soluciones para cada valor de $R_1$. En el gráfico (\ref{fig:SensibilidadesDiscreto}) 
+	podemos visualizar esta situación: la línea verde es la sensibilidad mínima teórica de 0.75 y cada punto rojo es la 
+	sensibilidad de la solución hallada por el algoritmo para el valor de $R_1$ dado. En el apéndice \ref{subsec:pythondiscreto} se
+	encuentra el código \textit{Python} junto a los datos en detalle de las soluciones halladas.
+	
+	\begin{figure}[H]
+		\includegraphics[width=\linewidth]{Discreto/sensibilidadVecinos.png}
+		\caption{Sensibilidad de las soluciones encontradas. La línea verde es el mínimo teórico de la sensibilidad. Los puntos rojos
+		corresponden a a la solución hallada por el algoritmo para el valor de $R_1$ -en el eje $x$, con escala logarítmica-}
+		\label{fig:SensibilidadesDiscreto}
+	\end{figure}
 
+	\subsection{Versión Discreta \textit{Pura}}
+	\label{subsec:VersionDiscretaPura}
+	Presentamos ahora una variante donde en vez de \textit{discretizar} las soluciones continuas encontradas por el algoritmo
+	una vez que el mismo finaliza, se discretiza el valor de la componente seleccionada en cada paso de la iteración seleccionando
+	el valor discreto posible más cercano al continuo generado. En este caso trabajaremos fijando $R_1$ y corriendo el algoritmo 20 veces
+	para cada uno de los posibles valores. En el apéndice \ref{subsec:ResultadosDiscretos} presentamos una tabla con los resultados obtenidos.
+	
 
 	\appendix
+	\section{\textbf{Tablas de Resultados}}
+	\subsection{Algoritmo Exhaustivo}
+	\label{subsec:Resultados Exhaustivo}
+	\subsection{Versión Continua}
+	\label{subsec:Resultados Continuos}
+	\subsection{Versión Discreta}
+	\label{subsec:ResultadosDiscretos}
+	
+	  %\begin{table}[H]
+	   \begin{longtable}{|c|c|c|}
+		%\begin{tabular}{|l|l|l|}
+			\hline
+			\multicolumn{1}{|c|}{R1} & \multicolumn{1}{c|}{Halla solución} & \multicolumn{1}{c|}{Solución es óptima} \\ \hline
+			1000                     &                                                   &                                                      \\ \hline
+			1100                     &                                                   &                                                      \\ \hline
+			1200                     &                                                   &                                                      \\ \hline
+			1300                     &                                                   &                                                      \\ \hline
+			1500                     &                                                   &                                                      \\ \hline
+			1600                     &                                                   &                                                      \\ \hline
+			1800                     &                                                   &                                                      \\ \hline
+			2000                     &                                                   &                                                      \\ \hline
+			2200                     &                                                   &                                                      \\ \hline
+			2400                     &                                                   &                                                      \\ \hline
+			2700                     &                                                   &                                                      \\ \hline
+			3000                     &                                                   &                                                      \\ \hline
+			3300                     &                                                   &                                                      \\ \hline
+			3600                     &                                                   &                                                      \\ \hline
+			3900                     &                                                   &                                                      \\ \hline
+			4300                     &                                                   &                                                      \\ \hline
+			4700                     &                                                   &                                                      \\ \hline
+			5100                     &                                                   &                                                      \\ \hline
+			5600                     &                                                   &                                                      \\ \hline
+			6200                     &                                                   &                                                      \\ \hline
+			6800                     &                                                   &                                                      \\ \hline
+			7500                     &                                                   &                                                      \\ \hline
+			8200                     &                                                   &                                                      \\ \hline
+			9100                     &                                                   &                                                      \\ \hline
+			10000                    &                                                   &                                                      \\ \hline
+			11000                    &                                                   &                                                      \\ \hline
+			12000                    &                                                   &                                                      \\ \hline
+			13000                    &                                                   &                                                      \\ \hline
+			15000                    &                                                   &                                                      \\ \hline
+			16000                    &                                                   &                                                      \\ \hline
+			18000                    &                                                   &                                                      \\ \hline
+			20000                    &                                                   &                                                      \\ \hline
+			22000                    &                                                   &                                                      \\ \hline
+			24000                    &                                                   &                                                      \\ \hline
+			27000                    &                                                   &                                                      \\ \hline
+			30000                    &                                                   &                                                      \\ \hline
+			33000                    &                                                   &                                                      \\ \hline
+			36000                    &                                                   &                                                      \\ \hline
+			39000                    &                                                   &                                                      \\ \hline
+			43000                    &                                                   &                                                      \\ \hline
+			47000                    &                                                   &                                                      \\ \hline
+			51000                    &                                                   &                                                      \\ \hline
+			56000                    &                                                   &                                                      \\ \hline
+			62000                    &                                                   &                                                      \\ \hline
+			68000                    &                                                   &                                                      \\ \hline
+			75000                    &                                                   &                                                      \\ \hline
+			82000                    &                                                   &                                                      \\ \hline
+			91000                    &                                                   &                                                      \\ \hline
+			100000                   &                                                   &                                                      \\ \hline
+			110000                   &                                                   &                                                      \\ \hline
+			120000                   &                                                   &                                                      \\ \hline
+			130000                   &                                                   &                                                      \\ \hline
+			150000                   &                                                   &                                                      \\ \hline
+			160000                   &                                                   &                                                      \\ \hline
+			180000                   &                                                   &                                                      \\ \hline
+			200000                   &                                                   &                                                      \\ \hline
+			220000                   &                                                   &                                                      \\ \hline
+			240000                   &                                                   &                                                      \\ \hline
+			270000                   &                                                   &                                                      \\ \hline
+			300000                   &                                                   &                                                      \\ \hline
+		%\end{tabular}
+	\end{longtable}
+	
 	\section{\textbf{Código Python}}
+	\subsection{Algoritmo Exhaustivo}
+	\label{subsec:pythonexhaustivo}
+	\inputminted{python}{exhaustivo.py}
 	\subsection{Versión Continua}
 	\label{subsec:pythoncontinuo}
 	\inputminted{python}{filtro_continuoLibre.py}
+	\subsection{Versión Discreta}
+	\label{subsec:pythondiscreto}
 	
   \begin{thebibliography}{1}
       \bibitem{corr}
@@ -905,7 +1007,7 @@
       
       \bibitem{lov:rom:per}
       Lovay, M., Romero, E., Peretti, M.:
-      Dise\~no de Filtros Activos Robustos usando Algoritmos Genéticos.
+      Diseño de Filtros Activos Robustos usando Algoritmos Genéticos.
       SII 2015 4$^\circ$ Simposio Argentino de Informática Industrial.
       
       \bibitem{dim}
