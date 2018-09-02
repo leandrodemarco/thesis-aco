@@ -18,6 +18,7 @@
 \usepackage{mathtools}
 \usepackage{minted}
 \usepackage{longtable}
+\usepackage[long]{optidef}
 
 \setcounter{secnumdepth}{3}
 
@@ -51,7 +52,7 @@
 
 % Titulo
 \title{Selección de Componentes Discretos para un Filtro Activo Mediante
-  \textit{Constraint Programming} y \textit{Ant Colony Optimization}} 
+  \textit{Programación por Restricciones} y \textit{Optimización por Colonia de Hormigas}} 
 \author{Leandro Demarco Vedelago}
 \institute{
             \email{leandrodemarco@gmail.com}\\
@@ -135,14 +136,15 @@
 	Para los filtros IGMFB los valores de $G$, $\omega_p$ y $Q_p$ pueden calcularse a partir
 	de los valores de las resistencias y capacitores, de acuerdo a las siguientes fórmulas
 	
-	\begin{eqnarray}
-		G &=& R_2/R_1 \label{g}\\
-		\omega_p &=& 1/\sqrt{R_2 R_3 C_4 C_5} \label{omega}\\
+	\begin{eqnarray*}
+		G &=& R_2/R_1 \\
+		\omega_p &=& 1/\sqrt{R_2 R_3 C_4 C_5} \\
 		Q^{-1}_p &=& \sqrt{C_5/C_4}  \left(\sqrt{R_2 R_3}/R_1 + \sqrt{R_3/R_2} +
-		\sqrt{R_2/R_3}\right) \label{q}
-	\end{eqnarray}
+		\sqrt{R_2/R_3}\right)
+	\end{eqnarray*}
 	
 	\subsection{Sensibilidad de un filtro IGMFB}
+	\label{subsec:sensFiltro}
 	El término sensibilidad es utilizado para expresar una medida de
 	la variación de la performance como resultado de cambios en los valores de los
 	componentes. Dichas variaciones pueden ocurrir debido al envejecimiento de los
@@ -177,16 +179,22 @@
 	Como se puede ver, en (\ref{sensR1Omega}), (\ref{sensOtrosOmega}) y (\ref{sensCapQ}), las
 	sensibilidades adoptan valores fijos, mientras que las otras dependen de los valores que adopten los componentes. 
 	En consecuencia, debemos considerar las sensibilidades (\ref{sensR1Q}), (\ref{sensR2Q}) y (\ref{sensR3Q}) 
-	a la hora de seleccionar los valores para cada componente.
-	En el caso de estudio seleccionado, la especificación elegida para el filtro es $G_F = 3$,
-	$\omega_{p_F}=1000*2*\pi rad/s$ y $Q_{p_F} = 0,707$. 
+	a la hora de seleccionar los valores para cada componente. 
 	
-	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se supone que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se
-	define además una tolerancia o error máximo $E_{max} = 2,5\%$ para los valores de $G_F$,
-	$\omega_{p_F}$ y $Q_{p_F}$.
+	Idealmente, querríamos hallar una solución que minimice las tres sensibilidades $S_{R_1}^{Q_p}$, $S_{R_2}^{Q_p}$ y
+	$S_{R_3}^{Q_p}$ simultáneamente. Dado que desconocemos si existe tal solución, definimos la \textit{sensibilidad total} del filtro:
+	\begin{equation}
+		S_T = S_{R_1}^{Q_p}  + S_{R_2}^{Q_p} + S_{R_3}^{Q_p}
+	\end{equation} 
+	e intentaremos minimizar dicha sensibilidad.
 	
+	En el caso de estudio seleccionado, la especificación elegida para el filtro es $G_{obj} = 3$,
+	$\omega_{p_{obj}}=1000*2*\pi$ $rad/s$ y $Q_{p_{obj}} = 0,707$. 
+	
+	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se supone que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se define además una tolerancia o error máximo $E_{max} = 2,5\%$ para los valores de $G_F$,
+	$\omega_{p_F}$ y $Q_{p_F}$.	
     
-  \section{\textbf{\textit{Constraint Programming}}}
+  \section{\textbf{Programación por Restricciones}}
     \label{sec:fundprog}
     Intuitivamente, los problemas de satisfacción de restricciones (\textit{CSP}, por sus siglas en inglés) pueden definirse como \textit{encontrar una solución que satisface determinadas restricciones o pro\-pie\-da\-des}. Muchos problemas de la vida real pueden ser reducidos a 
     este tipo de problemas, por ejemplo: el planeamiento y control del tráfico aéreo en un aeropuerto, el confeccionamiento de una agenda de clases o el diseño de una dieta saludable. 
@@ -301,8 +309,9 @@
 	pueden ser preferibles a otras. Estas preferencias pueden ser expresadas añadiendo una función
 	objetivo a ser maximizada (o minimizada), definiendo así un un problema de optimización
 	restringida. Formalmente, un problema de optimización restringida está definido por un CSP
-	$(X, D, C)$ y una función objetivo $f: X \rightarrow \mathbb{R}$. El objetivo es hallar una solución del CSP que maximiza (o minimiza) $f$. En estos casos la dificultad no radica en hallar
-	una solución, si no en hallar una óptima con respecto a $f$.
+	$(X, D, C)$ y una función objetivo $f: X \rightarrow \mathbb{R}$. El objetivo es hallar una solución del CSP 
+	que maximiza (o minimiza) $f$. En estos casos la dificultad no radica en hallar una solución, 
+	si no en hallar una óptima con respecto a $f$.
 	
 	\subsection{Definición del problema como CSP}
 		\label{subsec:problemDefinition}
@@ -327,16 +336,288 @@
 			\item $C = \{G^{max} > G_F > G^{min}, \omega_p^{max} > \omega_{p_F} > \omega_p^{min},
 			Q^{max} > Q_F > Q^{min}\}$
 		\end{itemize}
+	
+		Además, el problema está \textit{sub-restringido} dado que hay múltiples soluciones que satisfacen las restricciones.
+		En nuestro caso, la preferencia entre las soluciones está determinada por aquella que presente menor sensibilidad total. 
+		Es decir, $f: X \rightarrow \mathbb{R} = S_T(R_1, R_2, R_3, C_4, C_5)$ y queremos minimizarla.
+		
+		Como mencionamos en la sección \ref{subsec:sensFiltro}, idealmente querríamos hallar una solución que minimice las tres
+		sensibilidades simultáneamente, pero desconocemos si existe o no tal solución, por lo cual hemos definido la sensibilidad total
+		$S_T$ como la suma de cada una de las tres sensibilidades. Otra posibilidad consistiría en ver, dado un conjunto
+		de soluciones, cuáles de ellas son \textit{óptimos de Pareto} de acuerdo a las siguientes definiciones:
+		
+		Dados dos vectores $\vec{u} = (u_1, \dots, u_k)$ y $\vec{v} = (v_1, \dots, v_k)$, se dice que $\vec{u}$ \textit{domina}
+		a $\vec{v}$ si y sólo si $\bigl<\forall i : i \in {1, \dots, k} : u_i \leq v_i\bigr>$.
+		
+		Dado un conjunto de vectores $S$, se dice que $\vec{v}^{\star} \in S$ es un \textit{óptimo de Pareto} si y sólo si
+		$\neg \bigl<\exists \vec{v'} : \vec{v'} \in S \wedge \vec{v'} \neq \vec{v} : \vec{v'} \text{ domina a } \vec{v}\bigr>$.
     
 
-  \section{\textbf{Algoritmo exhaustivo}}
+  \section{\textbf{Solución exhaustiva}}
+    En esta sección presentaremos primero una solución analítica del problema a partir de la cual luego derivaremos un algoritmo
+    que permite encontrar todas las soluciones del problema. La ventaja de contar con una solución de este tipo es que nos permitirá
+    evaluar luego el rendimiento de los métodos heurísticos, en este caso en particular de ACO\textsubscript{$\mathbb{R}$}.
   	\label{sec:exhaustSearch}
-    Realizando algunas observaciones y transformaciones matemáticas, es posible obtener un algoritmo exhaustivo que descubre
+  	\subsection{Solución Analítica}
+  	  \label{subsec:solAnalitica}
+	  	El problema consiste en minimizar una función -la sensibilidad- de cinco variables -las tres resistencias y los dos capacitores-, 
+	  	sujeta a tres restricciones,
+	  	
+	  	\begin{mini}
+	  		{R_i,C_j}{S(R_i,C_j)}{}{}
+	  		\addConstraint{G(R_i,C_j)}{\in [G_-,G_+]}{}
+	  		\addConstraint{\omega(R_i,C_j)}{\in [\omega_-,\omega_+]}{}
+	  		\addConstraint{Q(R_i,C_j)}{\in [Q_-,Q_+]}{}
+	  		\label{opti}
+	  	\end{mini}
+  	    con $i=1,\ldots,3$ y $j=4,5$ y siendo
+  	  	\begin{eqnarray}
+	  	   G(R_i,C_j)&=&R_2/R_1 \label{g}\\
+	  	   \omega(R_i,C_j)&=&\frac{1}{\sqrt{R_2C_4R_3C_5}}\label{omega}\\
+	  	   Q(R_i,C_j)&=&\sqrt{\frac{C_4}{C_5}}\left\{\frac{\sqrt{R_2R_3}}{R_1} +
+	  	   \sqrt{\frac{R_3}{R_2}} +\sqrt{\frac{R_2}{R_3}}\right\}^{-1} \label{q}\\
+	  	   S(R_i,C_j)&=& \frac{1}{2} Q \sqrt{\frac{C_5}{C_4}} \left\{ 2 \left|
+	  	   \frac{\sqrt{R_2R_3}}{R_1} \right| + \left| \frac{\sqrt{R_2R_3}}{R_1} -
+	  	   \sqrt{\frac{R_3}{R_2}} +\sqrt{\frac{R_2}{R_3}} \right| + \right. \nonumber\\
+	  	   && \left. \left| \frac{\sqrt{R_2R_3}}{R_1} +
+	  	   \sqrt{\frac{R_3}{R_2}} - \sqrt{\frac{R_2}{R_3}} \right|\right\}\label{sens}
+  	   \end{eqnarray}
+  	   
+  	   En el problema (\ref{opti}) los intervalos están todos especificados en base al
+  	   error admisible respecto a un valor objetivo. Suponiendo el mismo error
+  	   $\epsilon$ para todas las variables, y siendo los valores objetivos $G_0$,
+  	   $\omega_0$ y $Q_0$ resulta
+  	   \begin{eqnarray}
+  	   G_\pm&=&(1\pm\epsilon)G_0\\
+  	   \omega_\pm&=&(1\pm\epsilon)\omega_0\\
+  	   Q_\pm&=&(1\pm\epsilon)Q_0
+  	   \end{eqnarray}
+  	   Para simplificar la discusión por ahora consideremos el problema (\ref{opti})
+  	   ahora con variables continuas en lugar de discretas lo que permite considerar el
+  	   problema de optimización con restricciones de igualdad (si no considerásemos
+  	   variables continuas, el problema con restricciones de igualdad no tendría
+  	   solución),  
+  	   \begin{mini}
+	  	   	{R_i,C_j}{S(R_i,C_j)}{}{}
+	  	   	\addConstraint{G(R_i,C_j)}{= G_0}{}
+	  	   	\addConstraint{\omega(R_i,C_j)}{=\omega_0}{}
+	  	   	\addConstraint{Q(R_i,C_j)}{=Q_0}{}
+	  	   	\label{opti2}
+  	   \end{mini}
+     
+	A partir de (\ref{q}) y (\ref{sens}) es fácil ver que la sensibilidad depende sólo de los valores de las resistencias,
+	\begin{eqnarray}
+	S(R_1,R_2,R_3)&=&\frac{1}{2} \left\{\frac{\sqrt{R_2R_3}}{R_1} +
+	\sqrt{\frac{R_3}{R_2}} +\sqrt{\frac{R_2}{R_3}}\right\}^{-1} \times 
+	\left\{ 2 \left| \frac{\sqrt{R_2R_3}}{R_1} \right| + \right. \nonumber \\
+	&& \left. \left| \frac{\sqrt{R_2R_3}}{R_1} -
+	\sqrt{\frac{R_3}{R_2}} +\sqrt{\frac{R_2}{R_3}} \right| + 
+	\left| \frac{\sqrt{R_2R_3}}{R_1} +
+	\sqrt{\frac{R_3}{R_2}} - \sqrt{\frac{R_2}{R_3}} \right|\right\} \label{sens2}
+	\end{eqnarray}
+	
+	Pero de (\ref{sens2}) se puede ver que la sensibilidad depende de los cocientes
+	entre pares de resistencias, por lo que siendo tres las resistencias, dependerá
+	sólo de dos cocientes independientes. Tomemos tales cocientes los siguientes,
+	\begin{eqnarray}
+	a&=&R_1/R_2\nonumber\\
+	b&=&R_1/R_3 \label{variables}
+	\end{eqnarray}
+	En funci\'on de estas dos nuevas variables, la sensibilidad toma la forma,
+	\begin{equation}
+	S(a,b)=\frac{1}{2}\frac{\left\{ 2+\left|1-a+b\right| + \left|1+a-b\right|
+		\right\} }{(1+a+b)}
+	\end{equation}
+	Teniendo en cuenta que en funci\'on de las nuevas variables $a$ y $b$ la ganancia
+	es simplemente $G(a)=1/a$, el problema (\ref{opti2}) queda reducido a,
+	\begin{mini}
+		{a,b}{S(a,b)}{}{}
+		\addConstraint{a}{= a_0}{}
+		\addConstraint{\omega(R_i,C_j)}{=\omega_0}{}
+		\addConstraint{Q(R_i,C_j)}{=Q_0}{}
+		\label{opti3}
+	\end{mini}
+	donde definimos $a_0=1/G_0$. Teniendo en cuenta entonces que la restricci\'on
+	sobre la ganancia no hace m\'as que fijar el valor de $a$ en $a_0$, resulta
+	entonces que la 
+	sensibilidad es funci\'on s\'olo de $b$. La minimizaci\'on de $S$ es entonces un
+	problema de una sola variable. Para simplificar la notaci\'on definamos $d=1+a$
+	con lo que la sensibilidad queda,
+	\begin{equation}
+	S(b)=\frac{1}{2}\frac{\left\{ 2+\left|2-d+b\right| + \left|d-b\right|
+		\right\} }{(d+b)}
+	\label{sens3}
+	\end{equation}
+	
+	La presencia de la función valor absoluto introduce dos puntos en la función $S(b)$ en los que su derivada es
+	discontinua: $b=d-2$ y $b=d$. Entonces el o los mínimos de $S$ estarán en
+	los puntos donde la derivada sea nula, en los puntos de discontinuidad de la
+	derivada o en los extremos del dominio. Si suponemos que la ganancia es mayor
+	que 1, entonces $a<1$ y por lo  tanto $d<2$ con lo que el punto de discontinuidad de la derivada 
+	$b=d-2$ no es de interés ya que es negativo y $b$ sólo puede tomar valores positivos. Un
+	cálculo explícito permite mostrar que no existe ningún punto en el que la derivada
+	se anule (para valores positivos de $b$). Respecto a los extremos del dominio,  si bien la función está definida 
+	para $b\in(-\infty,+\infty)$, los valores negativos de $b$ no son de interés. Consideramos entonces  la función 
+	$S(b)$ definida en $(0,+\infty)$ (aunque estrictamente hablando, 0 y $+\infty$ tampoco son valores
+	realizables). A partir de (\ref{sens3}) obtenemos $S(0)=2/d>1$, $\lim_{b\to +\infty}  S(b)=1$ y el valor de $S$ 
+	en el punto $b_0=d=1+a_0$ de discontinuidad de la derivada $S(b_0)=1/d$. Por lo tanto
+	\begin{equation}
+	\text{min} \;S(b)=S(d)=1/d
+	\end{equation}
+	Siendo $S(0)$ el máximo de la función (en el intervalo $(0,+\infty)$).
+	
+	Resumiendo lo hecho hasta ahora, el problema se redujo al siguiente sistema de ecuaciones,
+	\begin{eqnarray}
+	a&=&a_0\label{a}\\
+	b&=&1+a\label{b}\\
+	\omega(R_2,R_3,C_4,C_5)&=&\omega_0\label{omega2}\\
+	Q(R_1,R_2,R_3,C_4,C_5)&=&Q_0\label{q2}
+	\label{opti4}
+	\end{eqnarray}
+	
+	Hemos llegado entonces a un sistema de 4 ecuaciones con 5 incógnitas, por lo tanto una variable es
+	libre. Como el valor de $a$ está fijo por la primer ecuación, la segunda ecuación permite obtener el valor de $b$. 
+	Las últimas dos ecuaciones, estando ya determinados los valores de $a$ y $b$, y teniendo en cuenta a partir de
+	(\ref{variables}) que $R_2$ y $R_3$ se pueden expresar en función de $R_1$, $a$ y $b$, es un sistema de dos ecuaciones 
+	con tres  incógnitas ($R_1$, $C_4$ y $C_5$). Elegimos como variable libre a $R_1$. Entonces, asignando a $R_1$ un valor, 
+	dentro del rango admisible, las últimas dos ecuaciones permiten determinar los valores de los capacitores.
+	
+	Fijando el valor de $R_1$, de (\ref{a}) obtenemos $R_2$ y con (\ref{b}) $R_3$. Luego, de (\ref{omega2}) y 
+	(\ref{q2}) obtenemos $C_4$ y $C_5$. El resultado final es,
+	\begin{eqnarray}
+	R_2&=&G_0 R_1\nonumber\\
+	R_3&=&\frac{R_1 R_2}{R_1+ R_2}\nonumber\\
+	C_4&=&\frac{Q_0 D}{\omega_0 E}\\
+	C_5&=&\frac{D E}{\omega_0 Q_0}\nonumber\label{final}
+	\end{eqnarray}
+	donde hemos definido,
+	\begin{eqnarray}
+	D&=&1/\sqrt{R_2 R_3}\nonumber\\
+	E&=&\left\{\frac{\sqrt{R_2R_3}}{R_1} +
+	\sqrt{\frac{R_3}{R_2}} +\sqrt{\frac{R_2}{R_3}}\right\}^{-1}
+	\end{eqnarray}
+	
+	A modo de ejemplo mostramos en la tabla el resultado de utilizar (\ref{final}) con los valores de $R_1$ del escenario 2. 
+	Luego de calcular el conjunto de valores $(R_1,R_2,R_3,C_4,C_5)$ para cada valor de $R_1$, descartamos todas la
+	tuplas en las que alguno de sus cinco elementos se salen del rango correspondiente al escenario.
+	
+	\begin{table}[H]
+		$$
+		\begin{array}{|c|c|c|c|c|}
+		\hline
+		R_1    & R_2  & R_3   & C_4                          & C_5 \\
+		\hline
+		1500. & 4500. & 1125. & \text{2.00*10${}^{\wedge}$-7} & \text{2.50*10${}^{\wedge}$-8} \\
+		1600. & 4800. & 1200. & \text{1.87*10${}^{\wedge}$-7} & \text{2.34*10${}^{\wedge}$-8} \\
+		1800. & 5400. & 1350. & \text{1.66*10${}^{\wedge}$-7} & \text{2.08*10${}^{\wedge}$-8} \\
+		2000. & 6000. & 1500. & \text{1.50*10${}^{\wedge}$-7} & \text{1.87*10${}^{\wedge}$-8} \\
+		2200. & 6600. & 1650. & \text{1.36*10${}^{\wedge}$-7} & \text{1.70*10${}^{\wedge}$-8} \\
+		2400. & 7200. & 1800.     & \text{1.25*10${}^{\wedge}$-7} & \text{1.56*10${}^{\wedge}$-8} \\
+		2700. & 8100. & 2025.     & \text{1.11*10${}^{\wedge}$-7} & \text{1.38*10${}^{\wedge}$-8} \\
+		3000. & 9000. & 2250.     & \text{1.00*10${}^{\wedge}$-7} & \text{1.25*10${}^{\wedge}$-8} \\
+		3300. & 9900. & 2475.     & \text{9.09*10${}^{\wedge}$-8} & \text{1.13*10${}^{\wedge}$-8} \\
+		3600. & 10800. & 2700.    & \text{8.33*10${}^{\wedge}$-8} & \text{1.04*10${}^{\wedge}$-8} \\
+		3900. & 11700. & 2925.    & \text{7.69*10${}^{\wedge}$-8} & \text{9.61*10${}^{\wedge}$-9} \\
+		4300. & 12900. & 3225.    & \text{6.97*10${}^{\wedge}$-8} & \text{8.72*10${}^{\wedge}$-9} \\
+		4700. & 14100. & 3525.    & \text{6.38*10${}^{\wedge}$-8} & \text{7.98*10${}^{\wedge}$-9} \\
+		5100. & 15300. & 3825.    & \text{5.88*10${}^{\wedge}$-8} & \text{7.35*10${}^{\wedge}$-9} \\
+		5600. & 16800. & 4200.    & \text{5.35*10${}^{\wedge}$-8} & \text{6.69*10${}^{\wedge}$-9} \\
+		6200. & 18600. & 4650.    & \text{4.84*10${}^{\wedge}$-8} & \text{6.05*10${}^{\wedge}$-9} \\
+		6800. & 20400. & 5100.    & \text{4.41*10${}^{\wedge}$-8} & \text{5.51*10${}^{\wedge}$-9} \\
+		7500. & 22500. & 5625.    & \text{4.00*10${}^{\wedge}$-8} & \text{5.00*10${}^{\wedge}$-9} \\
+		8200. & 24600. & 6150.    & \text{3.65*10${}^{\wedge}$-8} & \text{4.57*10${}^{\wedge}$-9} \\
+		9100. & 27300. & 6825.    & \text{3.29*10${}^{\wedge}$-8} & \text{4.12*10${}^{\wedge}$-9} \\
+		10000. & 30000. & 7500.   & \text{3.00*10${}^{\wedge}$-8} & \text{3.75*10${}^{\wedge}$-9} \\
+		11000. & 33000. & 8250.   & \text{2.72*10${}^{\wedge}$-8} & \text{3.41*10${}^{\wedge}$-9} \\
+		12000. & 36000. & 9000.   & \text{2.50*10${}^{\wedge}$-8} & \text{3.12*10${}^{\wedge}$-9} \\
+		13000. & 39000. & 9750.   & \text{2.30*10${}^{\wedge}$-8} & \text{2.88*10${}^{\wedge}$-9} \\
+		15000. & 45000. & 11250.  & \text{2.00*10${}^{\wedge}$-8} & \text{2.50*10${}^{\wedge}$-9} \\
+		16000. & 48000. & 12000.  & \text{1.87*10${}^{\wedge}$-8} & \text{2.34*10${}^{\wedge}$-9} \\
+		18000. & 54000. & 13500.  & \text{1.66*10${}^{\wedge}$-8} & \text{2.08*10${}^{\wedge}$-9} \\
+		20000. & 60000. & 15000.  & \text{1.50*10${}^{\wedge}$-8} & \text{1.87*10${}^{\wedge}$-9} \\
+		22000. & 66000. & 16500.  & \text{1.36*10${}^{\wedge}$-8} & \text{1.70*10${}^{\wedge}$-9} \\
+		24000. & 72000. & 18000.  & \text{1.25*10${}^{\wedge}$-8} & \text{1.56*10${}^{\wedge}$-9} \\
+		27000. & 81000. & 20250.  & \text{1.11*10${}^{\wedge}$-8} & \text{1.38*10${}^{\wedge}$-9} \\
+		30000. & 90000. & 22500.  & \text{1.00*10${}^{\wedge}$-8} & \text{1.25*10${}^{\wedge}$-9} \\
+		33000. & 99000. & 24750.  & \text{9.09*10${}^{\wedge}$-9} & \text{1.13*10${}^{\wedge}$-9} \\
+		36000. & 108000. & 27000. & \text{8.33*10${}^{\wedge}$-9} & \text{1.04*10${}^{\wedge}$-9} \\
+		\hline
+		\end{array}
+		$$
+		\caption{}
+	\end{table}
+
+	Si ahora volvemos al problema original (\ref{opti}), la estrategia de resolución se mantiene 
+	casi sin modificaciones: lo único que cambia es que ahora para cada $a$ puede haber varios valores 
+	de $R_1$ que satisfacen la restricción sobre $G$ (aunque como está formulado el problema por cada 
+	$R_1$ hay un solo $R_2$ que satisface esta restricción). Para cada par ($a$,$R_1$) calculamos el
+	valor de $b$ que minimiza $S$. Luego, para cada terna ($a$,$R_1$,$b$) utilizamos
+	las últimas dos restricciones para obtener todos los valores de capacitores que
+	las satisfacen. Una manera simple de hacer esto es calcular, dados $R_1$, $R_2$
+	y $R_3$, los valores máximos y mínimos de $C_4$ y $C_5$ que satisfacen las
+	restricciones para $\omega$ y $Q$.  De las ecuaciones (\ref{final}) obtenemos:
+	\begin{eqnarray}
+	C_4^{min} &=& \frac{Q_-D}{\omega_+E}\nonumber\\
+	C_4^{max} &=& \frac{Q_+D}{\omega_-E}\nonumber\\
+	C_5^{min} &=& \frac{DE}{\omega_+Q_+}\label{limites}\\
+	C_5^{max} &=& \frac{DE}{\omega_-Q_-}\nonumber
+	\end{eqnarray}
+	Luego basta con elegir todos los $C_4$ que caen en el rango $(C_4^{min},C_4^{max})$. Análogamente con $C_5$. 
+	En la tabla 2 mostramos los valores discretos mas cercanos a los de la tabla 1 (cuando alguno de los valores 
+	de algún parámetro de la tabla 1 es equidistante a dos valores permitidos, tomamos como más cercano el de la izquierda)
+	\begin{table}[H]
+		$$
+		\begin{array}{|c|c|c|c|c|}
+		\hline
+		R_1    & R_2  & R_3   & C_4                          & C_5 \\
+		\hline
+		1500. & 4300. & 1100. & \text{2.2$\grave{ }$*${}^{\wedge}$-7} & \text{2.7$\grave{ }$*${}^{\wedge}$-8} \\
+		1600. & 4700. & 1200. & \text{1.8$\grave{ }$*${}^{\wedge}$-7} & \text{2.2$\grave{ }$*${}^{\wedge}$-8} \\
+		1800. & 5600. & 1300. & \text{1.8$\grave{ }$*${}^{\wedge}$-7} & \text{2.2$\grave{ }$*${}^{\wedge}$-8} \\
+		2000. & 6200. & 1500. & \text{1.5$\grave{ }$*${}^{\wedge}$-7} & \text{1.8$\grave{ }$*${}^{\wedge}$-8} \\
+		2200. & 6800. & 1600. & \text{1.5$\grave{ }$*${}^{\wedge}$-7} & \text{1.8$\grave{ }$*${}^{\wedge}$-8} \\
+		2400. & 7500. & 1800. & \text{1.2$\grave{ }$*${}^{\wedge}$-7} & \text{1.5$\grave{ }$*${}^{\wedge}$-8} \\
+		2700. & 8200. & 2000. & \text{1.2$\grave{ }$*${}^{\wedge}$-7} & \text{1.5$\grave{ }$*${}^{\wedge}$-8} \\
+		3000. & 9100. & 2200. & \text{1.0$\grave{ }$*${}^{\wedge}$-7} & \text{1.2$\grave{ }$*${}^{\wedge}$-8} \\
+		3300. & 10000. & 2400. & \text{8.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.2$\grave{ }$*${}^{\wedge}$-8} \\
+		3600. & 11000. & 2700. & \text{8.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.$\grave{ }$*${}^{\wedge}$-8} \\
+		3900. & 12000. & 3000. & \text{8.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.$\grave{ }$*${}^{\wedge}$-8} \\
+		4300. & 13000. & 3300. & \text{6.8$\grave{ }$*${}^{\wedge}$-8} & \text{8.2$\grave{ }$*${}^{\wedge}$-9} \\
+		4700. & 15000. & 3600. & \text{6.8$\grave{ }$*${}^{\wedge}$-8} & \text{8.2$\grave{ }$*${}^{\wedge}$-9} \\
+		5100. & 15000. & 3900. & \text{5.6$\grave{ }$*${}^{\wedge}$-8} & \text{6.8$\grave{ }$*${}^{\wedge}$-9} \\
+		5600. & 16000. & 4300. & \text{5.6$\grave{ }$*${}^{\wedge}$-8} & \text{6.8$\grave{ }$*${}^{\wedge}$-9} \\
+		6200. & 18000. & 4700. & \text{4.7$\grave{ }$*${}^{\wedge}$-8} & \text{5.6$\grave{ }$*${}^{\wedge}$-9} \\
+		6800. & 20000. & 5100. & \text{4.7$\grave{ }$*${}^{\wedge}$-8} & \text{5.6$\grave{ }$*${}^{\wedge}$-9} \\
+		7500. & 22000. & 5600. & \text{3.9$\grave{ }$*${}^{\wedge}$-8} & \text{4.7$\grave{ }$*${}^{\wedge}$-9} \\
+		8200. & 24000. & 6200. & \text{3.9$\grave{ }$*${}^{\wedge}$-8} & \text{4.7$\grave{ }$*${}^{\wedge}$-9} \\
+		9100. & 27000. & 6800. & \text{3.3$\grave{ }$*${}^{\wedge}$-8} & \text{3.9$\grave{ }$*${}^{\wedge}$-9} \\
+		10000. & 30000. & 7500. & \text{3.3$\grave{ }$*${}^{\wedge}$-8} & \text{3.9$\grave{ }$*${}^{\wedge}$-9} \\
+		11000. & 33000. & 8200. & \text{2.7$\grave{ }$*${}^{\wedge}$-8} & \text{3.3$\grave{ }$*${}^{\wedge}$-9} \\
+		12000. & 36000. & 9100. & \text{2.7$\grave{ }$*${}^{\wedge}$-8} & \text{3.3$\grave{ }$*${}^{\wedge}$-9} \\
+		13000. & 39000. & 10000. & \text{2.2$\grave{ }$*${}^{\wedge}$-8} & \text{2.7$\grave{ }$*${}^{\wedge}$-9} \\
+		15000. & 43000. & 11000. & \text{2.2$\grave{ }$*${}^{\wedge}$-8} & \text{2.7$\grave{ }$*${}^{\wedge}$-9} \\
+		16000. & 47000. & 12000. & \text{1.8$\grave{ }$*${}^{\wedge}$-8} & \text{2.2$\grave{ }$*${}^{\wedge}$-9} \\
+		18000. & 56000. & 13000. & \text{1.8$\grave{ }$*${}^{\wedge}$-8} & \text{2.2$\grave{ }$*${}^{\wedge}$-9} \\
+		20000. & 62000. & 15000. & \text{1.5$\grave{ }$*${}^{\wedge}$-8} & \text{1.8$\grave{ }$*${}^{\wedge}$-9} \\
+		22000. & 68000. & 16000. & \text{1.5$\grave{ }$*${}^{\wedge}$-8} & \text{1.8$\grave{ }$*${}^{\wedge}$-9} \\
+		24000. & 75000. & 18000. & \text{1.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.5$\grave{ }$*${}^{\wedge}$-9} \\
+		27000. & 82000. & 20000. & \text{1.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.5$\grave{ }$*${}^{\wedge}$-9} \\
+		30000. & 91000. & 22000. & \text{1.0$\grave{ }$*${}^{\wedge}$-8} & \text{1.2$\grave{ }$*${}^{\wedge}$-9} \\
+		33000. & 100000. & 24000. & \text{8.2$\grave{ }$*${}^{\wedge}$-9} & \text{1.2$\grave{ }$*${}^{\wedge}$-9} \\
+		36000. & 110000. & 27000. & \text{8.2$\grave{ }$*${}^{\wedge}$-9} & \text{1.0$\grave{ }$*${}^{\wedge}$-9} \\
+		\hline
+		\end{array}
+		$$
+		\caption{}
+	\end{table}
+  	   
+  	
+  	\subsection{Algoritmo}
+    Basándonos en el análisis realizado en la sección \textbf{\ref{subsec:solAnalitica}}, es posible obtener un algoritmo exhaustivo que descubre
     todas las soluciones posibles para el problema.
 
-    Es claro que a partir de la ecuación (\ref{g}) se tiene que para cada valor de $R_1$ hay
-    un conjunto de valores de $R_2$ que denotaremos 
-    $\{R_2\}_{R_1}$ tales que $G^{max} > G > G^{min}$
+    Es claro que a partir de la ecuación (\ref{g}) se tiene que para cada valor de $R_1$ hay un conjunto de valores de $R_2$ 
+    que denotaremos  $\{R_2\}_{R_1}$ tales que $G^{max} > G > G^{min}$
 
     Definiendo las siguientes cantidades,
     \begin{eqnarray}
@@ -459,6 +740,7 @@
 	\end{breakablealgorithm}
 
 	El código \textit{Python} para este algoritmo puede encontrarse en el apéndice \ref{subsec:pythonexhaustivo}.
+	
 
   \section{\textbf{Optimización por Colonia de Hormigas}}
   \label{sec:acor}
@@ -679,6 +961,51 @@
 	Luego introducimos una modificación para que en cada paso el algoritmo trabaje con valores discretos pero que requiere
 	varias ejecuciones para, fijado $R_1$ hallar una buena solución. Finalmente, veremos que si $R_1$ se deja libre, la versión discreta
 	no encuentra buenas soluciones en general.
+	Para cada una de las variantes, definimos una función \textit{costo} que es el objetivo a minimizar y por lo tanto será la ultima columna
+	de cada entrada del archivo de soluciones. En cada una de las variantes la función es la misma:
+	
+	\begin{breakablealgorithm}
+		\caption{Función costo a minimizar}
+	    \begin{algorithmic}[1]
+	    	\State $R_{min}, R_{max}$: Valores mínimo y máximo que pueden tomar las resistencias
+	    	\State $C_{min}, C_{max}$: Valores mínimo y máximo que pueden tomar los capacitores
+	    	\State $W_G \gets 100000$: Peso de la restricción sobre la ganancia
+	    	\State $W_\omega \gets 100$: Peso de la restricción sobre $\omega$
+	    	\State $W_Q \gets 100$: Peso de la restricción sobre $Q$
+	    	\State $W_{Sens} \gets 1000$
+	    	\State $W_{Max}  \gets 1\mathrm{e}{11}$: Penalización para variables fuera de rango
+	    	\State $G_{obj} \gets 3$: Ganancia objetivo
+	    	\State $\omega_{obj} \gets 2000 * \pi$: Frecuencia de polo objetivo
+	    	\State $Q_{obj} \gets 0.707$: Factor de calidad objetivo
+	    	
+	    	\item[]
+	    	
+	    	\Function{EnRango}{Comp}
+	    	\If{$\Call{EsResistencia}{Comp}$}
+	    		\State \Return $R_{min} < Comp < R_{max}$
+	    	\Else
+	    		\State \Return $C_{min} < Comp < C_{max}$
+	    	\EndIf
+	    	\EndFunction
+	    	
+	    	\item[]
+	    	
+	    	\Function{Costo}{$R_1$, $R_2$, $R_3$, $C_4$, $C_5$}
+	    		\State $RangosOK \gets \bigl<\forall\ c: c \in \lbrace R_1, R_2, R_3, C_4, C_5 \rbrace: \Call{EnRango}{c} \bigr>$
+	    		\If{$RangosOK$}
+	    			\State $Sens \gets \Call{Sensibilidad}{R_1, R_2, R_3, C_4, C_5}$
+	    			\State $Q \gets \Call{FactorCalidad}{R_1, R_2, R_3, C_4, C_5}$
+	    			\State $G \gets \Call{Ganancia}{R_1, R_2, R_3, C_4, C_5}$
+	    			\State $\omega \gets \Call{FrecuenciaPolo}{R_1, R_2, R_3, C_4, C_5}$
+	    			\State \Return $W_{Sens} * (Sens - 0.75)^2 + W_G * (G - G_{obj})^2 + W_\omega * (\log (\omega / \omega_{obj}))^2 + W_Q *(\log (Q / Q_{obj})^2)$
+	    		\Else
+	    			\State \Return $W_{Max}$
+	    		\EndIf
+	    	\EndFunction
+	    \end{algorithmic}
+    \end{breakablealgorithm}
+
+	
 	
 	\subsection{Versión continua}
 	\label{subsec:VersionContinua}
@@ -723,14 +1050,7 @@
 			\State $FactorIntensidad$: $\xi$
 			\State $NumVars = 5$ \Comment{$R_1, R_2, R_3, C_4, C_5$}
 			\State $zeta$: Deviation Distance Ratio
-			
-			\item[]
-			
-			\Function{Costo}{$R_1$, $R_2$, $R_3$, $C_4$, $C_5$}
-			\State $a \gets a+1$
-			\State \Return $a$
-			\EndFunction
-			
+						
 			\item[]
 
 			\Function{ElegirNucleo}{p}
@@ -908,8 +1228,34 @@
 	\label{subsec:VersionDiscretaPura}
 	Presentamos ahora una variante donde en vez de \textit{discretizar} las soluciones continuas encontradas por el algoritmo
 	una vez que el mismo finaliza, se discretiza el valor de la componente seleccionada en cada paso de la iteración seleccionando
-	el valor discreto posible más cercano al continuo generado. En este caso trabajaremos fijando $R_1$ y corriendo el algoritmo 20 veces
-	para cada uno de los posibles valores. En el apéndice \ref{subsec:ResultadosDiscretos} presentamos una tabla con los resultados obtenidos.
+	el valor discreto posible más cercano al continuo generado. En este caso trabajaremos fijando $R_1$ y corriendo el algoritmo 50 veces
+	para cada uno de los posibles valores. En el cuadro \ref{table:ResultadosDiscretoPuro}  presentamos los resultados obtenidos. Los valores de $R_1$ que no se incluyen es
+	porque en ninguna de las 50 iteraciones el algoritmo encontró solución.
+	
+		\begin{longtable}{|c|c|p{8cm}|}
+		\caption{Resultados de la variante \textit{discreta pura}}
+		\label{table:ResultadosDiscretoPuro}\\
+		\hline
+		\multicolumn{1}{|c|}{R1} & \multicolumn{1}{c|}{Iteraciones con solución} & \multicolumn{1}{c|}{Soluciones halladas} \\ \hline
+		1200                     &                   1                               &       (1200, 3600, 1200, 2.2e-07, 2.7e-08)                                   \\ \hline
+		1300                     &                  43                             &       (1300, 3900, 1100, 2.2e-07, 2.7e-08)                                       \\ \hline
+		2700                     &                  43                             &       (2700, 8200, 1800, 1.2e-07, 1.5e-08)                                     \\ \hline
+		3000                     &                  1                               &       (3000, 9100, 1600, 1.2e-07, 1.5e-08)                                        \\ \hline
+		3300                     &                 39                              &      (3300, 10000, 2200, 1e-07, 1.2e-08)                                         \\ \hline
+		3600                     &                 21                               &     (3600, 11000, 2700, 8.2e-08, 1e-08)                                         \\ \hline
+		4300                     &                  3                                &     (4300, 13000, 2400, 8.2e-08, 1e-08)                                         \\ \hline
+		5100                     &                    1                               &     (5100, 15000, 3000, 6.8e-08, 8.2e-09)                                       \\ \hline
+		7500                     &                    2                               &     (7500, 22000, 4300, 4.7e-08, 5.6e-09) \newline
+		(7500, 22000, 3000, 5.6e-08, 6.8e-09)                                      \\ \hline
+		11000                     &                  11                               &     (11000, 33000, 8200, 2.7e-08, 3.3e-09)                                     \\ \hline
+		12000                     &                  24                               &     (12000, 36000, 5600, 3.3e-08, 3.9e-09) \newline
+		(12000, 36000, 8200, 2.7e-08, 3.3e-09)                                    \\ \hline
+		27000                     &                  18                               &     (27000, 82000, 18000, 1.2e-08, 1.5e-09)                                    \\ \hline
+		30000                     &                  4                               &     (30000, 91000, 16000, 1.2e-08, 1.5e-09) \newline
+		(30000, 91000, 15000, 1.2e-08, 1.5e-09)                                   \\ \hline
+		33000                     &                  17                               &     (33000, 100000, 22000, 1e-08, 1.2e-09)                                   \\ \hline
+		36000                     &                  1                               &     (36000, 110000, 20000, 1e-08, 1.2e-09)                                  \\ \hline
+	\end{longtable}
 	
 
 	\appendix
@@ -918,76 +1264,6 @@
 	\label{subsec:Resultados Exhaustivo}
 	\subsection{Versión Continua}
 	\label{subsec:Resultados Continuos}
-	\subsection{Versión Discreta}
-	\label{subsec:ResultadosDiscretos}
-	
-	  %\begin{table}[H]
-	   \begin{longtable}{|c|c|c|}
-		%\begin{tabular}{|l|l|l|}
-			\hline
-			\multicolumn{1}{|c|}{R1} & \multicolumn{1}{c|}{Halla solución} & \multicolumn{1}{c|}{Solución es óptima} \\ \hline
-			1000                     &                                                   &                                                      \\ \hline
-			1100                     &                                                   &                                                      \\ \hline
-			1200                     &                                                   &                                                      \\ \hline
-			1300                     &                                                   &                                                      \\ \hline
-			1500                     &                                                   &                                                      \\ \hline
-			1600                     &                                                   &                                                      \\ \hline
-			1800                     &                                                   &                                                      \\ \hline
-			2000                     &                                                   &                                                      \\ \hline
-			2200                     &                                                   &                                                      \\ \hline
-			2400                     &                                                   &                                                      \\ \hline
-			2700                     &                                                   &                                                      \\ \hline
-			3000                     &                                                   &                                                      \\ \hline
-			3300                     &                                                   &                                                      \\ \hline
-			3600                     &                                                   &                                                      \\ \hline
-			3900                     &                                                   &                                                      \\ \hline
-			4300                     &                                                   &                                                      \\ \hline
-			4700                     &                                                   &                                                      \\ \hline
-			5100                     &                                                   &                                                      \\ \hline
-			5600                     &                                                   &                                                      \\ \hline
-			6200                     &                                                   &                                                      \\ \hline
-			6800                     &                                                   &                                                      \\ \hline
-			7500                     &                                                   &                                                      \\ \hline
-			8200                     &                                                   &                                                      \\ \hline
-			9100                     &                                                   &                                                      \\ \hline
-			10000                    &                                                   &                                                      \\ \hline
-			11000                    &                                                   &                                                      \\ \hline
-			12000                    &                                                   &                                                      \\ \hline
-			13000                    &                                                   &                                                      \\ \hline
-			15000                    &                                                   &                                                      \\ \hline
-			16000                    &                                                   &                                                      \\ \hline
-			18000                    &                                                   &                                                      \\ \hline
-			20000                    &                                                   &                                                      \\ \hline
-			22000                    &                                                   &                                                      \\ \hline
-			24000                    &                                                   &                                                      \\ \hline
-			27000                    &                                                   &                                                      \\ \hline
-			30000                    &                                                   &                                                      \\ \hline
-			33000                    &                                                   &                                                      \\ \hline
-			36000                    &                                                   &                                                      \\ \hline
-			39000                    &                                                   &                                                      \\ \hline
-			43000                    &                                                   &                                                      \\ \hline
-			47000                    &                                                   &                                                      \\ \hline
-			51000                    &                                                   &                                                      \\ \hline
-			56000                    &                                                   &                                                      \\ \hline
-			62000                    &                                                   &                                                      \\ \hline
-			68000                    &                                                   &                                                      \\ \hline
-			75000                    &                                                   &                                                      \\ \hline
-			82000                    &                                                   &                                                      \\ \hline
-			91000                    &                                                   &                                                      \\ \hline
-			100000                   &                                                   &                                                      \\ \hline
-			110000                   &                                                   &                                                      \\ \hline
-			120000                   &                                                   &                                                      \\ \hline
-			130000                   &                                                   &                                                      \\ \hline
-			150000                   &                                                   &                                                      \\ \hline
-			160000                   &                                                   &                                                      \\ \hline
-			180000                   &                                                   &                                                      \\ \hline
-			200000                   &                                                   &                                                      \\ \hline
-			220000                   &                                                   &                                                      \\ \hline
-			240000                   &                                                   &                                                      \\ \hline
-			270000                   &                                                   &                                                      \\ \hline
-			300000                   &                                                   &                                                      \\ \hline
-		%\end{tabular}
-	\end{longtable}
 	
 	\section{\textbf{Código Python}}
 	\subsection{Algoritmo Exhaustivo}
