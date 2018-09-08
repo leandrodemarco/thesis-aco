@@ -19,6 +19,8 @@
 \usepackage{minted}
 \usepackage{longtable}
 \usepackage[long]{optidef}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
 
 \setcounter{secnumdepth}{3}
 
@@ -59,6 +61,8 @@
             Universidad Nacional de Córdoba, Fa.M.A.F
           }
 \setcounter{tocdepth}{3}
+\pagenumbering{arabic}
+\pagestyle{plain}
 \begin{document}
 {\def\addcontentsline#1#2#3{}\maketitle
   \noindent
@@ -73,12 +77,12 @@
 \tableofcontents
 \newpage
 %Fin tabla de contenidos
-  \section{\textbf{Motivación}}
+  \section{\textbf{Introducción}}
     \label{sec:motivacion}
     El dise\~no electrónico actual incluye a los filtros activos en muchas aplicaciones,
     tales como acondicionamiento y manipulación de se\~nales en frecuencias de audio e
     intermedias (IF) así como tareas de procesamiento digital de se\~nales. En
-    contraposición a los filtros digitales, los activos pueden obtener buena performance
+    contraposición a los filtros digitales, los activos pueden obtener buen rendimiento
     con demandas de potencia significativamente menores.
     
     Las alternativas de implementación de filtros activos presentan muchas opciones.
@@ -102,10 +106,11 @@
     
     En la sección \ref{sec:fundelect} definimos el filtro analizado
     junto a los fundamentos electrónicos que definen la bondad del mismo. Luego, en la
-    sección \ref{sec:fundprog} introducimos la noción de \textit{Constraint Programming}
+    sección \ref{sec:fundprog} introducimos la noción de \textit{Programación por Restricciones} 
+    (del inglés \textit{Constraint Programming})
     y cómo se define en términos de este paradigma el problema en cuestión. En la sección
     \ref{sec:exhaustSearch} presentamos una serie de observaciones y manipulaciones matemáticas 
-    del problema que permiten definir un algoritmo exhaustivo que se ejecuta
+    del problema que permiten obtener una solución analítica y definir un algoritmo exhaustivo que se ejecuta
     en tiempos razonables. Finalmente, en la sección \ref{sec:acor} presentamos la metaheurística ACO
     -del inglés \textit{Ant Colony Optimization}- aplicada a este problema junto a una variante 
     del mismo llamada ACO-$\mathbb{R} $
@@ -120,7 +125,8 @@
     En la figura \ref{fig:filter} se muestra el esquemático del filtro a analizar.
    
    \begin{figure}
-   	\includegraphics[width=\linewidth]{filter.png}
+   	\centering
+   	\includegraphics[scale=0.65]{filter.png}
    	\caption{Filtro IGMFB pasabajo de segundo orden.}
    	\label{fig:filter}
    \end{figure}
@@ -146,7 +152,7 @@
 	\subsection{Sensibilidad de un filtro IGMFB}
 	\label{subsec:sensFiltro}
 	El término sensibilidad es utilizado para expresar una medida de
-	la variación de la performance como resultado de cambios en los valores de los
+	la variación del rendimiento como resultado de cambios en los valores de los
 	componentes. Dichas variaciones pueden ocurrir debido al envejecimiento de los
 	mismos, tolerancias de fabricación, condiciones ambientales (temperatura), entre
 	otros factores \cite{dim,rau:swa}. Mientras menos sensible es un filtro a los cambios en sus
@@ -165,7 +171,8 @@
 	Se considera que un filtro tiene baja sensibilidad cuando la sensibilidad respecto a cada uno
 	de sus componentes es inferior a la unidad \cite{rau:swa}.
 	
-	Para los filtros pasabajo IGMFB las sensibilidades de $Q_p$ y $\omega_p$ con respecto a cada uno de los componentes pasivos vienen dadas por las siguientes ecuaciones:
+	Para el filtro de la figura (\ref{fig:filter}) las sensibilidades de $Q_p$ y $\omega_p$ con respecto a cada uno 
+	de los componentes pasivos vienen dadas por las siguientes ecuaciones:
 	
 	\begin{eqnarray}
 		S_{R_1}^{\omega_p} &=& 0 \label{sensR1Omega}\\
@@ -176,8 +183,8 @@
 		S_{R_3}^{Q_p} &=& - \frac{Q_p}{2} \left(\frac{1}{R1} \sqrt{\frac{R_2 R_3 C_5}{C_4}} + \sqrt{\frac{R_3 C_5}{R_2 C_4}} - \sqrt{\frac{R_2 C_5}{R_3 C_4}}\right) \label{sensR3Q}
 	\end{eqnarray}
 	
-	Como se puede ver, en (\ref{sensR1Omega}), (\ref{sensOtrosOmega}) y (\ref{sensCapQ}), las
-	sensibilidades adoptan valores fijos, mientras que las otras dependen de los valores que adopten los componentes. 
+	Las sensibilidades de las ecuaciones (\ref{sensR1Omega}), (\ref{sensOtrosOmega}) y (\ref{sensCapQ}) adoptan 
+	valores fijos, mientras que las otras dependen de los valores que adopten los componentes. 
 	En consecuencia, debemos considerar las sensibilidades (\ref{sensR1Q}), (\ref{sensR2Q}) y (\ref{sensR3Q}) 
 	a la hora de seleccionar los valores para cada componente. 
 	
@@ -189,10 +196,10 @@
 	e intentaremos minimizar dicha sensibilidad.
 	
 	En el caso de estudio seleccionado, la especificación elegida para el filtro es $G_{obj} = 3$,
-	$\omega_{p_{obj}}=1000*2*\pi$ $rad/s$ y $Q_{p_{obj}} = 0,707$. 
+	$\omega_{p_{obj}}=1000*2*\pi$ $rad/s$ y $Q_{p_{obj}} = 1 / \sqrt{2}$. 
 	
-	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se supone que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se define además una tolerancia o error máximo $E_{max} = 2,5\%$ para los valores de $G_F$,
-	$\omega_{p_F}$ y $Q_{p_F}$.	
+	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se supone que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se define además una tolerancia o error máximo $\epsilon_{max} = 2,5\%$ para los valores de $G_{obj}$,
+	$\omega_{p_{obj}}$ y $Q_{p_{obj}}$.	
     
   \section{\textbf{Programación por Restricciones}}
     \label{sec:fundprog}
@@ -212,13 +219,13 @@
       de valores que pueden asignarse simultaneamente a sus variables.
       
       Una posibilidad para definirla consiste en enumerar todo el conjunto de tuplas que pertenece a la relación o,
-      dualmente, especificar aquellos que \textbf{no} pertenecen a ella.
+      de manera dual, especificar aquellos que \textbf{no} pertenecen a ella.
       
       Existen diferentes tipos de restricciones, de acuerdo a los valores que pueden asignarse a las variables. Así,
       tenemos restricciones numéricas, booleanas, sobre conjuntos, etc. Una restricción numérica puede ser entonces
       una igualdad ($=$) o bien una desigualdad ($\neq, \geq, \leq, <, >$) entre dos expresiones aritméticas.
       
-      Similarmente, las restricciones sobre conjuntos expresan relaciones entre variables cuyo rango son conjuntos y pueden
+      De manera similar, las restricciones sobre conjuntos expresan relaciones entre variables cuyo rango son conjuntos y pueden
       incluir relaciones de igualdad ($=$), desigualdad ($\neq$), inclusión ($\subset, \subseteq$) o pertenencia ($\in$).
       
       Las restricciones sobre booleanos, pueden expresarse en términos de los operadores
@@ -234,7 +241,7 @@
         \item \textit{D} es una función que asocia un dominio \textit{D}($x_i$) con cada variable $x_i \in \textit{X}$, es
         decir \textit{D}($x_i$) es el conjunto de valores que la variable $x_i$ puede tomar.
         \item \textit{C} es un conjunto finito de restricciones y cada restricción $c_j \in C$ es una relación entre
-        algunas variables de \textit{X}; este conjunto se denota como $var(c_j).$
+        algunas variables de \textit{X}; este conjunto de variables se denota como $var(c_j).$
       \end{itemize}
   
   	Resolver un CSP $(X, D, C)$ consiste en asignar valores a todas las variables de forma tal
@@ -313,19 +320,19 @@
 	que maximiza (o minimiza) $f$. En estos casos la dificultad no radica en hallar una solución, 
 	si no en hallar una óptima con respecto a $f$.
 	
-	\subsection{Definición del problema como CSP}
+	\subsection{Definición del problema del filtro como CSP}
 		\label{subsec:problemDefinition}
 		Como se estableció en la sección \ref{sec:fundelect}, el problema consiste en seleccionar
 		los valores para las resistencias $R_1$, $R_2$ y $R_3$ y los capacitores $C_4$ y $C_5$ de
-		una lista de posibles valores (las series industriales E). Si definimos
+		una lista de posibles valores (las series industriales E12). Si definimos
 		
 		\begin{align*}
-		G^{max} = G_F * (1 + E_{max})\\
-		G^{min} = G_F * (1 - E_{max})\\
-		\omega_p^{max} = \omega_{p_F} * (1 + E_{max})\\
-		\omega_p^{min} = \omega_{p_F} * (1 - E_{max})\\
-		Q_p^{max} = Q_{p_F} * (1 + E_{max})\\
-		Q_p^{min} = Q_{p_F} * (1 - E_{max})
+		G^{max} = G_F * (1 + \epsilon_{max})\\
+		G^{min} = G_F * (1 - \epsilon_{max})\\
+		\omega_p^{max} = \omega_{p_F} * (1 + \epsilon_{max})\\
+		\omega_p^{min} = \omega_{p_F} * (1 - \epsilon_{max})\\
+		Q_p^{max} = Q_{p_F} * (1 + \epsilon_{max})\\
+		Q_p^{min} = Q_{p_F} * (1 - \epsilon_{max})
 		\end{align*}
 		
 		Entonces el problema puede modelarse como un CSP $(X, D, C)$ donde:
@@ -352,7 +359,11 @@
 			$\neg \bigl<\exists \vec{v'} : \vec{v'} \in S \wedge \vec{v'} \neq \vec{v} : \vec{v'} \text{ domina a } \vec{v}\bigr>$.
 		\end{itemize}
 	
-	  En nuestro caso, dadas dos soluciones $S^1 = (R_1^1, R_2^1, R_3^1, C_4^1, C_5^1)$ y $S^2 = (R_1^2, R_2^2, R_3^2, C_4^2, C_5^2)$,
+	  En nuestro caso, dadas dos soluciones:
+	  \begin{align*}
+	  		S^1 = (R_1^1, R_2^1, R_3^1, C_4^1, C_5^1)\\
+	  		S^2 = (R_1^2, R_2^2, R_3^2, C_4^2, C_5^2)\\
+	  \end{align*}
 	  diremos que $S^1$ domina a $S^2$ si y sólo si $S_{R_1}^{Q_p}(S^1) \leq S_{R_1}^{Q_p}(S^2) \wedge S_{R_2}^{Q_p}(S^1) \leq S_{R_2}^{Q_p}(S^2) \wedge S_{R_3}^{Q_p}(S^1) \leq S_{R_3}^{Q_p}(S^2)$
 
   \section{\textbf{Solución exhaustiva}}
@@ -615,13 +626,13 @@
   	   
   	
   	\subsection{Algoritmo}
-    Basándonos en el análisis realizado en la sección \textbf{\ref{subsec:solAnalitica}}, es posible obtener un algoritmo exhaustivo que descubre
-    todas las soluciones posibles para el problema.
+    Basándonos en el análisis realizado en la sección \textbf{\ref{subsec:solAnalitica}}, es posible obtener un 
+    algoritmo exhaustivo que encuentra todas las soluciones posibles para el problema.
 
     Es claro que a partir de la ecuación (\ref{g}) se tiene que para cada valor de $R_1$ hay un conjunto de valores de $R_2$ 
     que denotaremos  $\{R_2\}_{R_1}$ tales que $G^{max} > G > G^{min}$
 
-    Definiendo las siguientes cantidades,
+    Definiendo las siguientes frecuencias,
     \begin{eqnarray}
       \omega_1 &=& 1/(R_2 C_4) \nonumber \\
       \omega_2 &=& 1/(R_3 C_5)
@@ -669,6 +680,9 @@
     $\omega_1$, $\omega_2$, $R_3$)  
     que luego podemos \textit{mapear} a las soluciones de la forma ($R_1$,
     $R_2$, $R_3$, $C_4$, $C_5$). 
+    
+    A continuación mostramos el \textit{pseudocódigo} del algoritmo de búsqueda exhaustiva que acabamos
+    de describir.
 
 	\begin{breakablealgorithm}
 		\caption{Búsqueda exhaustiva}
@@ -749,12 +763,17 @@
   La Optimización por Colonia de Hormigas -en inglés \textit{Ant Colony Optimization}- es una metaheurística introducida en los años '90 inspirada en el comportamiento de las hormigas
   para solucionar problemas de optimización combinatoria \cite{dor92,dor:man:col,dor:schu}.
   
-  Al buscar comida, las hormigas inicialmente exploran el área circundante a su nido de manera aleatoria. En cuanto una hormiga encuentra una fuente de comida, la evalúa y lleva un poco hacia el nido. Durante el viaje de vuelta, la hormiga va depositando feromona en el suelo. La cantidad de feromona depositada depende de la cantidad y calidad de comida sirve para guiar otras hormigas hacia la fuente de comida. Esta forma de comunicación indirecta a través de la feromona  les permite hallar los caminos más cortos entre el nido y la fuente de comida \cite{gos:aro:den:pas}. Este comportamiento ha inspirado la definición de colonias artificiales de hormigas que pueden encontrar soluciones aproximadas -en el sentido que son buenas soluciones pero no necesariamente óptimas- a problemas de optimización combinatorial complejos.
+  Al buscar comida, las hormigas inicialmente exploran el área circundante a su nido de manera aleatoria. En cuanto una hormiga encuentra una fuente de comida, la evalúa y lleva un poco hacia el nido. Durante el viaje de vuelta, la hormiga va depositando feromona en el suelo. La cantidad de feromona depositada depende de la cantidad y calidad de comida, y sirve para guiar otras hormigas hacia la fuente de comida. Esta forma de comunicación indirecta a través de la feromona  les permite hallar los caminos más cortos entre el nido y la fuente de comida \cite{gos:aro:den:pas}. Este comportamiento ha inspirado la definición de colonias artificiales de hormigas que pueden encontrar soluciones aproximadas -en el sentido que son buenas soluciones pero no necesariamente óptimas- a problemas de optimización combinatorial complejos.
   
   \subsection{La metaheurística ACO}
-  En el algoritmo \ref{alg:acoMetaheuristic} se presenta la metaheurística ACO, que consiste de tres
-  actividades. A continuación se detallan cada una de estas actividades.
+  	Recordemos de la sección \ref{subsec:cspformal} que en un CSP $(X, D, C)$ cada variable
+ 	 $x_i$ del problema en $X$, tiene un dominio $D(x_i)$ indicando los valores que puede tomar
+  	dicha variable. Definimos una \textit{componente de solución} $c_{ij}$ a la asignación $x_i = v_j$ donde $v_j \in D(x_i)$. 
+  	Y definimos también $C_s$ como el conjunto de todas las componentes de solución posibles.
   
+  	En el algoritmo \ref{alg:acoMetaheuristic} se presenta la metaheurística ACO, que consiste de tres
+  	actividades.
+  	
   	\begin{breakablealgorithm}
   	\caption{Metaheurística ACO}
   	\label{alg:acoMetaheuristic}
@@ -766,30 +785,27 @@
   		\EndWhile
   	\end{algorithmic}
 	\end{breakablealgorithm}
-
-	Recordemos de la sección \ref{subsec:cspformal} que en un CSP $(X, D, C)$ cada variable
-	$x_i$ del problema en $X$, tiene un dominio $D(x_i)$ indicando los valores que puede tomar
-	dicha variable. Definimos una \textit{componente de solución} $c_{ij}$ a la asignación $x_i = v_j$ donde $v_j \in D(x_i)$. Y definimos también $C_s$ como el conjunto de todas las componentes de solución posibles.
-	
+	A continuación se detallan cada una de esas actividades.
 	\bigbreak
 	\textit{ConstruirSolución()}: Las hormigas artificiales construyen soluciones creando una secuencia de componentes elegidas de un conjunto finito de valores posibles para cada componente. 
 	
 	La construcción de esta secuencia comienza con una solución parcial vacía 
 	$s^p = \emptyset$. Luego, en cada paso de la construcción, $s^p$ se extiende agregando una
-	componente perteneciente al conjunto $N(s^p) \in C_s \setminus s^p$, que está definido por por el mecanismo de construcción de la solución.
+	componente perteneciente al conjunto $N(s^p) \in C_s \setminus s^p$, que está definido por 
+	el mecanismo de construcción de la solución.
 	
-	El proceso de construir una solución puede ser considerado como un camino en un grafo
+	El proceso de construir una solución puede ser considerado como un camino dentro de un grafo
 	de construcción $G_C = (V, E)$ donde el conjunto de componentes de solución $C_s$ está
 	asociado o bien con el conjunto de vértices $V$ del grafo, o bien con el de sus aristas $E$. Los caminos permitidos en $G_C$ están definidos implícitamente por el mecanismo de construcción de la solución que define el conjunto $N(s^p)$ respecto a la solución parcial $s^p$.
 	
-	La elección de una componente de solución del conjunto $N(s^p)$ se realiza de forma probabilista en cada paso de la construcción. Las reglas exactas para esta elección varían entre
+	La elección de una componente de solución del conjunto $N(s^p)$ se realiza de forma probabilística 
+	en cada paso de la construcción. Las reglas exactas para esta elección varían entre
 	cada una de las diferentes variantes de ACO. Una de las más conocidas es la que utiliza \textit{Ant System} \cite{dor:man:col}:
 	
 	\begin{equation}
 	\label{eq:chooseComponent}
 	p(c_{ij} \mid s^p) = \frac{\tau_{ij}^\alpha \cdot \eta(c_{ij})^\beta}{\sum_{c_{il} \in N(s^p)} \tau_{il}^\alpha \cdot \eta(c_{il})^\beta}, \forall c_{ij} \in N(s^p)
 	\end{equation}
-
 	donde $\tau_{ij}$ es la cantidad de feromona asociada a la componente $c_{ij}$ y $\eta(\cdot)$
 	es una función de ponderación que en cada paso de la construcción le asigna un valor heurístico a cada componente $c_{ij} \in N(s^p)$. Los valores que devuelve la función de ponderación suelen llamarse \textit{información heurística}. $\alpha$ y $\beta$ son parámetros con valores positivos que determinan la relación entre la información obtenida de las feromonas y la heurística.
 	\bigbreak
@@ -802,19 +818,36 @@
 		(1 - \rho) \tau_{ij},              & \text{caso contrario}
 		\end{cases}
 	\end{equation*} 
+	donde $\rho \in \left(0,1\right]$ es la \textit{tasa de evaporación}. Este mecanismo es necesario para evitar 
+	una convergencia demasiado rápida del algoritmo. Implementa una manera útil de \textit{olvidar}, para 
+	favorecer la exploración de nuevas áreas del espacio de búsqueda.
 	
-	donde $\rho \in \left(0,1\right]$ es la \textit{tasa de evaporación}. Este mecanismo de evaporación es necesario para evitar una convergencia demasiado rápida del algoritmo. Implementa una útil manera de \textit{olvidar}, para favorecer la exploración de nuevas áreas del espacio de búsqueda.
-	
-	En general, las buenas soluciones halladas tempranamente por las hormigas se utilizan para actualizar las feromonas de forma tal que se aumente la probabilidad de búsqueda por hormigas que las siguen en las áreas promisorias del espacio de búsqueda. Cada variante de ACO suele implementar distintas formas de actualización de feromonas. En principio, pueden escoger entre dos estrategias: basándose en la mejor solución encontrada en la última iteración, o bien en la mejor solución encontrada hasta el momento, desde que el algoritmo comenzó a ejecutarse. La primera favorece una mayor exploración del espacio de búsqueda, mientras que la segunda lleva a una convergencia más rápida \cite{stu:dor}.
+	En general, las soluciones buenas halladas tempranamente por las hormigas se utilizan para actualizar 
+	las feromonas de forma tal que se aumente la probabilidad de búsqueda por hormigas que las siguen
+	en las áreas promisorias del espacio de búsqueda. Cada variante de ACO suele implementar distintas formas de 
+	actualización de feromonas. En principio, pueden escoger entre dos estrategias: basándose en la mejor solución 
+	encontrada en la última iteración, o bien en la mejor solución encontrada hasta el momento, desde que el algoritmo 
+	comenzó a ejecutarse. La primera favorece una mayor exploración del espacio de búsqueda, mientras que la segunda 
+	lleva a una convergencia más rápida \cite{stu:dor}.
 	\bigbreak
 	
-	\textit{AccionesDaemon()}: Son acciones que pueden ser usadas para implementar acciones centralizadas que las hormigas no puedan realizar individualmente. Por ejemplo, aplicar búsqueda local a las soluciones encontradas, o recolectar información global que puede ser utilizada para decidir si es útil o no depositar feromona adicional para influir el proceso de búsqueda desde una perspectiva no local.
+	\textit{AccionesDaemon()}: Son acciones que pueden ser usadas para implementar acciones centralizadas 
+	que las hormigas no puedan realizar individualmente. Por ejemplo, aplicar búsqueda local a las soluciones encontradas, 
+	o recolectar información global que puede ser utilizada para decidir si es útil o no depositar feromona adicional para 
+	influir el proceso de búsqueda desde una perspectiva no local.
 
 	\subsection{ACO en dominios continuos: ACO\textsubscript{$\mathbb{R}$}}
 	\label{subsec:acor}
 	Dado un CSP $(X,D,C)$ diremos que el mismo tiene \textit{dominio continuo} si $D_i \subseteq \mathbb{R}, \forall x_i \in X$.
 	
-	La idea central a la forma en la que ACO trabaja es la construcción incremental de soluciones basadas en la selección probabilista -influenciada por la feromona- de componentes de la solución. Cuando se aplica ACO a problemas de optimización combinatorios, el conjunto de de las componentes de solución está definido por la formulación del problema. En cada paso de la construcción, la hormiga escoge de manera probabilista una componente $c_{ij} \in N(s^p)$ de acuerdo a la ecuación (\ref{eq:chooseComponent}). Las probabilidades asociadas con los elementos del conjunto $N(s^p)$ de componentes disponibles  forman una distribución de probabilidad \textit{discreta} que cada hormiga muestrea para escoger la componente a agregar a la solución parcial $s^p$.
+	La idea central a la forma en la que ACO trabaja es la construcción incremental de soluciones basadas 
+	en la selección probabilista -influenciada por la feromona- de componentes de la solución. Cuando se aplica ACO 
+	a problemas de optimización combinatorios, el conjunto de las componentes de solución está definido 
+	por la formulación del problema. En cada paso de la construcción, la hormiga escoge de manera probabilística 
+	una componente $c_{ij} \in N(s^p)$ de acuerdo a la ecuación (\ref{eq:chooseComponent}). Las probabilidades 
+	asociadas con los elementos del conjunto $N(s^p)$ de componentes disponibles  forman una distribución 
+	de probabilidad \textit{discreta} que cada hormiga muestrea para escoger la componente a agregar 
+	a la solución parcial $s^p$.
 	
 	En ACO\textsubscript{$\mathbb{R}$}, la idea fundamental es pasar de utilizar esta distribución discreta a utilizar una \textit{continua}, es decir, una función de densidad de probabilidad.
 	
@@ -822,34 +855,40 @@
 	Una \textit{función de densidad de probabilidad} (FDP) puede ser cualquier función $P(x) \geq 0, \forall x$ tal que
 	
 	\begin{equation*}
-	\int_{-\infty}^{\infty}P(x)dx = 1
+	\int_{-\infty}^{\infty}P(x)\;dx = 1
 	\end{equation*}
 	
 	Para una FDP $P(x)$ dada, se puede definir una \textit{función de distribución acumulada} (FDA) $D(x)$ que es útil para muestrear la correspondiente FDP. La FDA $D(x)$ asociada a la FDP $P(x)$ se define como sigue:
 	
 	\begin{equation*}
-	D(x) = \int_{-\infty}^{x}P(t)dt
+	D(x) = \int_{-\infty}^{x}P(t)\;dt
 	\end{equation*}
 	
-	Para muestrear la FDP $P(x)$ suele utilizarse la inversa de su FDA, $D^{-1}(x)$. Basta generar números reales \textit{pseudo aleatorios} uniformemente distribuidos. Sin embargo, es importante notar que para una FDP arbitraria $P(x)$ no siempre es trivial hallar la inversa de su FDA, $D^{-1}(x)$.
+	Para muestrear la FDP $P(x)$ suele utilizarse la inversa de su FDA, $D^{-1}(x)$. Basta generar números 
+	reales \textit{pseudo aleatorios} uniformemente distribuidos. Sin embargo, es importante notar que para una 
+	FDP arbitraria $P(x)$ no siempre es trivial hallar la inversa de su FDA, $D^{-1}(x)$.
 	
-	Una de las funciones más populares para utilizar como FDP es la función Gaussiana. Tiene algunas ventajas como por ejemplo que es relativamente fácil de muestrear, sin embargo tiene también desventajas: una funcón Gaussiana sola no sirve para describir una situación donde dos áreas disjuntas del espacio de búsqueda son promisorias, ya que tiene un único máximo. Debido a esto, ACO\textsubscript{$\mathbb{R}$} utiliza una FDP basada en funciones Gaussianas pero ligeramente mejoradas:un \textit{núcleo} Gaussiano.
+	Una de las funciones más populares para utilizar como FDP es la función gaussiana. Tiene algunas ventajas 
+	como por ejemplo que es relativamente fácil de muestrear, sin embargo tiene también desventajas: una función
+	gaussiana sola no sirve para describir una situación donde dos áreas disjuntas del espacio de búsqueda son 
+	promisorias, ya que tiene un único máximo. Debido a esto, ACO\textsubscript{$\mathbb{R}$} utiliza una FDP basada 
+	en funciones gaussianas pero ligeramente mejoradas: un \textit{núcleo} gaussiano.
 	
-	Un núcleo Gaussiano $G^i(x)$ se define como la suma ponderada de varias funciones Gaussinas unidimensionales $g^i_l(x)$
+	Un núcleo gaussiano $G^i(x)$ se define como la suma ponderada de varias funciones gaussianas unidimensionales $g^i_l(x)$
 	
 	\begin{equation}
 	\label{eq:nucleoGauss}
 	G^i(x) = \sum_{l=1}^{k}w_l \cdot g_l^i(x) = \sum_{l=1}^{k}w_l \cdot \frac{1}{\sigma_l^i \cdot \sqrt{2\pi}}\textrm{e}^{-\frac{(x - \mu^i_l)^2}{2{\sigma^i_l}^2}}
 	\end{equation}
 
-	ACO\textsubscript{$\mathbb{R}$} utiliza tantos núcleos como variables tiene el CSP, es decir si $n = \vert X \vert$, se usan $n$ núcleos $G^i, i = 1, \dots, n$. Como se observa en la ecuación (\ref{eq:nucleoGauss}), el núcleo $G^i(x)$ está parametrizado con tres vectores de parámetros: $w$ es el vector de pesos asociados con cada función Gaussiana individual, $\mu^i$ es el vector de las medias y $\sigma^i$ el de las desviaciones estándar. La cardinalidad de cada uno de estos vectores es igual al número de funciones Gaussianas que componen el núcleo. Por conveniencia, lo denotaremos con $k$, es decir $\vert w \vert = \vert \mu^i \vert = \vert \sigma^i \vert = k$
+	ACO\textsubscript{$\mathbb{R}$} utiliza tantos núcleos como variables tiene el CSP, es decir si $n = \vert X \vert$, se usan $n$ núcleos $G^i, i = 1, \dots, n$. Como se observa en la ecuación (\ref{eq:nucleoGauss}), el núcleo $G^i(x)$ está parametrizado con tres vectores de parámetros: $w$ es el vector de pesos asociados con cada función gaussiana individual, $\mu^i$ es el vector de las medias y $\sigma^i$ el de las desviaciones estándar. La cardinalidad de cada uno de estos vectores es igual al número de funciones gaussianas que componen el núcleo. Por conveniencia, lo denotaremos con $k$, es decir $\vert w \vert = \vert \mu^i \vert = \vert \sigma^i \vert = k$
 	
-	Al utilizar un núcleo como FDP seguimos manteniendo la facilidad de muestreo pero obtenemos una flexibilidad en cuanto a la forma que puede tomar si lo comparamos con una función Gaussiana individual. La figura (\ref{fig:gaussianKernel}) muestra un ejemplo de la forma que puede tomar la FDP de un núcleo Gaussiano. 
+	Al utilizar un núcleo como FDP seguimos manteniendo la facilidad de muestreo pero obtenemos una flexibilidad en cuanto a la forma que puede tomar si lo comparamos con una función gaussiana individual. La figura (\ref{fig:gaussianKernel}) muestra un ejemplo de la forma que puede tomar la FDP de un núcleo gaussiano. 
 	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[scale=0.5]{gaussianKernel.png}
-		\caption{Ejemplo de cinco funciones Gaussianas y su superposición que es el núcleo resultante.}
+		\caption{Ejemplo de cinco funciones gaussianas y su superposición que es el núcleo resultante. Extraída de \cite{soc:dor}}
 		\label{fig:gaussianKernel}
 	\end{figure}
 
@@ -864,10 +903,10 @@
 	función objetivo $f(s_l)$. De esta forma, la $i$-ésima variable de la $l$-ésima solución está denotada por $s_l^i$.
 	
 	La información almacenada en $T$ se utiliza luego para ir generando funciones de densidad de probabilidad dinámicamente. Como se
-	indicó en la ecuación (\ref{eq:nucleoGauss}), el núcleo Gaussiano $G^i$ está parametrizado por tres vectores $w$, $\mu$ y $\sigma$,
+	indicó en la ecuación (\ref{eq:nucleoGauss}), el núcleo gaussiano $G^i$ está parametrizado por tres vectores $w$, $\mu$ y $\sigma$,
 	cada uno con la misma cardinalidad. Las soluciones en el archivo $T$ se usan para calcular los valores de estos 
-	tres parámetros y por consiguiente darle forma a la FDP del núcleo Gaussiano usado para guiar a las hormigas en el proceso de búsqueda. El número de 	soluciones almacenadas en el archivo $T$ será $k$, la cardinalidad de cada uno de los vectores, y determina
-	la complejidad de la FDP: habrá $k$ Gaussianas individuales conformando el núcleo.
+	tres parámetros y por consiguiente darle forma a la FDP del núcleo gaussiano usado para guiar a las hormigas en el proceso de búsqueda. El número de 	soluciones almacenadas en el archivo $T$ será $k$, la cardinalidad de cada uno de los vectores, y determina
+	la complejidad de la FDP: habrá $k$ gaussianas individuales conformando el núcleo.
 	
 	Para cada variable del problema $i = 1, \dots, n$, hay una FDP definida por el núcleo $G^i$. Para cada uno de estos núcleos $G^i$,
 	el vector $\mu^i$ se compone de los valores de la $i$-ésima variable de cada una de las soluciones en el archivo:
@@ -877,16 +916,18 @@
 	
 	El vector de pesos $w$, se crea de la siguiente forma: cada solución que se agrega al archivo $T$ se evalúa y puntúa (en caso de
 	empate se define aleatoriamente). Las soluciones luego son ordenadas de acuerdo a su puntuación, es decir, la solución $s_l$ está
-	$l$-ésima en el ranking. El peso de la solución $s_l$ se calcula con la siguiente fórmula:
+	$l$-ésima en el ranking. En el caso de un problema de minimización de una función $f$ como el que estamos tratando,  la puntuación
+	de la solución $s_i$ está dada por $f(s_i)$ y, por lo tanto, será mejor mientras más bajo sea ese valor.
+	El peso de la solución $s_l$ se calcula con la siguiente fórmula:
 	\begin{equation}
 	\label{eq:vectorPesos}
 	\omega_l = \frac{1}{qk\sqrt{2\pi}}e^{-\frac{(l-1)^2}{2q^2k^2}}
 	\end{equation}
-	lo cual define que el peso es el valor de una Gaussiana con argumento $l$, media $1$ y desviación estándar $qk$, donde $q$ es
+	lo cual define que el peso es el valor de una gaussiana con argumento $l$, media $1$ y desviación estándar $qk$, donde $q$ es
 	un parámetro del algoritmo. Cuando $q$ es pequeño, las soluciones mejor puntuadas son fuertemente preferidas, mientras que si es
 	grande el algoritmo se vuelve más uniforme. La influencia de este parámetro en ACO\textsubscript{$\mathbb{R}$} es similar a ajustar el balance entre
 	usar las estrategias de usar la mejor solución de la iteración o la mejor hallada hasta el momento para actualizar las feromonas en
-	ACO. La figura (\ref{fig:archivo}) muestra la estructura del archivo $T$, el vector $w$ y los núcleos Gaussianos.
+	ACO. La figura (\ref{fig:archivo}) muestra la estructura del archivo $T$, el vector $w$ y los núcleos gaussianos.
 	
 	Para terminar de definir el núcleo $G^i$, resta determinar el vector de desviaciones estándar $\sigma^i$, lo cual haremos en la siguiente
 	sección.
@@ -906,34 +947,34 @@
 	\bigbreak
 	\textit{ConstruirSolución()}: Dadas las variables $x_i, i = 1, \dots, n$, una hormiga construye una solución realizando $n$ pasos de
 	construcción. En el paso $i$, la hormiga escoge un valor para la variable $x_i$. Como se mencionó en la sección anterior, la FDP dada
-	por el núcleo Gaussiano está compuesta de un número dado de funciones Gaussianas individuales. Dicho número es igual al tamaño
+	por el núcleo gaussiano está compuesta de un número dado de funciones gaussianas individuales. Dicho número es igual al tamaño
 	$k$ del archivo $T$. En el paso $i$, sólo la información de la variable $x_i$ es utilizada. De este modo, en cada paso el núcleo $G^i$
 	utilizado es diferente. De acuerdo a la ecuación (\ref{eq:nucleoGauss}), para poder definir $G^i$ los vectores $w$, $\mu^i$ y 
 	$\sigma^i$ deben estar definidos. Si bien se ha explicado en la sección anterior cómo crear $w$ y $\mu^i$, el cálculo de 
-	$\sigma^i$ es bastante más complejo. Antes de presentar cómo realizarlo, es conveniente explicar la implementación práctica de la
+	$\sigma^i$ es bastante más complejo. Antes de presentar cómo realizarlo, es conveniente explicar la implementación de la
 	ecuación (\ref{eq:nucleoGauss}).
 	
 	En la práctica, el proceso de muestreo se realiza como sigue. Primero, los elementos del vector de pesos $w$ se computan de
 	acuerdo a la ecuación (\ref{eq:vectorPesos}). Luego el proceso sigue en dos fases: en la primera se escoge alguna de las funciones
-	Gaussianas que componen el núcleo. La probabilidad $p_l$ de escoger la $l$-ésima Gaussiana está dada por:
+	gaussianas que componen el núcleo. La probabilidad $p_l$ de escoger la $l$-ésima gaussiana está dada por:
 	\begin{equation*}
 	p_l = \frac{w_l}{\sum_{r=1}^{k}w_r}
 	\end{equation*}
-	La segunda fase consiste en muestrear la Gaussiana escogida (\textit{i.e}, en el paso $i$ la función $g_l^i$). Esto puede hacerse
+	La segunda fase consiste en muestrear la gaussiana escogida (\textit{i.e}, en el paso $i$ la función $g_l^i$). Esto puede hacerse
 	utilizando un generador de números aleatorios capaz de generar números aleatorios de acuerdo a una distribución normal
 	parametrizada, o utilizando un generador aleatorio uniforme junto con, por ejemplo, el método de Box-Müller. Este muestreo de dos
 	fases equivale a muestrear el núcleo $G^i$ definido en la ecuación (\ref{eq:nucleoGauss}).
 	
-	En el paso $i$, la desviación estándar necesita ser conocida únicamente para la la Gaussiana individual $g_l^i(x)$ escogida en la fase
+	En el paso $i$, la desviación estándar necesita ser conocida únicamente para la gaussiana individual $g_l^i(x)$ escogida en la fase
 	uno. Por lo tanto, no es necesario computar el vector completo $\sigma^i$, sino solamente la $\sigma^i_l$ requerida.
 		
 	Para establecer el valor de la desviación estándar $\sigma^i_l$ en el paso $i$, calculamos la distancia promedio de la solución
-	escogida $s_l$ a las otras soluciones dentro del archivo $T$, y las multiplicamos por el parámetro $\xi$:
+	escogida $s_l$ a las otras soluciones dentro del archivo $T$, y las multiplicamos por un parámetro $\xi$:
 	\begin{equation*}
 	\sigma^i_l = \xi \sum_{e=1}^{k}\frac{\abs{s^i_e - s^i_l}}{k-1}
 	\end{equation*}
-	El parámetro $\xi > 0$, el cual es el mismo para todas las variables, tiene un efecto similar al de la tasa de evaporación en ACO. Mientras
-	más alto sea su valor, más baja será la velocidad de convergencia del algoritmo.
+	El parámetro $\xi > 0$, que es el mismo para todas las variables, tiene un efecto similar al de la tasa 
+	de evaporación en ACO. Mientras más alto sea su valor, más baja será la velocidad de convergencia del algoritmo.
 	 
 	Mientras que en ACO la tasa de evaporación afecta la memoria de largo plazo -\textit{i.e}, las peores soluciones son olvidadas más rápido-, $\xi$ en ACO\textsubscript{$\mathbb{R}$} afecta el modo en que la memoria de largo plazo es usada -\textit{i.e}, la búsqueda está menos influenciada hacia los puntos en el espacio de búsqueda que ya han sido explorados (y son mantenidos en el archivo $T$)-.
 	\bigbreak	
@@ -942,7 +983,7 @@
 	de dicho archivo.
 	
 	El tamaño $k$ del archivo $T$ es un parámetro del algoritmo. Sin embargo, $k$ no puede ser menor que el número de variables
-	del problema que se intenta solucionar \cite{soc:dor}.
+	del problema que se intenta resolver \cite{soc:dor}.
 	
 	Al comenzar el algoritmo, el archivo de soluciones $T$ se inicializa generando $k$ soluciones mediante un muestreo aleatorio uniforme.
 	La actualización de feromonas se consigue agregando el conjunto de nuevas soluciones generadas al archivo $T$ y luego eliminando
@@ -953,18 +994,22 @@
 	una vez que se alcanzan las condiciones de terminación. Se podrían aplicar heurísticas de búsqueda local para mejorar la \textit{performance} del algoritmo.
 	
 	\section{\textbf{ACO\textsubscript{$\mathbb{R}$} Aplicado al Problema del Filtro}}
-	En esta sección detallaremos la implementación de la metaheurística ACO\textsubscript{$\mathbb{R}$} 
+	En esta sección detallamos la implementación de la metaheurística ACO\textsubscript{$\mathbb{R}$} 
 	para resolver el problema del filtro especificado en la sección (\ref{sec:fundelect}).
 	
-	Presentaremos primero el caso en que todas las variables son libres para ver la convergencia del algoritmo. 
-	A continuación mostraremos una versión donde el valor de $R_1$ queda fijo a alguno de los valores admisibles
-	definidos por la serie $E$ y una vez obtenido el valor del algoritmo se realiza una búsqueda de los vecinos más cercanos
-	sobre las otras variables.
-	Luego introducimos una modificación para que en cada paso el algoritmo trabaje con valores discretos pero que requiere
-	varias ejecuciones para, fijado $R_1$ hallar una buena solución. Finalmente, veremos que si $R_1$ se deja libre, la versión discreta
-	no encuentra buenas soluciones en general.
-	Para cada una de las variantes, definimos una función \textit{costo} que es el objetivo a minimizar y por lo tanto será la ultima columna
-	de cada entrada del archivo de soluciones. En cada una de las variantes la función es la misma:
+	En la sección \ref{subsec:VersionContinua} presentamos primero el caso en que todas las variables 
+	son libres y reales para ver la convergencia del algoritmo. 
+	
+	A continuación, en la sección \ref{subsec:VersionDiscreta}, mostramos una versión donde el valor de $R_1$ 
+	queda fijo a alguno de los valores admisibles definidos por la serie $E$ y, una vez obtenida la solución para variables continuas, 
+	se realiza una búsqueda entre los vecinos discretos más cercanos a esa solución de variables continuas.
+	
+	Luego, en la sección \ref{subsec:VersionDiscretaPura}, introducimos una modificación al algoritmo 
+	ACO\textsubscript{$\mathbb{R}$} para que trabaje con valores discretos. 
+	Finalmente, veremos que si $R_1$ se deja libre, la versión discreta no encuentra buenas soluciones en general.
+	
+	Para cada una de las variantes, definimos una única función \textit{costo} que es el objetivo a minimizar y por lo tanto será la ultima columna	de cada entrada del archivo de soluciones. A continuación el pseudocódigo muestra la función costo utilizada en todos
+	los casos.
 	
 	\begin{breakablealgorithm}
 		\caption{Función costo a minimizar}
@@ -1009,15 +1054,13 @@
 
 	
 	
-	\subsection{Versión continua}
+	\subsection{Versión continua con todas las variables libres}
 	\label{subsec:VersionContinua}
 	En esta primera versión del algoritmo el dominio de las variables es todo el intervalo continuo entre los valores
 	admisibles máximos y mínimos especificados por las series $E$. Es conveniente que definamos algunas funciones
-	elementales aquí para hacer el pseudo-código más legible \footnote{Estas funciones pueden encontrarse ya implementadas en
+	elementales aquí para hacer el pseudocódigo más legible \footnote{Estas funciones pueden encontrarse ya implementadas en
 	varias librerías o lenguajes como por ejemplo \textit{Python} -en la librería \textit{Numpy}- y \textit{Matlab}}. 
-	El código hecho en \textit{Python} puede verse en la sección
-	\ref{subsec:pythoncontinuo}.
-	
+
 	\begin{itemize}
 		\item $zeros(n)$: devuelve un arreglo $A$ de n elementos, todos inicializados en 0.
 		\item $zeros (m, n)$: devuelve una matriz M de tamaño $m \times n$ con todos sus elementos inicializados en 0.
@@ -1040,6 +1083,7 @@
 		\item $sum(A)$: Dado un arreglo numérico $A$, devuelve la suma de sus elementos. 
 	\end{itemize}
 	
+	El pseudocódigo correspondiente a esta versión puede verse a continuación:
 		\begin{breakablealgorithm}
 		\caption{ACO-$\mathbb{R}$ Continuo Libre}
 		\label{alg:continuoLibre}
@@ -1119,59 +1163,70 @@
 		\end{algorithmic}
 	\end{breakablealgorithm}
 
-	En las figuras (\ref{fig:CostoContinuoLibre}), (\ref{fig:R1ContinuoLibre}), (\ref{fig:R2ContinuoLibre}), (\ref{fig:R3ContinuoLibre}),
-	(\ref{fig:C4ContinuoLibre}) y (\ref{fig:C5ContinuoLibre}) a continuación, 
-	podemos visualizar cómo el costo va bajando hasta que alcanza un punto de convergencia y además ver
-	para cada componente del filtro cómo, luego de un inicio con oscilaciones bruscas, los valores también comienzan a converger.
+	La implementación en \textit{Python} del algoritmo \ref{alg:continuoLibre} puede verse en el apéndice \ref{subsec:pythoncontinuo}.
+
+	En las figuras (\ref{fig:F-r1}), (\ref{fig:F-c4}), (\ref{fig:F-r2}), (\ref{fig:F-c5}), (\ref{fig:F-r3}) y (\ref{fig:F-costo}) 
+	podemos visualizar la convergencia de la función costo así como también de las cinco variables.
 	
-	\begin{figure}[H]
-		\includegraphics[width=\linewidth]{ContinuoLibre/Costo.png}
-		\caption{Evolución y convergencia del costo.}
-		\label{fig:CostoContinuoLibre}
+	\begin{figure}[H]                                                                                  
+		\centering                                                                                      
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[scale=0.7]{ContinuoLibre/cc-r1}
+			\caption{}
+			\label{fig:F-r1}
+		\end{subfigure}%
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[scale=0.7]{ContinuoLibre/cc-c4}
+			\caption{}
+			\label{fig:F-c4}
+		\end{subfigure}   \\                                                         
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[scale=0.7]{ContinuoLibre/cc-r2}
+			\caption{}
+			\label{fig:F-r2}
+		\end{subfigure}%
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[scale=0.7]{ContinuoLibre/cc-c5}
+			\caption{}
+			\label{fig:F-c5}
+		\end{subfigure}   \\                                                         
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[scale=0.7]{ContinuoLibre/cc-r3}
+			\caption{}
+			\label{fig:F-r3}
+		\end{subfigure}%
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[scale=0.7]{ContinuoLibre/cc-costo}
+			\caption{}
+			\label{fig:F-costo}
+		\end{subfigure}                                                            
+		\caption{Convergencia de las distintas variables. El eje vertical corresponde
+			al valor de la variable y el horizontal al número de iteración. (a) R1, (b)
+			C4, (c) R2, (d) 
+			C5, (e) R3 y (f) costo. }                                                                                  
+		\label{fig:FF}                                                                                  
 	\end{figure}
-
-	\begin{figure}[H]
-		\includegraphics[width=\linewidth]{ContinuoLibre/R1.png}
-		\caption{Evolución y convergencia de $R_1$.}
-		\label{fig:R1ContinuoLibre}
-	\end{figure}
-
-	\begin{figure}[H]
-		\includegraphics[width=\linewidth]{ContinuoLibre/R2.png}
-		\caption{Evolución y convergencia de $R_2$.}
-		\label{fig:R2ContinuoLibre}
-	\end{figure}
-
-	\begin{figure}[H]
-		\includegraphics[width=\linewidth]{ContinuoLibre/R3.png}
-		\caption{Evolución y convergencia de $R_3$.}
-		\label{fig:R3ContinuoLibre}
-	\end{figure}
-
-	\begin{figure}[H]
-		\includegraphics[width=\linewidth]{ContinuoLibre/C4.png}
-		\caption{Evolución y convergencia de $C_4$.}
-		\label{fig:C4ContinuoLibre}
-	\end{figure}
-
-	\begin{figure}[H]
-		\includegraphics[width=\linewidth]{ContinuoLibre/C5.png}
-		\caption{Evolución y convergencia de $C_5$.}
-		\label{fig:C5ContinuoLibre}
-	\end{figure}
-
-	\subsection{Versión Discreta con Búsqueda de Vecinos Cercanos}
+	
+	\subsection{Versión Continua con Búsqueda de Vecinos Discretos Cercanos}
 	\label{subsec:VersionDiscreta}
-	En la sección \ref{subsec:VersionContinua} vimos cómo ACO-$\mathbb{R}$ converge hacia valores dentro del rango continuo que
-	cada componente puede tomar a la vez
-	que minimiza la función costo. Sin embargo, en nuestro problema, el conjunto de valores que puede tomar cada componente
-	del filtro proviene de un conjunto finito de posibles valores. En esta sección modificamos ligeramente el algoritmo (\ref{alg:continuoLibre})
-	de forma que $R_1$ queda fijado a cada uno de los posibles valores que puede tomar, y luego \textit{discretizamos} la solución 
-	continua generada por el algoritmo haciendo una búsqueda de los vecinos más cercanos en la lista de posibles valores para cada
-	componente. Finalmente, se verifica si esta solución discreta es efectivamente una solución -\textit{i.e}, que no viole las restricciones
-	sobre la ganancia, el factor de calidad, la frecuencia de polo y la sensibilidad-.
-	En este caso, el número de variables $NumVars$ pasa a ser 4 en vez de 5, ya que R1 queda fijado. Con lo cual el archivo en vez de
-	tener 6 columnas en cada fila tiene ahora 5 -una para cada variable $R_2$, $R_3$, $C_4$ y $C_5$ y la última para el costo-.
+	En la sección \ref{subsec:VersionContinua} vimos cómo ACO-$\mathbb{R}$ converge hacia valores dentro 
+	del rango continuo que cada componente puede tomar, a la vez que minimiza la función costo. Sin embargo, 
+	en nuestro problema, el conjunto de valores que puede tomar cada componente del filtro proviene de un conjunto finito. 
+	En esta sección modificamos ligeramente el algoritmo (\ref{alg:continuoLibre})
+	de forma que $R_1$ queda fijado a cada uno de los posibles valores que puede tomar. A partir de $R_1$ obtenemos una
+	solución continua. Esta solución tendrá valores para $R_2$, $R_3$, $C_4$ y $C_5$ que, en general, no corresponden a
+	los valores permitidos en las series industriales, pero a partir de esta solución efectuamos una búsqueda de los vecinos
+	más cercanos (por encima y por debajo) en la lista de valores permitidos para cada componente. Es decir, que a partir de la
+	solución continua generamos $2^4 = 16$ configuraciones permitidas. De entre estas 16 configuraciones seleccionamos
+	aquella de menor costo y que satisface las restricciones. En este caso, el número de variables $NumVars$ pasa a ser 
+	4 en vez de 5, ya que R1 queda fijado. Con lo cual el archivo en vez de tener 6 columnas en cada fila tiene ahora 
+	5 -una para cada variable $R_2$, $R_3$, $C_4$ y $C_5$ y la última para el costo-.
 	Por lo tanto, la solución $Sol$ devuelta contiene los valores para las 4 componentes libres y el costo.
 	
 	\begin{breakablealgorithm}
