@@ -23,12 +23,14 @@
 \captionsetup{compatibility=false}
 
 \setcounter{secnumdepth}{3}
+\newfloat{algorithm}{t}{lop}
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 
 \makeatletter
+\renewcommand{\ALG@name}{Algoritmo}
 \newenvironment{breakablealgorithm}
 {% \begin{breakablealgorithm}
 	\begin{center}
@@ -50,7 +52,7 @@
 \makeatother
 
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
-
+\newcommand{\expnumber}[2]{{#1}\mathrm{e}{#2}}
 
 % Titulo
 \title{Selección de Componentes Discretos para un Filtro Activo Mediante
@@ -113,8 +115,7 @@
     del problema que permiten obtener una solución analítica y definir un algoritmo exhaustivo que se ejecuta
     en tiempos razonables. Finalmente, en la sección \ref{sec:acor} presentamos la metaheurística ACO
     -del inglés \textit{Ant Colony Optimization}- aplicada a este problema junto a una variante 
-    del mismo llamada ACO-$\mathbb{R} $
-    
+    del mismo llamada ACO\textsubscript{$\mathbb{R}$}.
     
   \section{\textbf{Fundamentos electrónicos}}
     \label{sec:fundelect}
@@ -142,12 +143,12 @@
 	Para los filtros IGMFB los valores de $G$, $\omega_p$ y $Q_p$ pueden calcularse a partir
 	de los valores de las resistencias y capacitores, de acuerdo a las siguientes fórmulas
 	
-	\begin{eqnarray*}
-		G &=& R_2/R_1 \\
-		\omega_p &=& 1/\sqrt{R_2 R_3 C_4 C_5} \\
+	\begin{eqnarray}
+		G &=& R_2/R_1 \label{defG} \\
+		\omega_p &=& 1/\sqrt{R_2 R_3 C_4 C_5} \label{defOmega} \\
 		Q^{-1}_p &=& \sqrt{C_5/C_4}  \left(\sqrt{R_2 R_3}/R_1 + \sqrt{R_3/R_2} +
-		\sqrt{R_2/R_3}\right)
-	\end{eqnarray*}
+		\sqrt{R_2/R_3}\right) \label{defQ}
+	\end{eqnarray}
 	
 	\subsection{Sensibilidad de un filtro IGMFB}
 	\label{subsec:sensFiltro}
@@ -176,7 +177,7 @@
 	
 	\begin{eqnarray}
 		S_{R_1}^{\omega_p} &=& 0 \label{sensR1Omega}\\
-		S_{R_2}^{\omega_p} = S_{R_3}^{\omega_p} &=& S_{C_4}^{\omega_p} = S_{C_5}^{\omega_p} = -\left(\frac{1}{2}\right) \label{sensOtrosOmega}\\
+		S_{R_2}^{\omega_p} &=& S_{R_3}^{\omega_p} = S_{C_4}^{\omega_p} = S_{C_5}^{\omega_p} = -\left(\frac{1}{2}\right) \label{sensOtrosOmega}\\
 		S_{C_4}^{Q_p} &=& - S_{C_5}^{Q_p} = \left(\frac{1}{2}\right) \label{sensCapQ}\\
 		S_{R_1}^{Q_p} &=& Q_p \left(\frac{1}{R_1} \sqrt{\frac{R_2 R_3 C_5}{C4}}\right) \label{sensR1Q}\\
 		S_{R_2}^{Q_p} &=& - \frac{Q_p}{2} \left(\frac{1}{R1} \sqrt{\frac{R_2 R_3 C_5}{C_4}} - \sqrt{\frac{R_3 C_5}{R_2 C_4}} + \sqrt{\frac{R_2 C_5}{R_3 C_4}}\right) \label{sensR2Q}\\
@@ -198,7 +199,8 @@
 	En el caso de estudio seleccionado, la especificación elegida para el filtro es $G_{obj} = 3$,
 	$\omega_{p_{obj}}=1000*2*\pi$ $rad/s$ y $Q_{p_{obj}} = 1 / \sqrt{2}$. 
 	
-	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se supone que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 4,84E08 alternativas. Se define además una tolerancia o error máximo $\epsilon_{max} = 2,5\%$ para los valores de $G_{obj}$,
+	Consideraremos así mismo un escenario donde las resistencias y capacitores pueden tomar valores de la serie E24 y E12, con rangos en $10^3$-$10^6$$\Omega$ y $10^{-9}$-$10^{-6}$F, respectivamente. Se supone que valores fuera de estos rangos conducirían a efectos negativos debido a capacidades parásitas o señales de corriente muy grandes. De esta manera, el espacio de búsqueda total asciende a 
+	$4.84*10^8$ alternativas. Se define además una tolerancia o error máximo $\epsilon_{max} = 2,5\%$ para los valores de $G_{obj}$,
 	$\omega_{p_{obj}}$ y $Q_{p_{obj}}$.	
     
   \section{\textbf{Programación por Restricciones}}
@@ -365,14 +367,142 @@
 	  		S^2 = (R_1^2, R_2^2, R_3^2, C_4^2, C_5^2)\\
 	  \end{align*}
 	  diremos que $S^1$ domina a $S^2$ si y sólo si $S_{R_1}^{Q_p}(S^1) \leq S_{R_1}^{Q_p}(S^2) \wedge S_{R_2}^{Q_p}(S^1) \leq S_{R_2}^{Q_p}(S^2) \wedge S_{R_3}^{Q_p}(S^1) \leq S_{R_3}^{Q_p}(S^2)$
+	  
+	\section{\textbf{Algoritmo Exhaustivo}}
+		\label{sec:AlgoritmoExhaustivo}
+		En esta sección mostraremos cómo realizando algunas observaciones y operaciones matemáticas 
+		es posible obtener un algoritmo exhaustivo que encuentra todas las soluciones posibles para el problema.
+		
+		Es claro que a partir de (\ref{defG}) se tiene que para cada valor de $R_1$ hay un conjunto de valores 
+		de $R_2$ que denotaremos  $\{R_2\}_{R_1}$ tales que $G^{max} > G > G^{min}$
+		
+		Definiendo las siguientes frecuencias,
+		\begin{eqnarray}
+		\omega_1 &=& 1/(R_2 C_4) \nonumber \\
+		\omega_2 &=& 1/(R_3 C_5)
+		\label{omegas}
+		\end{eqnarray}
+		podemos reescribir (\ref{defOmega}) de la siguiente forma: $\omega_p = \sqrt{\omega_1  \omega_2}$
+		
+		A partir de los valores que pueden tomar las resistencias y capacitores, es posible calcular la lista de 
+		valores que pueden tomar las frecuencias definidas en (\ref{omegas}).
+		
+		Para cada uno de los valores posibles para $\omega_1$, habrá un conjunto de pares de valores ($R_2$, $C_4$) tales que
+		$\omega_1 = 1/(R_2 C_4)$. Designamos a tal conjunto como $\{(R_2,C_4)\}_{\omega_1}$. 
+		
+		De manera análoga se puede proceder con $\omega_2$, $R_3$ y $C_5$ (obsérvese que el conjunto de valores 
+		posibles para $\omega_2$ es el mismo que para $\omega_1$ y que $\{(R_2,C_4)\}_{\omega_1}=\{(R_3,C_5)\}_{\omega_2}$ 
+		cuando $\omega_1=\omega_2$). 
+		
+		Luego, dada la restricción $\omega_p \in  [\omega_p^{min},\omega_p^{max}]$ y 
+		elegido un valor de  $\omega_1$, los valores admisibles de $\omega_2$ son aquellos para los que 
+		$\omega_p= \sqrt{\omega_1 \omega_2}$ satisface dicha restricción, y por lo tanto cumplen las siguiente relación:
+		\begin{equation*}
+		\frac{(\omega_p^{max})^2}{\omega_1} > \omega_2 > \frac{(\omega_p^{min})^2}{\omega_1}
+		\end{equation*}
+		
+		De esta manera, para cada valor realizable de $\omega_1$ existe un conjunto finito $\{{\omega_2}\}_{\omega_1}$ 
+		de valores de $\omega_2$ tales que $ \omega_p^{max} > \omega_p > \omega_p^{min} $
+		
+		Por otro lado, a partir de (\ref{defQ}) y (\ref{omegas}) podemos reescribir $Q_p^{-1}$ de la siguiente forma,
+		\begin{equation}
+		Q_p^{-1} =
+		\sqrt{\frac{\omega_1}{\omega_2}}\left(1+\frac{R_2}{R_1}+\frac{R_2}{R_3}\right)
+		\label{otraq}
+		\end{equation}
+		
+		Finalmente, para cada par ($R_1$, $R_2$), ($\omega_1, \omega_2$) que satisface
+		las restricciones sobre $G$ y $\omega_p$, utilizando la expresión
+		(\ref{otraq}) buscamos los valores $R_3$ admisibles que satisfagan la  condición
+		$$
+		(Q_p^{-1})^{max} > Q_p^{-1} > (Q_p^{-1})^{min}
+		$$
+		y de esta manera obtenemos todas las soluciones de la forma ($R_1$, $R_2$,
+		$\omega_1$, $\omega_2$, $R_3$)  
+		que luego podemos \textit{mapear} a las soluciones de la forma ($R_1$,
+		$R_2$, $R_3$, $C_4$, $C_5$). 
+		
+		A continuación mostramos el \textit{pseudocódigo} del algoritmo de búsqueda exhaustiva que acabamos
+		de describir.
+		
+		\begin{algorithm}[H]
+			\caption{Búsqueda exhaustiva}
+			\label{alg:exhaustSearch}
+			\begin{algorithmic}[1]
+				\State $R_{vals}$: conjunto de valores que pueden tomar las resistencias
+				\State $C_{vals}$: conjunto de valores que pueden tomar los capacitores
+				\State $G^{min}$: valor mínimo aceptable para la ganancia
+				\State $G^{max}$: valor máximo aceptable para la ganancia
+				\State $\omega_p^{min}$: valor mínimo aceptable para la frecuencia de polo
+				\State $\omega_p^{max}$: valor máximo aceptable para la frecuencia de polo
+				\State $Q^{min}$: valor mínimo aceptable para el factor de calidad
+				\State $Q^{max}$: valor máximo aceptable para el factor de calidad
+				\item[]
+				\Procedure{ExhaustiveSearch}{$R_{vals}$, $C_{vals}$}
+				\State $soluciones \gets []$
+				\State $G_{constraint} \gets  []$ \Comment{Obtener pares $(r1,r2)$ que satisfagan la restricción sobre G}
+				\For{cada $r1$ en $R_{vals}$, cada $r2$ en $C_{vals}$}
+				\State $G \gets r2/r1$
+				\If{$G^{max} > G > G^{min}$}
+				\State Agregar el par $(r1, r2)$ a $G_{constraint}$
+				\EndIf 
+				\EndFor
+				\item[]
+				\State $\omega_{constraint} \gets \{\}$ \Comment{Diccionario que para cada $\omega_1$ contiene el conjunto de los $\omega_2$ posibles para no violar la
+					restricción}
+				\State $wToRCMap \gets \{\}$  \Comment{Diccionario que para cada valor de $w$ contiene una lista con los pares $(r,c)$ que lo generan}
+				\item[]
+				\State $w_{vals} = [ ]$
+				\For{cada $r$ en $R_{vals}$, cada $c$ en $C_{vals}$}
+				\State $w \gets 1/(r*c)$
+				\State Agregar el par $(r,c)$ a $wToRCMap[w]$
+				\State Agregar $w$ a la lista $w_{vals}$
+				\EndFor
+				\For{cada $w_1$ en $w_{vals}$}
+				\State $Posibles\_\omega_2 \gets [ ]$
+				\For{cada $w_2$ en $w_{vals}$}
+				\State $minVal \gets {(\omega_p^{min})}^{2}$
+				\State $maxVal \gets {(\omega_p^{max})}^{2}$
+				\If{$maxVal > w2 > minVal$}
+				\State Agregar $w2$ a la lista $Posibles\_\omega_2$
+				\EndIf
+				\EndFor
+				\If{$Posibles\_\omega_2$ no es vacía}
+				\State Agregar $Posibles\_\omega_2$ a $\omega_{constraint}[\omega_1]$
+				\EndIf
+				\EndFor
+				\item[]
+				\For{cada par $(r1,r2)$ en $G_{constraint}$}
+				\For{cada $\omega_1$ en las keys de $\omega_{constraint}$}
+				\State $Posibles\_\omega_2 \gets \omega_{constraint}[\omega_1]$
+				\State $genera \gets \exists (r,c) \in wToRCMap[\omega_1] \mid r = r_2$ \Comment{Chequear si $r_2$ \textit{genera} $\omega_1$}
+				\If{$genera$}
+				\For{cada $\omega_2$ en $Posibles\_\omega_2$, cada $r_3$ en $R_{vals}$}
+				\State $genera \gets \exists (r,c) \in wToRCMap[\omega_2] \mid r = r_3$ \Comment{Chequear si $r_3$ \textit{genera} $\omega_2$}
+				\If{$genera$}
+				\State $(Q^{-1})_{r_3} \gets \sqrt{\omega_1 / \omega_2} * (1  + r_2/r_1 + r_2/r_3)$
+				\If{$(Q^{min})^{-1} > (Q^{-1})_{r_3} > (Q^{max})^{-1}$}
+				\State $c_4 \gets 1/(r_2 * \omega_1)$
+				\State $c_5 \gets 1/(r_3 * \omega_2)$ 
+				\State Agregar la tupla $(r_1, r_2, r3, c4, c5)$ a la lista $soluciones$
+				\EndIf
+				\EndIf
+				\EndFor
+				\EndIf
+				\EndFor
+				\EndFor
+				\State \textbf{return} $soluciones$
+				\EndProcedure
+			\end{algorithmic}
+		\end{algorithm}
+		
+		El código \textit{Python} para este algoritmo puede encontrarse en el apéndice \ref{subsec:pythonexhaustivo}.
 
-  \section{\textbf{Solución exhaustiva}}
-    En esta sección presentaremos primero una solución analítica del problema a partir de la cual luego derivaremos un algoritmo
-    que permite encontrar todas las soluciones del problema. La ventaja de contar con una solución de este tipo es que nos permitirá
-    evaluar luego el rendimiento de los métodos heurísticos, en este caso en particular de ACO\textsubscript{$\mathbb{R}$}.
-  	\label{sec:exhaustSearch}
-  	\subsection{Solución Analítica}
-  	  \label{subsec:solAnalitica}
+  \section{\textbf{Solución Analítica}}
+    En esta sección presentaremos una solución analítica del problema que permite encontrar todas las soluciones del problema. 
+    La ventaja de contar con una solución de este tipo es que nos permitirá evaluar luego el rendimiento de los métodos heurísticos, 
+    en este caso en particular de ACO\textsubscript{$\mathbb{R}$}.
+  	\label{sec:solAnalitica}
 	  	El problema consiste en minimizar una función -la sensibilidad- de cinco variables -las tres resistencias y los dos capacitores-, 
 	  	sujeta a tres restricciones,
 	  	
@@ -498,6 +628,7 @@
 	Fijando el valor de $R_1$, de (\ref{a}) obtenemos $R_2$ y con (\ref{b}) $R_3$. Luego, de (\ref{omega2}) y 
 	(\ref{q2}) obtenemos $C_4$ y $C_5$. El resultado final es,
 	\begin{eqnarray}
+	\label{eqarr:solAnalitica}
 	R_2&=&G_0 R_1\nonumber\\
 	R_3&=&\frac{R_1 R_2}{R_1+ R_2}\nonumber\\
 	C_4&=&\frac{Q_0 D}{\omega_0 E}\\
@@ -510,11 +641,11 @@
 	\sqrt{\frac{R_3}{R_2}} +\sqrt{\frac{R_2}{R_3}}\right\}^{-1}
 	\end{eqnarray}
 	
-	A modo de ejemplo mostramos en la tabla el resultado de utilizar (\ref{final}) con los valores de $R_1$ del escenario 2. 
+	A modo de ejemplo mostramos en el cuadro \ref{cuadro1} el resultado de utilizar (\ref{final}) con los valores de $R_1$ del escenario 2. 
 	Luego de calcular el conjunto de valores $(R_1,R_2,R_3,C_4,C_5)$ para cada valor de $R_1$, descartamos todas la
 	tuplas en las que alguno de sus cinco elementos se salen del rango correspondiente al escenario.
 	
-	\begin{table}[H]
+	\begin{table}[!h]
 		$$
 		\begin{array}{|c|c|c|c|c|}
 		\hline
@@ -557,7 +688,8 @@
 		\hline
 		\end{array}
 		$$
-		\caption{}
+		\caption{Resultados obtenidos al aplicar las ecuaciones de \ref{eqarr:solAnalitica} para los valores de $R_1$ en el escenario 2}
+                \label{cuadro1}
 	\end{table}
 
 	Si ahora volvemos al problema original (\ref{opti}), la estrategia de resolución se mantiene 
@@ -576,13 +708,15 @@
 	C_5^{max} &=& \frac{DE}{\omega_-Q_-}\nonumber
 	\end{eqnarray}
 	Luego basta con elegir todos los $C_4$ que caen en el rango $(C_4^{min},C_4^{max})$. Análogamente con $C_5$. 
-	En la tabla 2 mostramos los valores discretos mas cercanos a los de la tabla 1 (cuando alguno de los valores 
-	de algún parámetro de la tabla 1 es equidistante a dos valores permitidos, tomamos como más cercano el de la izquierda)
-	\begin{table}[H]
-		$$
-		\begin{array}{|c|c|c|c|c|}
+	En el cuadro \ref{cuadro2} mostramos los valores discretos mas cercanos a los del cuadro \ref{cuadro1} 
+	(cuando alguno de los valores  de algún parámetro del cuadro \ref{cuadro1} es equidistante a dos valores
+    permitidos, tomamos como más cercano el de la izquierda)
+        
+	\begin{table}[!h]
+$$
+	  \begin{array}{|c|c|c|c|c|}
 		\hline
-		R_1    & R_2  & R_3   & C_4                          & C_5 \\
+		R_1    & R_2  & R_3   & C_4  & C_5 \\
 		\hline
 		1500. & 4300. & 1100. & \text{2.2$\grave{ }$*${}^{\wedge}$-7} & \text{2.7$\grave{ }$*${}^{\wedge}$-8} \\
 		1600. & 4700. & 1200. & \text{1.8$\grave{ }$*${}^{\wedge}$-7} & \text{2.2$\grave{ }$*${}^{\wedge}$-8} \\
@@ -621,142 +755,9 @@
 		\hline
 		\end{array}
 		$$
-		\caption{}
-	\end{table}
-  	   
-  	
-  	\subsection{Algoritmo}
-    Basándonos en el análisis realizado en la sección \textbf{\ref{subsec:solAnalitica}}, es posible obtener un 
-    algoritmo exhaustivo que encuentra todas las soluciones posibles para el problema.
-
-    Es claro que a partir de la ecuación (\ref{g}) se tiene que para cada valor de $R_1$ hay un conjunto de valores de $R_2$ 
-    que denotaremos  $\{R_2\}_{R_1}$ tales que $G^{max} > G > G^{min}$
-
-    Definiendo las siguientes frecuencias,
-    \begin{eqnarray}
-      \omega_1 &=& 1/(R_2 C_4) \nonumber \\
-      \omega_2 &=& 1/(R_3 C_5)
-      \label{omegas}
-    \end{eqnarray}
-    podemos reescribir (\ref{omega}) de la siguiente forma: $\omega_p = \sqrt{\omega_1  \omega_2}$
-
-    
-    A partir de los valores que pueden tomar las resistencias y capacitores, es
-    posible calcular la lista de valores que pueden tomar las frecuencias
-    definidas en (\ref{omegas}). Para cada uno de los valores posibles para
-    $\omega_1$, habrá un conjunto de pares de valores ($R_2$, $C_4$) tales que
-    $\omega_1 = 1/(R_2 C_4)$. Designamos a tal conjunto como $\{(R_2,
-      C_4)\}_{\omega_1}$. De manera análoga se puede proceder con $\omega_2$,
-      $R_3$ y $C_5$ (obsérvese que el conjunto de valores posibles para $\omega_2$
-      es el mismo que para $\omega_1$ y que $\{(R_2,C_4)\}_{\omega_1}=\{(R_3,
-      C_5)\}_{\omega_2}$ cuando $\omega_1=\omega_2$). Luego, dada la restricción $\omega_p \in 
-    [\omega_p^{min},\omega_p^{max}]$ y elegido un valor de  $\omega_1$, los
-    valores admisibles de $\omega_2$ son aquellos para los 
-    que $\omega_p= \sqrt{\omega_1 \omega_2}$ satisface dicha restricción, y
-    por lo tanto cumplen las siguiente relación:
-    \begin{equation*}
-    \frac{(\omega_p^{max})^2}{\omega_1} > \omega_2 > \frac{(\omega_p^{min})^2}{\omega_1}
-    \end{equation*}
-
-    De esta manera, para cada valor realizable de $\omega_1$ existe un conjunto
-    finito $\{{\omega_2}\}_{\omega_1}$ de valores de $\omega_2$ 
-    tales que $ \omega_p^{max} > \omega_p > \omega_p^{min} $
-
-    Por otro lado, a partir de (\ref{q}) y (\ref{omegas}) podemos reescribir
-    $Q_p^{-1}$ de la siguiente forma,
-    \begin{equation}
-    Q_p^{-1} =
-    \sqrt{\frac{\omega_1}{\omega_2}}\left(1+\frac{R_2}{R_1}+\frac{R_2}{R_3}\right)
-    \label{otraq}
-    \end{equation}
-    
-    Finalmente, para cada par ($R_1$, $R_2$), ($\omega_1, \omega_2$) que satisface
-    las restricciones sobre $G$ y $\omega_p$, utilizando la expresión
-    (\ref{otraq}) buscamos los valores $R_3$ admisibles que satisfagan la  condición
-    $$
-    (Q_p^{-1})^{max} > Q_p^{-1} > (Q_p^{-1})^{min}
-    $$
-    y de esta manera obtenemos todas las soluciones de la forma ($R_1$, $R_2$,
-    $\omega_1$, $\omega_2$, $R_3$)  
-    que luego podemos \textit{mapear} a las soluciones de la forma ($R_1$,
-    $R_2$, $R_3$, $C_4$, $C_5$). 
-    
-    A continuación mostramos el \textit{pseudocódigo} del algoritmo de búsqueda exhaustiva que acabamos
-    de describir.
-
-	\begin{breakablealgorithm}
-		\caption{Búsqueda exhaustiva}
-		\label{alg:exhaustSearch}
-		\begin{algorithmic}[1]
-			\State $R_{vals}$: conjunto de valores que pueden tomar las resistencias
-			\State $C_{vals}$: conjunto de valores que pueden tomar los capacitores
-			\State $G^{min}$: valor mínimo aceptable para la ganancia
-			\State $G^{max}$: valor máximo aceptable para la ganancia
-			\State $\omega_p^{min}$: valor mínimo aceptable para la frecuencia de polo
-			\State $\omega_p^{max}$: valor máximo aceptable para la frecuencia de polo
-			\State $Q^{min}$: valor mínimo aceptable para el factor de calidad
-			\State $Q^{max}$: valor máximo aceptable para el factor de calidad
-			\item[]
-			\Procedure{ExhaustiveSearch}{$R_{vals}$, $C_{vals}$}
-			\State $soluciones \gets []$
-			\State $G_{constraint} \gets  []$ \Comment{Obtener pares $(r1,r2)$ que satisfagan la restricción sobre G}
-			\For{cada $r1$ en $R_{vals}$, cada $r2$ en $C_{vals}$}
-			\State $G \gets r2/r1$
-			\If{$G^{max} > G > G^{min}$}
-			\State Agregar el par $(r1, r2)$ a $G_{constraint}$
-			\EndIf 
-			\EndFor
-			\item[]
-			\State $\omega_{constraint} \gets \{\}$ \Comment{Diccionario que para cada $\omega_1$ contiene el conjunto de los $\omega_2$ posibles para no violar la
-			restricción}
-			\State $wToRCMap \gets \{\}$  \Comment{Diccionario que para cada valor de $w$ contiene una lista con los pares $(r,c)$ que lo generan}
-			\item[]
-			\State $w_{vals} = [ ]$
-			\For{cada $r$ en $R_{vals}$, cada $c$ en $C_{vals}$}
-			\State $w \gets 1/(r*c)$
-			\State Agregar el par $(r,c)$ a $wToRCMap[w]$
-			\State Agregar $w$ a la lista $w_{vals}$
-			\EndFor
-			\For{cada $w_1$ en $w_{vals}$}
-			\State $Posibles\_\omega_2 \gets [ ]$
-			\For{cada $w_2$ en $w_{vals}$}
-			\State $minVal \gets {(\omega_p^{min})}^{2}$
-			\State $maxVal \gets {(\omega_p^{max})}^{2}$
-			\If{$maxVal > w2 > minVal$}
-			\State Agregar $w2$ a la lista $Posibles\_\omega_2$
-			\EndIf
-			\EndFor
-			\If{$Posibles\_\omega_2$ no es vacía}
-			\State Agregar $Posibles\_\omega_2$ a $\omega_{constraint}[\omega_1]$
-			\EndIf
-			\EndFor
-			\item[]
-			\For{cada par $(r1,r2)$ en $G_{constraint}$}
-			\For{cada $\omega_1$ en las keys de $\omega_{constraint}$}
-			\State $Posibles\_\omega_2 \gets \omega_{constraint}[\omega_1]$
-			\State $genera \gets \exists (r,c) \in wToRCMap[\omega_1] \mid r = r_2$ \Comment{Chequear si $r_2$ \textit{genera} $\omega_1$}
-			\If{$genera$}
-			\For{cada $\omega_2$ en $Posibles\_\omega_2$, cada $r_3$ en $R_{vals}$}
-			\State $genera \gets \exists (r,c) \in wToRCMap[\omega_2] \mid r = r_3$ \Comment{Chequear si $r_3$ \textit{genera} $\omega_2$}
-			\If{$genera$}
-			\State $(Q^{-1})_{r_3} \gets \sqrt{\omega_1 / \omega_2} * (1  + r_2/r_1 + r_2/r_3)$
-			\If{$(Q^{min})^{-1} > (Q^{-1})_{r_3} > (Q^{max})^{-1}$}
-			\State $c_4 \gets 1/(r_2 * \omega_1)$
-			\State $c_5 \gets 1/(r_3 * \omega_2)$ 
-			\State Agregar la tupla $(r_1, r_2, r3, c4, c5)$ a la lista $soluciones$
-			\EndIf
-			\EndIf
-			\EndFor
-			\EndIf
-			\EndFor
-			\EndFor
-			\State \textbf{return} $soluciones$
-			\EndProcedure
-		\end{algorithmic}
-	\end{breakablealgorithm}
-
-	El código \textit{Python} para este algoritmo puede encontrarse en el apéndice \ref{subsec:pythonexhaustivo}.
-	
+		\caption{Resultados discretos más cercanos a los obtenidos del cuadro \ref{cuadro1}, para el escenario 2}
+                \label{cuadro2}
+	\end{table}	
 
   \section{\textbf{Optimización por Colonia de Hormigas}}
   \label{sec:acor}
@@ -772,9 +773,9 @@
   	Y definimos también $C_s$ como el conjunto de todas las componentes de solución posibles.
   
   	En el algoritmo \ref{alg:acoMetaheuristic} se presenta la metaheurística ACO, que consiste de tres
-  	actividades.
+  	actividades, que se detallan a continuación.
   	
-  	\begin{breakablealgorithm}
+  	\begin{algorithm}[H]
   	\caption{Metaheurística ACO}
   	\label{alg:acoMetaheuristic}
   	\begin{algorithmic}[1]
@@ -784,8 +785,7 @@
   		\State AccionesDaemon() \Comment{Opcional}
   		\EndWhile
   	\end{algorithmic}
-	\end{breakablealgorithm}
-	A continuación se detallan cada una de esas actividades.
+	\end{algorithm}
 	\bigbreak
 	\textit{ConstruirSolución()}: Las hormigas artificiales construyen soluciones creando una secuencia de componentes elegidas de un conjunto finito de valores posibles para cada componente. 
 	
@@ -1008,18 +1008,19 @@
 	ACO\textsubscript{$\mathbb{R}$} para que trabaje con valores discretos. 
 	Finalmente, veremos que si $R_1$ se deja libre, la versión discreta no encuentra buenas soluciones en general.
 	
-	Para cada una de las variantes, definimos una única función \textit{costo} que es el objetivo a minimizar y por lo tanto será la ultima columna	de cada entrada del archivo de soluciones. A continuación el pseudocódigo muestra la función costo utilizada en todos
-	los casos.
+	Para cada una de las variantes, definimos una única función \textit{costo} que es el objetivo a minimizar y, por lo tanto, 
+	será la ultima columna	de cada entrada del archivo de soluciones. A continuación el pseudocódigo muestra la 
+	función costo utilizada en todos los casos.
 	
 	\begin{breakablealgorithm}
 		\caption{Función costo a minimizar}
 	    \begin{algorithmic}[1]
 	    	\State $R_{min}, R_{max}$: Valores mínimo y máximo que pueden tomar las resistencias
 	    	\State $C_{min}, C_{max}$: Valores mínimo y máximo que pueden tomar los capacitores
-	    	\State $W_G \gets 100000$: Peso de la restricción sobre la ganancia
-	    	\State $W_\omega \gets 100$: Peso de la restricción sobre $\omega$
-	    	\State $W_Q \gets 100$: Peso de la restricción sobre $Q$
-	    	\State $W_{Sens} \gets 1000$
+	    	\State $W_G \gets 10000$: Peso de la restricción sobre la ganancia
+	    	\State $W_\omega \gets 10$: Peso de la restricción sobre $\omega$
+	    	\State $W_Q \gets 10$: Peso de la restricción sobre $Q$
+	    	\State $W_S \gets 100$: Peso de la restricción sobre la sensibilidad
 	    	\State $W_{Max}  \gets 1\mathrm{e}{11}$: Penalización para variables fuera de rango
 	    	\State $G_{obj} \gets 3$: Ganancia objetivo
 	    	\State $\omega_{obj} \gets 2000 * \pi$: Frecuencia de polo objetivo
@@ -1044,7 +1045,8 @@
 	    			\State $Q \gets \Call{FactorCalidad}{R_1, R_2, R_3, C_4, C_5}$
 	    			\State $G \gets \Call{Ganancia}{R_1, R_2, R_3, C_4, C_5}$
 	    			\State $\omega \gets \Call{FrecuenciaPolo}{R_1, R_2, R_3, C_4, C_5}$
-	    			\State \Return $W_{Sens} * (Sens - 0.75)^2 + W_G * (G - G_{obj})^2 + W_\omega * (\log (\omega / \omega_{obj}))^2 + W_Q *(\log (Q / Q_{obj})^2)$
+	    			\State $Costo \gets W_S * Sens^2 + W_G * (G - G_{obj})^2 + W_\omega * (\log (\omega / \omega_{obj}))^2 + W_Q *(\log (Q / Q_{obj})^2)$
+	    			\State \Return $Costo$
 	    		\Else
 	    			\State \Return $W_{Max}$
 	    		\EndIf
@@ -1057,9 +1059,10 @@
 	\subsection{Versión continua con todas las variables libres}
 	\label{subsec:VersionContinua}
 	En esta primera versión del algoritmo el dominio de las variables es todo el intervalo continuo entre los valores
-	admisibles máximos y mínimos especificados por las series $E$. Es conveniente que definamos algunas funciones
-	elementales aquí para hacer el pseudocódigo más legible \footnote{Estas funciones pueden encontrarse ya implementadas en
-	varias librerías o lenguajes como por ejemplo \textit{Python} -en la librería \textit{Numpy}- y \textit{Matlab}}. 
+	admisibles máximos y mínimos especificados por las series $E$. Es conveniente que definamos algunas funciones 
+	elementales aquí para hacer el pseudocódigo más 
+	legible \footnote{Estas funciones pueden encontrarse ya implementadas en varias librerías o lenguajes como 
+	por ejemplo \textit{Python} -en la librería \textit{Numpy}- y \textit{Matlab}}. 
 
 	\begin{itemize}
 		\item $zeros(n)$: devuelve un arreglo $A$ de n elementos, todos inicializados en 0.
@@ -1084,8 +1087,8 @@
 	\end{itemize}
 	
 	El pseudocódigo correspondiente a esta versión puede verse a continuación:
-		\begin{breakablealgorithm}
-		\caption{ACO-$\mathbb{R}$ Continuo Libre}
+		\begin{algorithm}[H]
+		\caption{ACO\textsubscript{$\mathbb{R}$} Continuo Libre}
 		\label{alg:continuoLibre}
 		\begin{algorithmic}[1]
 			\State $R_{min}, R_{max}$: Valores mínimo y máximo que pueden tomar las resistencias
@@ -1161,14 +1164,36 @@
 			\State \Return $Sol$
 			\EndFunction
 		\end{algorithmic}
-	\end{breakablealgorithm}
+	\end{algorithm}
 
-	La implementación en \textit{Python} del algoritmo \ref{alg:continuoLibre} puede verse en el apéndice \ref{subsec:pythoncontinuo}.
-
-	En las figuras (\ref{fig:F-r1}), (\ref{fig:F-c4}), (\ref{fig:F-r2}), (\ref{fig:F-c5}), (\ref{fig:F-r3}) y (\ref{fig:F-costo}) 
-	podemos visualizar la convergencia de la función costo así como también de las cinco variables.
+	Es dable notar que hemos utilizado dos variantes del algoritmo: en la primera el muestreo y selección de las variables 
+	se hace directamente sobre su valor, mientras que en la segunda se hace utilizando el logaritmo de los valores. Esta 
+	diferenciación se hace efectiva en el algoritmo simplemente modificando el procedimiento de inicialización del archivo donde
+	se cambian los límites de la llamada a \textit{randUniform} utilizando $\log(R_{min})$ y $\log(R_{max})$ -lo mismo se hace
+	con los capacitores-. Los resultados obtenidos con la versión logarítmica fueron sensiblemente mejores, como puede observarse
+	en el cuadro \ref{cuadroSols1}.
 	
-	\begin{figure}[H]                                                                                  
+	Además, en las figuras (\ref{fig:F-r1}), (\ref{fig:F-c4}), (\ref{fig:F-r2}), (\ref{fig:F-c5}), (\ref{fig:F-r3}) y (\ref{fig:F-costo}) 
+	podemos visualizar la convergencia de la función costo así como también de las cinco variables para la versión logarítmica.
+	
+	La implementación en \textit{Python} del algoritmo \ref{alg:continuoLibre} puede verse en el apéndice \ref{subsec:pythoncontinuo}.
+	
+	\begin{table}[!h]
+		$$
+		\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		Version & R1 & R2 & R3 & C4 & C5 & Costo & Sens & ErrG & ErrO & ErrQ \\
+		\hline
+		Com\acute{u}n & 143119.89 & 429268.55 & 107334.23 & \text{2.10*10${}^{\wedge}$-9} & \text{1.00*10${}^{\wedge}$-9} & 65.209 & 0.75 & 0.021\% & 48.794\% & 48.801\% \\
+		Logar\acute{\imath}tmica & 3561.17 & 10683.34 & 2671.14 & \text{8.43*10${}^{\wedge}$-8} & \text{1.05*10${}^{\wedge}$-8} & 56.248 & 0.75 & 0.016\% & 0.002\% & 0.005\% \\
+		\hline
+		\end{array}
+		$$
+		\caption{Resultados obtenidos con la versión común y logarítmica.}
+		\label{cuadroSols1}
+	\end{table}
+	
+	\begin{figure}[!h]                                                                                  
 		\centering                                                                                      
 		\begin{subfigure}{0.5\textwidth}
 			\centering
@@ -1213,24 +1238,108 @@
 		\label{fig:FF}                                                                                  
 	\end{figure}
 	
-	\subsection{Versión Continua con Búsqueda de Vecinos Discretos Cercanos}
-	\label{subsec:VersionDiscreta}
-	En la sección \ref{subsec:VersionContinua} vimos cómo ACO-$\mathbb{R}$ converge hacia valores dentro 
+	\subsection{Versión continua con $R_1$ fijado}
+	\label{subsec:VersionContinuaR1Fijado}
+	En la sección \ref{subsec:VersionContinua} vimos cómo ACO\textsubscript{$\mathbb{R}$} converge hacia valores dentro 
 	del rango continuo que cada componente puede tomar, a la vez que minimiza la función costo. Sin embargo, 
 	en nuestro problema, el conjunto de valores que puede tomar cada componente del filtro proviene de un conjunto finito. 
-	En esta sección modificamos ligeramente el algoritmo (\ref{alg:continuoLibre})
-	de forma que $R_1$ queda fijado a cada uno de los posibles valores que puede tomar. A partir de $R_1$ obtenemos una
-	solución continua. Esta solución tendrá valores para $R_2$, $R_3$, $C_4$ y $C_5$ que, en general, no corresponden a
-	los valores permitidos en las series industriales, pero a partir de esta solución efectuamos una búsqueda de los vecinos
-	más cercanos (por encima y por debajo) en la lista de valores permitidos para cada componente. Es decir, que a partir de la
-	solución continua generamos $2^4 = 16$ configuraciones permitidas. De entre estas 16 configuraciones seleccionamos
-	aquella de menor costo y que satisface las restricciones. En este caso, el número de variables $NumVars$ pasa a ser 
-	4 en vez de 5, ya que R1 queda fijado. Con lo cual el archivo en vez de tener 6 columnas en cada fila tiene ahora 
-	5 -una para cada variable $R_2$, $R_3$, $C_4$ y $C_5$ y la última para el costo-.
-	Por lo tanto, la solución $Sol$ devuelta contiene los valores para las 4 componentes libres y el costo.
+	En esta sección modificamos ligeramente el algoritmo (\ref{alg:continuoLibre}) de forma que iteramos sobre cada valor 
+	que puede tomar $R_1$ y obtenemos una solución continua utilizando la función \textbf{HallarSoluciones}. 
+	En este caso, el número de variables $NumVars$ pasa a ser  4 en vez de 5, ya que R1 queda fijado.
+	
+	Como en la sección \ref{subsec:VersionContinua} tendremos una versión que trabaja directamente
+	con los valores de los componentes y otra que lo hace con los logaritmos. El pseudocódigo -donde omitimos
+	redefinir aquellos parámetros que son los mismos que en el algoritmo \ref{alg:continuoLibre}- se muestra a continuación.
 	
 	\begin{breakablealgorithm}
-		\caption{ACO-$\mathbb{R}$ Discreto con Búsqueda de Vecinos Cercanos}
+		\caption{ACO\textsubscript{$\mathbb{R}$} continuo con $R_1$ fijo}
+		\label{alg:continuoFijo}
+		\begin{algorithmic}[1]
+			\State $NumVars = 4$ \Comment{$R_2, R_3, C_4, C_5$}
+			\State $Soluciones \gets []$
+			\For{$R_1$ en $ValoresResistencias$}
+				\State $Sol \gets [R_1] +  \Call{HallarSoluciones}{}()$ \Comment{Función definida en algoritmo \ref{alg:continuoLibre}}
+				\State Agregar $Sol$ a la lista $Soluciones$
+			\EndFor
+		\end{algorithmic}
+	\end{breakablealgorithm}
+
+	A modo de ejemplo, incluimos en los cuadros \ref{cuadroSolsExh}, \ref{cuadroSolsCom} y \ref{cuadroSolsLog} los 
+	resultados para los mejores 5 valores de $R_1$ de acuerdo a las soluciones obtenidas mediante el algoritmo exhaustivo
+	de la sección \ref{sec:AlgoritmoExhaustivo}, para la versión exhaustiva, la que trabaja directamente con los valores 
+	de las variables y para aquella que lo hace con los logaritmos, respectivamente.
+	
+	\begin{table}[!h]
+		$$
+		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		R_1 & R_2 & R_3 & C_4 & C_5 & Costo  & Sens & Err_G & Err_\omega & Err_Q \\
+		\hline
+		11000 & 33000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0 & 0.7508 & 0\% & 2.499\% & 1.145\% \\
+		3600 & 11000 & 2700 & \expnumber{8.2}{-8} & \expnumber{1}{-8} & 0 & 0.7540 & 1.852\% & 1.985\% & 0.561\% \\
+		36000 & 110000 & 27000 & \expnumber{8.2}{-9} & \expnumber{1}{-9} & 0 & 0.7540 & 1.852\% & 1.985\% & 0.561\% \\
+		12000 & 36000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0 & 0.7616 & 0\% & 1.865\% & 1.036\% \\
+		3300 & 10000 & 2200 & \expnumber{1}{-7} & \expnumber{1.2}{-8} & 0 & 0.7668 & 1.010\% & 2.047\% & 1.510\% \\
+		\hline
+		\end{array}
+		$$
+		\caption{Resultados obtenidos con la versión exhaustiva.}
+		\label{cuadroSolsExh}
+	\end{table}
+
+	\begin{table}[!h]
+		$$
+		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		R_1 & R_2 & R_3 & C_4 & C_5 & Costo  & Sens & Err_G & Err_\omega & Err_Q \\
+		\hline
+		11000 & 33000 & 8246.68 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0 & 0.75 & 0\% & 0.022\% & 0.011\% \\
+		3600 & 10800 & 2700 & \expnumber{8.34}{-8} & \expnumber{1.04}{-8} & 0 & 0.75 & 0\% & 0\% & 0\% \\
+		36000 & 108000 & 27000 & \expnumber{8.34}{-9} & \expnumber{1.04}{-9} & 0 & 0.75 & 0\% & 0\% & 0\% \\
+		12000 & 36000.15 & 8992.27 & \expnumber{2.5}{-8} & \expnumber{3.12}{-9} & 0 & 0.7501 & 0\% & 0.060\% & 0.081\% \\
+		3300 & 9900 & 2474.84 & \expnumber{9.09}{-8} & \expnumber{1.14}{-8} & 0 & 0.75 & 0\% & 0.001\% & 0\% \\
+		\hline
+		\end{array}
+		$$
+		\caption{Resultados obtenidos con la versión común.}
+		\label{cuadroSolsCom}
+	\end{table}
+
+	\begin{table}[H]
+		$$
+		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		R_1 & R_2 & R_3 & C_4 & C_5 & Costo  & Sens & Err_G & Err_\omega & Err_Q \\
+		\hline
+		11000 & 33000 & 8247.12 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0 & 0.75 & 0\% & 0.012\% & 0.018\% \\
+		3600 & 10800.02 & 2695.4 & \expnumber{8.35}{-8} & \expnumber{1.04}{-8} & 0 & 0.7502 & 0\% & 0.017\% & 0.005\% \\
+		36000 & 107999.95 & 26923.72 & \expnumber{8.36}{-9} & \expnumber{1.04}{-9} & 0 & 0.7503 & 0\% & 0.097\% & 0.019\% \\
+		12000 & 36000 & 8994 & \expnumber{2.5}{-8} & \expnumber{3.13}{-9} & 0 & 0.7501 & 0\% & 0.020\% & 0.055\% \\
+		3300 & 9900.01 & 2474.33 & \expnumber{9.10}{-8} & \expnumber{1.14}{-8} & 0 & 0.75 & 0\% & 0.010\% & 0.016\% \\
+		\hline
+		\end{array}
+		$$
+		\caption{Resultados obtenidos con la versión logarítmica.}
+		\label{cuadroSolsLog}
+	\end{table}
+	
+	\subsection{Versión continua con búsqueda de vecinos discretos cercanos}
+	\label{subsec:VersionDiscreta}
+	Como vimos en la sección \ref{subsec:VersionContinuaR1Fijado}, las soluciones continuas obtenidas por ACO\textsubscript{$\mathbb{R}$} si se fija $R_1$ son realmente buenas. Sin embargo, dichas soluciones 
+	tienen valores para $R_2$, $R_3$, $C_4$ y $C_5$ que, 
+	en general, no corresponden a los valores permitidos en las series industriales, pero a partir de esta solución podemos efectuar 
+	una búsqueda de los vecinos más cercanos (por encima y por debajo) en la lista de valores permitidos para cada 
+	componente. Es decir, que a partir de la solución continua generamos $2^4 = 16$ configuraciones permitidas. 
+	De entre estas 16 configuraciones seleccionamos aquella de menor costo y que satisface las restricciones.
+	Por lo tanto, la solución $Sol$ devuelta contiene los valores para las 4 componentes libres y el costo.
+	
+	Esta versión del algoritmo no encuentra soluciones para cada valor de $R_1$. En el gráfico (\ref{fig:SensibilidadesDiscreto}) 
+	podemos visualizar esta situación: la línea verde es la sensibilidad mínima teórica de 0.75 y cada punto rojo es la 
+	sensibilidad de la solución hallada por el algoritmo para el valor de $R_1$ dado. En el apéndice \ref{subsec:pythondiscreto} se
+	encuentra el código \textit{Python} junto a los datos en detalle de las soluciones halladas.
+	
+	\begin{algorithm}[H]
+		\caption{ACO\textsubscript{$\mathbb{R}$} Discreto con Búsqueda de Vecinos Cercanos}
 		\label{alg:discretoFijo}
 		\begin{algorithmic}[1]
 			\State $G^{max}, G^{min}$: Valores máximo y mínimo aceptables para la ganancia
@@ -1238,7 +1347,7 @@
 			\State $Q_p^{max}, Q_p^{min}$: Valores máximo y mínimo aceptables para el factor de calidad
 			\State $Soluciones \gets []$
 			\For{$R_1$ en $ValoresResistencias$}
-				\State $Sol \gets [r_1] +  \Call{HallarSoluciones}{}()$ \Comment{Función definida en el algoritmo \ref{alg:continuoLibre}}
+				\State $Sol \gets [R_1] +  \Call{HallarSoluciones}{}()$ \Comment{Función definida en el algoritmo \ref{alg:continuoLibre}}
 				\State $Vecinos \gets []$
 				\For{$Componente$ en $Sol$} \Comment{Buscar vecinos de cada componente}
 					\State $(V_l, V_r) \gets VecinosCercanos(Componente, PosiblesValores)$
@@ -1267,13 +1376,8 @@
 				\EndFor
 			\EndFor
 		\end{algorithmic}
-	\end{breakablealgorithm}
-	
-	Esta versión del algoritmo no encuentra soluciones para cada valor de $R_1$. En el gráfico (\ref{fig:SensibilidadesDiscreto}) 
-	podemos visualizar esta situación: la línea verde es la sensibilidad mínima teórica de 0.75 y cada punto rojo es la 
-	sensibilidad de la solución hallada por el algoritmo para el valor de $R_1$ dado. En el apéndice \ref{subsec:pythondiscreto} se
-	encuentra el código \textit{Python} junto a los datos en detalle de las soluciones halladas.
-	
+	\end{algorithm}
+		
 	\begin{figure}[H]
 		\includegraphics[width=\linewidth]{Discreto/sensibilidadVecinos.png}
 		\caption{Sensibilidad de las soluciones encontradas. La línea verde es el mínimo teórico de la sensibilidad. Los puntos rojos
@@ -1289,10 +1393,8 @@
 	para cada uno de los posibles valores. En el cuadro \ref{table:ResultadosDiscretoPuro}  presentamos los resultados obtenidos. Los valores de $R_1$ que no se incluyen es
 	porque en ninguna de las 50 iteraciones el algoritmo encontró solución.
 	
-		\begin{longtable}{|c|c|p{8cm}|}
-		\caption{Resultados de la variante \textit{discreta pura}}
+		\begin{longtable}{|c|c|c|}
 		\label{table:ResultadosDiscretoPuro}\\
-		\hline
 		\multicolumn{1}{|c|}{R1} & \multicolumn{1}{c|}{Iteraciones con solución} & \multicolumn{1}{c|}{Soluciones halladas} \\ \hline
 		1200                     &                   1                               &       (1200, 3600, 1200, 2.2e-07, 2.7e-08)                                   \\ \hline
 		1300                     &                  43                             &       (1300, 3900, 1100, 2.2e-07, 2.7e-08)                                       \\ \hline
@@ -1312,6 +1414,7 @@
 		(30000, 91000, 15000, 1.2e-08, 1.5e-09)                                   \\ \hline
 		33000                     &                  17                               &     (33000, 100000, 22000, 1e-08, 1.2e-09)                                   \\ \hline
 		36000                     &                  1                               &     (36000, 110000, 20000, 1e-08, 1.2e-09)                                  \\ \hline
+		\caption{Resultados de la variante \textit{discreta pura}}
 	\end{longtable}
 	
 
