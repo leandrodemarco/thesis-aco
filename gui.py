@@ -36,7 +36,7 @@ class Example(Frame):
         self.vModel = IntVar()
         completeModel = Radiobutton(self, text="Completo", variable = self.vModel, value=1)
         reducedModel = Radiobutton(self, text="Reducido", variable = self.vModel, value=2)
-        self.vModel.set(2)
+        self.vModel.set(1)
         
         completeModel.place(x=85, y=25)
         reducedModel.place(x=180, y=25)
@@ -112,6 +112,8 @@ class Example(Frame):
                                  variable=self.vCostFunction, value=5)
         LCostBt = Radiobutton(self, text="L-costo", \
                               variable=self.vCostFunction, value=6)
+        acorCostBt = Radiobutton(self, text="ACOR", 
+                                 variable=self.vCostFunction, value=7)
                                    
         linearCostBt.place(x=115, y=210)
         expCostBt.place(x=185, y=210)
@@ -119,9 +121,10 @@ class Example(Frame):
         pozo45CostBt.place(x=340, y=210)
         exp2CostBt.place(x=415, y=210)
         LCostBt.place(x=480, y=210)
+        acorCostBt.place(x=550, y=210)
         
         
-        self.vCostFunction.set(2)
+        self.vCostFunction.set(7)
         
         # Seleccionar sigma para funcion costo
         costSigmaLabel = Label(self, text="Sigma: ")
@@ -140,6 +143,13 @@ class Example(Frame):
         aFactorEntry = Entry(self, textvariable=self.vaFactor, width=3)
         self.vaFactor.set("4")
         aFactorEntry.place(x=185, y=280)
+        
+        r1_label = Label(self, text="R1: ")
+        r1_label.place(x=25, y=320)
+        self.vaR1 = StringVar()
+        R1_entry = Entry(self, textvariable=self.vaR1, width = 6)
+        self.vaR1.set("11000")
+        R1_entry.place(x=185, y=320)
         
         # Correr algoritmo
         runButton = Button(self, text="Ejecutar", command=self.runProgram)
@@ -209,13 +219,14 @@ class Example(Frame):
             useCompleteModel = self.vModel.get() == 1
             useScenario1 = self.vScenary.get() == 1
             costFunction = self.vCostFunction.get()                
+            r1 = float(self.vaR1.get())
             
             nAnts, evapRate, tauMin, tauMax, \
             costSigma, numCycles, errorScale = validInput
             
             res = runAlgorithm(useCompleteModel, useScenario1, nAnts, \
                         evapRate, tauMin, tauMax, costSigma, numCycles,\
-                        errorScale, costFunction)
+                        errorScale, costFunction, r1)
             
             return res
             

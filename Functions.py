@@ -3,11 +3,8 @@
 
 import networkx as nx
 import sys
-from math import exp
+import math
 
-import multiprocessing
-from multiprocessing import Pool, Manager
-from functools import partial
 from filterSolutions import findSols
 
 #isScenario1 = True
@@ -46,7 +43,7 @@ def costLinear(omega, Q, targetOmega, targetQ, errMax):
     
     
 def costExponential(term1, term2, scale):
-    return (1. - exp(-(term1+term2)))/scale
+    return (1. - math.exp(-(term1+term2)))/scale
     
 def costPozo(omega, targetOmega, Q, targetQ, errMax, scale):
     x = (omega - targetOmega) / (2.*errMax*targetOmega)
@@ -79,7 +76,7 @@ def costExp2(omega, targetOmega, Q, targetQ):
     x = (omega - targetOmega) / targetOmega
     y = (Q - targetQ) / targetQ
     
-    cost = 1. / exp(-abs(x)) + 1. / exp(-abs(y)) - 1.
+    cost = 1. / math.exp(-abs(x)) + 1. / math.exp(-abs(y)) - 1.
     return cost
     
 def costL(omega, targetOmega, Q, targetQ, slope):
@@ -96,8 +93,42 @@ def costL(omega, targetOmega, Q, targetQ, slope):
     cost = slope * (absmax - (abs(x-1.) + abs(y-1.)))
 
     return 1./cost
+
+def costAcor(r1, r2, r3, c4, c5):
+    res_min = 1000.
+    res_max = 910000.
+    cap_min = 1.0e-9
+    cap_max = 8.2e-7
+    g_wgt = 100000.
+    light_wgt = 100.
+    sens_wgt = 1000.
+    obj_wp = 1000*2*math.pi
+    obj_invq = math.sqrt(2.0)
+    obj_g = 3.0
     
-    
+    r1_range_OK = r1 > res_min and r1 < res_max
+    r2_range_OK = r2 > res_min and r2 < res_max
+    r3_range_OK = r3 > res_min and r3 < res_max
+    c4_range_OK = c4 > cap_min and c4 < cap_max
+    c5_range_OK = c5 > cap_min and c5 < cap_max
+    if all([r1_range_OK, r2_range_OK, r3_range_OK, c4_range_OK, 
+           c5_range_OK]):
+        a = r1/r2
+        b = r1/r3
+        sol_g = 1/a
+        sol_sens = (2 + abs(1-a+b) + abs(1+a-b))/(2*(1+a+b))
+        sol_w = math.sqrt(a*b/(c4*c5))/r1
+        sol_invq = math.sqrt(c5/(c4*a*b))*(1+a+b)
+        
+        g_cost = g_wgt * (sol_g - obj_g) ** 2
+        sens_cost = sens_wgt * sol_sens**2
+        wp_cost = light_wgt * (math.log(sol_w/obj_wp))**2
+        q_cost = light_wgt * (math.log(sol_invq/obj_invq))**2
+        
+        return sens_cost + g_cost + wp_cost + q_cost
+    else:
+        # Heavily penalize configurations that are not in the specified range
+        return 1.0e11
                      
 def cost(assignment, errMax, sigma, scale, costFunction=2):
     """
@@ -131,6 +162,9 @@ def cost(assignment, errMax, sigma, scale, costFunction=2):
         resCost = costExp2(omega, targetOmega, Q, targetQ)
     elif (costFunction == 6):
         resCost = costL(omega, targetOmega, Q, targetQ, 1.)
+    elif (costFunction == 7):
+        resCost = costAcor(r1, r2, r3, c1, c2)
+        print resCost
     else:
         print "Error: Undefined cost Function"
         sys.exit()
@@ -382,7 +416,6 @@ def buildFullGraph(isScenario1, minPher):
     r1Nodes = []
     r2Nodes = []
     r3Nodes = []
-    r4Nodes = []
     c1Nodes = []
     c2Nodes = []
     
@@ -419,11 +452,4 @@ def buildFullGraph(isScenario1, minPher):
     #print len(g.nodes()), len(g.edges())    
         
     return g, numPaths
-    
-def chiSqTest(sample):
-    top = max(sample)
-    n = len(sample)
-    d = {}
-    for i in range(1, top+1):
-        d[i]
     

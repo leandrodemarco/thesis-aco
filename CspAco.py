@@ -35,7 +35,7 @@ def runExperiment(samples, scenario1, tau_min, tau_max):
     return results
 
 def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
-                tau_max, costSigma, maxCycles, errScale, costFunction):
+                tau_max, costSigma, maxCycles, errScale, costFunction, r1=None):
 
     start_time = time.time()
 
@@ -54,7 +54,7 @@ def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
         pathsForCycle = []
     
         for i in range(0, nAnts):
-            ant = Ant.Ant(graph, scenario1)
+            ant = Ant.Ant(graph, scenario1, r1)
             path = ant.walkGraph()
             pathsForCycle.append(path)
 

@@ -20,7 +20,9 @@
 \usepackage{longtable}
 \usepackage[long]{optidef}
 \usepackage{subcaption}
+\usepackage{multirow}
 \captionsetup{compatibility=false}
+\captionsetup[table]{skip=10pt}
 
 \setcounter{secnumdepth}{3}
 \newfloat{algorithm}{t}{lop}
@@ -65,6 +67,11 @@
 \setcounter{tocdepth}{3}
 \pagenumbering{arabic}
 \pagestyle{plain}
+
+%\setlength{\textwidth}{14cm}
+%\setlength{\textheight}{21cm}
+
+
 \begin{document}
 {\def\addcontentsline#1#2#3{}\maketitle
   \noindent
@@ -646,48 +653,61 @@
 	tuplas en las que alguno de sus cinco elementos se salen del rango correspondiente al escenario.
 	
 	\begin{table}[!h]
+          \begin{minipage}{0.5\textwidth}
 		$$
 		\begin{array}{|c|c|c|c|c|}
 		\hline
 		R_1    & R_2  & R_3   & C_4                          & C_5 \\
 		\hline
-		1500. & 4500. & 1125. & \text{2.00*10${}^{\wedge}$-7} & \text{2.50*10${}^{\wedge}$-8} \\
-		1600. & 4800. & 1200. & \text{1.87*10${}^{\wedge}$-7} & \text{2.34*10${}^{\wedge}$-8} \\
-		1800. & 5400. & 1350. & \text{1.66*10${}^{\wedge}$-7} & \text{2.08*10${}^{\wedge}$-8} \\
-		2000. & 6000. & 1500. & \text{1.50*10${}^{\wedge}$-7} & \text{1.87*10${}^{\wedge}$-8} \\
-		2200. & 6600. & 1650. & \text{1.36*10${}^{\wedge}$-7} & \text{1.70*10${}^{\wedge}$-8} \\
-		2400. & 7200. & 1800.     & \text{1.25*10${}^{\wedge}$-7} & \text{1.56*10${}^{\wedge}$-8} \\
-		2700. & 8100. & 2025.     & \text{1.11*10${}^{\wedge}$-7} & \text{1.38*10${}^{\wedge}$-8} \\
-		3000. & 9000. & 2250.     & \text{1.00*10${}^{\wedge}$-7} & \text{1.25*10${}^{\wedge}$-8} \\
-		3300. & 9900. & 2475.     & \text{9.09*10${}^{\wedge}$-8} & \text{1.13*10${}^{\wedge}$-8} \\
-		3600. & 10800. & 2700.    & \text{8.33*10${}^{\wedge}$-8} & \text{1.04*10${}^{\wedge}$-8} \\
-		3900. & 11700. & 2925.    & \text{7.69*10${}^{\wedge}$-8} & \text{9.61*10${}^{\wedge}$-9} \\
-		4300. & 12900. & 3225.    & \text{6.97*10${}^{\wedge}$-8} & \text{8.72*10${}^{\wedge}$-9} \\
-		4700. & 14100. & 3525.    & \text{6.38*10${}^{\wedge}$-8} & \text{7.98*10${}^{\wedge}$-9} \\
-		5100. & 15300. & 3825.    & \text{5.88*10${}^{\wedge}$-8} & \text{7.35*10${}^{\wedge}$-9} \\
-		5600. & 16800. & 4200.    & \text{5.35*10${}^{\wedge}$-8} & \text{6.69*10${}^{\wedge}$-9} \\
-		6200. & 18600. & 4650.    & \text{4.84*10${}^{\wedge}$-8} & \text{6.05*10${}^{\wedge}$-9} \\
-		6800. & 20400. & 5100.    & \text{4.41*10${}^{\wedge}$-8} & \text{5.51*10${}^{\wedge}$-9} \\
-		7500. & 22500. & 5625.    & \text{4.00*10${}^{\wedge}$-8} & \text{5.00*10${}^{\wedge}$-9} \\
-		8200. & 24600. & 6150.    & \text{3.65*10${}^{\wedge}$-8} & \text{4.57*10${}^{\wedge}$-9} \\
-		9100. & 27300. & 6825.    & \text{3.29*10${}^{\wedge}$-8} & \text{4.12*10${}^{\wedge}$-9} \\
-		10000. & 30000. & 7500.   & \text{3.00*10${}^{\wedge}$-8} & \text{3.75*10${}^{\wedge}$-9} \\
-		11000. & 33000. & 8250.   & \text{2.72*10${}^{\wedge}$-8} & \text{3.41*10${}^{\wedge}$-9} \\
-		12000. & 36000. & 9000.   & \text{2.50*10${}^{\wedge}$-8} & \text{3.12*10${}^{\wedge}$-9} \\
-		13000. & 39000. & 9750.   & \text{2.30*10${}^{\wedge}$-8} & \text{2.88*10${}^{\wedge}$-9} \\
-		15000. & 45000. & 11250.  & \text{2.00*10${}^{\wedge}$-8} & \text{2.50*10${}^{\wedge}$-9} \\
-		16000. & 48000. & 12000.  & \text{1.87*10${}^{\wedge}$-8} & \text{2.34*10${}^{\wedge}$-9} \\
-		18000. & 54000. & 13500.  & \text{1.66*10${}^{\wedge}$-8} & \text{2.08*10${}^{\wedge}$-9} \\
-		20000. & 60000. & 15000.  & \text{1.50*10${}^{\wedge}$-8} & \text{1.87*10${}^{\wedge}$-9} \\
-		22000. & 66000. & 16500.  & \text{1.36*10${}^{\wedge}$-8} & \text{1.70*10${}^{\wedge}$-9} \\
-		24000. & 72000. & 18000.  & \text{1.25*10${}^{\wedge}$-8} & \text{1.56*10${}^{\wedge}$-9} \\
-		27000. & 81000. & 20250.  & \text{1.11*10${}^{\wedge}$-8} & \text{1.38*10${}^{\wedge}$-9} \\
-		30000. & 90000. & 22500.  & \text{1.00*10${}^{\wedge}$-8} & \text{1.25*10${}^{\wedge}$-9} \\
-		33000. & 99000. & 24750.  & \text{9.09*10${}^{\wedge}$-9} & \text{1.13*10${}^{\wedge}$-9} \\
-		36000. & 108000. & 27000. & \text{8.33*10${}^{\wedge}$-9} & \text{1.04*10${}^{\wedge}$-9} \\
+		1500. & 4500. & 1125. & 2.00*10^{-7} & 2.50*10^{-8} \\
+		1600. & 4800. & 1200. & 1.87*10^{-7} & 2.34*10^{-8} \\
+		1800. & 5400. & 1350. & 1.66*10^{-7} & 2.08*10^{-8} \\
+		2000. & 6000. & 1500. & 1.50*10^{-7} & 1.87*10^{-8} \\
+		2200. & 6600. & 1650. & 1.36*10^{-7} & 1.70*10^{-8} \\
+		2400. & 7200. & 1800.     & 1.25*10^{-7} & 1.56*10^{-8} \\
+		2700. & 8100. & 2025.     & 1.11*10^{-7} & 1.38*10^{-8} \\
+		3000. & 9000. & 2250.     & 1.00*10^{-7} & 1.25*10^{-8} \\
+		3300. & 9900. & 2475.     & 9.09*10^{-8} & 1.13*10^{-8} \\
+		3600. & 10800. & 2700.    & 8.33*10^{-8} & 1.04*10^{-8} \\
+		3900. & 11700. & 2925.    & 7.69*10^{-8} & 9.61*10^{-9} \\
+		4300. & 12900. & 3225.    & 6.97*10^{-8} & 8.72*10^{-9} \\
+		4700. & 14100. & 3525.    & 6.38*10^{-8} & 7.98*10^{-9} \\
+		5100. & 15300. & 3825.    & 5.88*10^{-8} & 7.35*10^{-9} \\
+		5600. & 16800. & 4200.    & 5.35*10^{-8} & 6.69*10^{-9} \\
+		6200. & 18600. & 4650.    & 4.84*10^{-8} & 6.05*10^{-9} \\
+		6800. & 20400. & 5100.    & 4.41*10^{-8} & 5.51*10^{-9} \\
 		\hline
 		\end{array}
 		$$
+                \end{minipage} \hfill
+          \begin{minipage}{0.5\textwidth}
+		$$
+		\begin{array}{|c|c|c|c|c|}
+		\hline
+		R_1    & R_2  & R_3   & C_4                          & C_5 \\
+		\hline
+		7500. & 22500. & 5625.    & 4.00*10^{-8} & 5.00*10^{-9} \\
+		8200. & 24600. & 6150.    & 3.65*10^{-8} & 4.57*10^{-9} \\
+		9100. & 27300. & 6825.    & 3.29*10^{-8} & 4.12*10^{-9} \\
+		10000. & 30000. & 7500.   & 3.00*10^{-8} & 3.75*10^{-9} \\
+		11000. & 33000. & 8250.   & 2.72*10^{-8} & 3.41*10^{-9} \\
+		12000. & 36000. & 9000.   & 2.50*10^{-8} & 3.12*10^{-9} \\
+		13000. & 39000. & 9750.   & 2.30*10^{-8} & 2.88*10^{-9} \\
+		15000. & 45000. & 11250.  & 2.00*10^{-8} & 2.50*10^{-9} \\
+		16000. & 48000. & 12000.  & 1.87*10^{-8} & 2.34*10^{-9} \\
+		18000. & 54000. & 13500.  & 1.66*10^{-8} & 2.08*10^{-9} \\
+		20000. & 60000. & 15000.  & 1.50*10^{-8} & 1.87*10^{-9} \\
+		22000. & 66000. & 16500.  & 1.36*10^{-8} & 1.70*10^{-9} \\
+		24000. & 72000. & 18000.  & 1.25*10^{-8} & 1.56*10^{-9} \\
+		27000. & 81000. & 20250.  & 1.11*10^{-8} & 1.38*10^{-9} \\
+		30000. & 90000. & 22500.  & 1.00*10^{-8} & 1.25*10^{-9} \\
+		33000. & 99000. & 24750.  & 9.09*10^{-9} & 1.13*10^{-9} \\
+		36000. & 108000. & 27000. & 8.33*10^{-9} & 1.04*10^{-9} \\
+		\hline
+		\end{array}
+		$$
+          \end{minipage} \hfill\\
+          
 		\caption{Resultados obtenidos al aplicar las ecuaciones de \ref{eqarr:solAnalitica} para los valores de $R_1$ en el escenario 2}
                 \label{cuadro1}
 	\end{table}
@@ -713,48 +733,61 @@
     permitidos, tomamos como más cercano el de la izquierda)
         
 	\begin{table}[!h]
+          \begin{minipage}{0.5\textwidth}
 $$
 	  \begin{array}{|c|c|c|c|c|}
 		\hline
 		R_1    & R_2  & R_3   & C_4  & C_5 \\
 		\hline
-		1500. & 4300. & 1100. & \text{2.2$\grave{ }$*${}^{\wedge}$-7} & \text{2.7$\grave{ }$*${}^{\wedge}$-8} \\
-		1600. & 4700. & 1200. & \text{1.8$\grave{ }$*${}^{\wedge}$-7} & \text{2.2$\grave{ }$*${}^{\wedge}$-8} \\
-		1800. & 5600. & 1300. & \text{1.8$\grave{ }$*${}^{\wedge}$-7} & \text{2.2$\grave{ }$*${}^{\wedge}$-8} \\
-		2000. & 6200. & 1500. & \text{1.5$\grave{ }$*${}^{\wedge}$-7} & \text{1.8$\grave{ }$*${}^{\wedge}$-8} \\
-		2200. & 6800. & 1600. & \text{1.5$\grave{ }$*${}^{\wedge}$-7} & \text{1.8$\grave{ }$*${}^{\wedge}$-8} \\
-		2400. & 7500. & 1800. & \text{1.2$\grave{ }$*${}^{\wedge}$-7} & \text{1.5$\grave{ }$*${}^{\wedge}$-8} \\
-		2700. & 8200. & 2000. & \text{1.2$\grave{ }$*${}^{\wedge}$-7} & \text{1.5$\grave{ }$*${}^{\wedge}$-8} \\
-		3000. & 9100. & 2200. & \text{1.0$\grave{ }$*${}^{\wedge}$-7} & \text{1.2$\grave{ }$*${}^{\wedge}$-8} \\
-		3300. & 10000. & 2400. & \text{8.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.2$\grave{ }$*${}^{\wedge}$-8} \\
-		3600. & 11000. & 2700. & \text{8.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.$\grave{ }$*${}^{\wedge}$-8} \\
-		3900. & 12000. & 3000. & \text{8.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.$\grave{ }$*${}^{\wedge}$-8} \\
-		4300. & 13000. & 3300. & \text{6.8$\grave{ }$*${}^{\wedge}$-8} & \text{8.2$\grave{ }$*${}^{\wedge}$-9} \\
-		4700. & 15000. & 3600. & \text{6.8$\grave{ }$*${}^{\wedge}$-8} & \text{8.2$\grave{ }$*${}^{\wedge}$-9} \\
-		5100. & 15000. & 3900. & \text{5.6$\grave{ }$*${}^{\wedge}$-8} & \text{6.8$\grave{ }$*${}^{\wedge}$-9} \\
-		5600. & 16000. & 4300. & \text{5.6$\grave{ }$*${}^{\wedge}$-8} & \text{6.8$\grave{ }$*${}^{\wedge}$-9} \\
-		6200. & 18000. & 4700. & \text{4.7$\grave{ }$*${}^{\wedge}$-8} & \text{5.6$\grave{ }$*${}^{\wedge}$-9} \\
-		6800. & 20000. & 5100. & \text{4.7$\grave{ }$*${}^{\wedge}$-8} & \text{5.6$\grave{ }$*${}^{\wedge}$-9} \\
-		7500. & 22000. & 5600. & \text{3.9$\grave{ }$*${}^{\wedge}$-8} & \text{4.7$\grave{ }$*${}^{\wedge}$-9} \\
-		8200. & 24000. & 6200. & \text{3.9$\grave{ }$*${}^{\wedge}$-8} & \text{4.7$\grave{ }$*${}^{\wedge}$-9} \\
-		9100. & 27000. & 6800. & \text{3.3$\grave{ }$*${}^{\wedge}$-8} & \text{3.9$\grave{ }$*${}^{\wedge}$-9} \\
-		10000. & 30000. & 7500. & \text{3.3$\grave{ }$*${}^{\wedge}$-8} & \text{3.9$\grave{ }$*${}^{\wedge}$-9} \\
-		11000. & 33000. & 8200. & \text{2.7$\grave{ }$*${}^{\wedge}$-8} & \text{3.3$\grave{ }$*${}^{\wedge}$-9} \\
-		12000. & 36000. & 9100. & \text{2.7$\grave{ }$*${}^{\wedge}$-8} & \text{3.3$\grave{ }$*${}^{\wedge}$-9} \\
-		13000. & 39000. & 10000. & \text{2.2$\grave{ }$*${}^{\wedge}$-8} & \text{2.7$\grave{ }$*${}^{\wedge}$-9} \\
-		15000. & 43000. & 11000. & \text{2.2$\grave{ }$*${}^{\wedge}$-8} & \text{2.7$\grave{ }$*${}^{\wedge}$-9} \\
-		16000. & 47000. & 12000. & \text{1.8$\grave{ }$*${}^{\wedge}$-8} & \text{2.2$\grave{ }$*${}^{\wedge}$-9} \\
-		18000. & 56000. & 13000. & \text{1.8$\grave{ }$*${}^{\wedge}$-8} & \text{2.2$\grave{ }$*${}^{\wedge}$-9} \\
-		20000. & 62000. & 15000. & \text{1.5$\grave{ }$*${}^{\wedge}$-8} & \text{1.8$\grave{ }$*${}^{\wedge}$-9} \\
-		22000. & 68000. & 16000. & \text{1.5$\grave{ }$*${}^{\wedge}$-8} & \text{1.8$\grave{ }$*${}^{\wedge}$-9} \\
-		24000. & 75000. & 18000. & \text{1.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.5$\grave{ }$*${}^{\wedge}$-9} \\
-		27000. & 82000. & 20000. & \text{1.2$\grave{ }$*${}^{\wedge}$-8} & \text{1.5$\grave{ }$*${}^{\wedge}$-9} \\
-		30000. & 91000. & 22000. & \text{1.0$\grave{ }$*${}^{\wedge}$-8} & \text{1.2$\grave{ }$*${}^{\wedge}$-9} \\
-		33000. & 100000. & 24000. & \text{8.2$\grave{ }$*${}^{\wedge}$-9} & \text{1.2$\grave{ }$*${}^{\wedge}$-9} \\
-		36000. & 110000. & 27000. & \text{8.2$\grave{ }$*${}^{\wedge}$-9} & \text{1.0$\grave{ }$*${}^{\wedge}$-9} \\
+		1500. & 4300. & 1100. & 2.2*10^{-7} & 2.7*10^{-8} \\
+		1600. & 4700. & 1200. & 1.8*10^{-7} & 2.2*10^{-8} \\
+		1800. & 5600. & 1300. & 1.8*10^{-7} & 2.2*10^{-8} \\
+		2000. & 6200. & 1500. & 1.5*10^{-7} & 1.8*10^{-8} \\
+		2200. & 6800. & 1600. & 1.5*10^{-7} & 1.8*10^{-8} \\
+		2400. & 7500. & 1800. & 1.2*10^{-7} & 1.5*10^{-8} \\
+		2700. & 8200. & 2000. & 1.2*10^{-7} & 1.5*10^{-8} \\
+		3000. & 9100. & 2200. & 1.0*10^{-7} & 1.2*10^{-8} \\
+		3300. & 10000. & 2400. & 8.2*10^{-8} & 1.2*10^{-8} \\
+		3600. & 11000. & 2700. & 8.2*10^{-8} & 1.*10^{-8} \\
+		3900. & 12000. & 3000. & 8.2*10^{-8} & 1.*10^{-8} \\
+		4300. & 13000. & 3300. & 6.8*10^{-8} & 8.2*10^{-9} \\
+		4700. & 15000. & 3600. & 6.8*10^{-8} & 8.2*10^{-9} \\
+		5100. & 15000. & 3900. & 5.6*10^{-8} & 6.8*10^{-9} \\
+		5600. & 16000. & 4300. & 5.6*10^{-8} & 6.8*10^{-9} \\
+		6200. & 18000. & 4700. & 4.7*10^{-8} & 5.6*10^{-9} \\
+		6800. & 20000. & 5100. & 4.7*10^{-8} & 5.6*10^{-9} \\
 		\hline
 		\end{array}
 		$$
+                \end{minipage} \hfill
+          \begin{minipage}{0.5\textwidth}
+		$$
+		\begin{array}{|c|c|c|c|c|}
+		\hline
+		R_1    & R_2  & R_3   & C_4                          & C_5 \\
+		\hline
+		7500. & 22000. & 5600. & 3.9*10^{-8} & 4.7*10^{-9} \\
+		8200. & 24000. & 6200. & 3.9*10^{-8} & 4.7*10^{-9} \\
+		9100. & 27000. & 6800. & 3.3*10^{-8} & 3.9*10^{-9} \\
+		10000. & 30000. & 7500. & 3.3*10^{-8} & 3.9*10^{-9} \\
+		11000. & 33000. & 8200. & 2.7*10^{-8} & 3.3*10^{-9} \\
+		12000. & 36000. & 9100. & 2.7*10^{-8} & 3.3*10^{-9} \\
+		13000. & 39000. & 10000. & 2.2*10^{-8} & 2.7*10^{-9} \\
+		15000. & 43000. & 11000. & 2.2*10^{-8} & 2.7*10^{-9} \\
+		16000. & 47000. & 12000. & 1.8*10^{-8} & 2.2*10^{-9} \\
+		18000. & 56000. & 13000. & 1.8*10^{-8} & 2.2*10^{-9} \\
+		20000. & 62000. & 15000. & 1.5*10^{-8} & 1.8*10^{-9} \\
+		22000. & 68000. & 16000. & 1.5*10^{-8} & 1.8*10^{-9} \\
+		24000. & 75000. & 18000. & 1.2*10^{-8} & 1.5*10^{-9} \\
+		27000. & 82000. & 20000. & 1.2*10^{-8} & 1.5*10^{-9} \\
+		30000. & 91000. & 22000. & 1.0*10^{-8} & 1.2*10^{-9} \\
+		33000. & 100000. & 24000. & 8.2*10^{-9} & 1.2*10^{-9} \\
+		36000. & 110000. & 27000. & 8.2*10^{-9} & 1.0*10^{-9} \\
+		\hline
+		\end{array}
+		$$
+          \end{minipage} \hfill\\
+          
 		\caption{Resultados discretos más cercanos a los obtenidos del cuadro \ref{cuadro1}, para el escenario 2}
                 \label{cuadro2}
 	\end{table}	
@@ -932,7 +965,7 @@ $$
 	Para terminar de definir el núcleo $G^i$, resta determinar el vector de desviaciones estándar $\sigma^i$, lo cual haremos en la siguiente
 	sección.
 	
-	\begin{figure}[H]
+	\begin{figure}[h!]
 		\centering
 		\includegraphics[scale=0.5]{archive.png}
 		\caption{El archivo de soluciones utilizado por ACO\textsubscript{$\mathbb{R}$}. Las $k$ soluciones son ordenadas de acuerdo a su calidad.
@@ -991,18 +1024,21 @@ $$
 	soluciones son mantenidas en el archivo, guiando efectivamente a las hormigas en el proceso de búsqueda.
 	\bigbreak
 	\textit{AccionesDaemon()}: Se va actualizando la mejor solución encontrada hasta el momento de forma que pueda ser devuelta
-	una vez que se alcanzan las condiciones de terminación. Se podrían aplicar heurísticas de búsqueda local para mejorar la \textit{performance} del algoritmo.
+	una vez que se alcanzan las condiciones de terminación. Se podrían aplicar heurísticas de búsqueda local para 
+	mejorar la \textit{performance} del algoritmo.
 	
 	\section{\textbf{ACO\textsubscript{$\mathbb{R}$} Aplicado al Problema del Filtro}}
 	En esta sección detallamos la implementación de la metaheurística ACO\textsubscript{$\mathbb{R}$} 
 	para resolver el problema del filtro especificado en la sección (\ref{sec:fundelect}).
 	
 	En la sección \ref{subsec:VersionContinua} presentamos primero el caso en que todas las variables 
-	son libres y reales para ver la convergencia del algoritmo. 
+	son libres y reales para ver la convergencia del algoritmo.  En la sección \ref{subsec:VersionContinuaR1Fijado}
+	modificamos ligeramente el algoritmo para que el valor de $R_1$ quede fijo a alguno de los valores admisibles definidos por la serie $E$ 
+	y analizamos las soluciones continuas obtenidas.
 	
-	A continuación, en la sección \ref{subsec:VersionDiscreta}, mostramos una versión donde el valor de $R_1$ 
-	queda fijo a alguno de los valores admisibles definidos por la serie $E$ y, una vez obtenida la solución para variables continuas, 
-	se realiza una búsqueda entre los vecinos discretos más cercanos a esa solución de variables continuas.
+	A continuación, en la sección \ref{subsec:VersionDiscreta}, extendemos el algoritmo de la sección anterior
+	para que, una vez obtenida la solución para variables continuas, 
+	realice una búsqueda entre los vecinos discretos más cercanos a esa solución de variables continuas.
 	
 	Luego, en la sección \ref{subsec:VersionDiscretaPura}, introducimos una modificación al algoritmo 
 	ACO\textsubscript{$\mathbb{R}$} para que trabaje con valores discretos. 
@@ -1011,7 +1047,7 @@ $$
 	Para cada una de las variantes, definimos una única función \textit{costo} que es el objetivo a minimizar y, por lo tanto, 
 	será la ultima columna	de cada entrada del archivo de soluciones. A continuación el pseudocódigo muestra la 
 	función costo utilizada en todos los casos.
-	
+	\newpage
 	\begin{breakablealgorithm}
 		\caption{Función costo a minimizar}
 	    \begin{algorithmic}[1]
@@ -1087,7 +1123,8 @@ $$
 	\end{itemize}
 	
 	El pseudocódigo correspondiente a esta versión puede verse a continuación:
-		\begin{algorithm}[H]
+	\begin{breakablealgorithm}
+%		\begin{algorithm}[H]
 		\caption{ACO\textsubscript{$\mathbb{R}$} Continuo Libre}
 		\label{alg:continuoLibre}
 		\begin{algorithmic}[1]
@@ -1101,7 +1138,6 @@ $$
 			\State $zeta$: Deviation Distance Ratio
 						
 			\item[]
-
 			\Function{ElegirNucleo}{p}
 			\State $r \gets randUniform()$
 			\State $C \gets cumsum(p)$
@@ -1164,7 +1200,8 @@ $$
 			\State \Return $Sol$
 			\EndFunction
 		\end{algorithmic}
-	\end{algorithm}
+%	\end{algorithm}
+	\end{breakablealgorithm}
 
 	Es dable notar que hemos utilizado dos variantes del algoritmo: en la primera el muestreo y selección de las variables 
 	se hace directamente sobre su valor, mientras que en la segunda se hace utilizando el logaritmo de los valores. Esta 
@@ -1180,16 +1217,24 @@ $$
 	
 	\begin{table}[!h]
 		$$
-		\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\begin{array}{|c|c|c|}
 		\hline
-		Version & R1 & R2 & R3 & C4 & C5 & Costo & Sens & ErrG & ErrO & ErrQ \\
-		\hline
-		Com\acute{u}n & 143119.89 & 429268.55 & 107334.23 & \text{2.10*10${}^{\wedge}$-9} & \text{1.00*10${}^{\wedge}$-9} & 65.209 & 0.75 & 0.021\% & 48.794\% & 48.801\% \\
-		Logar\acute{\imath}tmica & 3561.17 & 10683.34 & 2671.14 & \text{8.43*10${}^{\wedge}$-8} & \text{1.05*10${}^{\wedge}$-8} & 56.248 & 0.75 & 0.016\% & 0.002\% & 0.005\% \\
+		 & Com\acute{u}n & Logar\acute{\imath}tmica \\
+                \hline
+                R1 & 143119.89  & 3561.17 \\
+                R2 & 429268.55 & 10683.34 \\
+                R3 & 107334.23  & 2671.14 \\
+                C4 & 2.10*10^{-9}  & 8.43*10^{-8}\\
+                C5 & 1.00*10^{-9} & 1.05*10^{-8}\\
+                Costo & 65.209 &  56.248\\
+                Sens & 0.75 & 0.75 \\
+                ErrG & 0.021\%  & 0.016\%\\
+                ErrO & 48.794\%  &  0.002\%\\
+                ErrQ & 48.801\%  &  0.005\%\\
 		\hline
 		\end{array}
 		$$
-		\caption{Resultados obtenidos con la versión común y logarítmica.}
+		\caption{Resultados obtenidos con la versión común y logarítmica para la variante continua con todas las variables libres.}
 		\label{cuadroSols1}
 	\end{table}
 	
@@ -1231,9 +1276,8 @@ $$
 			\caption{}
 			\label{fig:F-costo}
 		\end{subfigure}                                                            
-		\caption{Convergencia de las distintas variables. El eje vertical corresponde
-			al valor de la variable y el horizontal al número de iteración. (a) R1, (b)
-			C4, (c) R2, (d) 
+		\caption{Convergencia de las distintas variables y la función costo para la versión continua con todas las variables libres. El eje vertical 
+			corresponde al valor de la variable y el horizontal al número de iteración. (a) R1, (b) C4, (c) R2, (d) 
 			C5, (e) R3 y (f) costo. }                                                                                  
 		\label{fig:FF}                                                                                  
 	\end{figure}
@@ -1273,13 +1317,13 @@ $$
 		$$
 		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
 		\hline
-		R_1 & R_2 & R_3 & C_4 & C_5 & Costo  & Sens & Err_G & Err_\omega & Err_Q \\
+		R_1 & R_2 & R_3 & C_4 & C_5 & Sens & Err_G & Err_\omega & Err_Q \\
 		\hline
-		11000 & 33000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0 & 0.7508 & 0\% & 2.499\% & 1.145\% \\
-		3600 & 11000 & 2700 & \expnumber{8.2}{-8} & \expnumber{1}{-8} & 0 & 0.7540 & 1.852\% & 1.985\% & 0.561\% \\
-		36000 & 110000 & 27000 & \expnumber{8.2}{-9} & \expnumber{1}{-9} & 0 & 0.7540 & 1.852\% & 1.985\% & 0.561\% \\
-		12000 & 36000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0 & 0.7616 & 0\% & 1.865\% & 1.036\% \\
-		3300 & 10000 & 2200 & \expnumber{1}{-7} & \expnumber{1.2}{-8} & 0 & 0.7668 & 1.010\% & 2.047\% & 1.510\% \\
+		11000 & 33000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0.7508 & 0\% & 2.499\% & 1.145\% \\
+		3600 & 11000 & 2700 & \expnumber{8.2}{-8} & \expnumber{1}{-8} & 0.7540 & 1.852\% & 1.985\% & 0.561\% \\
+		36000 & 110000 & 27000 & \expnumber{8.2}{-9} & \expnumber{1}{-9} & 0.7540 & 1.852\% & 1.985\% & 0.561\% \\
+		12000 & 36000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0.7616 & 0\% & 1.865\% & 1.036\% \\
+		3300 & 10000 & 2200 & \expnumber{1}{-7} & \expnumber{1.2}{-8} & 0.7668 & 1.010\% & 2.047\% & 1.510\% \\
 		\hline
 		\end{array}
 		$$
@@ -1291,56 +1335,99 @@ $$
 		$$
 		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
 		\hline
-		R_1 & R_2 & R_3 & C_4 & C_5 & Costo  & Sens & Err_G & Err_\omega & Err_Q \\
+		R_1 & R_2 & R_3 & C_4 & C_5 & Sens & Err_G & Err_\omega & Err_Q \\
 		\hline
-		11000 & 33000 & 8246.68 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0 & 0.75 & 0\% & 0.022\% & 0.011\% \\
-		3600 & 10800 & 2700 & \expnumber{8.34}{-8} & \expnumber{1.04}{-8} & 0 & 0.75 & 0\% & 0\% & 0\% \\
-		36000 & 108000 & 27000 & \expnumber{8.34}{-9} & \expnumber{1.04}{-9} & 0 & 0.75 & 0\% & 0\% & 0\% \\
-		12000 & 36000.15 & 8992.27 & \expnumber{2.5}{-8} & \expnumber{3.12}{-9} & 0 & 0.7501 & 0\% & 0.060\% & 0.081\% \\
-		3300 & 9900 & 2474.84 & \expnumber{9.09}{-8} & \expnumber{1.14}{-8} & 0 & 0.75 & 0\% & 0.001\% & 0\% \\
+		11000 & 33000 & 8246.68 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0.75 & 0\% & 0.022\% & 0.011\% \\
+		3600 & 10800 & 2700 & \expnumber{8.34}{-8} & \expnumber{1.04}{-8} & 0.75 & 0\% & 0\% & 0\% \\
+		36000 & 108000 & 27000 & \expnumber{8.34}{-9} & \expnumber{1.04}{-9} & 0.75 & 0\% & 0\% & 0\% \\
+		12000 & 36000.15 & 8992.27 & \expnumber{2.5}{-8} & \expnumber{3.12}{-9} & 0.7501 & 0\% & 0.060\% & 0.081\% \\
+		3300 & 9900 & 2474.84 & \expnumber{9.09}{-8} & \expnumber{1.14}{-8} & 0.75 & 0\% & 0.001\% & 0\% \\
 		\hline
 		\end{array}
 		$$
-		\caption{Resultados obtenidos con la versión común.}
+		\caption{Resultados obtenidos fijando $R_1$ y dejando el resto de las variables libres.}
 		\label{cuadroSolsCom}
 	\end{table}
 
-	\begin{table}[H]
+	\begin{table}[!h]
 		$$
 		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
 		\hline
-		R_1 & R_2 & R_3 & C_4 & C_5 & Costo  & Sens & Err_G & Err_\omega & Err_Q \\
+		R_1 & R_2 & R_3 & C_4 & C_5 & Sens & Err_G & Err_\omega & Err_Q \\
 		\hline
-		11000 & 33000 & 8247.12 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0 & 0.75 & 0\% & 0.012\% & 0.018\% \\
-		3600 & 10800.02 & 2695.4 & \expnumber{8.35}{-8} & \expnumber{1.04}{-8} & 0 & 0.7502 & 0\% & 0.017\% & 0.005\% \\
-		36000 & 107999.95 & 26923.72 & \expnumber{8.36}{-9} & \expnumber{1.04}{-9} & 0 & 0.7503 & 0\% & 0.097\% & 0.019\% \\
-		12000 & 36000 & 8994 & \expnumber{2.5}{-8} & \expnumber{3.13}{-9} & 0 & 0.7501 & 0\% & 0.020\% & 0.055\% \\
-		3300 & 9900.01 & 2474.33 & \expnumber{9.10}{-8} & \expnumber{1.14}{-8} & 0 & 0.75 & 0\% & 0.010\% & 0.016\% \\
+		11000 & 33000 & 8247.12 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0.75 & 0\% & 0.012\% & 0.018\% \\
+		3600 & 10800.02 & 2695.4 & \expnumber{8.35}{-8} & \expnumber{1.04}{-8} & 0.7502 & 0\% & 0.017\% & 0.005\% \\
+		36000 & 107999.95 & 26923.72 & \expnumber{8.36}{-9} & \expnumber{1.04}{-9} & 0.7503 & 0\% & 0.097\% & 0.019\% \\
+		12000 & 36000 & 8994 & \expnumber{2.5}{-8} & \expnumber{3.13}{-9} & 0.7501 & 0\% & 0.020\% & 0.055\% \\
+		3300 & 9900.01 & 2474.33 & \expnumber{9.10}{-8} & \expnumber{1.14}{-8} & 0.75 & 0\% & 0.010\% & 0.016\% \\
 		\hline
 		\end{array}
 		$$
-		\caption{Resultados obtenidos con la versión logarítmica.}
+		\caption{Resultados obtenidos fijando $R_1$ y dejando el resto de las variables libres. Versión logarítmica.}
 		\label{cuadroSolsLog}
 	\end{table}
 	
 	\subsection{Versión continua con búsqueda de vecinos discretos cercanos}
 	\label{subsec:VersionDiscreta}
-	Como vimos en la sección \ref{subsec:VersionContinuaR1Fijado}, las soluciones continuas obtenidas por ACO\textsubscript{$\mathbb{R}$} si se fija $R_1$ son realmente buenas. Sin embargo, dichas soluciones 
-	tienen valores para $R_2$, $R_3$, $C_4$ y $C_5$ que, 
-	en general, no corresponden a los valores permitidos en las series industriales, pero a partir de esta solución podemos efectuar 
+	Como vimos en la sección \ref{subsec:VersionContinuaR1Fijado}, las soluciones continuas obtenidas por ACO\textsubscript{$\mathbb{R}$} 
+	si se fija $R_1$ son realmente buenas. Sin embargo, dichas soluciones  tienen valores para $R_2$, $R_3$, $C_4$ y $C_5$ que, 
+	en general, no corresponden a los valores permitidos en las series industriales; pero a partir de esta solución podemos efectuar 
 	una búsqueda de los vecinos más cercanos (por encima y por debajo) en la lista de valores permitidos para cada 
-	componente. Es decir, que a partir de la solución continua generamos $2^4 = 16$ configuraciones permitidas. 
-	De entre estas 16 configuraciones seleccionamos aquella de menor costo y que satisface las restricciones.
-	Por lo tanto, la solución $Sol$ devuelta contiene los valores para las 4 componentes libres y el costo.
+	componente. Inicialmente, la búsqueda se limito a los vecinos inmediatamente más cercanos, sin embargo las soluciones obtenidas
+	no resultaron demasiadas y decidimos extender la búsqueda a 2 vecinos, tanto por arriba como por debajo. Así mismo también
+	se decidió incluir a $R_1$ en la búsqueda de vecinos para extender un poco el espacio de búsqueda local. Cabe destacar que aquí
+	también hemos trabajado con una versión logarítmica pero sin embargo las soluciones obtenidas fueron las mismas.
 	
-	Esta versión del algoritmo no encuentra soluciones para cada valor de $R_1$. En el gráfico (\ref{fig:SensibilidadesDiscreto}) 
-	podemos visualizar esta situación: la línea verde es la sensibilidad mínima teórica de 0.75 y cada punto rojo es la 
-	sensibilidad de la solución hallada por el algoritmo para el valor de $R_1$ dado. En el apéndice \ref{subsec:pythondiscreto} se
-	encuentra el código \textit{Python} junto a los datos en detalle de las soluciones halladas.
+	Los resultados se muestran en el cuadro \ref{cuadroSolVecinos}. En el algoritmo \ref{alg:vecinos} se muestra el pseudocódigo y el 
+	código \textit{Python} puede verse en el apéndice \ref{subsec:pythondiscreto}.
 	
-	\begin{algorithm}[H]
+	\begin{table}[H]
+		$$
+		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		R_1 & R_2 & R_3 & C_4 & C_5 & Err_G & Err_Q & Err_{\omega_p} & Sens & \text{B\'usq. ext.}   \\
+		\hline
+		1300 & 3900 & 1100 & \expnumber{2.2}{-7} & \expnumber{2.7}{-8} & 0\% & 0.74\% & 0.3\% & 0.795 & \textbf{X} \\
+		1600 & 4700 & 1300 & \expnumber{1.8}{-7} & \expnumber{2.2}{-8} & 2.08\% & 1.84\% & 2.32\% & 0.778 & \textbf{X} \\
+		2700 & 8200 & 1800 & \expnumber{1.2}{-7} & \expnumber{1.5}{-8} & 1.23\% & 0.64\% & 2.36\% & 0.767 & \textbf{X} \\
+		2700 & 8200 & 2700 & \expnumber{1}{-7} & \expnumber{1.2}{-8} & 1.23\% & 0.57\% & 2.36\% & 0.859 & \textbf{X} \\
+		3000 & 9100 & 2400 & \expnumber{1}{-7} & \expnumber{1.2}{-8}  & 1.11\% & 1.59\% & 1.69\% & 0.775 &  \\
+		3300 & 10000 & 2200 & \expnumber{1}{-7} & \expnumber{1.2}{-8} & 1.01\% & 1.49\% & 2.05\% & 0.767 & \textbf{X} \\
+		3300 & 10000 & 3000 & \expnumber{8.2}{-8} & \expnumber{1}{-8} & 1.01\% & 0.41\% & 1.47\% & 0.823 & \textbf{X} \\
+		3600 & 11000 & 2700 & \expnumber{8.2}{-8} & \expnumber{1}{-8}  & 1.85\% & 0.55\% & 1.98\% & 0.754 & \\
+		4300 & 13000 & 2400 & \expnumber{8.2}{-8} & \expnumber{1}{-8} & 0.78\% & 0.16\% & 0.5\% & 0.788 & \textbf{X} \\
+		4300 & 13000 & 3600 & \expnumber{6.8}{-8} & \expnumber{8.2}{-9} & 0.78\% & 1.37\% & 1.48\% & 0.792 & \\
+		5100 & 15000 & 3000 & \expnumber{6.8}{-8} & \expnumber{8.2}{-9} & 1.96\% & 1.85\% & 0.47\% & 0.776 & \textbf{X} \\
+		5100 & 15000 & 4300 & \expnumber{5.6}{-8} & \expnumber{6.8}{-9} & 1.96\% & 2.02\% & 1.55\% & 0.792 & \textbf{X} \\
+		6800 & 20000 & 6800 & \expnumber{3.9}{-8} & \expnumber{4.7}{-9} & 1.96\% & 1.51\% & 0.8\% & 0.855 & \textbf{X} \\
+		7500 & 22000 & 4300 & \expnumber{4.7}{-8} & \expnumber{5.6}{-9} & 2.22\% & 2.4\% & 0.86\% & 0.779 & \textbf{X} \\
+		9100 & 27000 & 5100 & \expnumber{3.9}{-8} & \expnumber{4.7}{-9} & 1.1\% & 1.21\% & 0.18\% & 0.784 & \textbf{X} \\
+		10000 & 30000 & 9100 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0\% & 0.66\% & 2.05\% & 0.822 & \\
+		11000 & 33000 & 6200 & \expnumber{3.3}{-8} & \expnumber{3.9}{-9} & 0\% & 1.8\% & 1.92\% & 0.785 & \textbf{X} \\
+		11000 & 33000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9}  & 0\% & 1.13\% & 2.49\% & 0 .751&\\
+		12000 & 36000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9}  & 0\% & 1.02\% & 1.87\% & 0.762 & \\
+		13000 & 39000 & 7500 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0\% & 0.27\% & 1.41\% & 0.783 & \textbf{X} \\
+		13000 & 39000 & 11000 & \expnumber{2.2}{-8} & \expnumber{2.7}{-9} & 0\% & 0.74\% & 0.3\% & 0.795 & \textbf{X} \\
+		16000 & 47000 & 13000 & \expnumber{1.8}{-8} & \expnumber{2.2}{-9} & 2.08\% & 1.84\% & 2.32\% & 0.778 & \textbf{X} \\ 
+		27000 & 82000 & 18000 & \expnumber{1.2}{-8} & \expnumber{1.5}{-9} & 1.23\% & 0.64\% & 2.36\% & 0.767 & \textbf{X} \\ 
+		27000 & 82000 & 27000 & \expnumber{1}{-8} & \expnumber{1.2}{-9} & 1.23\% & 0.57\% & 2.36\% & 0.859 & \textbf{X} \\
+		30000 & 91000 & 24000 & \expnumber{1}{-8} & \expnumber{1.2}{-9}  & 1.11\% & 1.59\% & 1.69\% & 0.775 & \\
+		33000 & 100000 & 22000 & \expnumber{1}{-8} & \expnumber{1.2}{-9} & 1.01\% & 1.49\% & 2.05\% & 0.767 & \textbf{X} \\
+		33000 & 100000 & 30000 & \expnumber{8.2}{-9} & \expnumber{1}{-9} & 1.01\% & 0.41\% & 1.47\% & 0.823 & \textbf{X} \\
+		36000 & 110000 & 27000 & \expnumber{8.2}{-9} & \expnumber{1}{-9}  & 1.85\% & 0.55\% & 1.98\% & 0.754 & \\
+		43000 & 130000 & 24000 & \expnumber{8.2}{-9} & \expnumber{1}{-9} & 0.78\% & 0.16\% & 0.5\% & \textbf{X} \\
+		\hline
+		\end{array}
+		$$
+		\caption{Soluciones obtenidas con búsqueda de vecinos discretos. En la última columna se marca con una \textbf{X} aquellas
+		soluciones que fueron halladas extendiendo el rango de búsqueda a 2 vecinos.}
+		\label{cuadroSolVecinos}
+	\end{table}
+	
+	
+	\begin{breakablealgorithm}
 		\caption{ACO\textsubscript{$\mathbb{R}$} Discreto con Búsqueda de Vecinos Cercanos}
-		\label{alg:discretoFijo}
+		\label{alg:vecinos}
 		\begin{algorithmic}[1]
 			\State $G^{max}, G^{min}$: Valores máximo y mínimo aceptables para la ganancia
 			\State $\omega_p^{max}, \omega_p^{min}$: Valores máximo y mínimo aceptables para la frecuencia de polo
@@ -1376,47 +1463,36 @@ $$
 				\EndFor
 			\EndFor
 		\end{algorithmic}
-	\end{algorithm}
-		
-	\begin{figure}[H]
-		\includegraphics[width=\linewidth]{Discreto/sensibilidadVecinos.png}
-		\caption{Sensibilidad de las soluciones encontradas. La línea verde es el mínimo teórico de la sensibilidad. Los puntos rojos
-		corresponden a a la solución hallada por el algoritmo para el valor de $R_1$ -en el eje $x$, con escala logarítmica-}
-		\label{fig:SensibilidadesDiscreto}
-	\end{figure}
+	\end{breakablealgorithm}
 
 	\subsection{Versión Discreta \textit{Pura}}
 	\label{subsec:VersionDiscretaPura}
-	Presentamos ahora una variante donde en vez de \textit{discretizar} las soluciones continuas encontradas por el algoritmo
+	Para finalizar, presentamos ahora una variante donde, en vez de \textit{discretizar} las soluciones continuas encontradas por el algoritmo
 	una vez que el mismo finaliza, se discretiza el valor de la componente seleccionada en cada paso de la iteración seleccionando
-	el valor discreto posible más cercano al continuo generado. En este caso trabajaremos fijando $R_1$ y corriendo el algoritmo 50 veces
-	para cada uno de los posibles valores. En el cuadro \ref{table:ResultadosDiscretoPuro}  presentamos los resultados obtenidos. Los valores de $R_1$ que no se incluyen es
-	porque en ninguna de las 50 iteraciones el algoritmo encontró solución.
+	el valor discreto posible más cercano al continuo generado. Como en las variantes anteriores, trabajaremos con una versión logarítmica también.
+	Esta variante ha sido la que peor resultados ofrece ya que, en general, son necesarias varias corridas para que encuentre una solución adecuada.
+	Presentamos a modo de ejemplo una tabla, tanto para la versión común como la logarítmica, con los 5 mejores valores de $R_1$ de acuerdo 
+	a la solución exhaustiva,  junto al número de corridas necesarias hasta encontrar solución y la solución hallada. En el apéndice presentamos los
+	resultados para todos los valores de $R_1$.
 	
-		\begin{longtable}{|c|c|c|}
-		\label{table:ResultadosDiscretoPuro}\\
-		\multicolumn{1}{|c|}{R1} & \multicolumn{1}{c|}{Iteraciones con solución} & \multicolumn{1}{c|}{Soluciones halladas} \\ \hline
-		1200                     &                   1                               &       (1200, 3600, 1200, 2.2e-07, 2.7e-08)                                   \\ \hline
-		1300                     &                  43                             &       (1300, 3900, 1100, 2.2e-07, 2.7e-08)                                       \\ \hline
-		2700                     &                  43                             &       (2700, 8200, 1800, 1.2e-07, 1.5e-08)                                     \\ \hline
-		3000                     &                  1                               &       (3000, 9100, 1600, 1.2e-07, 1.5e-08)                                        \\ \hline
-		3300                     &                 39                              &      (3300, 10000, 2200, 1e-07, 1.2e-08)                                         \\ \hline
-		3600                     &                 21                               &     (3600, 11000, 2700, 8.2e-08, 1e-08)                                         \\ \hline
-		4300                     &                  3                                &     (4300, 13000, 2400, 8.2e-08, 1e-08)                                         \\ \hline
-		5100                     &                    1                               &     (5100, 15000, 3000, 6.8e-08, 8.2e-09)                                       \\ \hline
-		7500                     &                    2                               &     (7500, 22000, 4300, 4.7e-08, 5.6e-09) \newline
-		(7500, 22000, 3000, 5.6e-08, 6.8e-09)                                      \\ \hline
-		11000                     &                  11                               &     (11000, 33000, 8200, 2.7e-08, 3.3e-09)                                     \\ \hline
-		12000                     &                  24                               &     (12000, 36000, 5600, 3.3e-08, 3.9e-09) \newline
-		(12000, 36000, 8200, 2.7e-08, 3.3e-09)                                    \\ \hline
-		27000                     &                  18                               &     (27000, 82000, 18000, 1.2e-08, 1.5e-09)                                    \\ \hline
-		30000                     &                  4                               &     (30000, 91000, 16000, 1.2e-08, 1.5e-09) \newline
-		(30000, 91000, 15000, 1.2e-08, 1.5e-09)                                   \\ \hline
-		33000                     &                  17                               &     (33000, 100000, 22000, 1e-08, 1.2e-09)                                   \\ \hline
-		36000                     &                  1                               &     (36000, 110000, 20000, 1e-08, 1.2e-09)                                  \\ \hline
-		\caption{Resultados de la variante \textit{discreta pura}}
-	\end{longtable}
-	
+	\begin{table}[!h]
+		$$
+		\begin{array}{|c|c|c|c|}
+		\hline
+		R_1 & \text{Sol. Exhaustiva} & \text{Sol. Algorítmica} & \text{Corridas necesarias} \\
+		\hline
+		11000 & [11000; 33000; 8200; \expnumber{2.7}{-8}; \expnumber{3.3}{-9}] & \text{La misma} & 1 \\
+		3600 & [3600; 11000; 2700; \expnumber{8.2}{-8}; \expnumber{1}{-8}] & \text{La misma} & 5 \\
+		36000 & [36000; 110000; 27000; \expnumber{8.2}{-9}; \expnumber{1}{-9}] & [36000; 110000; 20000; \expnumber{1}{-8}; \expnumber{1.2}{-9}] & 30  \\
+		12000 & [12000; 36000; 8200; \expnumber{2.7}{-8};\expnumber{3.3}{-9}] & \text{La misma} & 2  \\
+		3300 & [3300; 10000; 2200; \expnumber{1}{-7}; \expnumber{1.2}{-8}] & \text{La misma} & 1  \\
+		\hline
+		\end{array}
+		$$
+		\caption{Resultados obtenidos con la versión discreta pura.}
+		\label{cuadroSolDiscretoPuro}
+	\end{table}
+		
 
 	\appendix
 	\section{\textbf{Tablas de Resultados}}

@@ -7,7 +7,7 @@ from random import sample
 import sys
 
 class Ant:
-    def __init__(self, graph, isScenario1):
+    def __init__(self, graph, isScenario1, r1=None):
         # Public attributes
         self.path = {} # path[compName] = compVal
         self.position = None # Node (comp, compVal) where ant is standing
@@ -17,10 +17,13 @@ class Ant:
         self.pherFactor = 1.0
         self.heurFactor = 1. - self.pherFactor
         self.isScenario1 = isScenario1
+        self.r1 = r1
         
     def chooseNextNode(self):
         #UPDATE POSITION HERE!!!
-        if self.position == None:
+        if self.r1 != None and self.position == None:
+            self.position = ("r1", self.r1)
+        elif self.position == None:
             # Start with a R1 node as it reduces R2 choices. How do we
             # rank R1-nodes? 
             # Prob(r1, val) = sum(pherOnEdgesLeavingNode)/totalPherLeavingR1Edges
