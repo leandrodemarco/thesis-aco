@@ -2,14 +2,19 @@
 #-*- encoding: utf-8 -*-
 
 from math import pi, sqrt
+import time
 
-def dominatedBy(targetVector, candidateVector):
-    SR1target, SR2target, SR3target = targetVector
-    SR1cand, SR2cand, SR3cand = candidateVector
+def dominated_by(target_vector, candidate_vector):
+    """
+        Returns true if and only if candidate_vector components are all
+        lower than those of target_vector, i.e candidate_vector dominates
+        target_vector
+    """
+    sr1_target, sr2_target, sr3_target = target_vector
+    sr1_cand, sr2_cand, sr3_cand = candidate_vector
     
-    dominated = SR1cand < SR1target and SR2cand < SR2target and \
-                SR3cand < SR3target
-                
+    dominated = sr1_cand < sr1_target and sr2_cand < sr2_target and \
+                sr3_cand < sr3_target
     return dominated
 
 e12_values = [1., 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2]
@@ -30,17 +35,16 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
               7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, \
               8.87, 9.09, 9.31, 9.53, 9.76]
 
-def findSols(isScenario1):
+def find_sols(is_scenario1 = False, find_pareto_optimals = False):
 
-    err = 0.025
-    if (isScenario1): err=0.005
+    err = 0.005 if is_scenario1 else 0.025
         
-    # Constantes especificadas en el diseño del filtro
+    # Filter design specified desired values
     G = 3.0
-    wp = 1000*2*pi
+    wp = 1000 * 2 * pi
     Q = 0.707
 
-    # Margen de error
+    # Acceptable min and max values
     wp_min = wp*(1-err)
     wp_max = wp*(1+err)
 
@@ -54,20 +58,18 @@ def findSols(isScenario1):
 
     """
         wp = 1/sqrt(r2*r3*c4*c5)
-        Sean w1 = 1/(r2*c4) y w2 = 1/(r3*c5)
-        Entonces w2 = wp^2/w1 => (wp_min^2)/w1 < w2 < (wp_max^2)/w1 (1)
+        Let w1 = 1/(r2*c4) and w2 = 1/(r3*c5)
+        Then w2 = wp^2/w1 => (wp_min^2)/w1 < w2 < (wp_max^2)/w1 (1)
         
-        Para cada w1 posible existe un {w2} tq se satisface la cond (1)
+        For each possible w1 exists a {w2} such that condition (1) is satisfied
         
         G = r2/r1
-        Para cada r1 posible existe un {r2} tq G_max > G > G_min    (2)
+        For each possible r1 there exists a set {r2} such that 
+        G_max > G > G_min    (2)
     """
 
-    res_bases = e24_values
-    if (isScenario1): res_bases = e96_values
-
-    cap_bases = e12_values
-    if (isScenario1): cap_bases = e24_values
+    res_bases = e96_values if is_scenario1 else e24_values
+    cap_bases = e24_values if is_scenario1 else e12_values
 
     res_exps = [3,4,5]
     cap_exps = [-7,-8,-9]
@@ -82,23 +84,23 @@ def findSols(isScenario1):
         for cap_exp in cap_exps:
             cap_values.append(round(cap_base * (10**cap_exp), 10))
 
-    wToRCMap = {}
+    w_to_rc_map = {}
     w_vals = [] # w1 and w2 values are the same set of values (r1~r2, c4~c5)
     for r2 in res_values:
         for c4 in cap_values:
             w = 1./(r2*c4)
             
-            if (w in wToRCMap.keys()):
-                wToRCMap[w].append((r2,c4))
+            if (w in w_to_rc_map.keys()):
+                w_to_rc_map[w].append((r2,c4))
             else:
-                wToRCMap[w] = [(r2,c4)]
+                w_to_rc_map[w] = [(r2,c4)]
             
             if (not w in w_vals):
                 w_vals.append(w)
 
     w_vals.sort()
 
-    constraint1 = {} # Contains all (w1, {w2}) satisifying eq(1)
+    constraint_1 = {} # Contains all (w1, {w2}) satisifying eq(1)
     wp_max_squared = wp_max**2
     wp_min_squared = wp_min**2
 
@@ -110,24 +112,24 @@ def findSols(isScenario1):
             if (w2 > low_end and w2 < high_end):
                 possibles_w2.append(w2)
         if (len(possibles_w2) > 0):
-            constraint1[w1] = possibles_w2
+            constraint_1[w1] = possibles_w2
             
 
-    # Cada r1 tiene a lo sumo un r2 en ambos escenarios
-    constraint2 =  [] # Contains all (r1, r2) pairs satisfying eq(2)
+    # Each r1 has at most r2 in both scenarios
+    constraint_2 =  [] # Contains all (r1, r2) pairs satisfying eq(2)
     for r1 in res_values:
         for r2 in res_values:
             G_r2 = r2/r1
             if (G_r2 > G_min and G_r2 < G_max):
-                constraint2.append((r1,r2))
+                constraint_2.append((r1,r2))
 
-    numSols = 0
+    num_sols = 0
     solutions = []
-    pathSols = []
-    for r1, r2 in constraint2:
-        for w1, list_w2 in constraint1.items():
+    path_sols = []
+    for r1, r2 in constraint_2:
+        for w1, list_w2 in constraint_1.items():
             # Check if r2 "generates w1"
-            l = wToRCMap[w1]
+            l = w_to_rc_map[w1]
             generates = False
             for (r,c) in l:
                 if (r == r2):
@@ -138,7 +140,7 @@ def findSols(isScenario1):
                 for w2 in list_w2:
                     for r3 in res_values:
                         # Check if r3 "generates w2"
-                        l = wToRCMap[w2]
+                        l = w_to_rc_map[w2]
                         generates = False
                         for (r,c) in l:
                             if (r == r3):
@@ -148,53 +150,62 @@ def findSols(isScenario1):
                         if (generates):
                             Q_inv_r3 = (w1/w2)**0.5 * (1+r2/r1+r2/r3)
                             if (Q_inv_r3 > Q_inv_min and Q_inv_r3 < Q_inv_max):
-                                #print r2/r1, (w1*w2)**0.5, 1./Q_inv_r3
                                 c4, c5 = 1./(r2*w1), 1./(r3*w2)
                                 gg = r2/r1
-                                errgg = 100*abs((G-gg)/G)
-                                qq = 1/Q_inv_r3
-                                errqq = 100*abs((Q-qq)/Q)
+                                err_gg = 100*abs((G-gg)/G)
+                                qq = 1./Q_inv_r3
+                                err_qq = 100*abs((Q-qq)/Q)
                                 omegap = sqrt(w1*w2)
-                                erromega = 100*abs((wp-omegap)/wp)
+                                err_omega = 100*abs((wp-omegap)/wp)
                                 SR1 = qq*gg*sqrt(w1/w2)
                                 SR2 = qq*sqrt(w1/w2)*abs(gg-1+r2/r3)/2
                                 SR3 = qq*sqrt(w1/w2)*abs(gg+1-r2/r3)/2
                                 ST = SR1+SR2+SR3
-                                numSols=numSols+1
+                                num_sols += 1
                                 r1 = round(r1, 10)
                                 r2 = round(r2, 10)
                                 r3 = round(r3, 10)
                                 c4 = round(c4, 10)
                                 c5 = round(c5, 10)
-                                solutions.append((r1,r2,r3,c4,c5,gg,errgg,omegap, erromega, qq, errqq, SR1, SR2, SR3, ST))
-                                pathSols.append({'r1':r1, 'r2':r2, 'r3': r3, 'c1': c4, 'c2': c5})
+                                solutions.append((r1,r2,r3,c4,c5,gg,err_gg,\
+                                                  omegap, err_omega, qq,\
+                                                  err_qq, SR1, SR2, SR3, ST))
+                                path_sols.append({'r1':r1, 'r2':r2, 'r3': r3,\
+                                                  'c1': c4, 'c2': c5})
 
+    # Sort solutions according to ST
+    sorted_sols = sorted(solutions, key = lambda t : (t[14], t[0], t[1],\
+                                                      t[2], t[3], t[4], t[5],\
+                                                      t[6], t[7], t[8], t[9],\
+                                                      t[10], t[11], t[12],\
+                                                      t[13]), reverse = False)
     
-    #Find pareto optimals with vector dominance
-    sorted_sols = sorted(solutions, key = lambda t : (t[14], t[0], t[1], t[2], t[3], t[4], t[5], \
-                    t[6], t[7], t[8], t[9], t[10], t[11], t[12], t[13]), reverse = False)
-                    
-    optimals = [sorted_sols[0]]
-    for sol in sorted_sols[1:]:
-        hasToAdd = True 
-
-        for partial_opt in optimals:
-            target = (partial_opt[11], partial_opt[12], partial_opt[13])
-            candidate = (sol[11], sol[12], sol[13])
-
-            if dominatedBy(target, candidate):
-                # Remove partial_opt from optimals
-                optimals.remove(partial_opt)
-            elif dominatedBy(candidate, target):
-                # If we find just one value in current optimals that dominates
-                # candidate then we don't have to add candidate.
-                hasToAdd = False
-                break
-
-        if hasToAdd:
-            optimals.append(sol)
+    optimals = None
+    if (find_pareto_optimals):
+        #Find pareto optimals with vector dominance          
+        optimals = [sorted_sols[0]]
+        for sol in sorted_sols[1:]:
+            hasToAdd = True 
+    
+            for partial_opt in optimals:
+                target = (partial_opt[11], partial_opt[12], partial_opt[13])
+                candidate = (sol[11], sol[12], sol[13])
+    
+                if dominated_by(target, candidate):
+                    # It's not optimal, remove it
+                    optimals.remove(partial_opt)
+                elif dominated_by(candidate, target):
+                    # If we find just one value in current optimals that dominates
+                    # candidate then we don't have to add candidate.
+                    hasToAdd = False
+                    break
+    
+            if hasToAdd:
+                optimals.append(sol)
 
     return sorted_sols, optimals
         
-
-findSols(False)
+start_time = time.time()
+find_sols()
+elapsed_time = time.time() - start_time
+print elapsed_time

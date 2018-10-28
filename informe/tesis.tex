@@ -1028,6 +1028,7 @@ $$
 	mejorar la \textit{performance} del algoritmo.
 	
 	\section{\textbf{ACO\textsubscript{$\mathbb{R}$} Aplicado al Problema del Filtro}}
+	\label{sec:acorfiltro}
 	En esta sección detallamos la implementación de la metaheurística ACO\textsubscript{$\mathbb{R}$} 
 	para resolver el problema del filtro especificado en la sección (\ref{sec:fundelect}).
 	
@@ -1213,7 +1214,7 @@ $$
 	Además, en las figuras (\ref{fig:F-r1}), (\ref{fig:F-c4}), (\ref{fig:F-r2}), (\ref{fig:F-c5}), (\ref{fig:F-r3}) y (\ref{fig:F-costo}) 
 	podemos visualizar la convergencia de la función costo así como también de las cinco variables para la versión logarítmica.
 	
-	La implementación en \textit{Python} del algoritmo \ref{alg:continuoLibre} puede verse en el apéndice \ref{subsec:pythoncontinuo}.
+	La implementación en \textit{Python} del algoritmo \ref{alg:continuoLibre} puede verse en el apéndice \ref{subsec:pythonacor}.
 	
 	\begin{table}[!h]
 		$$
@@ -1353,13 +1354,13 @@ $$
 		$$
 		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
 		\hline
-		R_1 & R_2 & R_3 & C_4 & C_5 & Sens & Err_G & Err_\omega & Err_Q \\
-		\hline
-		11000 & 32994.87 & 8249.68 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0.75 & 0.016\% & 0\% & 0\% \\
-		3600 & 10798.25 & 2699.89 & \expnumber{8.34}{-8} & \expnumber{1.04}{-8} & 0.75 & 0.016\% & 0\% & 0\% \\
-		36000 & 107983.15 & 26998.95 & \expnumber{8.34}{-9} & \expnumber{1.04}{-9} & 0.75 & 0.016\% & 0\% & 0\% \\
-		12000 & 35994.34 & 8999.64 & \expnumber{2.5}{-8} & \expnumber{3.13}{-9} & 0.75 & 0.016\% & 0\% & 0\% \\
-		3300 & 9898.46 & 2474.9 & \expnumber{9.1}{-8} & \expnumber{1.14}{-8} & 0.75 & 0.016\% & 0\% & 0\% \\
+		R_1 & R_2 & R_3 & C_4 & C_5 & Err_G & Err_\omega & Err_Q & Sens\\
+		\hline		
+		11000 & 32994.83 & 8249.68 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+		3600 & 10798.31 & 2699.89 & \expnumber{8.34}{-8} & \expnumber{1.04}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+		36000 & 107982.84 & 26998.93 & \expnumber{8.34}{-9} & \expnumber{1.04}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+		12000 & 35994.35 & 8999.65 & \expnumber{2.5}{-8} & \expnumber{3.13}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+		3300 & 9898.38 & 2474.9 & \expnumber{9.09}{-8} & \expnumber{1.14}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
 		\hline
 		\end{array}
 		$$
@@ -1496,20 +1497,106 @@ $$
 
 	\appendix
 	\section{\textbf{Tablas de Resultados}}
-	\subsection{Algoritmo Exhaustivo}
-	\label{subsec:Resultados Exhaustivo}
-	\subsection{Versión Continua}
-	\label{subsec:Resultados Continuos}
+		\subsection{Algoritmo Exhaustivo}
+		\label{subsec:Resultados Exhaustivo}
+		\subsection{Versión Continua con $R_1$ fijado}
+		\label{subsec:ResultadosR1Fijo}
+			\begin{table}[H]
+			$$
+			\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			R_1 & R_2 & R_3 & C_4 & C_5 & Err_G & Err_Q & Err_{\omega_p} & Sens  \\
+			\hline
+			1000 & 2999.65 & 999.0 & \expnumber{2.63}{-7} & \expnumber{3.22}{-8} & 0.012\% & 0.0\% & 0.0\% & 0.857 \\
+			1100 & 3299.66 & 999.0 & \expnumber{2.49}{-7} & \expnumber{3.09}{-8} & 0.01\% & 0.0\% & 0.0\% & 0.822 \\
+			1200 & 3599.67 & 999.0 & \expnumber{2.38}{-7} & \expnumber{2.96}{-8} & 0.009\% & 0.0\% & 0.0\% & 0.789 \\
+			1300 & 3899.68 & 999.0 & \expnumber{2.28}{-7} & \expnumber{2.85}{-8} & 0.008\% & 0.0\% & 0.0\% & 0.759 \\
+			1500 & 4499.3 & 1124.96 & \expnumber{2}{-7} & \expnumber{2.5}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			1600 & 4799.26 & 1199.95 & \expnumber{1.88}{-7} & \expnumber{2.34}{-8} & 0.015\% & 0.0\% & 0.0\% & 0.75 \\
+			1800 & 5399.15 & 1349.95 & \expnumber{1.67}{-7} & \expnumber{2.08}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			2000 & 5999.05 & 1499.94 & \expnumber{1.5}{-7} & \expnumber{1.88}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			2200 & 6598.97 & 1649.94 & \expnumber{1.36}{-7} & \expnumber{1.71}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			2400 & 7198.84 & 1799.93 & \expnumber{1.25}{-7} & \expnumber{1.56}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			2700 & 8098.7 & 2024.92 & \expnumber{1.11}{-7} & \expnumber{1.39}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			3000 & 8998.63 & 2249.91 & \expnumber{1}{-7} & \expnumber{1.25}{-8} & 0.015\% & 0.0\% & 0.0\% & 0.75 \\
+			3300 & 9898.38 & 2474.9 & \expnumber{9.09}{-8} & \expnumber{1.14}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			3600 & 10798.31 & 2699.89 & \expnumber{8.34}{-8} & \expnumber{1.04}{-8} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			3900 & 11698.15 & 2924.88 & \expnumber{7.7}{-8} & \expnumber{9.62}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			4300 & 12897.97 & 3224.87 & \expnumber{6.98}{-8} & \expnumber{8.73}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			4700 & 14097.76 & 3524.86 & \expnumber{6.39}{-8} & \expnumber{7.98}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			5100 & 15297.59 & 3824.85 & \expnumber{5.88}{-8} & \expnumber{7.36}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			5600 & 16797.4 & 4199.84 & \expnumber{5.36}{-8} & \expnumber{6.7}{-9} & 0.015\% & 0.0\% & 0.0\% & 0.75 \\
+			6200 & 18597.08 & 4649.82 & \expnumber{4.84}{-8} & \expnumber{6.05}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			6800 & 20396.78 & 5099.8 & \expnumber{4.41}{-8} & \expnumber{5.52}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			7500 & 22496.47 & 5624.78 & \expnumber{4}{-8} & \expnumber{5}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			8200 & 24596.07 & 6149.75 & \expnumber{3.66}{-8} & \expnumber{4.58}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			9100 & 27295.74 & 6824.73 & \expnumber{3.3}{-8} & \expnumber{4.12}{-9} & 0.016\% & 0.001\% & 0.0\% & 0.75 \\
+			10000 & 29995.33 & 7499.71 & \expnumber{3}{-8} & \expnumber{3.75}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			11000 & 32994.83 & 8249.68 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			12000 & 35994.35 & 8999.65 & \expnumber{2.5}{-8} & \expnumber{3.13}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			13000 & 38993.85 & 9749.62 & \expnumber{2.31}{-8} & \expnumber{2.89}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			15000 & 44992.95 & 11249.56 & \expnumber{2}{-8} & \expnumber{2.5}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			16000 & 47992.48 & 11999.53 & \expnumber{1.88}{-8} & \expnumber{2.34}{-9} & 0.016\% & 0.0\% & 0.001\% & 0.75 \\
+			18000 & 53991.58 & 13499.47 & \expnumber{1.67}{-8} & \expnumber{2.08}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			20000 & 59990.64 & 14999.42 & \expnumber{1.5}{-8} & \expnumber{1.88}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			22000 & 65989.61 & 16499.35 & \expnumber{1.36}{-8} & \expnumber{1.71}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			24000 & 71988.79 & 17999.3 & \expnumber{1.25}{-8} & \expnumber{1.56}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			27000 & 80987.5 & 20249.22 & \expnumber{1.11}{-8} & \expnumber{1.39}{-9} & 0.015\% & 0.0\% & 0.0\% & 0.75 \\
+			30000 & 89985.9 & 22499.12 & \expnumber{1}{-8} & \expnumber{1.25}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			33000 & 98984.54 & 24749.03 & \expnumber{9.09}{-9} & \expnumber{1.14}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			36000 & 107982.84 & 26998.93 & \expnumber{8.34}{-9} & \expnumber{1.04}{-9} & 0.016\% & 0.0\% & 0.0\% & 0.75 \\
+			39000 & 116981.34 & 29248.83 & \expnumber{7.7}{-9} & \expnumber{1}{-9} & 0.016\% & 1.917\% & 1.917\% & 0.75 \\
+			\hline
+			\end{array}
+			$$
+			\caption{Resultados obtenidos para la versión continua logarítmica con $R_1$ fijo. Los valores de $R_1$ que no aparecen en la tabla son
+			aquellos para los cuales no se encontró solución.}
+			\label{cuadroResultadosContinuoFijo}
+		\end{table}
 	
-	\section{\textbf{Código Python}}
+	
+	\section{\textbf{Código \textit{Python}}}
+	En este apéndice mostramos el código fuente de la implementación realizada en la versión 2.7.14 de \textit{Python}. Utiliza los
+	paquetes \textit{NumPy} \footnote{www.numpy.org} y \textit{Matplotlib} \footnote{http://matplotlib.org}. 
+	En primer lugar, en la sección \ref{subsec:pythonexhaustivo} presentamos el código para el algoritmo exhaustivo de la sección
+	\ref{sec:AlgoritmoExhaustivo} y luego el de cada una de las variantes implementadas de ACO\textsubscript{$\mathbb{R}$}.
+	La máquina sobre la cual se ejecutó contiene un microprocesador i7 de cuarta generación a 3 GHz con 16 GB de memoria RAM DDR3.
 	\subsection{Algoritmo Exhaustivo}
+	El código aquí presentado demora $1.276$ segundos en ejecutarse para el escenario más chico, encontrando 171 soluciones que satisfacen
+	las restricciones respecto a la ganancia $G$, la frecuencia de polo $\omega_p$ y el factor de calidad $Q$. De esas 171 soluciones, 102
+	cumplen que la sensibilidad total $S_T$ sea menor a 1. En el caso del escenario más grande, demora $82.401$ segundos, encontrando
+	un total de 333 soluciones de las cuales 197 satisfacen la restricción respecto a $S_T$. En el apéndice \ref{subsec:Resultados Exhaustivo} 
+	se presentan las tablas con dichas soluciones para el caso del escenario más chico.
 	\label{subsec:pythonexhaustivo}
 	\inputminted{python}{exhaustivo.py}
-	\subsection{Versión Continua}
-	\label{subsec:pythoncontinuo}
-	\inputminted{python}{filtro_continuoLibre.py}
-	\subsection{Versión Discreta}
-	\label{subsec:pythondiscreto}
+	\subsection{Implementación de ACO\textsubscript{$\mathbb{R}$}}
+	\label{subsec:pythonacor}
+	El código con la implementación de ACO\textsubscript{$\mathbb{R}$} y cada una de las cuatro variantes implementadas 
+	referidas en las sección \ref{sec:acorfiltro} está organizado en los siguientes archivos:
+	\begin{itemize}
+		\item ACOR.py: Implementa la clase \textbf{Acor} la cual es la encargada de la ejecución de la metaheurística. 
+		Su inicializador recibe como parámetros la variante del algoritmo a utilizar y si es un su versión logarítmica o no.
+		\item Utils.py: Implementa una clase \textbf{Utils} la cual provee funciones para configurar el ambiente de ejecución 
+		del algoritmo y métodos para determinar si una asignación es solución o no. Contiene así mismo una clase \textbf{PlottingUtils}
+		la cual provee la funcionalidad para crear los gráficos incluidos en este trabajo respecto a las soluciones obtenidas.
+		\item ContinuoLibre.py: \textit{Script} que ejecuta la versión descrita en la sección \ref{subsec:VersionContinua}.
+		\item ContinuoFijo.py:  \textit{Script} que ejecuta la versión descrita en la sección \ref{subsec:VersionContinuaR1Fijado}.
+		\item Vecinos.py: \textit{Script} que ejecuta la versión descrita en la sección \ref{subsec:VersionDiscreta}.
+		\item DiscretoPuro.py: \textit{Script} que ejecuta la versión descrita en la sección \ref{subsec:VersionDiscretaPura}.
+	\end{itemize}
+
+	\subsubsection{ACOR.py}
+	\inputminted{python}{ACOR.py}
+	\subsubsection{Utils.py}
+	\inputminted{python}{Utils.py}
+	\subsubsection{ContinuoLibre.py}
+	\inputminted{python}{ContinuoLibre.py}
+	\subsubsection{ContinuoFijo.py}
+	\inputminted{python}{ContinuoFijo.py}
+	\subsubsection{Vecinos.py}
+	\inputminted{python}{Vecinos.py}
+	\subsubsection{DiscretoPuro.py}
+	\inputminted{python}{DiscretoPuro.py}
 	
   \begin{thebibliography}{1}
       \bibitem{corr}
