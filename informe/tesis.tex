@@ -1293,7 +1293,8 @@ $$
 	En este caso, el número de variables $NumVars$ pasa a ser  4 en vez de 5, ya que R1 queda fijado.
 	
 	Como en la sección \ref{subsec:VersionContinua} tendremos una versión que trabaja directamente
-	con los valores de los componentes y otra que lo hace con los logaritmos. El pseudocódigo -donde omitimos
+	con los valores de los componentes y otra que lo hace con los logaritmos. Sin embargo, en este caso, los resultados
+	obtenidos son prácticamente idénticos. El pseudocódigo -donde omitimos
 	redefinir aquellos parámetros que son los mismos que en el algoritmo \ref{alg:continuoLibre}- se muestra a continuación.
 	
 	\begin{breakablealgorithm}
@@ -1312,19 +1313,20 @@ $$
 	A modo de ejemplo, incluimos en los cuadros \ref{cuadroSolsExh}, \ref{cuadroSolsCom} y \ref{cuadroSolsLog} los 
 	resultados para los mejores 5 valores de $R_1$ de acuerdo a las soluciones obtenidas mediante el algoritmo exhaustivo
 	de la sección \ref{sec:AlgoritmoExhaustivo}, para la versión exhaustiva, la que trabaja directamente con los valores 
-	de las variables y para aquella que lo hace con los logaritmos, respectivamente.
+	de las variables y para aquella que lo hace con los logaritmos, respectivamente. En el apéndice \ref{subsec:ResultadosR1Fijo} incluimos
+	la tabla con los resultados completos para la versión logarítmica.
 	
 	\begin{table}[H]
 		$$
 		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
 		\hline
-		R_1 & R_2 & R_3 & C_4 & C_5 & Sens & Err_G & Err_\omega & Err_Q \\
+		R_1 & R_2 & R_3 & C_4 & C_5 & Err_G & Err_\omega & Err_Q & Sens \\
 		\hline
-		11000 & 33000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0.7508 & 0\% & 2.499\% & 1.145\% \\
-		3600 & 11000 & 2700 & \expnumber{8.2}{-8} & \expnumber{1}{-8} & 0.7540 & 1.852\% & 1.985\% & 0.561\% \\
-		36000 & 110000 & 27000 & \expnumber{8.2}{-9} & \expnumber{1}{-9} & 0.7540 & 1.852\% & 1.985\% & 0.561\% \\
-		12000 & 36000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0.7616 & 0\% & 1.865\% & 1.036\% \\
-		3300 & 10000 & 2200 & \expnumber{1}{-7} & \expnumber{1.2}{-8} & 0.7668 & 1.010\% & 2.047\% & 1.510\% \\
+		11000 & 33000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0\% & 2.499\% & 1.145\% & 0.7508 \\
+		3600 & 11000 & 2700 & \expnumber{8.2}{-8} & \expnumber{1}{-8} & 1.852\% & 1.985\% & 0.561\% & 0.7540 \\
+		36000 & 110000 & 27000 & \expnumber{8.2}{-9} & \expnumber{1}{-9} & 1.852\% & 1.985\% & 0.561\% & 0.7540 \\
+		12000 & 36000 & 8200 & \expnumber{2.7}{-8} & \expnumber{3.3}{-9} & 0\% & 1.865\% & 1.036\% & 0.7616 \\
+		3300 & 10000 & 2200 & \expnumber{1}{-7} & \expnumber{1.2}{-8} & 1.010\% & 2.047\% & 1.510\% & 0.7668 \\
 		\hline
 		\end{array}
 		$$
@@ -1336,17 +1338,17 @@ $$
 		$$
 		\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
 		\hline
-		R_1 & R_2 & R_3 & C_4 & C_5 & Sens & Err_G & Err_\omega & Err_Q \\
+		R_1 & R_2 & R_3 & C_4 & C_5 & Err_G & Err_\omega & Err_Q & Sens \\
 		\hline
-		11000 & 32994.83 & 8249.68 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0.75 & 0.016\% & 0\% & 0\% \\
-		3600 & 10798.31 & 2699.89 & \expnumber{8.34}{-8} & \expnumber{1.04}{-8} & 0.75 & 0.016\% & 0.001\% & 0.001\% \\
-		36000 & 107983.07 & 26998.94 & \expnumber{8.34}{-9} & \expnumber{1.04}{-9} & 0.75 & 0.016\% & 0\% & 0\% \\
-		12000 & 35994.26 & 8992.64 & \expnumber{2.5}{-8} & \expnumber{3.13}{-9} & 0.75 & 0.016\% & 0\% & 0\% \\
-		3300 & 9898.45 & 2474.90 & \expnumber{9.09}{-8} & \expnumber{1.14}{-8} & 0.75 & 0.016\% & 0\% & 0\% \\
+		11000 & 32994.83 & 8249.68 & \expnumber{2.73}{-8} & \expnumber{3.41}{-9} & 0.016\% & 0\% & 0\% & 0.75 \\
+		3600 & 10798.31 & 2699.89 & \expnumber{8.34}{-8} & \expnumber{1.04}{-8} & 0.016\% & 0.001\% & 0.001\% & 0.75 \\
+		36000 & 107983.07 & 26998.94 & \expnumber{8.34}{-9} & \expnumber{1.04}{-9} & 0.016\% & 0\% & 0\% & 0.75 \\
+		12000 & 35994.26 & 8992.64 & \expnumber{2.5}{-8} & \expnumber{3.13}{-9} & 0.016\% & 0\% & 0\% & 0.75 \\
+		3300 & 9898.45 & 2474.90 & \expnumber{9.09}{-8} & \expnumber{1.14}{-8} & 0.016\% & 0\% & 0\% & 0.75 \\
 		\hline
 		\end{array}
 		$$
-		\caption{Resultados obtenidos fijando $R_1$ y dejando el resto de las variables libres.}
+		\caption{Resultados obtenidos fijando $R_1$ y dejando el resto de las variables libres. Versión común}
 		\label{cuadroSolsCom}
 	\end{table}
 
@@ -1380,7 +1382,7 @@ $$
 	también hemos trabajado con una versión logarítmica pero sin embargo las soluciones obtenidas fueron las mismas.
 	
 	Los resultados se muestran en el cuadro \ref{cuadroSolVecinos}. En el algoritmo \ref{alg:vecinos} se muestra el pseudocódigo y el 
-	código \textit{Python} puede verse en el apéndice \ref{subsec:pythondiscreto}.
+	código \textit{Python} puede verse en el apéndice \ref{subsec:pythonacor}.
 	
 	\begin{table}[H]
 		$$
@@ -1501,7 +1503,8 @@ $$
 		\label{subsec:Resultados Exhaustivo}
 		\subsection{Versión Continua con $R_1$ fijado}
 		\label{subsec:ResultadosR1Fijo}
-			\begin{table}[H]
+
+		\begin{table}[H]
 			$$
 			\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
 			\hline
@@ -1550,7 +1553,7 @@ $$
 			\end{array}
 			$$
 			\caption{Resultados obtenidos para la versión continua logarítmica con $R_1$ fijo. Los valores de $R_1$ que no aparecen en la tabla son
-			aquellos para los cuales no se encontró solución.}
+			aquellos para los cuales no se encontró solución. Se omiten los de la versión común ya que son prácticamente iguales.}
 			\label{cuadroResultadosContinuoFijo}
 		\end{table}
 	
