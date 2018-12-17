@@ -2,7 +2,6 @@
 #-*- encoding: utf-8 -*-
 
 import networkx as nx
-import sys
 import math
 
 from filterSolutions import findSols
@@ -27,72 +26,6 @@ e96_values = [1., 1.02, 1.05, 1.07, 1.10, 1.13, 1.15, 1.18, 1.21, 1.24,\
               5.76, 5.90, 6.04, 6.19, 6.34, 6.49, 6.65, 6.81, 6.98, \
               7.15, 7.32, 7.50, 7.68, 7.87, 8.06, 8.25, 8.45, 8.66, \
               8.87, 9.09, 9.31, 9.53, 9.76]
-
-                     
-def costLinear(omega, Q, targetOmega, targetQ, errMax):
-    errOmega = abs((omega-targetOmega)/targetOmega)
-    errQ = abs((Q-targetQ)/targetQ)
-    
-    resCost = 0
-    if (errOmega > errMax):
-        resCost += 1
-    if (errQ > errMax):
-        resCost += 1
-        
-    return resCost
-    
-    
-def costExponential(term1, term2, scale):
-    return (1. - math.exp(-(term1+term2)))/scale
-    
-def costPozo(omega, targetOmega, Q, targetQ, errMax, scale):
-    x = (omega - targetOmega) / (2.*errMax*targetOmega)
-    y = (Q - targetQ) / (2.*errMax*targetQ)
-    
-    resCost = 10**-6
-    if (y >= -x and y <= x and x > 0.5):
-        resCost = scale * x
-    elif (x > -y and x < y and y > 0.5):
-        resCost = scale * y
-    elif (y >= x and y <= -x and x < -0.5):
-        resCost = -scale * x
-    elif (x > y and x < -y and y < -0.5):
-        resCost = -scale * y
-        
-    return resCost
-    
-def costPozo45(omega, targetOmega, Q, targetQ):
-    x = (omega - targetOmega) / targetOmega
-    y = (Q - targetQ) / targetQ
-    # Para dar mas (menos) pendiente a los lados multiplicar cada abs
-    # por una k. Si k e {0,1} se le da menos pendiente
-
-    k = 1.
-    res = (k*abs(x) + k*abs(y) + 1) 
-
-    return res
-    
-def costExp2(omega, targetOmega, Q, targetQ):
-    x = (omega - targetOmega) / targetOmega
-    y = (Q - targetQ) / targetQ
-    
-    cost = 1. / math.exp(-abs(x)) + 1. / math.exp(-abs(y)) - 1.
-    return cost
-    
-def costL(omega, targetOmega, Q, targetQ, slope):
-    # TODO: no hardcodear estos valores. calcularlos    
-    xMax = 159.155
-    xMin = 0.000179196
-    yMax = 21.3198
-    yMin = 0.0000479353
-    
-    x = omega / targetOmega
-    y = Q / targetQ
-    
-    absmax = abs(xMax - 1) + abs(yMax - 1)
-    cost = slope * (absmax - (abs(x-1.) + abs(y-1.)))
-
-    return 1./cost
 
 def costAcor(r1, r2, r3, c4, c5):
     res_min = 1000.
@@ -129,46 +62,18 @@ def costAcor(r1, r2, r3, c4, c5):
     else:
         # Heavily penalize configurations that are not in the specified range
         return 1.0e11
+    
+def costGustavo(r1, r2, r3, c4, c5):
+    return 0
                      
-def cost(assignment, errMax, sigma, scale, costFunction=2):
-    """
-        @Params: costFunction: 1 => linear, 2 => exponential, 3 => pozo
-                               4 => pozo 45º, 5 => exp2 , 6 => L-cost
-    """
+def cost(assignment, errMax, sigma, scale):
     r1 = assignment["r1"]
     r2 = assignment["r2"]
     r3 = assignment["r3"]
     c1 = assignment["c1"]
     c2 = assignment["c2"]
     
-    omega = (1./(r2*r3*c1*c2))**(0.5)
-    Q = qualityFactor(r1,r2,r3,c1,c2)
-    
-    targetOmega = 6283.9478 
-    targetQ = 0.707
-    
-    term1 = ((omega - targetOmega)**2)/(2*sigma)
-    term2 = ((Q - targetQ)**2)/(2*sigma)
-
-    if (costFunction == 1):
-        resCost = costLinear(omega, Q, targetOmega, targetQ, errMax)
-    elif (costFunction == 2):
-        resCost = costExponential(term1, term2, scale)
-    elif (costFunction == 3):
-        resCost = costPozo(omega, targetOmega, Q, targetQ, errMax, scale)
-    elif (costFunction == 4):
-        resCost = costPozo45(omega, targetOmega, Q, targetQ)
-    elif (costFunction == 5):
-        resCost = costExp2(omega, targetOmega, Q, targetQ)
-    elif (costFunction == 6):
-        resCost = costL(omega, targetOmega, Q, targetQ, 1.)
-    elif (costFunction == 7):
-        resCost = costAcor(r1, r2, r3, c1, c2)
-        print resCost
-    else:
-        print "Error: Undefined cost Function"
-        sys.exit()
-        
+    resCost = costAcor(r1, r2, r3, c1, c2)
     resCost += 0.001
     
     return resCost
@@ -179,9 +84,10 @@ def isSolution(assignment, errMax):
     r3 = assignment["r3"]
     c1 = assignment["c1"]
     c2 = assignment["c2"]
-    
-    errOmega = errorOmega(r2, r3, c1, c2, 6283.9478)
-    errQ = errorQ(r1, r2, r3, c1, c2, 0.707)
+    target_omega = 6283.9478
+    target_q = 0.707
+    errOmega = errorOmega(r2, r3, c1, c2, target_omega)
+    errQ = errorQ(r1, r2, r3, c1, c2, target_q)
     
     return errOmega < errMax and errQ < errMax
     
@@ -245,14 +151,13 @@ def sensTotal(path):
     qFactor = qualityFactor(r1, r2, r3, c1, c2)
     s_r1, s_r2, s_r3 = sensitivities(qFactor, r1, r2, r3, c1, c2)
     
-    print s_r1, s_r2, s_r3
+    print "sens total:", s_r1, s_r2, s_r3
     
     return abs(s_r1) + abs(s_r2) + abs(s_r3)
     
 def _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
-                    errMax, costSigma, errScale, costFunction):
+                    errMax, costSigma, errScale):
     
-    #print "Updating pheromone"
     r1Node = ('r1', assign['r1'])
     r2Node = ('r2', assign['r2'])
     r3Node = ('r3', assign['r3'])
@@ -264,8 +169,7 @@ def _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
     edge3Pher = graph[r3Node][c1Node]['weight']
     edge4Pher = graph[c1Node][c2Node]['weight']
 
-    assignCost = cost(assign, errMax, costSigma, errScale, \
-                          costFunction)
+    assignCost = cost(assign, errMax, costSigma, errScale)
     incPher = 1./assignCost
     
     pherInEdges = [edge1Pher, edge2Pher, edge3Pher, edge4Pher]
@@ -297,39 +201,9 @@ def updatePheromone(graph, minPher, maxPher, evaporationRate, \
             *bestAssigns : a list containing best assignments of a given
                cycle.
     """
-    useThreads = False
-    
-    if useThreads:
-        manager = Manager()
-        sharedGraph = manager.dict(graph) #WRONG! Can't "cast" like that
-        jobs = []
-        
-        for assign in bestAssigns:
-            j = multiprocessing.Process(target=_updatePher, \
-                args=(assign, sharedGraph, minPher, maxPher, evaporationRate, \
-                      errMax, costSigma, errScale, costFunction))
-            jobs.append(j)
-            
-        for j in jobs:
-            j.start()
-            
-        for j in jobs:
-            j.join()
-            
-        graph = sharedGraph
-        
-        #~ pool = Pool()
-        #~ 
-        #~ partial_updatePher = partial(_updatePher, graph=graph, minPher=minPher, \
-        #~ maxPher=maxPher, evaporationRate=evaporationRate, errMax=errMax, \
-        #~ costSigma=costSigma, errScale=errScale, costFunction=costFunction)
-        #~ 
-        #~ pool.map_async(partial_updatePher, bestAssigns, len(bestAssigns)/cpu_count())
-        #~ pool.close()
-    else:
-        for assign in bestAssigns:
-            _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
-                         errMax, costSigma, errScale, costFunction)
+    for assign in bestAssigns:
+        _updatePher(assign, graph, minPher, maxPher, evaporationRate, \
+                    errMax, costSigma, errScale)
 
 def buildSaturatedGraph(isScenario1, minPher, maxPher):
     pathSols = findSols(isScenario1)
@@ -447,9 +321,7 @@ def buildFullGraph(isScenario1, minPher):
     g.add_weighted_edges_from(r1r2Edges)
     g.add_weighted_edges_from(r2r3Edges)
     g.add_weighted_edges_from(r3c1Edges)
-    g.add_weighted_edges_from(c1c2Edges)
-    
-    #print len(g.nodes()), len(g.edges())    
+    g.add_weighted_edges_from(c1c2Edges)   
         
     return g, numPaths
     

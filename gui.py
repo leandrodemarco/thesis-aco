@@ -8,6 +8,7 @@ import scipy.stats
 from CspAco import runAlgorithm, runExperiment
 from statFuns import pValuePoisson, generatePoissonSample, twoSamplePValue, \
                      pValueBinnedPoisson
+import csv
 #from ttk import Frame, Button, Label, Style
 
     
@@ -29,148 +30,64 @@ class Example(Frame):
         self.style = Style()
         self.style.theme_use("default")
         
-        # Seleccionar si usamos modelo completo o reducido
-        modelLabel = Label(self, text="Modelo")
-        modelLabel.place(x=25, y=25)
-        
-        self.vModel = IntVar()
-        completeModel = Radiobutton(self, text="Completo", variable = self.vModel, value=1)
-        reducedModel = Radiobutton(self, text="Reducido", variable = self.vModel, value=2)
-        self.vModel.set(1)
-        
-        completeModel.place(x=85, y=25)
-        reducedModel.place(x=180, y=25)
-        
         # Seleccionar escenario
         scenaryLabel = Label(self, text="Escenario")
-        scenaryLabel.place(x=25, y=50)
+        scenaryLabel.place(x=25, y=25)
         
         self.vScenary = IntVar()
         scen1Bt = Radiobutton(self, text="1", variable=self.vScenary, value=1)
         scen2Bt = Radiobutton(self, text="2", variable=self.vScenary, value=2)
         self.vScenary.set(2)
         
-        scen1Bt.place(x=85,y=50)
-        scen2Bt.place(x=120, y=50)
+        scen1Bt.place(x=95,y=25)
+        scen2Bt.place(x=130, y=25)
         
         # Seleccionar número de hormigas
         nAntsLabel = Label(self, text="Nº de hormigas por ciclo: ")
-        nAntsLabel.place(x=25, y=80)
+        nAntsLabel.place(x=25, y=55)
         
         self.vNants = StringVar()
         nAntsEntry = Entry(self, textvariable=self.vNants, width=4)
         self.vNants.set("10")
-        nAntsEntry.place(x=185, y=80)
+        nAntsEntry.place(x=200, y=55)
         
         # Seleccionar numero maximo de ciclos
         nCyclesLabel = Label(self, text="Nº máximo de ciclos: ")
-        nCyclesLabel.place(x=25, y=110)
+        nCyclesLabel.place(x=25, y=95)
         
         self.vNcycles = StringVar()
         nCyclesEntry = Entry(self, textvariable=self.vNcycles, width=4)
         self.vNcycles.set("10")
-        nCyclesEntry.place(x=185, y=110)
+        nCyclesEntry.place(x=200, y=95)
         
-        # Seleccionar tasa de evaporación, tau_min y tau_max
-        evapRateLabel = Label(self, text="Tasa de evaporación: ")
-        evapRateLabel.place(x=25, y=175)
-                
-        self.vEvaporationRate = StringVar()
-        evapRateEntry = Entry(self, textvariable=self.vEvaporationRate, \
-                              width=5)
-        self.vEvaporationRate.set("0.15")
-        evapRateEntry.place(x=185, y=175)
-        
-        tauMinLabel = Label(self, text="tau_min: ")
-        tauMinLabel.place(x=240, y=175)
-        self.vTauMin = StringVar()
-        tauMinEntry = Entry(self, textvariable=self.vTauMin, width=5)
-        self.vTauMin.set("0.05")
-        tauMinEntry.place(x=300, y=175)
-        
-        tauMaxLabel = Label(self, text="tau_max: ")
-        tauMaxLabel.place(x=355, y=175)
-        self.vTauMax = StringVar()
-        tauMaxEntry = Entry(self, textvariable=self.vTauMax, width=5)
-        self.vTauMax.set("15")
-        tauMaxEntry.place(x=415, y=175)
-        
-        # Seleccionar función costo a utilizar
-        costFunctionLabel = Label(self, text="Función costo: ")
-        costFunctionLabel.place(x=25, y=210)
-        
-        self.vCostFunction = IntVar()
-        linearCostBt = Radiobutton(self, text="Lineal", \
-                                   variable=self.vCostFunction, value=1)
-        expCostBt = Radiobutton(self, text="Exponencial", \
-                                   variable=self.vCostFunction, value=2)
-        pozoCostBt = Radiobutton(self, text="Pozo", \
-                                   variable=self.vCostFunction, value=3)
-        pozo45CostBt = Radiobutton(self, text="Pozo 45", \
-                                   variable=self.vCostFunction, value=4)
-        exp2CostBt = Radiobutton(self, text="Exp 2", \
-                                 variable=self.vCostFunction, value=5)
-        LCostBt = Radiobutton(self, text="L-costo", \
-                              variable=self.vCostFunction, value=6)
-        acorCostBt = Radiobutton(self, text="ACOR", 
-                                 variable=self.vCostFunction, value=7)
-                                   
-        linearCostBt.place(x=115, y=210)
-        expCostBt.place(x=185, y=210)
-        pozoCostBt.place(x=285, y=210)
-        pozo45CostBt.place(x=340, y=210)
-        exp2CostBt.place(x=415, y=210)
-        LCostBt.place(x=480, y=210)
-        acorCostBt.place(x=550, y=210)
-        
-        
-        self.vCostFunction.set(7)
-        
-        # Seleccionar sigma para funcion costo
-        costSigmaLabel = Label(self, text="Sigma: ")
-        costSigmaLabel.place(x=25, y=245)
-        
-        self.vCostSigma = StringVar()
-        costSigmaEntry = Entry(self, textvariable=self.vCostSigma, width=5)
-        self.vCostSigma.set("0.05")
-        costSigmaEntry.place(x=185, y=245)
-        
-        # Seleccionar a, factor de modificación ¿de qué?
-        aFactorLabel = Label(self, text="a: ")
-        aFactorLabel.place(x=25, y=280)
-        
-        self.vaFactor = StringVar()
-        aFactorEntry = Entry(self, textvariable=self.vaFactor, width=3)
-        self.vaFactor.set("4")
-        aFactorEntry.place(x=185, y=280)
         
         r1_label = Label(self, text="R1: ")
-        r1_label.place(x=25, y=320)
+        r1_label.place(x=25, y=135)
         self.vaR1 = StringVar()
         R1_entry = Entry(self, textvariable=self.vaR1, width = 6)
-        self.vaR1.set("11000")
-        R1_entry.place(x=185, y=320)
+        self.vaR1.set("")
+        R1_entry.place(x=200, y=135)
         
         # Correr algoritmo
-        runButton = Button(self, text="Ejecutar", command=self.runProgram)
-        runButton.place(x=250, y=350)
+        runButton = Button(self, text="Ejecutar", command=self.execute_pressed)
+        runButton.place(x=250, y=170)
         
         # -------------- FIT EXPERIMENT ------------------------------
         sampleLabel = Label(self, text="M: ")
-        sampleLabel.place(x=170, y=460)
+        sampleLabel.place(x=170, y=230)
         
         self.vRuns = StringVar()
         expRunsEntry = Entry(self, textvariable=self.vRuns, width=5)
         self.vRuns.set("50")
-        expRunsEntry.place(x=192, y=460)
+        expRunsEntry.place(x=192, y=230)
         
         experimentButton = Button(self, text="Experimento", \
                                   command=self._runExperiment)
-        experimentButton.place(x=170, y=425)
+        experimentButton.place(x=170, y=200)
         
         twoSampleButton = Button(self, text="Dos muestras", 
                                  command=self.runTwoSample)
-        twoSampleButton.place(x=290, y=425)
+        twoSampleButton.place(x=290, y=200)
 
     def validateInt(self, stringVar):
         strValue = stringVar.get()
@@ -178,55 +95,42 @@ class Example(Frame):
         try:
             valToRet = int(strValue)
         except:
-            alert = tkMessageBox.showerror("Error!", "El nro de \
-            hormigas debe ser enteros")
+            tkMessageBox.showerror("Error!", "El nro de hormigas debe ser \
+                                   entero")
             
         return valToRet
-        
-    def validateFloat(self, stringVar):
-        strValue = stringVar.get()
-        valToRet = None
+    
+    def getR1Value(self):
+        strValue = self.vaR1.get()
         try:
-            valToRet = float(strValue)
+            r1 = float(strValue)
+            return r1
         except:
-            alert = tkMessageBox.showerror("Error!", "La evaporación"\
-            "tau_min, tau_max y sigma deben ser decimales separados con .")
-
-        return valToRet
+            return None
 
     def validateInput(self):
         nAnts = self.validateInt(self.vNants)
         numCycles = self.validateInt(self.vNcycles)
-        evapRate = self.validateFloat(self.vEvaporationRate)
-        tauMin = self.validateFloat(self.vTauMin)
-        tauMax = self.validateFloat(self.vTauMax)
-        costSigma = self.validateFloat(self.vCostSigma)
-        errFactor = self.validateFloat(self.vaFactor)
 
-        allVars = (nAnts, evapRate, tauMin, tauMax, \
-                  costSigma, numCycles, errFactor)
+        allVars = (nAnts, numCycles)
         allOk = all(var != None for var in allVars)
     
         if allOk:
             return allVars
         else:
             return None
+        
+    def execute_pressed(self):
+        self.runProgram(True)
 
-    def runProgram(self):
+    def runProgram(self, should_break = False):
         validInput = self.validateInput()
         if validInput != None:
             # Obtener data de la UI
-            useCompleteModel = self.vModel.get() == 1
             useScenario1 = self.vScenary.get() == 1
-            costFunction = self.vCostFunction.get()                
-            r1 = float(self.vaR1.get())
-            
-            nAnts, evapRate, tauMin, tauMax, \
-            costSigma, numCycles, errorScale = validInput
-            
-            res = runAlgorithm(useCompleteModel, useScenario1, nAnts, \
-                        evapRate, tauMin, tauMax, costSigma, numCycles,\
-                        errorScale, costFunction, r1)
+            nAnts, numCycles = validInput
+            r1 = self.getR1Value()
+            res = runAlgorithm(useScenario1, nAnts, numCycles, r1, should_break)
             
             return res
             
@@ -234,31 +138,30 @@ class Example(Frame):
         nRuns = self.validateInt(self.vRuns)
                 
         if nRuns != None:
+            csv_file = open('sample_test.csv', 'w+')
+            csv_header = ['Sols halladas', 'Total paths']
+            writer = csv.writer(csv_file)
             sampleTest = {}
-            minSens = 100.
-            bestPath = None
             for i in range(0, nRuns):
                 res = self.runProgram()
+                num_paths = res[2]
+                num_all_sols_found = res[3]
+                
                 # Guardar nro de soluciones encontradas para ver si fitea con
                 # una Bin(n,p)
-                
-                minSensForRun = res[4]
-                if minSensForRun < minSens:
-                    minSens = minSensForRun
-                    bestPath = res[5]
-                    
                 try:
-                    sampleTest[res[3]] += 1
+                    sampleTest[num_all_sols_found] += 1
                 except:
-                    sampleTest[res[3]] = 1
+                    sampleTest[num_all_sols_found] = 1
             
-            return sampleTest, res[2], minSens, bestPath
+            writer.writerows([csv_header, [str(sampleTest), num_paths]])
+            return sampleTest, num_paths
         else:
-            alert = tkMessageBox.showerror("Error!", "El número de"\
-                "muestras debe ser entero")            
+            msg = "El número de muestras debe ser entero"
+            tkMessageBox.showerror("Error!", msg)            
             
     def _runExperiment(self):
-        sampleTest, numPaths, minSens, bestPath = self.generateSampleTest()
+        sampleTest, numPaths = self.generateSampleTest()
                 
         nAnts = self.validateInt(self.vNants)
         numCycles = self.validateInt(self.vNcycles)
@@ -268,8 +171,6 @@ class Example(Frame):
         prob = numSols / numPaths            
         
         print prob
-        print sampleTest
-        print minSens, bestPath
         # Los valores de cada corrida van entre 0 y totalAnts
         # Hacemos el test de chisq
         lam = totalAnts*prob
@@ -307,8 +208,8 @@ class Example(Frame):
         print pVal
         
     def centerWindow(self):
-        w = 600
-        h = 500
+        w = 500
+        h = 300
 
         sw = self.parent.winfo_screenwidth()
         sh = self.parent.winfo_screenheight()

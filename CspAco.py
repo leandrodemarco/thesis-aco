@@ -2,11 +2,9 @@
 #-*- encoding: utf-8 -*-
 
 import time
-import networkx as nx
-from Functions import buildGraph, cost, updatePheromone, isSolution, \
+from Functions import buildGraph, updatePheromone, isSolution, \
                       buildSaturatedGraph, sensTotal
 import Ant
-import sys
 
 def runExperiment(samples, scenario1, tau_min, tau_max):
     g, numPaths, numSols = buildSaturatedGraph(scenario1, tau_min, tau_max)
@@ -34,8 +32,14 @@ def runExperiment(samples, scenario1, tau_min, tau_max):
 
     return results
 
-def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
-                tau_max, costSigma, maxCycles, errScale, costFunction, r1=None):
+def runAlgorithm(scenario1, nAnts, maxCycles, r1=None, should_break = False):
+    useCompleteModel = True
+    evapRate = 0.15
+    tau_min = 0.05
+    tau_max = 15
+    costSigma = 0.05
+    errScale = 4
+    costFunction = 1
 
     start_time = time.time()
 
@@ -50,6 +54,8 @@ def runAlgorithm(useCompleteModel, scenario1, nAnts, evapRate, tau_min, \
     bestPath = None
     
     while (nCycles < maxCycles):
+        if (should_break and len(allSols) > 0):
+            break
         nCycles += 1
         pathsForCycle = []
     
